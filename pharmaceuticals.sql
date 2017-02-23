@@ -1,10 +1,10 @@
 /*
 MySQL Data Transfer
-Source Host: localhost
+Source Host: 192.168.1.207
 Source Database: pharmaceuticals
-Target Host: localhost
+Target Host: 192.168.1.207
 Target Database: pharmaceuticals
-Date: 1/19/2017 9:26:07 PM
+Date: 2/23/2017 2:13:51 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,6 +34,18 @@ CREATE TABLE `clinics` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
+-- Table structure for coupon
+-- ----------------------------
+CREATE TABLE `coupon` (
+  `id` int(11) NOT NULL auto_increment,
+  `code` varchar(200) default NULL,
+  `amount` decimal(10,2) default NULL,
+  `drugid` int(11) default NULL,
+  `status` varchar(20) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2246 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
 -- Table structure for default
 -- ----------------------------
 CREATE TABLE `default` (
@@ -45,8 +57,28 @@ CREATE TABLE `default` (
   `town` varchar(100) default NULL,
   `country` varchar(100) default NULL,
   `email` varchar(100) default NULL,
+  `location` varchar(100) default NULL,
+  `mobile` varchar(100) default NULL,
+  `bank` varchar(100) default NULL,
+  `branch` varchar(100) default NULL,
+  `accountnumber` varchar(200) default NULL,
+  `paybill` varchar(100) default NULL,
+  `tillno` varchar(100) default NULL,
+  `pin` varchar(100) default NULL,
+  `accountname` varchar(200) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for discount
+-- ----------------------------
+CREATE TABLE `discount` (
+  `id` int(11) NOT NULL auto_increment,
+  `qty` varchar(200) default NULL,
+  `amount` decimal(10,2) default NULL,
+  `drugid` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for dose
@@ -120,7 +152,7 @@ CREATE TABLE `immunization` (
   `clinicattended` varchar(100) default NULL,
   `patientid` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for insurance
@@ -134,6 +166,34 @@ CREATE TABLE `insurance` (
   `patientid` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for invoice
+-- ----------------------------
+CREATE TABLE `invoice` (
+  `id` int(11) NOT NULL auto_increment,
+  `invoiceno` varchar(200) default NULL,
+  `invoicedate` datetime default NULL,
+  `amount` decimal(10,2) default NULL,
+  `tax` decimal(10,4) default NULL,
+  `currency` varchar(10) default NULL,
+  `patientid` int(11) default NULL,
+  `file` varchar(200) default NULL,
+  `orderno` varchar(200) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for invoiceitems
+-- ----------------------------
+CREATE TABLE `invoiceitems` (
+  `id` int(11) NOT NULL auto_increment,
+  `invoiceno` varchar(200) default NULL,
+  `itemid` int(11) default NULL,
+  `invoicedate` datetime default NULL,
+  `parentid` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for menu
@@ -150,6 +210,34 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
+-- Table structure for orderitems
+-- ----------------------------
+CREATE TABLE `orderitems` (
+  `id` int(11) NOT NULL auto_increment,
+  `orderno` varchar(200) default NULL,
+  `itemid` int(11) default NULL,
+  `createdate` datetime default NULL,
+  `parentid` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for orders
+-- ----------------------------
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL auto_increment,
+  `orderno` varchar(200) default NULL,
+  `orderdate` datetime default NULL,
+  `amount` decimal(10,2) default NULL,
+  `tax` decimal(10,4) default NULL,
+  `currency` varchar(10) default NULL,
+  `patientid` int(11) default NULL,
+  `file` varchar(200) default NULL,
+  `status` varchar(100) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
 -- Table structure for patientbill
 -- ----------------------------
 CREATE TABLE `patientbill` (
@@ -159,7 +247,7 @@ CREATE TABLE `patientbill` (
   `patientid` int(11) default NULL,
   `amount` decimal(10,2) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for patienthealth
@@ -183,7 +271,7 @@ CREATE TABLE `patientpayment` (
   `patientid` int(11) default NULL,
   `amount` decimal(10,2) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for patientrefill
@@ -200,7 +288,16 @@ CREATE TABLE `patientrefill` (
   `qty` int(11) default NULL,
   `price` decimal(10,2) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for paymentlog
+-- ----------------------------
+CREATE TABLE `paymentlog` (
+  `id` int(11) NOT NULL auto_increment,
+  `comments` text,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for persons
@@ -221,7 +318,44 @@ CREATE TABLE `persons` (
   `img` tinytext,
   `email` varchar(200) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for prescriptionupload
+-- ----------------------------
+CREATE TABLE `prescriptionupload` (
+  `id` int(11) NOT NULL auto_increment,
+  `uploadate` datetime default NULL,
+  `filename` varchar(500) default NULL,
+  `patientid` int(11) default NULL,
+  `path` varchar(500) default NULL,
+  `doctorscomments` varchar(500) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for ratings
+-- ----------------------------
+CREATE TABLE `ratings` (
+  `id` int(11) NOT NULL auto_increment,
+  `drugid` int(11) default NULL,
+  `rating` int(11) default NULL,
+  `comments` varchar(500) default NULL,
+  `patientid` int(11) default NULL,
+  `title` varchar(200) default NULL,
+  `reviewdate` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for roles
+-- ----------------------------
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL auto_increment,
+  `userid` int(9) default NULL,
+  `moduleid` varchar(20) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for smtp
@@ -265,7 +399,17 @@ CREATE TABLE `transactions` (
   `transactiondate` datetime default NULL,
   `storeid` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for userpharm
+-- ----------------------------
+CREATE TABLE `userpharm` (
+  `id` int(9) NOT NULL auto_increment,
+  `pharmacyid` int(9) default NULL,
+  `userid` int(9) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for users
@@ -278,7 +422,7 @@ CREATE TABLE `users` (
   `type` smallint(3) default NULL,
   `isactive` smallint(3) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records 
@@ -768,10 +912,1020 @@ INSERT INTO `category` VALUES ('488', 'vitamins', 'vitamins');
 INSERT INTO `clinics` VALUES ('1', 'Magharini Clinic', 'Kilifi', '56.200000', '43.000000', '3009,Kilifi', 'Mombasa', 'assets/uploads/clinic/clinic_1/Koala.jpg');
 INSERT INTO `clinics` VALUES ('3', 'Homabay Central', 'Western', '12.400000', '34.800000', '34,Homabay', 'Homabay', null);
 INSERT INTO `clinics` VALUES ('4', 'Thika Clinic', 'Thika', '12.230000', '34.560000', '56,Thika', 'Nairobi', null);
-INSERT INTO `default` VALUES ('1', 'Core Ict Consultancy', 'U.T.I S6B ', '0727310743', '+007 238 564', 'Thika', 'Kenya', 'martin@coreict.co.ke');
-INSERT INTO `default` VALUES ('2', null, null, null, null, null, null, null);
-INSERT INTO `dose` VALUES ('7', '1', '1', '1', '1', '7384');
-INSERT INTO `dose` VALUES ('8', 'Morning Dose', '1 x 2', '1 x 3', '1 x 2', '14761');
+INSERT INTO `coupon` VALUES ('1236', 'PHARM-Y23QE3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1237', 'PHARM-G2OT3Y', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1238', 'PHARM-XC6G4H', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1239', 'PHARM-9NCIYA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1240', 'PHARM-BEUVQG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1241', 'PHARM-F4IUQI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1242', 'PHARM-ZJ34AA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1243', 'PHARM-HCF659', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1244', 'PHARM-HE8Y0C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1245', 'PHARM-DLOHIG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1246', 'PHARM-TO7DKQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1247', 'PHARM-N2MP7P', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1248', 'PHARM-2CNX6Y', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1249', 'PHARM-Y6VNPZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1250', 'PHARM-H6GTP7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1251', 'PHARM-80NDUH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1252', 'PHARM-NWJ7OA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1253', 'PHARM-2UJ4OD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1254', 'PHARM-8OKF0M', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1255', 'PHARM-L5AION', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1256', 'PHARM-ARNUGD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1257', 'PHARM-N4833I', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1258', 'PHARM-EZ2MT4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1259', 'PHARM-QKE0GB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1260', 'PHARM-HP8OUW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1261', 'PHARM-PFSBE9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1262', 'PHARM-6DJ09Y', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1263', 'PHARM-5CKAJE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1264', 'PHARM-2Y4YNF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1265', 'PHARM-D8I9S2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1266', 'PHARM-1CJCJS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1267', 'PHARM-RBHAHR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1268', 'PHARM-D7AC5T', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1269', 'PHARM-7MWIYS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1270', 'PHARM-UNARIM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1271', 'PHARM-FLJ4Z4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1272', 'PHARM-08QIC7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1273', 'PHARM-93QMSG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1274', 'PHARM-2E7YFB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1275', 'PHARM-ZGTV2N', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1276', 'PHARM-PFVNY3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1277', 'PHARM-WANAQI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1278', 'PHARM-DMFS87', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1279', 'PHARM-5BYOUM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1280', 'PHARM-93P2VG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1281', 'PHARM-MFCJVE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1282', 'PHARM-6VFNJ3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1283', 'PHARM-C0LXUJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1284', 'PHARM-MW7KQH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1285', 'PHARM-RNB1MM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1286', 'PHARM-6G1ZVG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1287', 'PHARM-4A0S8J', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1288', 'PHARM-1XNVDH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1289', 'PHARM-0149VY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1290', 'PHARM-ODVZ5L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1291', 'PHARM-37PVN9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1292', 'PHARM-5BEHWZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1293', 'PHARM-T2K4EM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1294', 'PHARM-1LLNPN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1295', 'PHARM-34HRXE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1296', 'PHARM-WPBWYZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1297', 'PHARM-DSE66S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1298', 'PHARM-WRXF7U', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1299', 'PHARM-712VGK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1300', 'PHARM-QAW7GL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1301', 'PHARM-UDE8NG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1302', 'PHARM-FA5UCL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1303', 'PHARM-ONJQE5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1304', 'PHARM-VWKDHT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1305', 'PHARM-H53XAA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1306', 'PHARM-H4I5WH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1307', 'PHARM-1YONHZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1308', 'PHARM-I6I7TP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1309', 'PHARM-H1OJ5C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1310', 'PHARM-Y70N4E', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1311', 'PHARM-0ODK40', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1312', 'PHARM-VDUCJH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1313', 'PHARM-9HSL6J', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1314', 'PHARM-3HQ5XI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1315', 'PHARM-HO98BB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1316', 'PHARM-7B0PNF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1317', 'PHARM-ERP0BL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1318', 'PHARM-MCYKGZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1319', 'PHARM-8Q60KD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1320', 'PHARM-V9FU8U', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1321', 'PHARM-NHEMMX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1322', 'PHARM-UWE4FH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1323', 'PHARM-VBZ4ZZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1324', 'PHARM-52AO23', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1325', 'PHARM-O1X9X3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1326', 'PHARM-HOVL57', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1327', 'PHARM-2TZI2P', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1328', 'PHARM-R10WSS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1329', 'PHARM-CUV3SB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1330', 'PHARM-SSVVHU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1331', 'PHARM-YVFESY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1332', 'PHARM-5Z5E97', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1333', 'PHARM-130U46', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1334', 'PHARM-9LIPN0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1335', 'PHARM-HD07PO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1336', 'PHARM-JRDVLP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1337', 'PHARM-RFK15J', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1338', 'PHARM-PM8KYG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1339', 'PHARM-2H5MAR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1340', 'PHARM-0WHMWI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1341', 'PHARM-9APBH3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1342', 'PHARM-21US2S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1343', 'PHARM-G9OJLI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1344', 'PHARM-MMTL0C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1345', 'PHARM-E2H51A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1346', 'PHARM-7PLMMA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1347', 'PHARM-TKATW1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1348', 'PHARM-88N5M6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1349', 'PHARM-WQRIMH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1350', 'PHARM-UVMK51', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1351', 'PHARM-2BSFSC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1352', 'PHARM-0PJI3A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1353', 'PHARM-VS8IA0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1354', 'PHARM-IZZ4DE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1355', 'PHARM-U1Y9VE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1356', 'PHARM-6IOTJ2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1357', 'PHARM-2EYO4J', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1358', 'PHARM-TYQNCD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1359', 'PHARM-K8XQ4B', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1360', 'PHARM-H8NKGQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1361', 'PHARM-4TIYIA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1362', 'PHARM-LFE8MZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1363', 'PHARM-PZBJ0D', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1364', 'PHARM-9IT5JG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1365', 'PHARM-D1JXQT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1366', 'PHARM-T41JUB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1367', 'PHARM-C7HVUT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1368', 'PHARM-N9RP1D', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1369', 'PHARM-X6M3E2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1370', 'PHARM-HNUMPL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1371', 'PHARM-3SNNL5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1372', 'PHARM-CRO6S5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1373', 'PHARM-GEZ0UM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1374', 'PHARM-GQ5WUT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1375', 'PHARM-NLC114', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1376', 'PHARM-UJC0G9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1377', 'PHARM-YZ4747', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1378', 'PHARM-U1D857', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1379', 'PHARM-PY2Z1L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1380', 'PHARM-VSRUF1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1381', 'PHARM-HCWDX9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1382', 'PHARM-2L3J8N', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1383', 'PHARM-5BJOPE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1384', 'PHARM-J7WDD3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1385', 'PHARM-EL82CS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1386', 'PHARM-D2BF8W', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1387', 'PHARM-RRXRJL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1388', 'PHARM-RT965W', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1389', 'PHARM-3E5W2W', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1390', 'PHARM-5S8G3B', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1391', 'PHARM-HKPBGM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1392', 'PHARM-MDV3QC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1393', 'PHARM-ZAQS32', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1394', 'PHARM-P82AXJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1395', 'PHARM-HYY32L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1396', 'PHARM-E8U70Y', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1397', 'PHARM-8N4O3I', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1398', 'PHARM-DXEQPU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1399', 'PHARM-0HLFH8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1400', 'PHARM-J9349I', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1401', 'PHARM-ZJD5JZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1402', 'PHARM-WKK60U', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1403', 'PHARM-H2XQV6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1404', 'PHARM-P3TTEX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1405', 'PHARM-0ZTLUA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1406', 'PHARM-94144U', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1407', 'PHARM-MQV530', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1408', 'PHARM-BNPM5S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1409', 'PHARM-W9GXMJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1410', 'PHARM-WIQDH4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1411', 'PHARM-4SE96U', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1412', 'PHARM-MRAI07', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1413', 'PHARM-CMZY9K', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1414', 'PHARM-2UPQIL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1415', 'PHARM-AHX9GC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1416', 'PHARM-SJDPZJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1417', 'PHARM-7LNKNZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1418', 'PHARM-M2SOLD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1419', 'PHARM-9A1PY0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1420', 'PHARM-E7M5B8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1421', 'PHARM-GSNRDW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1422', 'PHARM-KBOFTP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1423', 'PHARM-F9K9VC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1424', 'PHARM-V7TRGA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1425', 'PHARM-P7KZPV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1426', 'PHARM-NAV4M3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1427', 'PHARM-BVHXQB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1428', 'PHARM-4X4386', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1429', 'PHARM-ZF7CB5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1430', 'PHARM-IH0P0V', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1431', 'PHARM-38EDF9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1432', 'PHARM-T8WY3N', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1433', 'PHARM-G3XFWP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1434', 'PHARM-FTFWJC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1435', 'PHARM-OCK73Q', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1436', 'PHARM-JWPZUE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1437', 'PHARM-6BKSO2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1438', 'PHARM-X4C7IB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1439', 'PHARM-169PF1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1440', 'PHARM-NU0524', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1441', 'PHARM-TM0VMB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1442', 'PHARM-K5UNUY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1443', 'PHARM-BURU0S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1444', 'PHARM-JQQOE0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1445', 'PHARM-HY41XE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1446', 'PHARM-MWGCDM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1447', 'PHARM-1KRUJP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1448', 'PHARM-OKU92E', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1449', 'PHARM-TRVM82', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1450', 'PHARM-3LE3B8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1451', 'PHARM-AK14WL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1452', 'PHARM-YUACA2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1453', 'PHARM-K2T43U', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1454', 'PHARM-RWAJ0O', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1455', 'PHARM-CRUPLC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1456', 'PHARM-BAPLVL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1457', 'PHARM-OKNYHU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1458', 'PHARM-SKTK86', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1459', 'PHARM-HXS7AH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1460', 'PHARM-RFWDGN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1461', 'PHARM-6ZV573', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1462', 'PHARM-I482MR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1463', 'PHARM-UD05TD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1464', 'PHARM-QI8342', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1465', 'PHARM-HYSF6D', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1466', 'PHARM-JBNB98', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1467', 'PHARM-CUBL7Z', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1468', 'PHARM-UGL7DO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1469', 'PHARM-BFPI8V', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1470', 'PHARM-BB5GKC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1471', 'PHARM-7PLRSK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1472', 'PHARM-OVLIP1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1473', 'PHARM-II1ZOB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1474', 'PHARM-PZ4VLO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1475', 'PHARM-LKJER9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1476', 'PHARM-VABQ4Z', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1477', 'PHARM-XXPQTL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1478', 'PHARM-8MZNNY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1479', 'PHARM-3FF3NP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1480', 'PHARM-MFBL83', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1481', 'PHARM-L7VREY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1482', 'PHARM-LY3Z96', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1483', 'PHARM-9V29RS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1484', 'PHARM-QRXY2A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1485', 'PHARM-GVBRDO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1486', 'PHARM-B1TKFB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1487', 'PHARM-EJ1ZNA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1488', 'PHARM-L0C72A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1489', 'PHARM-758WJ1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1490', 'PHARM-R422EB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1491', 'PHARM-1VLH49', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1492', 'PHARM-VHU1NR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1493', 'PHARM-Y94SM6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1494', 'PHARM-3Y70IG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1495', 'PHARM-JGHUI0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1496', 'PHARM-9WGQY8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1497', 'PHARM-PGS3CP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1498', 'PHARM-7F2T1Q', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1499', 'PHARM-HPBLCR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1500', 'PHARM-C53VHN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1501', 'PHARM-2GWHKX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1502', 'PHARM-YSXCF3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1503', 'PHARM-4QDPRA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1504', 'PHARM-57Y8Y5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1505', 'PHARM-3YC4X2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1506', 'PHARM-IKPG4W', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1507', 'PHARM-8OLUIM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1508', 'PHARM-QUMPDN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1509', 'PHARM-BV7Z7C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1510', 'PHARM-61O6R7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1511', 'PHARM-AITV57', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1512', 'PHARM-IE7CTZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1513', 'PHARM-JS5KEP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1514', 'PHARM-ILDKBT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1515', 'PHARM-C7CTHN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1516', 'PHARM-CY0FT4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1517', 'PHARM-49YOX1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1518', 'PHARM-HJ75R1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1519', 'PHARM-5YLZX0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1520', 'PHARM-ZQK0H4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1521', 'PHARM-CV97A7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1522', 'PHARM-O2EPBN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1523', 'PHARM-J5JML1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1524', 'PHARM-XUSZ3N', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1525', 'PHARM-T07MMW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1526', 'PHARM-HO6VN1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1527', 'PHARM-0NL7D4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1528', 'PHARM-P43ESA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1529', 'PHARM-0GLAYD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1530', 'PHARM-AWKRYC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1531', 'PHARM-ISNZ2S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1532', 'PHARM-IQEW0F', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1533', 'PHARM-UESTKZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1534', 'PHARM-FGUQ32', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1535', 'PHARM-AGZYBF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1536', 'PHARM-7B1Y5F', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1537', 'PHARM-3792YC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1538', 'PHARM-CZZQKP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1539', 'PHARM-EOGR6Y', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1540', 'PHARM-U6BMF0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1541', 'PHARM-9UQ0FJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1542', 'PHARM-LZR17A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1543', 'PHARM-MILRQQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1544', 'PHARM-ILP1WK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1545', 'PHARM-YYO03F', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1546', 'PHARM-KDMLQA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1547', 'PHARM-YI4CZ4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1548', 'PHARM-RFBWU1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1549', 'PHARM-WURS74', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1550', 'PHARM-PP4K6S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1551', 'PHARM-RGPER8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1552', 'PHARM-LTC4XI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1553', 'PHARM-KL0E4V', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1554', 'PHARM-P4BL6I', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1555', 'PHARM-0M31PX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1556', 'PHARM-4XLNXH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1557', 'PHARM-QSGCLK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1558', 'PHARM-P5J8J3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1559', 'PHARM-ARCGRI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1560', 'PHARM-0ESVQ6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1561', 'PHARM-8NJHZP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1562', 'PHARM-750UYI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1563', 'PHARM-1X59S0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1564', 'PHARM-ZXEL0B', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1565', 'PHARM-P1GMO4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1566', 'PHARM-QJTAO5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1567', 'PHARM-4ZMRNV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1568', 'PHARM-MBM57A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1569', 'PHARM-ECOSJ0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1570', 'PHARM-HWKMAE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1571', 'PHARM-1OFXPM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1572', 'PHARM-V6KU17', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1573', 'PHARM-AM2IHN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1574', 'PHARM-PXYLGN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1575', 'PHARM-HPWWPO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1576', 'PHARM-LNZEX5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1577', 'PHARM-P2URQQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1578', 'PHARM-YGE2EA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1579', 'PHARM-075TEL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1580', 'PHARM-HJ0Q5G', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1581', 'PHARM-IHA32D', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1582', 'PHARM-4PZXXH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1583', 'PHARM-78V09B', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1584', 'PHARM-GH7VZS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1585', 'PHARM-0U3OIF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1586', 'PHARM-8SF0TU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1587', 'PHARM-XCKR6A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1588', 'PHARM-HH69JM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1589', 'PHARM-R2LU1I', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1590', 'PHARM-OMH6TW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1591', 'PHARM-YXJPIR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1592', 'PHARM-41C61Y', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1593', 'PHARM-L7DUWF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1594', 'PHARM-QO8SB2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1595', 'PHARM-QZ00H6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1596', 'PHARM-2UGDNS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1597', 'PHARM-JRL2LN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1598', 'PHARM-ATEC4P', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1599', 'PHARM-ONGR85', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1600', 'PHARM-QJR7OK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1601', 'PHARM-6Q54W0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1602', 'PHARM-VUX5SR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1603', 'PHARM-SS3N86', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1604', 'PHARM-44E3EC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1605', 'PHARM-XEVOEE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1606', 'PHARM-0OR58S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1607', 'PHARM-6ABTAC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1608', 'PHARM-JND6QL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1609', 'PHARM-6PBXJF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1610', 'PHARM-BL6WV2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1611', 'PHARM-OCS2HH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1612', 'PHARM-SCOWS2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1613', 'PHARM-PCL93F', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1614', 'PHARM-ARCZTM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1615', 'PHARM-JTYT2K', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1616', 'PHARM-PX6F01', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1617', 'PHARM-CIYGQ8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1618', 'PHARM-D1D90X', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1619', 'PHARM-Z0UWQZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1620', 'PHARM-DWR22J', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1621', 'PHARM-D7V38O', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1622', 'PHARM-UF3JD8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1623', 'PHARM-UHJCWX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1624', 'PHARM-2PAEJ2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1625', 'PHARM-S00356', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1626', 'PHARM-7UL6XT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1627', 'PHARM-UXXMHQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1628', 'PHARM-LYY1NA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1629', 'PHARM-FTH21G', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1630', 'PHARM-8TCJBN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1631', 'PHARM-NLXRXC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1632', 'PHARM-7PYLMO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1633', 'PHARM-GUXRYM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1634', 'PHARM-TRTNSG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1635', 'PHARM-SDKFMT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1636', 'PHARM-XGYHA5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1637', 'PHARM-FYMYHD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1638', 'PHARM-0B1MFL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1639', 'PHARM-L2M7XI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1640', 'PHARM-U8LJ9J', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1641', 'PHARM-YTHI26', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1642', 'PHARM-1LCRZK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1643', 'PHARM-1S4BXV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1644', 'PHARM-Q5QPG4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1645', 'PHARM-IL7ZGS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1646', 'PHARM-DSUQ3C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1647', 'PHARM-4GWOIS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1648', 'PHARM-Y63HB3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1649', 'PHARM-V4XMXJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1650', 'PHARM-V1CIGF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1651', 'PHARM-29TU8K', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1652', 'PHARM-J8ETD2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1653', 'PHARM-3EFF5V', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1654', 'PHARM-VUY71O', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1655', 'PHARM-PB7MJZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1656', 'PHARM-3I0GKG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1657', 'PHARM-FAVB7S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1658', 'PHARM-22UZCF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1659', 'PHARM-UPYMFD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1660', 'PHARM-MUOKG8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1661', 'PHARM-V0BB66', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1662', 'PHARM-J06GS3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1663', 'PHARM-0MHBSS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1664', 'PHARM-BRMUFC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1665', 'PHARM-6TMFD6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1666', 'PHARM-HS6QSI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1667', 'PHARM-MKALU5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1668', 'PHARM-SE56TC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1669', 'PHARM-FZY05O', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1670', 'PHARM-QXYB2T', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1671', 'PHARM-8CR8SJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1672', 'PHARM-DVMXKL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1673', 'PHARM-N3ODQ0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1674', 'PHARM-A9B93Y', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1675', 'PHARM-3GFS2L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1676', 'PHARM-2HRHRW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1677', 'PHARM-1HH2S2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1678', 'PHARM-BWV5KC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1679', 'PHARM-UA84H6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1680', 'PHARM-Z5WTZN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1681', 'PHARM-3X9OVJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1682', 'PHARM-V828PI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1683', 'PHARM-5NPTZQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1684', 'PHARM-4JU1T9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1685', 'PHARM-62KQMR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1686', 'PHARM-U9410E', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1687', 'PHARM-E4C6IX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1688', 'PHARM-ZB0JH3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1689', 'PHARM-9N60HD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1690', 'PHARM-VYE2E9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1691', 'PHARM-ZSZLXE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1692', 'PHARM-03A54E', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1693', 'PHARM-3S9UW8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1694', 'PHARM-WVDM68', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1695', 'PHARM-QJSGUX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1696', 'PHARM-PUB73Z', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1697', 'PHARM-LRX8OK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1698', 'PHARM-AOTYMC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1699', 'PHARM-D1A7LU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1700', 'PHARM-KB5JY9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1701', 'PHARM-3EX4TG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1702', 'PHARM-GV8GKZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1703', 'PHARM-ZDDP9L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1704', 'PHARM-HXKUSN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1705', 'PHARM-OHITUM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1706', 'PHARM-XD3KF2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1707', 'PHARM-8LVPFN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1708', 'PHARM-0C46V3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1709', 'PHARM-G8XL07', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1710', 'PHARM-DGE6EF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1711', 'PHARM-J5CI1Q', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1712', 'PHARM-SRJP6V', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1713', 'PHARM-8I5DLA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1714', 'PHARM-BHIRG1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1715', 'PHARM-1LE7AU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1716', 'PHARM-YA6O06', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1717', 'PHARM-49LRU3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1718', 'PHARM-8KAVP6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1719', 'PHARM-357F76', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1720', 'PHARM-9LRNSJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1721', 'PHARM-ZAS9ZX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1722', 'PHARM-CXNQO8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1723', 'PHARM-30KLRC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1724', 'PHARM-8YOHBC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1725', 'PHARM-OYHBYU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1726', 'PHARM-4G00GG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1727', 'PHARM-21DQPY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1728', 'PHARM-0PGCVI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1729', 'PHARM-LAPB7F', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1730', 'PHARM-K9JSU1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1731', 'PHARM-74E5FY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1732', 'PHARM-1HMMXV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1733', 'PHARM-J8WQPI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1734', 'PHARM-3ROHH7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1735', 'PHARM-NGBNT9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1736', 'PHARM-QVJ404', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1737', 'PHARM-51NJ4E', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1738', 'PHARM-Z6KT0L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1739', 'PHARM-OYGXJ7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1740', 'PHARM-BILDTO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1741', 'PHARM-T20DCR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1742', 'PHARM-ZLYBA4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1743', 'PHARM-NE76CZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1744', 'PHARM-G173W8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1745', 'PHARM-ZC2G82', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1746', 'PHARM-1EFT9K', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1747', 'PHARM-AXNG9H', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1748', 'PHARM-BGZTS4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1749', 'PHARM-X0TPMN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1750', 'PHARM-AG4M4G', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1751', 'PHARM-XQ5VYD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1752', 'PHARM-U8FZ3A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1753', 'PHARM-9DZMFD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1754', 'PHARM-QP1KLA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1755', 'PHARM-U65NW4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1756', 'PHARM-GOI4LX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1757', 'PHARM-H6NL2C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1758', 'PHARM-XYMCGG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1759', 'PHARM-ZA7P7V', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1760', 'PHARM-WHY1OB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1761', 'PHARM-68PHPU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1762', 'PHARM-RG6RF1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1763', 'PHARM-SC2X4Y', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1764', 'PHARM-V8C681', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1765', 'PHARM-850NFR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1766', 'PHARM-I9V1OK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1767', 'PHARM-D6GKBK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1768', 'PHARM-9E3S37', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1769', 'PHARM-HVM8XO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1770', 'PHARM-5H99D6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1771', 'PHARM-I8VRHC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1772', 'PHARM-9E4HDR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1773', 'PHARM-YD4BMW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1774', 'PHARM-YRGQM6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1775', 'PHARM-X3BEFN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1776', 'PHARM-6WFNQ9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1777', 'PHARM-KEJNOI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1778', 'PHARM-V44VXI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1779', 'PHARM-81LXQV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1780', 'PHARM-3IK1J0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1781', 'PHARM-S75GAM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1782', 'PHARM-XMM9D5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1783', 'PHARM-CAFJ93', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1784', 'PHARM-M45DRJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1785', 'PHARM-FT8IDK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1786', 'PHARM-LGNIIU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1787', 'PHARM-KAXNEJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1788', 'PHARM-X91A1F', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1789', 'PHARM-0NXD99', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1790', 'PHARM-FJJXNU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1791', 'PHARM-C9KEZV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1792', 'PHARM-8JHYST', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1793', 'PHARM-RFL1OF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1794', 'PHARM-Y907ZB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1795', 'PHARM-WAC7EO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1796', 'PHARM-O9I6WT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1797', 'PHARM-WH8VT1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1798', 'PHARM-IFPCMW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1799', 'PHARM-UATAIP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1800', 'PHARM-51BMMZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1801', 'PHARM-668NA7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1802', 'PHARM-6AVCLS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1803', 'PHARM-FR6HKR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1804', 'PHARM-YJAF1A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1805', 'PHARM-LFS27Q', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1806', 'PHARM-9P8STE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1807', 'PHARM-4P3IUS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1808', 'PHARM-XSFNM7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1809', 'PHARM-A9XUQ1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1810', 'PHARM-U1HJJM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1811', 'PHARM-XJTCZK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1812', 'PHARM-Y2J3WX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1813', 'PHARM-U289KK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1814', 'PHARM-DQ0NDY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1815', 'PHARM-4KTDLO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1816', 'PHARM-OTMU1V', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1817', 'PHARM-L7TO44', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1818', 'PHARM-CI7051', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1819', 'PHARM-LWIXC6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1820', 'PHARM-N017U7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1821', 'PHARM-L681QF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1822', 'PHARM-4P0OY6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1823', 'PHARM-PT0CDA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1824', 'PHARM-9UHIPX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1825', 'PHARM-KRG3PW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1826', 'PHARM-JOF0XG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1827', 'PHARM-CPJH4O', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1828', 'PHARM-KC1V4Z', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1829', 'PHARM-64UUOG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1830', 'PHARM-RG46I5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1831', 'PHARM-JLJSHX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1832', 'PHARM-EUWN66', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1833', 'PHARM-Y6GQWK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1834', 'PHARM-FHOCIB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1835', 'PHARM-HK4TB9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1836', 'PHARM-FGLAGZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1837', 'PHARM-0QOHLS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1838', 'PHARM-L57ODB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1839', 'PHARM-6A7J6I', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1840', 'PHARM-NXNLZH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1841', 'PHARM-TVCT1U', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1842', 'PHARM-70QULG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1843', 'PHARM-3Q4QF7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1844', 'PHARM-P4P2AP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1845', 'PHARM-MGICQQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1846', 'PHARM-CTWH6J', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1847', 'PHARM-HSX6HJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1848', 'PHARM-BP0DPE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1849', 'PHARM-4T8GQT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1850', 'PHARM-P8TQPP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1851', 'PHARM-LOSBOF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1852', 'PHARM-FAMRMD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1853', 'PHARM-UCS1N1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1854', 'PHARM-C13IM2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1855', 'PHARM-XGBKCU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1856', 'PHARM-4ZBE58', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1857', 'PHARM-ZLT1TN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1858', 'PHARM-UU55N9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1859', 'PHARM-78BJ7K', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1860', 'PHARM-TFS3WP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1861', 'PHARM-CFKXZ2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1862', 'PHARM-VJY52P', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1863', 'PHARM-U2UBTH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1864', 'PHARM-6OTTNC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1865', 'PHARM-MQCDA9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1866', 'PHARM-UJUYEZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1867', 'PHARM-NE53TQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1868', 'PHARM-UGNI7I', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1869', 'PHARM-GCLU74', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1870', 'PHARM-8TDJTR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1871', 'PHARM-YFFHO8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1872', 'PHARM-UHLJFS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1873', 'PHARM-2SX1G5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1874', 'PHARM-B8BNOR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1875', 'PHARM-1ZN3PL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1876', 'PHARM-NMAJS5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1877', 'PHARM-MR85CV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1878', 'PHARM-3RBA9C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1879', 'PHARM-4GI6W3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1880', 'PHARM-WDBZJQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1881', 'PHARM-G555VT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1882', 'PHARM-2JR3JC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1883', 'PHARM-JBYL2Z', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1884', 'PHARM-MEY97A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1885', 'PHARM-O1V294', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1886', 'PHARM-6DWQ4Z', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1887', 'PHARM-E2IMTF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1888', 'PHARM-FNJM58', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1889', 'PHARM-T7CO4C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1890', 'PHARM-GBCLUZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1891', 'PHARM-QEYZSD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1892', 'PHARM-2XCMFT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1893', 'PHARM-ADLVB9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1894', 'PHARM-SD1CO7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1895', 'PHARM-50X0K5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1896', 'PHARM-G4P2Q7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1897', 'PHARM-KCAXUY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1898', 'PHARM-MJRN9U', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1899', 'PHARM-QSGVH1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1900', 'PHARM-ZOSK6K', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1901', 'PHARM-LGELMM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1902', 'PHARM-8OP6NM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1903', 'PHARM-WJV32X', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1904', 'PHARM-26BYQ1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1905', 'PHARM-89O5ZI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1906', 'PHARM-QW2DQ6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1907', 'PHARM-JSJY5G', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1908', 'PHARM-YSQYBG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1909', 'PHARM-RSOG15', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1910', 'PHARM-WIBKLD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1911', 'PHARM-7RFTXK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1912', 'PHARM-Z86CIH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1913', 'PHARM-I6SA28', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1914', 'PHARM-IEQCLC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1915', 'PHARM-SAWPC2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1916', 'PHARM-Q9DXJY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1917', 'PHARM-W4WHP3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1918', 'PHARM-YKBO6L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1919', 'PHARM-9A872N', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1920', 'PHARM-WNEJGK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1921', 'PHARM-750OEO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1922', 'PHARM-U2L783', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1923', 'PHARM-V0IJ8X', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1924', 'PHARM-XOJFUY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1925', 'PHARM-I98953', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1926', 'PHARM-H6QYGS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1927', 'PHARM-XS656C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1928', 'PHARM-NTND70', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1929', 'PHARM-SXYXOP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1930', 'PHARM-VIKDTR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1931', 'PHARM-TO37P1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1932', 'PHARM-J3R08T', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1933', 'PHARM-DLJ6NF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1934', 'PHARM-HL4XPD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1935', 'PHARM-NI4ZHE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1936', 'PHARM-EXEFB3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1937', 'PHARM-20WVLL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1938', 'PHARM-VXATDD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1939', 'PHARM-ODJTGD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1940', 'PHARM-8EDBB7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1941', 'PHARM-F1ECII', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1942', 'PHARM-G3QTLX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1943', 'PHARM-VSU31L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1944', 'PHARM-ES3ITI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1945', 'PHARM-4QM5EF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1946', 'PHARM-UNA6OG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1947', 'PHARM-OWC5UX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1948', 'PHARM-O7LN9F', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1949', 'PHARM-88QAY8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1950', 'PHARM-UM6M3V', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1951', 'PHARM-UB400E', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1952', 'PHARM-Z871OJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1953', 'PHARM-LFTLXR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1954', 'PHARM-TGOWA9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1955', 'PHARM-DLXJE8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1956', 'PHARM-TH1R2R', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1957', 'PHARM-Z2OMIA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1958', 'PHARM-4R0R8H', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1959', 'PHARM-BYSWIM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1960', 'PHARM-2VFOS4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1961', 'PHARM-QDN7I6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1962', 'PHARM-0F86UW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1963', 'PHARM-FQ05Z8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1964', 'PHARM-AO616K', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1965', 'PHARM-15843S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1966', 'PHARM-0FDIP8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1967', 'PHARM-KIV5FN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1968', 'PHARM-WH5JPC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1969', 'PHARM-991KHV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1970', 'PHARM-S5RLAF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1971', 'PHARM-SFDDWX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1972', 'PHARM-5M8784', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1973', 'PHARM-GJKISQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1974', 'PHARM-GWOVBT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1975', 'PHARM-J752VE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1976', 'PHARM-LJFCEL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1977', 'PHARM-DJYE7M', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1978', 'PHARM-YV5EBA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1979', 'PHARM-K614XX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1980', 'PHARM-9OKJZ8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1981', 'PHARM-P5SEIF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1982', 'PHARM-ZTEV9B', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1983', 'PHARM-R2WDC0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1984', 'PHARM-UYGHKN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1985', 'PHARM-0406A7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1986', 'PHARM-A3K1S3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1987', 'PHARM-N5J8HW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1988', 'PHARM-D7W5PA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1989', 'PHARM-V09T5B', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1990', 'PHARM-1CSWYG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1991', 'PHARM-YKADCY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1992', 'PHARM-1505KY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1993', 'PHARM-F8O0GF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1994', 'PHARM-RE3URB', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1995', 'PHARM-G6LQRH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1996', 'PHARM-FCKHF3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1997', 'PHARM-KKR9SI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1998', 'PHARM-G6MBKK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('1999', 'PHARM-8L8PCJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2000', 'PHARM-0Z59MO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2001', 'PHARM-9HHQAC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2002', 'PHARM-GYQKSW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2003', 'PHARM-AZIEC6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2004', 'PHARM-GCIIRO', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2005', 'PHARM-6EGQQW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2006', 'PHARM-XB2DVC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2007', 'PHARM-LZJI8T', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2008', 'PHARM-TC6YP2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2009', 'PHARM-GR3K55', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2010', 'PHARM-FQ49C1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2011', 'PHARM-9XVXRV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2012', 'PHARM-FBSF5B', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2013', 'PHARM-76HIHQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2014', 'PHARM-SIOCTN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2015', 'PHARM-Z72P4R', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2016', 'PHARM-XPSGWR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2017', 'PHARM-RXI4J5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2018', 'PHARM-V7JM7M', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2019', 'PHARM-T5QVLR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2020', 'PHARM-ZX6GGN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2021', 'PHARM-3BCY89', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2022', 'PHARM-Z4DLV6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2023', 'PHARM-KPPFNA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2024', 'PHARM-SGQFZ1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2025', 'PHARM-4A02MV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2026', 'PHARM-V8YAVU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2027', 'PHARM-DHKX7E', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2028', 'PHARM-2C7XP8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2029', 'PHARM-FIBZJJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2030', 'PHARM-9YE75I', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2031', 'PHARM-66HBVJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2032', 'PHARM-586MYP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2033', 'PHARM-5IJ3BH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2034', 'PHARM-0NP0JF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2035', 'PHARM-0T8VDG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2036', 'PHARM-QHS67T', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2037', 'PHARM-67TN3O', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2038', 'PHARM-LZZVWA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2039', 'PHARM-JT680X', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2040', 'PHARM-GEZONA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2041', 'PHARM-DHAS7J', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2042', 'PHARM-PDN3AM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2043', 'PHARM-KKQDCE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2044', 'PHARM-TAEAB5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2045', 'PHARM-JY00NL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2046', 'PHARM-V6A4KL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2047', 'PHARM-HGPHHD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2048', 'PHARM-JIHBEH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2049', 'PHARM-N1Y9SY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2050', 'PHARM-GUOEIC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2051', 'PHARM-QD9XF3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2052', 'PHARM-5Y90GU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2053', 'PHARM-4I7CKV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2054', 'PHARM-5VWQ0D', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2055', 'PHARM-4TRJL0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2056', 'PHARM-T5MS8Y', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2057', 'PHARM-G1T4PY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2058', 'PHARM-YG41Y3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2059', 'PHARM-5P2WSC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2060', 'PHARM-T915CR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2061', 'PHARM-LVMMMY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2062', 'PHARM-2SGNOG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2063', 'PHARM-P8LPOH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2064', 'PHARM-QOJQ34', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2065', 'PHARM-ASBWR0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2066', 'PHARM-Q29I0O', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2067', 'PHARM-NZDSPU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2068', 'PHARM-4ND5T0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2069', 'PHARM-KJ50Z4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2070', 'PHARM-J9E3UL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2071', 'PHARM-P1F7VM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2072', 'PHARM-MI41XJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2073', 'PHARM-E5QAWQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2074', 'PHARM-7HBW02', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2075', 'PHARM-P8RB2W', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2076', 'PHARM-3CS4D5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2077', 'PHARM-17BOX7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2078', 'PHARM-WOYHEI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2079', 'PHARM-ZRBSZ7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2080', 'PHARM-1PROIW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2081', 'PHARM-XG79YZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2082', 'PHARM-KUUY2Q', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2083', 'PHARM-CAKJ7W', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2084', 'PHARM-GJ2KLU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2085', 'PHARM-UZ4P15', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2086', 'PHARM-AAOXD7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2087', 'PHARM-7LL343', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2088', 'PHARM-SLLU6W', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2089', 'PHARM-CZRD87', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2090', 'PHARM-L9ZN1T', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2091', 'PHARM-3G8VX3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2092', 'PHARM-F7FIRK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2093', 'PHARM-4KH2NT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2094', 'PHARM-VGWMEG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2095', 'PHARM-OIX9PG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2096', 'PHARM-ODBMM4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2097', 'PHARM-L2RRGZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2098', 'PHARM-E6CMGF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2099', 'PHARM-037M71', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2100', 'PHARM-GZITIV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2101', 'PHARM-QVZ7ML', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2102', 'PHARM-PQ5ZH5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2103', 'PHARM-HKYD95', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2104', 'PHARM-9IVR55', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2105', 'PHARM-F30P3L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2106', 'PHARM-DUQ6A8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2107', 'PHARM-6OBE02', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2108', 'PHARM-RKQOGK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2109', 'PHARM-D4JANJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2110', 'PHARM-WQE8MT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2111', 'PHARM-GPUSOT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2112', 'PHARM-T8O7VT', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2113', 'PHARM-8ZGOAP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2114', 'PHARM-TGKDZ2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2115', 'PHARM-23KEU5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2116', 'PHARM-JUGZ7P', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2117', 'PHARM-5SXQ06', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2118', 'PHARM-CH4MH9', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2119', 'PHARM-BZI4O3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2120', 'PHARM-FXGHDN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2121', 'PHARM-ZNKDGL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2122', 'PHARM-S6ZQ0R', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2123', 'PHARM-RNC1C5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2124', 'PHARM-GV945A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2125', 'PHARM-TJILMS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2126', 'PHARM-87ZI54', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2127', 'PHARM-I2DSDC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2128', 'PHARM-CK1DR3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2129', 'PHARM-YA2AR5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2130', 'PHARM-AQTO61', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2131', 'PHARM-BIW5QJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2132', 'PHARM-QGDTFR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2133', 'PHARM-Z3HHLV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2134', 'PHARM-9XN00C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2135', 'PHARM-3ZJICK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2136', 'PHARM-LNY6UK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2137', 'PHARM-FRP6A0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2138', 'PHARM-Z3WZ1T', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2139', 'PHARM-C5BEI5', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2140', 'PHARM-BKWKD7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2141', 'PHARM-G9X653', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2142', 'PHARM-EKKYK3', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2143', 'PHARM-R6HEAW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2144', 'PHARM-LVM6OI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2145', 'PHARM-LYPCHE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2146', 'PHARM-3TC6PZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2147', 'PHARM-RERL2I', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2148', 'PHARM-Q9TPCQ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2149', 'PHARM-ECIWWZ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2150', 'PHARM-YX7JZV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2151', 'PHARM-ST6373', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2152', 'PHARM-LQ36NM', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2153', 'PHARM-7QUU3M', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2154', 'PHARM-3EA5UJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2155', 'PHARM-F38ICI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2156', 'PHARM-ABDGDW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2157', 'PHARM-MRV85Q', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2158', 'PHARM-M2G35X', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2159', 'PHARM-3AXEG2', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2160', 'PHARM-R5UGR4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2161', 'PHARM-63EQJG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2162', 'PHARM-E98YTL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2163', 'PHARM-0MB4YA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2164', 'PHARM-I99UGD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2165', 'PHARM-YA1WXU', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2166', 'PHARM-BYEGKK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2167', 'PHARM-2PEP0K', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2168', 'PHARM-5DT04L', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2169', 'PHARM-8LVFHN', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2170', 'PHARM-AGSOP8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2171', 'PHARM-D0Z4E8', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2172', 'PHARM-TB3Y7U', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2173', 'PHARM-A0EKCJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2174', 'PHARM-NZYR95', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2175', 'PHARM-GH4ZNC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2176', 'PHARM-I9L0WA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2177', 'PHARM-2D5NSF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2178', 'PHARM-G02W9C', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2179', 'PHARM-8T7PG4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2180', 'PHARM-2SA43O', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2181', 'PHARM-EJ0O6S', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2182', 'PHARM-VL8IJE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2183', 'PHARM-EFDRJ1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2184', 'PHARM-9X0KVP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2185', 'PHARM-SKAAEV', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2186', 'PHARM-UV43AF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2187', 'PHARM-P7G984', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2188', 'PHARM-4QHW8P', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2189', 'PHARM-EG1J4K', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2190', 'PHARM-RHHJ66', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2191', 'PHARM-HC7BOA', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2192', 'PHARM-YB6C9Z', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2193', 'PHARM-1PSOXF', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2194', 'PHARM-NDOXUD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2195', 'PHARM-2PTFLI', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2196', 'PHARM-5L38U4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2197', 'PHARM-TX62CY', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2198', 'PHARM-FCZY7N', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2199', 'PHARM-C3GRFR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2200', 'PHARM-VXK8RX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2201', 'PHARM-ATZFAK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2202', 'PHARM-EAMC7Q', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2203', 'PHARM-NKLA4Q', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2204', 'PHARM-GDM1OJ', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2205', 'PHARM-P7S7QS', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2206', 'PHARM-Z7RQY4', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2207', 'PHARM-FJZVT0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2208', 'PHARM-NPELRR', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2209', 'PHARM-Y3SK85', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2210', 'PHARM-B1EN5P', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2211', 'PHARM-3896KX', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2212', 'PHARM-R6BLNK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2213', 'PHARM-H29LYP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2214', 'PHARM-B2J4RC', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2215', 'PHARM-7UTX8R', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2216', 'PHARM-JIHDIP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2217', 'PHARM-UCQ4WK', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2218', 'PHARM-HFYKF6', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2219', 'PHARM-VT2EUH', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2220', 'PHARM-8ZOU0A', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2221', 'PHARM-P4486X', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2222', 'PHARM-NYLFVD', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2223', 'PHARM-2LEZ1R', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2224', 'PHARM-XRXOLL', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2225', 'PHARM-ZQOCL7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2226', 'PHARM-I7ZMK0', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2227', 'PHARM-I44MKG', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2228', 'PHARM-WCODUE', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2229', 'PHARM-NA4UNP', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2230', 'PHARM-P0II64', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2231', 'PHARM-W0CW0B', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2232', 'PHARM-QZNSH1', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2233', 'PHARM-8FDI5Q', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2234', 'PHARM-TSVVLW', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2235', 'PHARM-DEVMQ7', '1200.00', '7381', 'Open');
+INSERT INTO `coupon` VALUES ('2236', 'PHARM-847VRZ', '200.00', '7383', 'Open');
+INSERT INTO `coupon` VALUES ('2237', 'PHARM-AN9DC0', '200.00', '7383', 'Open');
+INSERT INTO `coupon` VALUES ('2238', 'PHARM-TDUNT4', '200.00', '7383', 'Open');
+INSERT INTO `coupon` VALUES ('2239', 'PHARM-10U4OK', '200.00', '7383', 'Open');
+INSERT INTO `coupon` VALUES ('2240', 'PHARM-7EGMMI', '200.00', '7383', 'Open');
+INSERT INTO `coupon` VALUES ('2241', 'PHARM-G179UI', '200.00', '7382', 'Closed');
+INSERT INTO `coupon` VALUES ('2242', 'PHARM-CUL0TN', '200.00', '7382', 'Open');
+INSERT INTO `coupon` VALUES ('2243', 'PHARM-XNLOQA', '200.00', '7382', 'Open');
+INSERT INTO `coupon` VALUES ('2244', 'PHARM-T5TJC2', '200.00', '7382', 'Open');
+INSERT INTO `coupon` VALUES ('2245', 'PHARM-VIB8ZF', '200.00', '7382', 'Open');
+INSERT INTO `default` VALUES ('1', 'Core Ict Consultancy', 'U.T.I S6B ', '0727310743', '+007 238 564', 'Thika', 'Kenya', 'martin@coreict.co.ke', 'Thika,Ecobank Building', '0727310743', 'Chase Bank Kenya', 'Thika', '0192354546757', '10923', '340293', 'A0POIUIOP', 'Martin Mundia Mugambi');
+INSERT INTO `discount` VALUES ('1', '*', '200.00', '7381');
+INSERT INTO `dose` VALUES ('7', '1', '1', '1', '1', '14761');
+INSERT INTO `dose` VALUES ('8', 'Morning Dose', '1 x 2', '1 x 3', '1 x 2', '7387');
 INSERT INTO `drugprices` VALUES ('14760', '7381', null, '540.00', '1', '0.00');
 INSERT INTO `drugprices` VALUES ('14761', '7382', null, '215.00', '1', '10.00');
 INSERT INTO `drugprices` VALUES ('14762', '7383', null, '215.00', '1', '0.00');
@@ -30320,17 +31474,96 @@ INSERT INTO `images` VALUES ('14', '7382', 'assets/uploads/drugs_7382/image4.jpg
 INSERT INTO `images` VALUES ('15', '7383', 'assets/uploads/drugs_7383/chekibets_new_server.png', 'drug images');
 INSERT INTO `immunization` VALUES ('5', 'Malaria', '2017-03-12 00:00:00', 'kimathi clinic', '1');
 INSERT INTO `immunization` VALUES ('7', 'Malariased', '0000-00-00 00:00:00', 'kimathi clinic', '1');
+INSERT INTO `immunization` VALUES ('8', null, null, null, '1');
+INSERT INTO `immunization` VALUES ('9', null, null, null, '1');
 INSERT INTO `insurance` VALUES ('3', 'Jubilee Insurance', '0723445345', 'Nairobi', '09234235435', '2');
 INSERT INTO `insurance` VALUES ('7', '234345345', '234345345', '234', '234234', '1');
 INSERT INTO `insurance` VALUES ('9', 'test', '', '', '', '1');
 INSERT INTO `insurance` VALUES ('12', 'testeded', 'item here', '', '', '1');
 INSERT INTO `insurance` VALUES ('14', '1234', '', '', '', '5');
 INSERT INTO `insurance` VALUES ('17', 'Jubilee Insurance Ltds', '0723445345', 'Nairobi', '09234235435', '2');
+INSERT INTO `invoice` VALUES ('10', 'INV-ETK-1', '2017-02-02 11:41:18', '2730.00', '300.0000', 'KES', '30', 'assets/uploads/invoicepdf/Invoice_INV-ETK-1.pdf', null);
+INSERT INTO `invoice` VALUES ('11', 'INV-YD1-11', '2017-02-02 15:35:50', '2730.00', '300.0000', 'KES', '30', null, null);
+INSERT INTO `invoice` VALUES ('12', 'INV-0KQ-12', '2017-02-02 15:37:10', '2730.00', '300.0000', 'KES', '30', null, null);
+INSERT INTO `invoice` VALUES ('13', 'INV-8L9-13', '2017-02-02 16:46:21', '2730.00', '300.0000', 'KES', '30', null, null);
+INSERT INTO `invoice` VALUES ('14', 'INV-FES-14', '2017-02-02 16:47:28', '2730.00', '300.0000', 'KES', '30', 'assets/uploads/invoicepdf/Invoice_INV-FES-14.pdf', null);
+INSERT INTO `invoice` VALUES ('15', 'INV-KGI-15', '2017-02-02 16:48:31', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('16', 'INV-YVZ-16', '2017-02-02 16:48:53', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('17', 'INV-A73-17', '2017-02-02 16:50:24', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('18', 'INV-JM5-18', '2017-02-02 16:50:41', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('19', 'INV-ZEE-19', '2017-02-02 17:44:29', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('20', 'INV-VKZ-20', '2017-02-02 17:49:17', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('21', 'INV-62B-21', '2017-02-02 17:59:50', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('22', 'INV-RW8-22', '2017-02-02 18:00:11', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('23', 'INV-2GY-23', '2017-02-02 18:00:37', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('24', 'INV-DDW-24', '2017-02-02 18:08:09', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('25', 'INV-LIG-25', '2017-02-02 18:08:27', null, null, 'KES', '1', null, null);
+INSERT INTO `invoice` VALUES ('26', 'INV-DZ5-26', '2017-02-02 18:09:27', null, null, 'KES', '1', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `invoice` VALUES ('27', 'INV-43Y-27', '2017-02-02 18:11:43', null, null, 'KES', '1', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `invoice` VALUES ('28', 'INV-HAD-28', '2017-02-02 18:14:13', null, null, 'KES', '1', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `invoice` VALUES ('29', 'INV-A8T-29', '2017-02-02 18:16:04', null, null, 'KES', '1', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `invoice` VALUES ('30', 'INV-86Z-30', '2017-02-02 18:16:42', null, null, 'KES', '1', 'assets/uploads/invoicepdf/Invoice_INV-86Z-30.pdf', null);
+INSERT INTO `invoice` VALUES ('31', 'INV-DV5-31', '2017-02-02 18:17:39', null, null, 'KES', '1', 'assets/uploads/invoicepdf/Invoice_INV-DV5-31.pdf', null);
+INSERT INTO `invoice` VALUES ('32', 'INV-20X-32', '2017-02-02 18:18:38', null, null, 'KES', '1', 'assets/uploads/invoicepdf/Invoice_INV-20X-32.pdf', null);
+INSERT INTO `invoice` VALUES ('33', 'INV-9L2-33', '2017-02-02 18:20:33', null, null, 'KES', '1', 'assets/uploads/invoicepdf/Invoice_INV-9L2-33.pdf', null);
+INSERT INTO `invoice` VALUES ('34', 'INV-4VV-34', '2017-02-03 09:51:38', '860.00', '6450.0000', 'KES', '1', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `invoice` VALUES ('35', 'INV-DU7-35', '2017-02-03 10:01:20', '860.00', '6450.0000', 'KES', '1', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `invoice` VALUES ('36', 'INV-CPZ-36', '2017-02-03 10:01:34', '860.00', '6450.0000', 'KES', '1', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `invoice` VALUES ('37', 'INV-DIZ-37', '2017-02-08 10:38:08', '7674.00', '33840.0000', 'KES', '30', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `invoice` VALUES ('38', 'INV-SA5-38', '2017-02-08 11:03:16', '7674.00', '33840.0000', 'KES', '30', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', 'OD-4PP-1');
+INSERT INTO `invoice` VALUES ('39', 'INV-FVF-39', '2017-02-08 14:34:37', '7674.00', '338.4000', 'KES', '30', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', 'OD-KT4-63');
+INSERT INTO `invoiceitems` VALUES ('9', 'INV-ETK-1', '56', '2017-02-02 11:41:18', '10');
+INSERT INTO `invoiceitems` VALUES ('10', 'INV-ETK-1', '80', '2017-02-02 11:41:18', '10');
+INSERT INTO `invoiceitems` VALUES ('11', 'INV-YD1-11', '56', '2017-02-02 15:35:50', '11');
+INSERT INTO `invoiceitems` VALUES ('12', 'INV-YD1-11', '80', '2017-02-02 15:35:50', '11');
+INSERT INTO `invoiceitems` VALUES ('13', 'INV-0KQ-12', '56', '2017-02-02 15:37:10', '12');
+INSERT INTO `invoiceitems` VALUES ('14', 'INV-0KQ-12', '80', '2017-02-02 15:37:10', '12');
+INSERT INTO `invoiceitems` VALUES ('15', 'INV-8L9-13', '56', '2017-02-02 16:46:21', '13');
+INSERT INTO `invoiceitems` VALUES ('16', 'INV-8L9-13', '80', '2017-02-02 16:46:21', '13');
+INSERT INTO `invoiceitems` VALUES ('17', 'INV-FES-14', '56', '2017-02-02 16:47:28', '14');
+INSERT INTO `invoiceitems` VALUES ('18', 'INV-FES-14', '80', '2017-02-02 16:47:28', '14');
+INSERT INTO `invoiceitems` VALUES ('19', 'INV-KGI-15', '11', '2017-02-02 16:48:31', '15');
+INSERT INTO `invoiceitems` VALUES ('20', 'INV-YVZ-16', '11', '2017-02-02 16:48:53', '16');
+INSERT INTO `invoiceitems` VALUES ('21', 'INV-A73-17', '11', '2017-02-02 16:50:24', '17');
+INSERT INTO `invoiceitems` VALUES ('22', 'INV-JM5-18', '11', '2017-02-02 16:50:41', '18');
+INSERT INTO `invoiceitems` VALUES ('23', 'INV-ZEE-19', '11', '2017-02-02 17:44:29', '19');
+INSERT INTO `invoiceitems` VALUES ('24', 'INV-VKZ-20', '11', '2017-02-02 17:49:17', '20');
+INSERT INTO `invoiceitems` VALUES ('25', 'INV-62B-21', '11', '2017-02-02 17:59:50', '21');
+INSERT INTO `invoiceitems` VALUES ('26', 'INV-RW8-22', '11', '2017-02-02 18:00:11', '22');
+INSERT INTO `invoiceitems` VALUES ('27', 'INV-2GY-23', '11', '2017-02-02 18:00:37', '23');
+INSERT INTO `invoiceitems` VALUES ('28', 'INV-DDW-24', '11', '2017-02-02 18:08:09', '24');
+INSERT INTO `invoiceitems` VALUES ('29', 'INV-LIG-25', '11', '2017-02-02 18:08:27', '25');
+INSERT INTO `invoiceitems` VALUES ('30', 'INV-DZ5-26', '11', '2017-02-02 18:09:27', '26');
+INSERT INTO `invoiceitems` VALUES ('31', 'INV-43Y-27', '11', '2017-02-02 18:11:43', '27');
+INSERT INTO `invoiceitems` VALUES ('32', 'INV-HAD-28', '11', '2017-02-02 18:14:13', '28');
+INSERT INTO `invoiceitems` VALUES ('33', 'INV-A8T-29', '11', '2017-02-02 18:16:04', '29');
+INSERT INTO `invoiceitems` VALUES ('34', 'INV-86Z-30', '11', '2017-02-02 18:16:42', '30');
+INSERT INTO `invoiceitems` VALUES ('35', 'INV-DV5-31', '11', '2017-02-02 18:17:39', '31');
+INSERT INTO `invoiceitems` VALUES ('36', 'INV-20X-32', '11', '2017-02-02 18:18:38', '32');
+INSERT INTO `invoiceitems` VALUES ('37', 'INV-9L2-33', '11', '2017-02-02 18:20:33', '33');
+INSERT INTO `invoiceitems` VALUES ('38', 'INV-4VV-34', '11', '2017-02-03 09:51:38', '34');
+INSERT INTO `invoiceitems` VALUES ('39', 'INV-4VV-34', '81', '2017-02-03 09:51:38', '34');
+INSERT INTO `invoiceitems` VALUES ('40', 'INV-4VV-34', '82', '2017-02-03 09:51:38', '34');
+INSERT INTO `invoiceitems` VALUES ('41', 'INV-4VV-34', '83', '2017-02-03 09:51:38', '34');
+INSERT INTO `invoiceitems` VALUES ('42', 'INV-DU7-35', '11', '2017-02-03 10:01:20', '35');
+INSERT INTO `invoiceitems` VALUES ('43', 'INV-DU7-35', '81', '2017-02-03 10:01:20', '35');
+INSERT INTO `invoiceitems` VALUES ('44', 'INV-DU7-35', '82', '2017-02-03 10:01:20', '35');
+INSERT INTO `invoiceitems` VALUES ('45', 'INV-DU7-35', '83', '2017-02-03 10:01:20', '35');
+INSERT INTO `invoiceitems` VALUES ('46', 'INV-CPZ-36', '11', '2017-02-03 10:01:34', '36');
+INSERT INTO `invoiceitems` VALUES ('47', 'INV-CPZ-36', '81', '2017-02-03 10:01:34', '36');
+INSERT INTO `invoiceitems` VALUES ('48', 'INV-CPZ-36', '82', '2017-02-03 10:01:34', '36');
+INSERT INTO `invoiceitems` VALUES ('49', 'INV-CPZ-36', '83', '2017-02-03 10:01:34', '36');
+INSERT INTO `invoiceitems` VALUES ('50', 'INV-DIZ-37', '88', '2017-02-08 10:38:08', '37');
+INSERT INTO `invoiceitems` VALUES ('51', 'INV-DIZ-37', '89', '2017-02-08 10:38:08', '37');
+INSERT INTO `invoiceitems` VALUES ('52', 'INV-DIZ-37', '90', '2017-02-08 10:38:08', '37');
+INSERT INTO `invoiceitems` VALUES ('53', 'INV-SA5-38', '7382', '2017-02-08 11:03:16', '38');
+INSERT INTO `invoiceitems` VALUES ('54', 'INV-SA5-38', '7385', '2017-02-08 11:03:16', '38');
+INSERT INTO `invoiceitems` VALUES ('55', 'INV-FVF-39', '7381', '2017-02-08 14:34:37', '39');
 INSERT INTO `menu` VALUES ('1', 'Dashboard', null, 'fa fa-dashboard', ' #', 'index.php/admin', '           <span class=\"pull-right-container\">\r\n                <i class=\"fa fa-angle-left pull-right\"></i>\r\n            </span>');
 INSERT INTO `menu` VALUES ('2', 'Stores', null, 'fa fa-files-o', '#', ' #', '           <span class=\"pull-right-container\">\r\n              <span class=\"label label-primary pull-right\">4</span>\r\n            </span>');
 INSERT INTO `menu` VALUES ('3', 'Pharmacy', '2', 'fa fa-circle-o', '', 'index.php/pharm', null);
 INSERT INTO `menu` VALUES ('4', 'Drugs', '2', 'fa fa-circle-o', '', 'index.php/med', null);
-INSERT INTO `menu` VALUES ('5', 'Drug Prices', '2', 'fa fa-circle-o', '', 'index.php/prices', null);
+INSERT INTO `menu` VALUES ('5', 'Coupons & Discounts', '2', 'fa fa-circle-o', '', 'index.php/coupons', null);
 INSERT INTO `menu` VALUES ('6', 'Clinics', '2', 'fa fa-circle-o', '', 'index.php/clinic', null);
 INSERT INTO `menu` VALUES ('7', 'Person', null, 'fa fa-pie-chart', '#', ' #', '         <span class=\"pull-right-container\">\r\n              <i class=\"fa fa-angle-left pull-right\"></i>\r\n            </span>');
 INSERT INTO `menu` VALUES ('8', 'Patient', '7', 'fa fa-circle-o', null, 'index.php/patient', '');
@@ -30343,7 +31576,7 @@ INSERT INTO `menu` VALUES ('14', 'Patient Insurance', '12', 'fa fa-circle-o', nu
 INSERT INTO `menu` VALUES ('15', 'Patient Bill', '12', 'fa fa-circle-o', null, 'index.php/patientbill', null);
 INSERT INTO `menu` VALUES ('16', 'Patient Payments', '12', 'fa fa-circle-o', null, 'index.php/patientpayments', null);
 INSERT INTO `menu` VALUES ('17', 'Immunizations', '12', 'fa fa-circle-o', null, 'index.php/immunizations', null);
-INSERT INTO `menu` VALUES ('18', 'Health Information', '12', 'fa fa-circle-o', null, 'index.php/healthinfo', null);
+INSERT INTO `menu` VALUES ('18', 'Patient Prescription Uploads', '12', 'fa fa-circle-o', null, 'index.php/presc-uploads', null);
 INSERT INTO `menu` VALUES ('19', 'Transactions', null, 'fa fa-edit', '#', ' #', '            <span class=\"pull-right-container\">\r\n              <i class=\"fa fa-angle-left pull-right\"></i>\r\n            </span>');
 INSERT INTO `menu` VALUES ('20', 'Orders/Refill', '19', 'fa fa-circle-o', null, 'index.php/orders', null);
 INSERT INTO `menu` VALUES ('21', 'Confirmed Orders', '19', 'fa fa-circle-o', null, 'index.php/corders', null);
@@ -30353,25 +31586,74 @@ INSERT INTO `menu` VALUES ('24', 'Users', '23', 'fa fa-circle-o', null, 'index.p
 INSERT INTO `menu` VALUES ('25', 'Roles', '23', 'fa fa-circle-o', null, 'index.php/roles', null);
 INSERT INTO `menu` VALUES ('26', 'Setings', '23', 'fa fa-circle-o', null, 'index.php/settings', null);
 INSERT INTO `menu` VALUES ('27', 'Calendar', null, 'fa fa-calendar', '', 'index.php/calendar', '            <span class=\"pull-right-container\">\r\n              <small class=\"label pull-right bg-red\">3</small>\r\n              <small class=\"label pull-right bg-blue\">17</small>\r\n            </span>');
-INSERT INTO `patientrefill` VALUES ('2', '2', '14774', '2016-12-15 13:46:47', 'New Order', 'Pending', '2016-12-01 00:00:00', '2016-12-16 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('3', '1', '11120', '2016-12-15 14:48:30', 'New Order', 'Pending', '2016-01-01 00:00:00', '2016-01-04 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('7', '1', '7382', '2016-12-23 11:44:40', 'New Order', 'Pending', '2016-12-23 00:00:00', '2017-01-01 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('8', '1', '14771', '2016-12-23 12:20:20', 'New Order', 'Pending', '2016-12-23 00:00:00', '2017-01-01 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('9', null, '7382', '2017-01-04 15:33:42', 'New Order', 'Ordered', '2017-01-01 00:00:00', '2017-01-02 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('10', null, '14761', '2017-01-04 15:33:53', 'New Order', 'Ordered', '2017-01-01 00:00:00', '2017-01-02 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('11', '30', '7382', '2017-01-04 15:37:21', 'Awaiting order confirmation', 'Ordered', '2017-01-01 00:00:00', '2017-01-07 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('12', '30', '14761', '2017-01-04 15:37:30', 'Invoice sent', 'Invoiced', '2017-01-01 00:00:00', '2017-01-07 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('13', '30', '7387', '2017-01-05 21:03:44', 'Invoice sent', 'Invoiced', '2017-01-01 00:00:00', '2017-10-09 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('14', '30', '7660', '2017-01-06 14:54:39', 'Invoice sent', 'Invoiced', '2017-01-01 00:00:00', '2017-01-09 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('15', '30', '7663', '2017-01-06 14:55:01', 'Invoice sent', 'Invoiced', '2017-01-01 00:00:00', '2017-01-09 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('16', '30', '7665', '2017-01-06 14:55:10', 'Invoice sent', 'Invoiced', '2017-01-01 00:00:00', '2017-01-09 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('17', '30', '16128', '2017-01-06 15:02:29', 'Invoice sent', 'Invoiced', '2017-01-01 00:00:00', '2017-01-09 00:00:00', null, null);
-INSERT INTO `patientrefill` VALUES ('56', '30', '7381', '2017-01-19 11:14:25', 'New Order', 'Pending', '2017-01-19 11:14:25', '2017-01-19 11:14:25', '5', '540.00');
+INSERT INTO `orderitems` VALUES ('74', 'OD-4PP-1', '88', '2017-02-08 10:34:36', '62');
+INSERT INTO `orderitems` VALUES ('75', 'OD-4PP-1', '89', '2017-02-08 10:34:36', '62');
+INSERT INTO `orderitems` VALUES ('76', 'OD-KT4-63', '90', '2017-02-08 10:36:27', '63');
+INSERT INTO `orderitems` VALUES ('77', 'OD-VXO-64', '91', '2017-02-10 18:15:16', '64');
+INSERT INTO `orderitems` VALUES ('78', 'OD-VXO-64', '95', '2017-02-10 18:15:16', '64');
+INSERT INTO `orderitems` VALUES ('79', 'OD-VXO-64', '97', '2017-02-10 18:15:16', '64');
+INSERT INTO `orderitems` VALUES ('80', 'OD-3YH-65', '116', '2017-02-10 18:32:25', '65');
+INSERT INTO `orderitems` VALUES ('81', 'OD-3YH-65', '117', '2017-02-10 18:32:25', '65');
+INSERT INTO `orderitems` VALUES ('82', 'OD-3YH-65', '118', '2017-02-10 18:32:25', '65');
+INSERT INTO `orderitems` VALUES ('83', 'OD-3YH-65', '119', '2017-02-10 18:32:25', '65');
+INSERT INTO `orderitems` VALUES ('84', 'OD-3YH-65', '120', '2017-02-10 18:32:25', '65');
+INSERT INTO `orderitems` VALUES ('85', 'OD-3YH-65', '121', '2017-02-10 18:32:25', '65');
+INSERT INTO `orderitems` VALUES ('86', 'OD-3YH-65', '122', '2017-02-10 18:32:25', '65');
+INSERT INTO `orderitems` VALUES ('87', 'OD-3YH-65', '123', '2017-02-10 18:32:25', '65');
+INSERT INTO `orderitems` VALUES ('88', 'OD-3YH-65', '124', '2017-02-10 18:32:25', '65');
+INSERT INTO `orderitems` VALUES ('89', 'OD-3YH-65', '125', '2017-02-10 18:32:25', '65');
+INSERT INTO `orders` VALUES ('62', 'OD-4PP-1', '2017-02-08 10:30:26', '3174.00', '338.4000', 'KES', '30', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `orders` VALUES ('63', 'OD-KT4-63', '2017-02-08 10:35:40', '4500.00', '0.0000', 'KES', '30', 'assets/uploads/orderpdf/Order_OD-KT1-57.pdf', null);
+INSERT INTO `orders` VALUES ('64', 'OD-VXO-64', '2017-02-08 10:35:40', '8580.00', '86.0000', 'KES', '30', null, null);
+INSERT INTO `orders` VALUES ('65', 'OD-3YH-65', '2017-02-10 18:17:29', '3430.00', '64.5000', 'KES', '1', null, null);
+INSERT INTO `patientbill` VALUES ('9', '1', '2017-01-09 00:00:00', '1', '500.00');
+INSERT INTO `patientbill` VALUES ('10', '1001', '0000-00-00 00:00:00', '2', '2000.00');
+INSERT INTO `patientpayment` VALUES ('1', '1', '2016-02-12 00:00:00', '1', '200.00');
+INSERT INTO `patientpayment` VALUES ('2', '2', '2016-03-04 00:00:00', '1', '300.00');
+INSERT INTO `patientrefill` VALUES ('88', '30', '7400', '2017-02-08 10:30:26', 'Awaiting Invoice', 'Confirmed', '2017-02-08 10:30:26', '2017-02-08 10:30:26', '4', '705.00');
+INSERT INTO `patientrefill` VALUES ('89', '30', '7424', '2017-02-08 10:30:26', 'Awaiting Invoice', 'Confirmed', '2017-02-08 10:30:26', '2017-02-08 10:30:26', '1', '1059.00');
+INSERT INTO `patientrefill` VALUES ('90', '30', '7494', '2017-02-08 10:35:40', 'Invoice sent', 'Invoiced', '2017-02-08 10:35:40', '2017-02-08 10:35:40', '1', '4500.00');
+INSERT INTO `patientrefill` VALUES ('91', '30', '7495', '2017-02-08 10:35:40', 'Awaiting Invoice', 'Confirmed', '2017-02-08 10:35:40', '2017-02-08 10:35:40', '1', '7400.00');
+INSERT INTO `patientrefill` VALUES ('95', '1', '7382', '2017-02-10 17:29:18', 'Awaiting Invoice', 'Confirmed', '2017-02-10 17:29:18', '2017-02-10 17:29:18', '4', '215.00');
+INSERT INTO `patientrefill` VALUES ('96', '1', '7383', '2017-02-10 17:29:18', 'Awaiting order confirmation', 'Pending', '2017-02-10 17:29:18', '2017-02-10 17:29:18', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('97', '1', '7384', '2017-02-10 17:29:18', 'Awaiting Invoice', 'Confirmed', '2017-02-10 17:29:18', '2017-02-10 17:29:18', '1', '320.00');
+INSERT INTO `patientrefill` VALUES ('98', '1', '7381', '2017-02-10 17:29:18', 'New Order', 'Pending', '2017-02-10 17:29:18', '2017-02-10 17:29:18', '1', '540.00');
+INSERT INTO `patientrefill` VALUES ('99', '1', '7385', '2017-02-10 17:29:18', 'New Order', 'Pending', '2017-02-10 17:29:18', '2017-02-10 17:29:18', '1', '750.00');
+INSERT INTO `patientrefill` VALUES ('100', '1', '7381', '2017-02-10 17:58:38', 'New Order', 'Pending', '2017-02-10 17:58:38', '2017-02-10 17:58:38', '1', '540.00');
+INSERT INTO `patientrefill` VALUES ('101', '1', '7382', '2017-02-10 17:58:38', 'New Order', 'Pending', '2017-02-10 17:58:38', '2017-02-10 17:58:38', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('102', '1', '7383', '2017-02-10 17:58:38', 'New Order', 'Pending', '2017-02-10 17:58:38', '2017-02-10 17:58:38', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('103', '1', '7382', '2017-02-10 18:00:43', 'New Order', 'Pending', '2017-02-10 18:00:43', '2017-02-10 18:00:43', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('104', '1', '7383', '2017-02-10 18:00:43', 'New Order', 'Pending', '2017-02-10 18:00:43', '2017-02-10 18:00:43', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('105', '1', '7384', '2017-02-10 18:00:43', 'New Order', 'Pending', '2017-02-10 18:00:43', '2017-02-10 18:00:43', '1', '320.00');
+INSERT INTO `patientrefill` VALUES ('106', '1', '7385', '2017-02-10 18:00:43', 'New Order', 'Pending', '2017-02-10 18:00:43', '2017-02-10 18:00:43', '1', '750.00');
+INSERT INTO `patientrefill` VALUES ('107', '1', '7386', '2017-02-10 18:00:43', 'New Order', 'Pending', '2017-02-10 18:00:43', '2017-02-10 18:00:43', '1', '400.00');
+INSERT INTO `patientrefill` VALUES ('108', '1', '7382', '2017-02-10 18:01:46', 'New Order', 'Pending', '2017-02-10 18:01:46', '2017-02-10 18:01:46', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('109', '1', '7383', '2017-02-10 18:01:46', 'New Order', 'Pending', '2017-02-10 18:01:46', '2017-02-10 18:01:46', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('110', '1', '7384', '2017-02-10 18:01:46', 'New Order', 'Pending', '2017-02-10 18:01:46', '2017-02-10 18:01:46', '1', '320.00');
+INSERT INTO `patientrefill` VALUES ('111', '1', '7385', '2017-02-10 18:01:46', 'New Order', 'Pending', '2017-02-10 18:01:46', '2017-02-10 18:01:46', '1', '750.00');
+INSERT INTO `patientrefill` VALUES ('112', '1', '7386', '2017-02-10 18:01:46', 'New Order', 'Pending', '2017-02-10 18:01:46', '2017-02-10 18:01:46', '1', '400.00');
+INSERT INTO `patientrefill` VALUES ('113', '1', '7381', '2017-02-10 18:01:46', 'New Order', 'Pending', '2017-02-10 18:01:46', '2017-02-10 18:01:46', '1', '540.00');
+INSERT INTO `patientrefill` VALUES ('114', '1', '7381', '2017-02-10 18:03:46', 'New Order', 'Pending', '2017-02-10 18:03:46', '2017-02-10 18:03:46', '1', '540.00');
+INSERT INTO `patientrefill` VALUES ('115', '1', '7382', '2017-02-10 18:03:46', 'New Order', 'Pending', '2017-02-10 18:03:46', '2017-02-10 18:03:46', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('116', '1', '7383', '2017-02-10 18:17:29', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:17:29', '2017-02-10 18:17:29', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('117', '1', '7382', '2017-02-10 18:17:29', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:17:29', '2017-02-10 18:17:29', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('118', '1', '7383', '2017-02-10 18:17:55', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:17:55', '2017-02-10 18:17:55', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('119', '1', '7382', '2017-02-10 18:17:55', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:17:55', '2017-02-10 18:17:55', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('120', '1', '7384', '2017-02-10 18:17:55', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:17:55', '2017-02-10 18:17:55', '1', '320.00');
+INSERT INTO `patientrefill` VALUES ('121', '1', '7385', '2017-02-10 18:17:55', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:17:55', '2017-02-10 18:17:55', '1', '750.00');
+INSERT INTO `patientrefill` VALUES ('122', '1', '7383', '2017-02-10 18:21:31', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:21:31', '2017-02-10 18:21:31', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('123', '1', '7382', '2017-02-10 18:21:31', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:21:31', '2017-02-10 18:21:31', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('124', '1', '7384', '2017-02-10 18:21:32', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:21:32', '2017-02-10 18:21:32', '1', '320.00');
+INSERT INTO `patientrefill` VALUES ('125', '1', '7385', '2017-02-10 18:21:32', 'Awaiting Invoice', 'Confirmed', '2017-02-10 18:21:32', '2017-02-10 18:21:32', '1', '750.00');
+INSERT INTO `patientrefill` VALUES ('134', '30', '7385', '2017-02-14 10:44:04', 'Awaiting order confirmation', 'Ordered', '2017-02-14 10:44:04', '2017-02-14 10:44:04', '3', '750.00');
+INSERT INTO `patientrefill` VALUES ('135', '30', '7382', '2017-02-14 10:44:04', 'Awaiting order confirmation', 'Ordered', '2017-02-14 10:44:04', '2017-02-14 10:44:04', '1', '215.00');
+INSERT INTO `patientrefill` VALUES ('136', '30', '7385', '2017-02-14 10:49:29', 'Awaiting order confirmation', 'Ordered', '2017-02-14 10:49:29', '2017-02-14 10:49:29', '3', '750.00');
+INSERT INTO `patientrefill` VALUES ('137', '30', '7382', '2017-02-14 10:49:29', 'Awaiting order confirmation', 'Ordered', '2017-02-14 10:49:29', '2017-02-14 10:49:29', '1', '215.00');
 INSERT INTO `persons` VALUES ('1', 'Mr.', 'Martin', 'Mundia', 'Mugambi', '1', '2016-12-07 14:46:37', '25538908', '1130,Nyahururu,Kenya', '1', '0727310743', 'Nyahururu', 'assets/uploads/profile/IMG-20151001-WA0003_1.jpg', null);
-INSERT INTO `persons` VALUES ('2', 'Miss', 'Joy', 'Gehts', 'Whitney', '2', '2012-01-20 00:00:00', '23456787', '89,Nairobi', '1', '075643241', 'Nairobi', 'assets/uploads/IMG-20150820-WA0000_2.jpg', null);
-INSERT INTO `persons` VALUES ('5', 'Miss', 'Winnie', 'Nyamburas', 'Ngatia', '2', '2033-02-11 00:00:00', '23485752', 'Nakuru', '1', '0725365475', 'Nyeri', 'assets/uploads/IMG-20150820-WA0001_5.jpg', null);
+INSERT INTO `persons` VALUES ('2', 'Miss', 'Joyce', 'Gehts', 'Whitney', '2', '2012-12-20 00:00:00', '23456787', '89,Nairobi', '1', '075643241', 'Nairobi', 'assets/uploads/IMG-20150820-WA0000_2.jpg', null);
+INSERT INTO `persons` VALUES ('5', 'Miss', 'Meridian Suppliers', 'Nyamburas', 'Ngatia', '2', '2030-03-20 00:00:00', '23485752', 'Nakuru', '3', '0725365475', 'Nyeri', 'assets/uploads/IMG-20150820-WA0001_5.jpg', null);
 INSERT INTO `persons` VALUES ('6', 'Miss', 'Mary', 'Njoroge', 'Ngatia', '2', '2020-01-20 00:00:00', '23485752', 'Kiambu', '1', '0725365475', 'Nyeri', 'assets/uploads/IMG-20150822-WA0000_6.jpg', null);
-INSERT INTO `persons` VALUES ('8', 'Miss', 'Mary', 'Wambui', 'Ngatia', '2', '2001-02-01 00:00:00', '23485752', 'Nakuru', '1', '0725365475', 'Nyeri', 'assets/uploads/IMG-20150819-WA0001_8.jpg', null);
+INSERT INTO `persons` VALUES ('8', 'Miss', 'Mary', 'Wambui', 'Ngatia', '2', '2001-02-01 00:00:00', '23485752', 'Nakuru', '2', '0725365475', 'Nyeri', 'assets/uploads/IMG-20150819-WA0001_8.jpg', null);
 INSERT INTO `persons` VALUES ('10', 'Miss', 'Kelly', 'Wii', 'Ngatia', '2', '2001-02-01 00:00:00', '23485752', 'Nakuru', '1', '0725365475', 'Nyeri', 'assets/uploads/image1_10.jpg', null);
 INSERT INTO `persons` VALUES ('11', 'Miss', 'Kelly', 'Wii', 'Ngatia', '2', '2001-02-01 00:00:00', '23485752', 'Nakuru', '1', '0725365475', 'Subukia', 'assets/uploads/IMG-20150823-WA0000_11.jpg', null);
 INSERT INTO `persons` VALUES ('13', 'Mr.', 'David', 'Njoroge', 'Mwnagi', '1', '2034-02-12 00:00:00', '1239872', '1123,Mommbasa', '1', '072312345', 'Mombasa', 'assets/uploads/IMG-20150818-WA0001_13.jpg', null);
@@ -30382,6 +31664,31 @@ INSERT INTO `persons` VALUES ('40', null, 'Mugambi', 'Martin', null, null, null,
 INSERT INTO `persons` VALUES ('41', null, '1', null, null, null, null, null, null, null, null, null, null, '1@gmail.com');
 INSERT INTO `persons` VALUES ('42', null, '', null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `persons` VALUES ('43', null, 'Martin', 'Mundia', null, null, null, null, null, null, null, null, null, 'mugambi.m.mundia@gmail.com');
+INSERT INTO `persons` VALUES ('44', null, 'Joel', null, null, null, null, null, null, null, null, null, null, 'mwangi@yahoo.com');
+INSERT INTO `persons` VALUES ('45', null, 'joshua', null, null, null, null, null, null, null, null, null, null, 'josua@yahoo.com');
+INSERT INTO `persons` VALUES ('46', null, 'joshua', null, null, null, null, null, null, null, null, null, null, 'josua@yahoo.com');
+INSERT INTO `prescriptionupload` VALUES ('3', '2017-01-31 03:16:46', 'empty mind.jpg', '52', null, null);
+INSERT INTO `prescriptionupload` VALUES ('4', '2017-01-31 03:18:23', 'empty mind.jpg', '30', 'assets/uploads/prescriptions/empty mind.jpg', '<p>sent some medication to you!<br></p>');
+INSERT INTO `prescriptionupload` VALUES ('5', '2017-01-31 03:32:17', 'excell_schedule26_10_2016.sql', '30', 'assets/uploads/prescriptions/excell_schedule26_10_2016.sql', null);
+INSERT INTO `prescriptionupload` VALUES ('6', '2017-02-03 11:49:02', 'Prescription.docx', '52', 'assets/uploads/prescriptions/Prescription.docx', null);
+INSERT INTO `ratings` VALUES ('1', '7381', '1', 'I like this drug', null, null, null);
+INSERT INTO `ratings` VALUES ('2', '7382', '3', 'This drug is good ', '30', null, null);
+INSERT INTO `ratings` VALUES ('3', '7381', '1', 'Excelent', null, null, null);
+INSERT INTO `ratings` VALUES ('4', '7381', '5', '\"Cool Application\"', '52', null, null);
+INSERT INTO `ratings` VALUES ('5', '7381', '5', '\"Cool Application\"', '52', null, null);
+INSERT INTO `ratings` VALUES ('6', '7381', '5', '\"Cool Application\"', '30', null, null);
+INSERT INTO `ratings` VALUES ('7', '7381', '5', 'new dated comment', '30', null, '2017-02-03 11:51:22');
+INSERT INTO `roles` VALUES ('31', '1', 'main_2');
+INSERT INTO `roles` VALUES ('32', '1', 'sub_0_3');
+INSERT INTO `roles` VALUES ('33', '1', 'sub_1_4');
+INSERT INTO `roles` VALUES ('34', '1', 'sub_2_5');
+INSERT INTO `roles` VALUES ('35', '1', 'sub_3_6');
+INSERT INTO `roles` VALUES ('36', '1', 'main_7');
+INSERT INTO `roles` VALUES ('37', '1', 'sub_0_8');
+INSERT INTO `roles` VALUES ('38', '1', 'sub_1_9');
+INSERT INTO `roles` VALUES ('39', '1', 'sub_2_10');
+INSERT INTO `roles` VALUES ('40', '1', 'sub_3_11');
+INSERT INTO `roles` VALUES ('97', '3', 'sub_0_8');
 INSERT INTO `smtp` VALUES ('1', 'coreict.co.ke', '25', 'martin@coreict.co.ke', 'martincoreict2016', '1', 'martin@coreict.co.ke');
 INSERT INTO `stores` VALUES ('1', 'Krishna chemist', 'Industrial Area, Lusaka Rd (3rd Floor Metrix Hardware) ', '-1.900000', '12.890000', 'Lab Tests', 'Excelent', 'P.o Box 3328-00506 - Nairobi.', '020 6536161/2', 'mattoace@gmail.com', 'assets/uploads/pharm/pharm_1/Hydrangeas.jpg');
 INSERT INTO `stores` VALUES ('2', 'Thika Chemist', 'Thika', '23.900000', '12.780000', 'Lab Test', 'Good', '45,Thika', '092-3455', 'thikachem@gmail.com', 'assets/uploads/pharm/pharm_2/Desert.jpg');
@@ -30389,20 +31696,58 @@ INSERT INTO `stores` VALUES ('3', 'Nairobi Medical', 'Nairobi', '23.120000', '45
 INSERT INTO `stores` VALUES ('4', 'All in one Pharmacy', 'Nakuru', '12.000000', '45.000000', 'Laboratory', 'Located in Nakuru', '23,Nakuru', '032-23445', 'allinone@yahoo.com', null);
 INSERT INTO `stores` VALUES ('6', 'Kiambu Med', 'Kiambu', '45.000000', '656.000000', 'Lab', 'Good', 'Kiambu', '07230945', 'kiambumed@gmail.com', null);
 INSERT INTO `stores` VALUES ('7', 'Nyeri Pharmacy', 'Nyeri', '14.000000', '22.000000', 'Hospital', '', '23,Nyeri', '07234945', 'mugambi.m.mundia@gmail.com', 'assets/uploads/pharm/pharm_7/Penguins.jpg');
-INSERT INTO `transactions` VALUES ('14', '2', '2', '2016-12-15 13:46:47', '7');
-INSERT INTO `transactions` VALUES ('15', '1', '3', '2016-12-15 14:48:30', '1');
-INSERT INTO `transactions` VALUES ('19', '1', '7', '2016-12-23 11:44:40', '1');
-INSERT INTO `transactions` VALUES ('20', '1', '8', '2016-12-23 12:20:20', '7');
-INSERT INTO `transactions` VALUES ('21', null, '9', '2017-01-04 15:33:42', '1');
-INSERT INTO `transactions` VALUES ('22', null, '10', '2017-01-04 15:33:53', '7');
-INSERT INTO `transactions` VALUES ('23', '30', '11', '2017-01-04 15:37:21', '1');
-INSERT INTO `transactions` VALUES ('24', '30', '12', '2017-01-04 15:37:30', '7');
-INSERT INTO `transactions` VALUES ('25', '30', '13', '2017-01-05 21:03:44', '1');
-INSERT INTO `transactions` VALUES ('26', '30', '14', '2017-01-06 14:54:39', '1');
-INSERT INTO `transactions` VALUES ('27', '30', '15', '2017-01-06 14:55:01', '1');
-INSERT INTO `transactions` VALUES ('28', '30', '16', '2017-01-06 14:55:10', '1');
-INSERT INTO `transactions` VALUES ('29', '30', '17', '2017-01-06 15:02:29', '7');
-INSERT INTO `transactions` VALUES ('68', '30', '56', '2017-01-19 11:14:25', '1');
+INSERT INTO `transactions` VALUES ('117', '30', '88', '2017-02-08 10:30:26', '1');
+INSERT INTO `transactions` VALUES ('118', '30', '89', '2017-02-08 10:30:26', '1');
+INSERT INTO `transactions` VALUES ('119', '30', '90', '2017-02-08 10:35:40', '1');
+INSERT INTO `transactions` VALUES ('120', '30', '91', '2017-02-08 10:35:40', '1');
+INSERT INTO `transactions` VALUES ('121', '1', '92', '2017-02-10 17:28:02', '1');
+INSERT INTO `transactions` VALUES ('122', '1', '93', '2017-02-10 17:28:02', '1');
+INSERT INTO `transactions` VALUES ('123', '1', '94', '2017-02-10 17:28:02', '1');
+INSERT INTO `transactions` VALUES ('124', '1', '95', '2017-02-10 17:29:18', '1');
+INSERT INTO `transactions` VALUES ('125', '1', '96', '2017-02-10 17:29:18', '1');
+INSERT INTO `transactions` VALUES ('126', '1', '97', '2017-02-10 17:29:18', '1');
+INSERT INTO `transactions` VALUES ('127', '1', '98', '2017-02-10 17:29:18', '1');
+INSERT INTO `transactions` VALUES ('128', '1', '99', '2017-02-10 17:29:18', '1');
+INSERT INTO `transactions` VALUES ('129', '1', '100', '2017-02-10 17:58:38', '1');
+INSERT INTO `transactions` VALUES ('130', '1', '101', '2017-02-10 17:58:38', '1');
+INSERT INTO `transactions` VALUES ('131', '1', '102', '2017-02-10 17:58:38', '1');
+INSERT INTO `transactions` VALUES ('132', '1', '103', '2017-02-10 18:00:43', '1');
+INSERT INTO `transactions` VALUES ('133', '1', '104', '2017-02-10 18:00:43', '1');
+INSERT INTO `transactions` VALUES ('134', '1', '105', '2017-02-10 18:00:43', '1');
+INSERT INTO `transactions` VALUES ('135', '1', '106', '2017-02-10 18:00:43', '1');
+INSERT INTO `transactions` VALUES ('136', '1', '107', '2017-02-10 18:00:44', '1');
+INSERT INTO `transactions` VALUES ('137', '1', '108', '2017-02-10 18:01:46', '1');
+INSERT INTO `transactions` VALUES ('138', '1', '109', '2017-02-10 18:01:46', '1');
+INSERT INTO `transactions` VALUES ('139', '1', '110', '2017-02-10 18:01:46', '1');
+INSERT INTO `transactions` VALUES ('140', '1', '111', '2017-02-10 18:01:46', '1');
+INSERT INTO `transactions` VALUES ('141', '1', '112', '2017-02-10 18:01:46', '1');
+INSERT INTO `transactions` VALUES ('142', '1', '113', '2017-02-10 18:01:46', '1');
+INSERT INTO `transactions` VALUES ('143', '1', '114', '2017-02-10 18:03:46', '1');
+INSERT INTO `transactions` VALUES ('144', '1', '115', '2017-02-10 18:03:46', '1');
+INSERT INTO `transactions` VALUES ('145', '1', '116', '2017-02-10 18:17:29', '1');
+INSERT INTO `transactions` VALUES ('146', '1', '117', '2017-02-10 18:17:29', '1');
+INSERT INTO `transactions` VALUES ('147', '1', '118', '2017-02-10 18:17:55', '1');
+INSERT INTO `transactions` VALUES ('148', '1', '119', '2017-02-10 18:17:55', '1');
+INSERT INTO `transactions` VALUES ('149', '1', '120', '2017-02-10 18:17:55', '1');
+INSERT INTO `transactions` VALUES ('150', '1', '121', '2017-02-10 18:17:55', '1');
+INSERT INTO `transactions` VALUES ('151', '1', '122', '2017-02-10 18:21:31', '1');
+INSERT INTO `transactions` VALUES ('152', '1', '123', '2017-02-10 18:21:31', '1');
+INSERT INTO `transactions` VALUES ('153', '1', '124', '2017-02-10 18:21:32', '1');
+INSERT INTO `transactions` VALUES ('154', '1', '125', '2017-02-10 18:21:32', '1');
+INSERT INTO `transactions` VALUES ('155', '52', '126', '2017-02-14 10:35:48', null);
+INSERT INTO `transactions` VALUES ('156', '52', '127', '2017-02-14 10:35:48', null);
+INSERT INTO `transactions` VALUES ('157', '30', '128', '2017-02-14 10:42:11', null);
+INSERT INTO `transactions` VALUES ('158', '30', '129', '2017-02-14 10:42:11', null);
+INSERT INTO `transactions` VALUES ('159', '30', '130', '2017-02-14 10:42:22', null);
+INSERT INTO `transactions` VALUES ('160', '30', '131', '2017-02-14 10:42:23', null);
+INSERT INTO `transactions` VALUES ('161', '30', '132', '2017-02-14 10:42:51', null);
+INSERT INTO `transactions` VALUES ('162', '30', '133', '2017-02-14 10:42:51', null);
+INSERT INTO `transactions` VALUES ('163', '30', '134', '2017-02-14 10:44:04', '1');
+INSERT INTO `transactions` VALUES ('164', '30', '135', '2017-02-14 10:44:04', '1');
+INSERT INTO `transactions` VALUES ('165', '30', '136', '2017-02-14 10:49:29', '1');
+INSERT INTO `transactions` VALUES ('166', '30', '137', '2017-02-14 10:49:29', '1');
+INSERT INTO `userpharm` VALUES ('35', '1', '30');
+INSERT INTO `userpharm` VALUES ('36', '1', '1');
 INSERT INTO `users` VALUES ('1', 'matto', 'a1eb3ef34d8529b75bdf9791d028ec15', '1', null, null);
 INSERT INTO `users` VALUES ('2', 'mike', '18126e7bd3f84b3f3e4df094def5b7de', '2', null, null);
 INSERT INTO `users` VALUES ('3', 'eliud', '293c052f49c1d998421f37e962ff78c1', '3', null, null);
@@ -30412,4 +31757,7 @@ INSERT INTO `users` VALUES ('26', 'matto@gmail.com', 'a1eb3ef34d8529b75bdf9791d0
 INSERT INTO `users` VALUES ('27', 'mattoace@gmail.com', 'bb80c705de06046dde834cb4ec85a7ea', '40', null, null);
 INSERT INTO `users` VALUES ('28', '1@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', '41', null, null);
 INSERT INTO `users` VALUES ('29', null, 'd41d8cd98f00b204e9800998ecf8427e', '42', null, null);
-INSERT INTO `users` VALUES ('30', 'mugambi.m.mundia@gmail.com', 'a1eb3ef34d8529b75bdf9791d028ec15', '43', '1', '1');
+INSERT INTO `users` VALUES ('30', 'mugambi.m.mundia@gmail.com', 'a1eb3ef34d8529b75bdf9791d028ec15', '1', '1', '1');
+INSERT INTO `users` VALUES ('31', 'mwangi@yahoo.com', 'dd5f283e63b167ac6c3e38755b89e78e', '44', '1', '1');
+INSERT INTO `users` VALUES ('32', 'josua@yahoo.com', 'f94adcc3ddda04a8f34928d862f404b4', '45', null, null);
+INSERT INTO `users` VALUES ('33', 'josua@yahoo.com', 'f94adcc3ddda04a8f34928d862f404b4', '46', null, null);
