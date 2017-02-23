@@ -3,6 +3,9 @@
 <div class="banner page_head w3l">
 	<div class="head_top">
 		<div class="container">
+			<div class="banner-left" style="background-color: white;">				
+				<img class="img-responsive" style='width:370px;height:80px;' src='<?php echo base_url("assets/img/logo_v2.png");?>' alt=" " />
+			</div>
 			<div class="banner-right">
 				<ul>
 					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 727310743</li>
@@ -26,9 +29,9 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<h1>
-						<a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>tibamoja</a>
-					</h1>
+				<!-- 	<h1>
+						<a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					</h1>  -->
 					
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
