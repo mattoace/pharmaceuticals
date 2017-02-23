@@ -1,0 +1,153 @@
+table.dataTable tbody tr {
+    line-height: 2px !important;
+    font-size:12px;
+}
+
+  #persontable tbody tr.even:hover,  #persontable tbody tr.even td.highlighted {
+        background-color: #D73925;
+        color:white;        
+    }
+
+   #persontable tbody tr.odd:hover,  #persontable tbody tr.odd td.highlighted {
+          background-color: #D73925;
+        color:white;
+    }
+
+    #persontable tr.even:hover {
+          background-color: #D73925;
+        color:white;
+    }
+
+    #persontable tr.even:hover td.sorting_1 {
+         background-color: #D73925;
+        color:white;
+    }
+
+    #persontable tr.even:hover td.sorting_2 {
+          background-color: #D73925;
+        color:white;
+    }
+
+    #persontable tr.even:hover td.sorting_3 {
+          background-color: #D73925;
+        color:white;
+    }
+
+    #persontable tr.odd:hover {
+          background-color: #D73925;
+        color:white;
+    }
+
+    #persontable tr.odd:hover td.sorting_1 {
+          background-color: #D73925;
+        color:white;
+    }
+
+    #persontable tr.odd:hover td.sorting_2 {
+          background-color: #D73925;
+        color:white;
+    }
+
+    #persontable tr.odd:hover td.sorting_3 {
+          background-color: #D73925;
+        color:white;
+    }
+
+
+
+
+  .cdataTable tbody tr.even:hover,  .cdataTable tbody tr.even td.highlighted {
+        background-color: #D73925;
+        color:white;        
+    }
+
+.cdataTable tbody tr.odd:hover,  .cdataTable tbody tr.odd td.highlighted {
+          background-color: #D73925;
+        color:white;
+    }
+
+  .cdataTable tr.even:hover {
+          background-color: #D73925;
+        color:white;
+    }
+
+ .cdataTable tr.even:hover td.sorting_1 {
+         background-color: #D73925;
+        color:white;
+    }
+
+ .cdataTable tr.even:hover td.sorting_2 {
+          background-color: #D73925;
+        color:white;
+    }
+.cdataTable tr.even:hover td.sorting_3 {
+          background-color: #D73925;
+        color:white;
+    }
+
+.cdataTable tr.odd:hover {
+          background-color: #D73925;
+        color:white;
+    }
+
+.cdataTable tr.odd:hover td.sorting_1 {
+          background-color: #D73925;
+        color:white;
+    }
+
+.cdataTable tr.odd:hover td.sorting_2 {
+          background-color: #D73925;
+        color:white;
+    }
+
+.cdataTable tr.odd:hover td.sorting_3 {
+          background-color: #D73925;
+        color:white;
+    }
+
+.content-wrapper, .right-side {
+    background-color: #A8CEE2 !important;
+}
+
+
+
+
+    .numericCol{
+  float:right;
+}
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #16a9ef !important; 
+}
+
+.skin-blue .sidebar-menu > li.header {
+    background: #3C8DBC !important;
+}
+
+
+.skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a {
+    background: #00A65A !important; 
+}
+
+.skin-blue .main-header .navbar {
+    background-color: #16A9EF !important;
+}
+
+#checkdrugtable > tbody > tr {
+line-height: 10px !important; background-color:#DFF0D8;
+color : #16A9EF;
+font-size: 10px;
+
+}
+#assigneddrugtable > tbody > tr{
+line-height: 10px !important; background-color: #DFF0D8; 
+color : #16A9EF;
+font-size: 10px;
+}
+#checkdrugtable_length > label {
+    visibility: hidden;
+}
+
+.dataTables_processing {
+    background-color: red !important;
+}

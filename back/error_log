@@ -1,0 +1,475 @@
+[11-Apr-2016 10:43:22 UTC] PHP Notice:  Undefined index: action in /home/coreictc/public_html/developers/ems/ci/back/GetUserName.php on line 3
+[11-Apr-2016 10:43:22 UTC] PHP Deprecated:  mysql_query(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home/coreictc/public_html/developers/ems/ci/back/GetUserName.php on line 8
+[11-Apr-2016 10:43:22 UTC] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/coreictc/public_html/developers/ems/ci/back/GetUserName.php on line 8
+[11-Apr-2016 10:43:22 UTC] PHP Warning:  mysql_query(): A link to the server could not be established in /home/coreictc/public_html/developers/ems/ci/back/GetUserName.php on line 8
+[11-Apr-2016 12:25:56 UTC] PHP Notice:  Undefined index: action in /home/coreictc/public_html/developers/ems/ci/back/GetUserName.php on line 3
+[11-Apr-2016 12:25:56 UTC] PHP Deprecated:  mysql_query(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /home/coreictc/public_html/developers/ems/ci/back/GetUserName.php on line 8
+[11-Apr-2016 12:25:56 UTC] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/coreictc/public_html/developers/ems/ci/back/GetUserName.php on line 8
+[11-Apr-2016 12:25:56 UTC] PHP Warning:  mysql_query(): A link to the server could not be established in /home/coreictc/public_html/developers/ems/ci/back/GetUserName.php on line 8
+[11-Apr-2016 12:31:48 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[11-Apr-2016 12:31:55 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[11-Apr-2016 12:32:06 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[11-Apr-2016 12:42:51 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[11-Apr-2016 13:49:25 Europe/London] PHP Warning:  move_uploaded_file(/back/uploads/ExcelInstitution.xlsx): failed to open stream: No such file or directory in /home/coreictc/public_html/developers/ems/ci/back/Imports.php on line 21
+[11-Apr-2016 13:49:25 Europe/London] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpFwL72P' to '/back/uploads/ExcelInstitution.xlsx' in /home/coreictc/public_html/developers/ems/ci/back/Imports.php on line 21
+[11-Apr-2016 13:49:25 Europe/London] PHP Fatal error:  Uncaught exception 'Exception' with message 'Could not open /back/uploads/ExcelInstitution.xlsx for reading! File does not exist.' in /home/coreictc/public_html/developers/ems/ci/back/PHPExcel/Reader/Excel2007.php:358
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/ImportsDatabase.php(58): PHPExcel_Reader_Excel2007->load('/back/uploads/E...')
+#1 /home/coreictc/public_html/developers/ems/ci/back/Imports.php(29): ImportDatabase->saveInstitutions()
+#2 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/PHPExcel/Reader/Excel2007.php on line 358
+[11-Apr-2016 15:25:42 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 12:23:59 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 12:57:10 UTC] PHP Warning:  imap_headerinfo(): Bad message number in /home/coreictc/public_html/developers/ems/ci/back/ReadMailbox.php on line 28
+[29-Apr-2016 12:57:10 UTC] PHP Warning:  imap_fetchbody(): Bad message number in /home/coreictc/public_html/developers/ems/ci/back/ReadMailbox.php on line 29
+[29-Apr-2016 13:02:12 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 13:03:21 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 13:05:53 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 13:10:04 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 13:16:56 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 13:26:03 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 13:26:07 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 13:49:41 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 14:02:24 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[29-Apr-2016 14:31:42 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[03-May-2016 11:35:48 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[07-May-2016 07:50:53 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[07-May-2016 07:51:49 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[09-May-2016 12:05:52 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[11-May-2016 13:31:36 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[12-May-2016 09:22:21 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[12-May-2016 10:28:12 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[12-May-2016 10:28:12 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[12-May-2016 10:28:16 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[12-May-2016 10:28:20 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[12-May-2016 10:28:21 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[12-May-2016 14:52:14 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[16-May-2016 11:50:40 UTC] PHP Parse error:  syntax error, unexpected '$response' (T_VARIABLE) in /home/coreictc/public_html/developers/ems/ci/back/SignUp.php on line 33
+[16-May-2016 11:50:44 UTC] PHP Parse error:  syntax error, unexpected '$response' (T_VARIABLE) in /home/coreictc/public_html/developers/ems/ci/back/SignUp.php on line 33
+[16-May-2016 11:51:01 UTC] PHP Parse error:  syntax error, unexpected '$response' (T_VARIABLE) in /home/coreictc/public_html/developers/ems/ci/back/SignUp.php on line 33
+[16-May-2016 11:51:43 UTC] PHP Parse error:  syntax error, unexpected '$response' (T_VARIABLE) in /home/coreictc/public_html/developers/ems/ci/back/SignUp.php on line 33
+[16-May-2016 12:07:00 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[16-May-2016 12:10:49 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[16-May-2016 12:10:52 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[16-May-2016 12:20:48 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[16-May-2016 13:18:46 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[23-May-2016 07:49:04 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 71
+[23-May-2016 07:49:09 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 71
+[23-May-2016 10:53:31 UTC] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, null given in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 108
+[23-May-2016 14:15:46 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/coreictc/public_html/developers/ems/ci/back/Activate.php on line 8
+[24-May-2016 14:40:11 UTC] PHP Warning:  require_once(php/server_side/php/jui_filter_rules.php): failed to open stream: No such file or directory in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 3
+[24-May-2016 14:40:11 UTC] PHP Fatal error:  require_once(): Failed opening required 'php/server_side/php/jui_filter_rules.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 3
+[24-May-2016 14:41:15 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting ')' in /home/coreictc/public_html/developers/ems/ci/back/php/config.php on line 22
+[24-May-2016 14:41:24 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting ')' in /home/coreictc/public_html/developers/ems/ci/back/php/config.php on line 22
+[24-May-2016 14:42:37 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting ')' in /home/coreictc/public_html/developers/ems/ci/back/php/config.php on line 22
+[24-May-2016 14:43:15 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/coreictc/public_html/developers/ems/ci/back/php/config.php on line 1
+[24-May-2016 14:44:00 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/coreictc/public_html/developers/ems/ci/back/php/config.php on line 1
+[24-May-2016 14:44:15 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/coreictc/public_html/developers/ems/ci/back/php/config.php on line 1
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:44:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:44:37 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:45:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:45:06 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:46:37 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:46:37 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:47:48 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:47:48 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:49:59 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:49:59 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:50:52 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:50:52 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:51:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:51:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:53:54 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:53:54 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:55:08 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:55:08 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:55:16 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:55:16 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:55:21 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:55:21 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 14:55:25 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 14:55:25 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:01:17 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:01:17 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:02:47 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:02:47 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:03:22 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:03:22 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:03:36 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:03:36 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:03:43 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:03:43 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:05:32 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:05:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:06:09 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:06:09 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:06:11 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:06:11 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 28
+[24-May-2016 15:07:01 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 39
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:07:34 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:07:34 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 40
+[24-May-2016 15:09:41 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 36
+[24-May-2016 15:11:55 UTC] PHP Parse error:  syntax error, unexpected '$db_settings' (T_VARIABLE) in /home/coreictc/public_html/developers/ems/ci/back/php/configRaw.php on line 1
+[24-May-2016 15:12:38 UTC] PHP Parse error:  syntax error, unexpected '$db_settings' (T_VARIABLE) in /home/coreictc/public_html/developers/ems/ci/back/php/configRaw.php on line 1
+[24-May-2016 15:12:54 UTC] PHP Parse error:  syntax error, unexpected '$db_settings' (T_VARIABLE) in /home/coreictc/public_html/developers/ems/ci/back/php/configRaw.php on line 1
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 36
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 37
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 38
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 40
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 42
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 43
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 45
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 46
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 48
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 51
+[24-May-2016 15:13:06 UTC] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in /home/coreictc/public_html/developers/ems/ci/back/php/dacapo.class.php on line 53
+[24-May-2016 15:13:06 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 27
+[24-May-2016 15:14:20 UTC] PHP Parse error:  syntax error, unexpected '$db_settings' (T_VARIABLE) in /home/coreictc/public_html/developers/ems/ci/back/php/configRaw.php on line 1
+[24-May-2016 15:15:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/coreictc/public_html/developers/ems/ci/back/Front_learning_institutions.php on line 36
+[24-May-2016 15:16:37 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Institution.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:20:32 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Institution.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:20:56 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Institution.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:21:24 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Institution.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:22:29 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Institution.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:22:44 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Institution.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:25:09 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Institution.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:25:22 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/PersonInstitution.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:27:14 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Login.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:27:21 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Login.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:28:19 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Login.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[24-May-2016 15:29:21 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Unknown database driver type. Must be one of Mysql, Oracle, Postgres, Sqlite, Sqlserver' in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php:56
+Stack trace:
+#0 /home/coreictc/public_html/developers/ems/ci/back/php/Bootstrap.php(61): DataTables\Database->__construct(NULL)
+#1 /home/coreictc/public_html/developers/ems/ci/back/php/DataTables.php(33): include('/home/coreictc/...')
+#2 /home/coreictc/public_html/developers/ems/ci/back/Login.php(2): include('/home/coreictc/...')
+#3 {main}
+  thrown in /home/coreictc/public_html/developers/ems/ci/back/php/Database/Database.php on line 56
+[30-May-2016 14:52:05 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/InstitutionDropDown.php on line 13
+[30-May-2016 14:52:14 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/InstitutionDropDown.php on line 13
+[30-May-2016 14:57:07 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/InstitutionDropDown.php on line 13
+[30-May-2016 15:41:05 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/Institution.php on line 15
+[30-May-2016 15:41:20 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/Institution.php on line 15
+[30-May-2016 15:42:36 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/Institution.php on line 16
+[30-May-2016 15:47:56 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/InstitutionDropDown.php on line 13
+[30-May-2016 15:51:51 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[31-May-2016 12:56:03 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 8
+[31-May-2016 12:57:00 UTC] PHP Notice:  Array to string conversion in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 8
+[31-May-2016 12:59:07 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:00:22 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 8
+[31-May-2016 13:02:47 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:04:19 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:04:41 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:05:25 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:06:07 UTC] PHP Notice:  Use of undefined constant data - assumed 'data' in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:06:07 UTC] PHP Warning:  Illegal string offset 'ems_users' in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:06:07 UTC] PHP Warning:  Illegal string offset 'pass' in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:06:07 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:06:58 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:08:18 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:09:24 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:10:49 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:12:52 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 13:14:04 UTC] PHP Notice:  Undefined index: ems_user in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 11
+[31-May-2016 14:01:05 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[31-May-2016 14:01:14 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[31-May-2016 14:01:14 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[31-May-2016 14:01:16 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[31-May-2016 14:14:28 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[31-May-2016 14:14:28 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[31-May-2016 14:14:29 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[31-May-2016 14:29:41 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[31-May-2016 14:54:39 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/Users.php on line 15
+[06-Jun-2016 11:45:22 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/InstitutionDropDown.php on line 13
+[09-Jun-2016 11:02:47 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
+[09-Jun-2016 11:44:41 UTC] PHP Notice:  Undefined index: isAdmin in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 12
+[09-Jun-2016 11:44:41 UTC] PHP Notice:  Undefined index: instId in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 54
+[09-Jun-2016 11:45:10 UTC] PHP Notice:  Undefined index: isAdmin in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 12
+[09-Jun-2016 11:45:10 UTC] PHP Notice:  Undefined index: instId in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 54
+[09-Jun-2016 11:45:35 UTC] PHP Notice:  Undefined index: isAdmin in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 12
+[09-Jun-2016 11:45:35 UTC] PHP Notice:  Undefined index: instId in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 54
+[09-Jun-2016 11:52:28 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 39
+[09-Jun-2016 11:52:30 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 39
+[09-Jun-2016 11:54:12 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 39
+[09-Jun-2016 11:54:19 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 39
+[09-Jun-2016 11:55:00 UTC] PHP Notice:  Undefined index: isAdmin in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 12
+[09-Jun-2016 11:55:00 UTC] PHP Notice:  Undefined index: instId in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 54
+[09-Jun-2016 11:58:39 UTC] PHP Notice:  Undefined index: isAdmin in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 12
+[09-Jun-2016 11:58:39 UTC] PHP Notice:  Undefined index: instId in /home/coreictc/public_html/developers/ems/ci/back/AccessRoles.php on line 54
+[13-Jun-2016 13:56:32 UTC] PHP Notice:  Undefined index: is_admin in /home/coreictc/public_html/developers/ems/ci/back/InstitutionDropDown.php on line 13
+[27-Jun-2016 07:10:22 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/coreictc/public_html/developers/ems/ci/back/LoadRoles.php on line 58
