@@ -11,3 +11,20 @@ function signUp(obj){
 			}	
 		},"json");
 }
+
+function searchMedications(){ 
+
+    var postVars = {
+    	"cat":$( "#categorysearch" ).val(),
+        "name": $( "#productname" ).val(),
+        "pricerange":$( "#amount" ).val()
+      }
+     $("#executesearch" ).val("Searching...");
+     $.post("med-search",postVars,function(data){
+     $("#searchholdmeds").html(data.response); 
+        $( "#executesearch" ).val("Search Complete!");
+     },"json"); 
+
+
+
+}

@@ -601,6 +601,19 @@ class Services extends CI_Controller
             'Sign up a new user into the system' //description
         );
 
+    //do payment
+    $this->nusoap_server->register(
+            'payInvoice',
+            array('invoiceno' => 'xsd:string','amount' => 'xsd:string'),  //parameters
+            array('return' => 'tns:resultsArray'),  //output
+            'urn:PharmaceuticalsSoapServer',   //namespace
+            'urn:PharmaceuticalsSoapServer#payInvoice',  //soapaction
+            'rpc', // style
+            'encoded', // use
+            'Invoice Payment' //description
+        );
+
+
  //refill drug
     $this->nusoap_server->register(
             'reFillPatientMeds',
@@ -1646,6 +1659,54 @@ class Services extends CI_Controller
            return $ret_val;
         }
 
+
+
+    function payInvoice($invoiceno,$amount)
+        {  
+            $ci =& get_instance();         
+
+            $ci->load->model('Invoice','invoice');
+
+            $userDetails = $ci->invoice->fetchUserInvoice($invoiceno); 
+
+            $ret_val=array();          
+
+            require_once "AfricasTalkingGateway.php";
+
+            $username = "mattoace";
+
+            $apiKey   = "ce60279c511c6fc49c36ce5a0b8638dbb4bed7800968541aa7c7dc50ab69b59e";
+
+            $gateway = new AfricasTalkingGateway($username, $apiKey, "sandbox");
+       
+            $productName  = "tibamoja";       
+            $phoneNumber  = $userDetails[0]->phone;           
+            $currencyCode = "KES";           
+            $amount       = $amount;       
+            $metadata     = array("Payment details"   => "Client name :". $userDetails[0]->firstname." ".$userDetails[0]->secondname,
+                                  "productId" => $invoiceno);
+            try {
+            
+              $transactionId = $gateway->initiateMobilePaymentCheckout($productName,
+                                           $phoneNumber,
+                                           $currencyCode,
+                                           $amount,
+                                           $metadata);
+
+              $ret_val[0]["response"] =  "Transaction Id ".$transactionId;
+              $ret_val[0]["message"] = "Payment from ". $userDetails[0]->firstname." ".$userDetails[0]->secondname;
+             
+            
+
+            }
+            catch(AfricasTalkingGatewayException $e){
+               $ret_val[0]["message"] = "Received error response: ".$e->getMessage();
+            }  
+
+         return $ret_val;
+
+        }
+
     function createUser($fullname,$email,$pass)
         {  
 
@@ -2555,7 +2616,25 @@ public function fetchPatientInvoices()
 
             echo json_encode($res1 );
 
- }     
+ }  
+
+public function payInvoice(){
+
+    $invoiceno = $this->input->get("invoiceno"); 
+
+    $amount = $this->input->get("amount"); 
+
+    $wsdl = WSDL;
+
+    $this->load->library("Nusoap_library");
+
+    $client = new nusoap_client($wsdl, 'wsdl'); 
+
+    $res1 = $client->call('payInvoice', array('invoiceno'=>$invoiceno , 'amount'=> $amount ));
+
+    echo json_encode($res1);
+
+  }   
 
     public function reFill(){
 
