@@ -1,3 +1,9 @@
+<style>
+.page_head {
+    min-height: 158px !important;
+}
+</style>
+
 <body>
 <!-- header -->
 <div class="banner page_head w3l">
@@ -57,7 +63,7 @@
 		<div class="ab-grids">
 			<div class="col-md-6 ab-grid-left">
 
-                <img class="img-responsive" src="<?php echo base_url("assets/img/about.jpg");?>" alt=" "/><hr>
+                <img class="img-responsive" src="<?php echo base_url("assets/img/about.png");?>" alt=" "/><hr>
 
 				<div class="col-sm-6 ab-grid-img">
 					<img class="img-responsive" src="<?php echo base_url("assets/img/m7.jpg");?>" alt=" "/>

@@ -1,4 +1,8 @@
-
+<style>
+.page_head {
+    min-height: 158px !important;
+}
+</style>
 <body>
 <!-- header -->
 <div class="banner page_head w3l">

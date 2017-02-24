@@ -26,7 +26,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="alogin"><b>Pharmacy </b>System</a>
+    <a href="alogin"><b>tiba</b>moja</a><span style="font-size:14px;">admin login</span>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

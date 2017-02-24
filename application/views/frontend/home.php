@@ -152,6 +152,10 @@ table.dataTable tbody tr {
     font-size: 12px;
 }
 
+.page_head {
+    min-height: 158px !important;
+}
+
 </style>
 <body>
 <!-- header -->
@@ -184,9 +188,9 @@ table.dataTable tbody tr {
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</button>
-								<h1>
+							<!-- 	<h1>
 									<a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>&nbsp;&nbsp;&nbsp;&nbsp;</a>
-								</h1>
+								</h1> -->
 								
 							</div>
 							<!-- Collect the nav links, forms, and other content for toggling -->

@@ -1649,13 +1649,21 @@ class Services extends CI_Controller
     function createUser($fullname,$email,$pass)
         {  
 
-            $ret_val=array();
+          $ret_val=array();
+          $ci =& get_instance();         
+
+          $ci->load->model('Users','signup');
+  
+          $userRecord = $ci->signup->fetchUser($email); 
+
+          if($userRecord[0]->id){
+                $ret_val[0]["response"] = "Username  ".$userRecord[0]->email." already exists!";
+                return $ret_val;
+          }else{         
+
             $ret_val[0]["response"] = "Creating new User..";
             $ret_val[1]["response"] = $pass;
-
-            $ci =& get_instance();         
-
-            $ci->load->model('Users','signup');
+          
 
             $namesArray = explode(" ", $fullname); 
 
@@ -1717,7 +1725,9 @@ class Services extends CI_Controller
 
             $ret_val[4]["response"] = $response ;
 
+
            return $ret_val;
+          }
         }
 
 
