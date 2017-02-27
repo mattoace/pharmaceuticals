@@ -280,23 +280,10 @@ div.bhoechie-tab-container {
 		            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab" style="width:90%;">
 		                <!-- flight section -->
 		                <div class="bhoechie-tab-content  active">
-		                    <center>
 
- 								<!--  pharmacy interface -->
-							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-							<ul id="myTab" class="nav nav-tabs" role="tablist">
-									<li role="presentation" class="active"><a href="#refill" id="refill-tab" role="tab" data-toggle="tab" aria-controls="refill" aria-expanded="true">Refill drug</a></li>
-									<li role="presentation"><a href="#scan" role="tab" id="scan-tab" data-toggle="tab" aria-controls="scan">Scan barcode/QR</a></li>
-							        <li role="presentation"><a href="#transfer" role="tab" id="transfer-tab" data-toggle="tab" aria-controls="transfer">Transfer prescription</a></li>					
-							</ul>
-									<div id="myTabContent" class="tab-content">
-										<div role="tabpanel" class="tab-pane fade in active" id="refill" aria-labelledby="refill-tab" style="background-color: #deefd7;">
 
-<!-- 							                <div class="btn-group">
-							                      <button type="button" onClick = "uploadlist()" class="btn btn-danger">Click to refill selected drug</button>                    
-							                    </div> -->
 
-										        <table id="persontable" class="display" cellspacing="0" width="100%" >
+                              <table id="persontable" class="display" cellspacing="0" width="100%" >
 										            <thead>
 										                <tr>
 										                    <th>Id</th>
@@ -318,6 +305,22 @@ div.bhoechie-tab-container {
 										            </tfoot>
 										        </table>	
 
+		                  <!--  <center>
+
+ 							
+							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+							<ul id="myTab" class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active"><a href="#refill" id="refill-tab" role="tab" data-toggle="tab" aria-controls="refill" aria-expanded="true">Refill drug</a></li>
+									<li role="presentation"><a href="#scan" role="tab" id="scan-tab" data-toggle="tab" aria-controls="scan">Scan barcode/QR</a></li>
+							        <li role="presentation"><a href="#transfer" role="tab" id="transfer-tab" data-toggle="tab" aria-controls="transfer">Transfer prescription</a></li>					
+							</ul>
+									<div id="myTabContent" class="tab-content">
+										<div role="tabpanel" class="tab-pane fade in active" id="refill" aria-labelledby="refill-tab" style="background-color: #deefd7;">
+
+
+
+										
+
 										</div>
 
 										<div role="tabpanel" class="tab-pane fade" id="scan" aria-labelledby="scan-tab">
@@ -338,7 +341,7 @@ div.bhoechie-tab-container {
 															      <span class="input-group-btn">
 															        <button class="btn btn-default" onClick="doScanProductId2(this)" type="button">Go!</button>
 															      </span>
-															    </div><!-- /input-group -->
+															    </div>
 															  </div>
 
 														</div>
@@ -357,13 +360,16 @@ div.bhoechie-tab-container {
 										</div>
 
 							</div>
+
+
+
 							</div>							  
 
 							    
 
 
 
-		                    </center>
+		                    </center>-->
 		                </div>
 
 						<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCvLjXCDMebLLpmMPylPUTM3b4h7cpGnyo"></script> 
