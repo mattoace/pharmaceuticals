@@ -208,13 +208,14 @@ function setActiveLink(obj){
            $moduleid[] = $modarray[2];
         } 
       }
+     $moduleid = array_filter($moduleid);
      $moduleid = array_unique($moduleid);
      $modules = implode(",", $moduleid);
 
      }else{
         print('<b><i>no access!</i></b>');
        $modules = 0;
-     }
+     }    
 
      $query = $this->db->query('SELECT * FROM menu WHERE parentid is null AND id IN ('.$modules .')');
 

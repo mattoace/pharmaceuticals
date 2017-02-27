@@ -14,7 +14,7 @@
 			<div class="banner-right">
 				<ul>
 					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 727310743</li>
-					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@coreict.co.ke</a></li>
+					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@tibamoja.co.ke</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -76,9 +76,9 @@
 				<div class="col-md-6 contact-in">
 					<h2>For more information.</h2>
 					<p class="para1">
-	                   Reach us for inquiries about medical products , orders and/or assistance with placing an order through pharm-portal.coreict.co.ke , our catalog etc. 
+	                   Reach us for inquiries about medical products , orders and/or assistance with placing an order through <b>www.tibamoja.co.ke</b> , our catalog etc. 
 					</p>
-					<div class="more-address"> 
+				<!-- 	<div class="more-address"> 
 						<div class="address-more">
 							<b><p>KRISHNA CHEMISTS LTD,</p>
 							<p>PHARMACEUTICALS DISTRIBUTORS ,</p></b>
@@ -91,7 +91,7 @@
 							<p><b>Email:</b><a href="Krishnachemistsltd@gmail.com">Krishnachemistsltd@gmail.com </a></p>
 						</div>
 						<div class="clearfix"> </div>
-				      </div>
+				      </div> -->
 				</div>
 				<div class="clearfix"> </div>
 			</div>

@@ -2,8 +2,8 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.8
     </div>
-    <strong>Copyright &copy; 2014-2017 <a href="http://www.coreict.co.ke">Core Ict Consultancy</a>.</strong> All rights
-    reserved.
+    <strong style="font-size:11px;">Copyright &copy; 2017 - 2020 <a style="font-size:11px;" href="http://www.coreict.co.ke">Core Ict Consultancy</a>.</strong> <span style="font-size:11px;">All rights
+    reserved. </span>
   </footer>
 
   <!-- Control Sidebar -->

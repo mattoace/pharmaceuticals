@@ -15,7 +15,7 @@
 			<div class="banner-right">
 				<ul>
 					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 727310743</li>
-					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@coreict.co.ke</a></li>
+					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@tibamoja.co.ke</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -63,7 +63,7 @@
 		<div class="ab-grids">
 			<div class="col-md-6 ab-grid-left">
 
-                <img class="img-responsive" src="<?php echo base_url("assets/img/about.png");?>" alt=" "/><hr>
+                <img class="img-responsive" src="<?php echo base_url("assets/img/doctor1.png");?>" alt=" "/><hr>
 
 				<div class="col-sm-6 ab-grid-img">
 					<img class="img-responsive" src="<?php echo base_url("assets/img/m7.jpg");?>" alt=" "/>

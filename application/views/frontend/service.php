@@ -14,7 +14,7 @@
 			<div class="banner-right">
 				<ul>
 					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 727310743</li>
-					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@coreict.co.ke</a></li>
+					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@tibamoja.co.ke</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>

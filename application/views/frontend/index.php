@@ -13,7 +13,7 @@
 			<div class="banner-right">				
 				<ul>
 					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 727310743</li>
-					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@coreict.co.ke</a></li>
+					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@tibamoja.co.ke</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -304,7 +304,7 @@
 			<div class="col-md-4 diff-grid diff-one bor-bot  wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.3s">
 				<div class="port-1 effect-3">
                 	<div class="image-box">
-                    	<img class="img-responsive" src='<?php echo base_url("assets/img/p2.jpg");?>' alt="Image-3">
+                    	<img class="img-responsive" src='<?php echo base_url("assets/img/blackfamily.jpg");?>' alt="Image-3">
                     </div>
                     <div class="text-desc">
                     	<h4>Live Chat with a Pharmacist</h4>

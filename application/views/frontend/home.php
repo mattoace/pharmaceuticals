@@ -1,4 +1,9 @@
 
+<?php  
+ if($_SERVER['HTTPS']){
+  $protocol = 'https'; 
+ }else{ $protocol = 'http'; }
+ ?>
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/jquery.dataTables.min.css");?>'>
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/jquery.dataTables_themeroller.css");?>'>
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/dataTables.bootstrap.css");?>'>
@@ -167,8 +172,8 @@ table.dataTable tbody tr {
 			</div>
 			<div class="banner-right">
 				<ul>
-					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+123 2222 222</li>
-					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@coreict.co.ke</a></li>
+					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 727 310 743</li>
+					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@tibamoja.co.ke</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -372,7 +377,7 @@ div.bhoechie-tab-container {
 		                    </center>-->
 		                </div>
 
-						<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCvLjXCDMebLLpmMPylPUTM3b4h7cpGnyo"></script> 
+						<script src="<?php  echo $protocol; ?>://maps.googleapis.com/maps/api/js?key=AIzaSyCvLjXCDMebLLpmMPylPUTM3b4h7cpGnyo"></script> 
 						<link rel="stylesheet" href='<?php echo base_url("assets/plugins/jquery_lat_long/css/jquery-gmaps-latlon-picker.css");?>'>                        
 						<script src='<?php echo base_url("assets/plugins/jquery_lat_long/js/jquery-gmaps-latlon-picker.js");?>'></script>
 
@@ -469,7 +474,7 @@ div.bhoechie-tab-container {
 							         $query = $this->db->query('
 							         	 SELECT 
 									                        concat(s.id,"_",p.id) as id,
-									                        t.storeid,IF(d.img IS NOT NULL ,concat("http://pharm-portal.coreict.co.ke/",d.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img,
+									                        t.storeid,IF(d.img IS NOT NULL ,concat("'.$protocol.'://pharm-portal.coreict.co.ke/",d.img),"'.$protocol.'://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img,
 									                        d.genericname,
 									                        dp.drugprice,
 									                        dp.tax,

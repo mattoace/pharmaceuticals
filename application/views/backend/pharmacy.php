@@ -1,4 +1,8 @@
- 
+<?php  
+ if($_SERVER['HTTPS']){
+  $protocol = 'https'; 
+ }else{ $protocol = 'http'; }
+ ?> 
     <!-- Google web fonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel='stylesheet' />
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/jquery.dataTables.min.css");?>'>
@@ -286,7 +290,7 @@
                 <script src="<?php echo base_url('assets/plugins/uploadplugin/jquery.fileupload.js')?>"></script> -->
 
 
-                <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCvLjXCDMebLLpmMPylPUTM3b4h7cpGnyo"></script> 
+                <script src="<?php  echo $protocol; ?>://maps.googleapis.com/maps/api/js?key=AIzaSyCvLjXCDMebLLpmMPylPUTM3b4h7cpGnyo"></script> 
                 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/jquery_lat_long/css/jquery-gmaps-latlon-picker.css");?>'>                        
                 <script src='<?php echo base_url("assets/plugins/jquery_lat_long/js/jquery-gmaps-latlon-picker.js");?>'></script>
 

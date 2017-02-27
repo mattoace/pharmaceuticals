@@ -28,7 +28,7 @@
 			<i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i><p>nairobi,<span>kenya</span></p>
 		</div>
 		<div class="col-md-4 footer-left">
-			<i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><p><a href="mailto:example@mail.com">pharm-portal@coreict.co.ke</a><span><a href="mailto:example@mail.com">info@coreict.co.ke</a></span></p>
+			<i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><p><a href="mailto:info@tibamoja.com">info@tibamoja.co.ke</a><span><a href="mailto:info@tibamoja.com">info@tibamoja.co.ke</a></span></p>
 		</div>
 		<div class="col-md-4 footer-left">
 			<i class="glyphicon glyphicon-earphone" aria-hidden="true"></i><p>+254 727 310 743<span></span></p>
