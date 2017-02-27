@@ -580,7 +580,7 @@ color:#00aeef;
 
 /* effect-3 css end */
 .explore{
-    background: url(../img/e2.jpg) no-repeat fixed;
+    background: url(../img/e2New.jpg) no-repeat fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -903,9 +903,9 @@ background:#000;
 }
 .profile-left {
     background: rgba(255, 255, 255, 0.78);
-    width: 33%;
+    width: 29%;
     margin: 6em 0 0 0;
-    padding: 2em;
+    padding: 1em;
 }
 .profile-left p,.profile-left1 p{
 	font-size:14px;

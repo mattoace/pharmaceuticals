@@ -4,10 +4,16 @@
 <div class="banner w3l">
 	<div class="head_top wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.3s">
 		<div class="container">
-			<div class="banner-right">
+
+
+			<div class="banner-left" style="background-color: white;">				
+				<img class="img-responsive" style='width:370px;height:80px;' src='<?php echo base_url("assets/img/logo_v2.png");?>' alt=" " />
+			</div>
+
+			<div class="banner-right">				
 				<ul>
 					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 727310743</li>
-					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@coreict.co.ke</a></li>
+					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@tibamoja.co.ke</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -44,7 +50,7 @@
 									<span class="icon-bar"></span>
 								</button>
 								<h1>
-									<a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>tibamoja</a>
+								  <a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>&nbsp;&nbsp;&nbsp;&nbsp;</a>
 								</h1>
 								
 							</div>
@@ -166,23 +172,17 @@
 					<form action="#" method="post">
 						<h4>Find medication</h4>
 							<div class="section-top">
-								<select onchange="change_country(this.value)" class="frm-field required">
-									<option value="null">Filter by keywords</option>
-									<option value="null">Medication by product id</option>
-									<option value="null">Pharmacy/Store location</option>         
-									<option value="AX">Category</option>								
-									<option value="AX">Price</option>
+								<select onchange="change_country(this.value)" class="frm-field required" id="categorysearch">
+									<option value="keyword">Filter by keywords</option>
+									<option value="productid">Medication by product id</option>
+									<option value="location">Pharmacy/Store location</option>         
+									<option value="category">Category</option>								
+									<option value="price">Price</option>
 								</select>
 							</div>
 						<div class="section-single">
-							<div class="section_room">
-								<select  onchange="change_country(this.value)" class="frm-field required">
-									<option value="null">Any Type</option>
-								<!-- 	<option value="null">Single</option>         
-									<option value="AX">Duplex</option>
-									<option value="AX">Retail</option>
-									<option value="AX">Multi Family</option> -->
-								</select>
+							<div class="">
+								<input type="text" name="productname" id="productname" placeholder="Enter Product Name" required="">
 							</div>	
 				<!-- 			<div class="section_room">
 								<select  onchange="change_country(this.value)" class="frm-field required">
@@ -226,50 +226,20 @@
 
 								</script>
 						</div>
-						<input type="submit" value="Find medication">
+						<input type="button" id="executesearch" class="submit" style="width:100%;" value="Find medication" onCLick="searchMedications()">
 					</form>
 				</div>
 			</div>
-			<div class="col-md-8 explore-right wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s">
+			<div class="col-md-8 explore-right wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" style="margin-top: -4.8%; padding:0px;">
 				<!-- <h4>Our Clients</h4> -->
 				<div class="flex-slider">
-<!-- 					<ul id="flexiselDemo1">			
-						<li>
-							<div class="laptop">
-										<div class="team-right">
-											<p>Service is great and the prices are fantastic</p>
-										</div>
-							</div>
-							<div class="team-pic">
-											<div class="team-pic-left">
-												<h5>Customer 1</h5>
-												<p>Seller</p>
-											</div>
-											<div class="team-pic-right">
-												<img src='<?php echo base_url("assets/img/team1.jpg");?>' alt=" "/>
-											</div>
-											<div class="clearfix"></div>
-							</div>
-						</li>
-						<li>
-							<div class="laptop">
-										<div class="team-right">
-											<p>professional and the customer service is excellent</p>
-										
-										</div>
-							</div>
-							<div class="team-pic">
-											<div class="team-pic-left">
-												<h5>Customer 2</h5>
-												<p>Agent</p>
-											</div>
-											<div class="team-pic-right">
-												<img src='<?php echo base_url("assets/img/team2.jpg");?>' alt=" "/>
-											</div>
-											<div class="clearfix"></div>
-							</div>
-						</li>
-					</ul> -->
+
+					<div class="explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" id="searchholdmeds" style="padding:0px;background-color:transparent !important;">
+					
+
+					</div>
+
+
 					<script type="text/javascript">
 									$(window).load(function() {
 										$("#flexiselDemo1").flexisel({
@@ -334,7 +304,7 @@
 			<div class="col-md-4 diff-grid diff-one bor-bot  wow bounceInDown" data-wow-duration="1.5s" data-wow-delay="0.3s">
 				<div class="port-1 effect-3">
                 	<div class="image-box">
-                    	<img class="img-responsive" src='<?php echo base_url("assets/img/p2.jpg");?>' alt="Image-3">
+                    	<img class="img-responsive" src='<?php echo base_url("assets/img/blackfamily.jpg");?>' alt="Image-3">
                     </div>
                     <div class="text-desc">
                     	<h4>Live Chat with a Pharmacist</h4>

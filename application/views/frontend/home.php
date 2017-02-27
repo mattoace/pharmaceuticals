@@ -1,4 +1,9 @@
 
+<?php  
+ if($_SERVER['HTTPS']){
+  $protocol = 'https'; 
+ }else{ $protocol = 'http'; }
+ ?>
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/jquery.dataTables.min.css");?>'>
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/jquery.dataTables_themeroller.css");?>'>
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/dataTables.bootstrap.css");?>'>
@@ -152,16 +157,23 @@ table.dataTable tbody tr {
     font-size: 12px;
 }
 
+.page_head {
+    min-height: 158px !important;
+}
+
 </style>
 <body>
 <!-- header -->
 <div class="banner page_head w3l">
 	<div class="head_top">
 		<div class="container">
+			 <div class="banner-left" style="background-color: white;">				
+				<img class="img-responsive" style='width:370px;height:80px;' src='<?php echo base_url("assets/img/logo_v2.png");?>' alt=" " />
+			</div>
 			<div class="banner-right">
 				<ul>
-					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+123 2222 222</li>
-					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@coreict.co.ke</a></li>
+					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 727 310 743</li>
+					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@tibamoja.co.ke</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -181,9 +193,9 @@ table.dataTable tbody tr {
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</button>
-								<h1>
-									<a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>tibamoja</a>
-								</h1>
+							<!-- 	<h1>
+									<a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+								</h1> -->
 								
 							</div>
 							<!-- Collect the nav links, forms, and other content for toggling -->
@@ -273,23 +285,10 @@ div.bhoechie-tab-container {
 		            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab" style="width:90%;">
 		                <!-- flight section -->
 		                <div class="bhoechie-tab-content  active">
-		                    <center>
 
- 								<!--  pharmacy interface -->
-							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-							<ul id="myTab" class="nav nav-tabs" role="tablist">
-									<li role="presentation" class="active"><a href="#refill" id="refill-tab" role="tab" data-toggle="tab" aria-controls="refill" aria-expanded="true">Refill drug</a></li>
-									<li role="presentation"><a href="#scan" role="tab" id="scan-tab" data-toggle="tab" aria-controls="scan">Scan barcode/QR</a></li>
-							        <li role="presentation"><a href="#transfer" role="tab" id="transfer-tab" data-toggle="tab" aria-controls="transfer">Transfer prescription</a></li>					
-							</ul>
-									<div id="myTabContent" class="tab-content">
-										<div role="tabpanel" class="tab-pane fade in active" id="refill" aria-labelledby="refill-tab" style="background-color: #deefd7;">
 
-<!-- 							                <div class="btn-group">
-							                      <button type="button" onClick = "uploadlist()" class="btn btn-danger">Click to refill selected drug</button>                    
-							                    </div> -->
 
-										        <table id="persontable" class="display" cellspacing="0" width="100%" >
+                              <table id="persontable" class="display" cellspacing="0" width="100%" >
 										            <thead>
 										                <tr>
 										                    <th>Id</th>
@@ -311,6 +310,22 @@ div.bhoechie-tab-container {
 										            </tfoot>
 										        </table>	
 
+		                  <!--  <center>
+
+ 							
+							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+							<ul id="myTab" class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active"><a href="#refill" id="refill-tab" role="tab" data-toggle="tab" aria-controls="refill" aria-expanded="true">Refill drug</a></li>
+									<li role="presentation"><a href="#scan" role="tab" id="scan-tab" data-toggle="tab" aria-controls="scan">Scan barcode/QR</a></li>
+							        <li role="presentation"><a href="#transfer" role="tab" id="transfer-tab" data-toggle="tab" aria-controls="transfer">Transfer prescription</a></li>					
+							</ul>
+									<div id="myTabContent" class="tab-content">
+										<div role="tabpanel" class="tab-pane fade in active" id="refill" aria-labelledby="refill-tab" style="background-color: #deefd7;">
+
+
+
+										
+
 										</div>
 
 										<div role="tabpanel" class="tab-pane fade" id="scan" aria-labelledby="scan-tab">
@@ -331,7 +346,7 @@ div.bhoechie-tab-container {
 															      <span class="input-group-btn">
 															        <button class="btn btn-default" onClick="doScanProductId2(this)" type="button">Go!</button>
 															      </span>
-															    </div><!-- /input-group -->
+															    </div>
 															  </div>
 
 														</div>
@@ -350,16 +365,19 @@ div.bhoechie-tab-container {
 										</div>
 
 							</div>
+
+
+
 							</div>							  
 
 							    
 
 
 
-		                    </center>
+		                    </center>-->
 		                </div>
 
-						<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCvLjXCDMebLLpmMPylPUTM3b4h7cpGnyo"></script> 
+						<script src="<?php  echo $protocol; ?>://maps.googleapis.com/maps/api/js?key=AIzaSyCvLjXCDMebLLpmMPylPUTM3b4h7cpGnyo"></script> 
 						<link rel="stylesheet" href='<?php echo base_url("assets/plugins/jquery_lat_long/css/jquery-gmaps-latlon-picker.css");?>'>                        
 						<script src='<?php echo base_url("assets/plugins/jquery_lat_long/js/jquery-gmaps-latlon-picker.js");?>'></script>
 
@@ -456,7 +474,7 @@ div.bhoechie-tab-container {
 							         $query = $this->db->query('
 							         	 SELECT 
 									                        concat(s.id,"_",p.id) as id,
-									                        t.storeid,IF(d.img IS NOT NULL ,concat("http://pharm-portal.coreict.co.ke/",d.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img,
+									                        t.storeid,IF(d.img IS NOT NULL ,concat("'.$protocol.'://pharm-portal.coreict.co.ke/",d.img),"'.$protocol.'://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img,
 									                        d.genericname,
 									                        dp.drugprice,
 									                        dp.tax,

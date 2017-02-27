@@ -94,7 +94,7 @@ class Drug extends CI_Model {
     function get_datatables_client()
     {
         
-        $this->db->select('drugs.id,drugs.genericname,drugprices.drugprice,drugprices.tax,concat("http://pharm-portal.coreict.co.ke/",drugs.img ) img');
+        $this->db->select('drugs.id,drugs.genericname,drugprices.drugprice,drugprices.tax,concat("https://tibamoja.co.ke/",drugs.img ) img');
         $this->db->from('drugs');
         $this->db->join('drugprices','drugprices.drugid = drugs.id');
         $this->db->group_by('drugs.genericname');    
@@ -159,7 +159,7 @@ class Drug extends CI_Model {
     }
 
     public function fetchedit($id){     
-        $this->db->select('drugs.id,drugs.genericname,drugs.serialno,drugs.productid,drugprices.drugprice,drugprices.tax, IF(drugs.img IS NOT NULL,concat("http://pharm-portal.coreict.co.ke/",drugs.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img');
+        $this->db->select('drugs.id,drugs.genericname,drugs.serialno,drugs.productid,drugprices.drugprice,drugprices.tax, IF(drugs.img IS NOT NULL,concat("https://tibamoja.co.ke/",drugs.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img');
         $this->db->from('drugs');
         $this->db->join('drugprices','drugprices.drugid = drugs.id');
         $this->db->where('drugs.id',$id);
@@ -171,7 +171,7 @@ class Drug extends CI_Model {
 
     public function fetchProduct($storeid){
 
-        $this->db->select('drugs.id,drugprice,tax,genericname,drugs.serialno,drugs.productid, IF(drugs.img IS NOT NULL,concat("http://pharm-portal.coreict.co.ke/",drugs.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img');
+        $this->db->select('drugs.id,drugprice,tax,genericname,drugs.serialno,drugs.productid, IF(drugs.img IS NOT NULL,concat("https://tibamoja.co.ke/",drugs.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img');
         $this->db->from('drugs');
         $this->db->join('drugprices','drugprices.drugid = drugs.id');
         $this->db->where('drugprices.storeid',$storeid); 
@@ -184,7 +184,7 @@ class Drug extends CI_Model {
     public function fetchReview($drugid){
 
         $this->db->select('drugs.id,drugs.genericname,drugs.serialno,drugs.productid,rating,comments,persons.firstname,persons.secondname,persons.surname,persons.email,title,reviewdate,
-        IF(drugs.img IS NOT NULL,concat("http://pharm-portal.coreict.co.ke/",drugs.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img');
+        IF(drugs.img IS NOT NULL,concat("https://tibamoja.co.ke/",drugs.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img');
         $this->db->from('ratings');
         $this->db->join('users','users.id = ratings.patientid');
         $this->db->join('persons','persons.id = users.personid');
@@ -196,7 +196,7 @@ class Drug extends CI_Model {
   public function fetchAllReview($rating){
 
         $this->db->select('drugs.id,drugs.genericname,drugs.serialno,drugs.productid,rating,comments,persons.firstname,persons.secondname,persons.surname,persons.email,title,reviewdate,
-        IF(drugs.img IS NOT NULL,concat("http://pharm-portal.coreict.co.ke/",drugs.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img');
+        IF(drugs.img IS NOT NULL,concat("https://tibamoja.co.ke/",drugs.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img');
         $this->db->from('ratings');
         $this->db->join('users','users.id = ratings.patientid');
         $this->db->join('persons','persons.id = users.personid');
@@ -217,7 +217,7 @@ class Drug extends CI_Model {
 
    public function fetchPatientOrders($patientid){
 
-        $this->db->select('patientrefill.id,patientrefill.patientid,patientrefill.drugid,patientrefill.refilldate ,patientrefill.comments, IF(drugs.img IS NOT NULL,concat("http://pharm-portal.coreict.co.ke/",drugs.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img');
+        $this->db->select('patientrefill.id,patientrefill.patientid,patientrefill.drugid,patientrefill.refilldate ,patientrefill.comments, IF(drugs.img IS NOT NULL,concat("https://tibamoja.co.ke/",drugs.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img');
         $this->db->from('patientrefill');
         $this->db->join('drugs','patientrefill.drugid = drugs.id');       
         $this->db->where('patientrefill.patientid',$patientid); 
@@ -228,7 +228,7 @@ class Drug extends CI_Model {
 
     public function fetchPatientUnconfirmedOrders($patientid){
 
-        $this->db->select('patientrefill.id,patientrefill.patientid,patientrefill.drugid,patientrefill.refilldate ,patientrefill.comments, IF(drugs.img IS NOT NULL,concat("http://pharm-portal.coreict.co.ke/",drugs.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img');
+        $this->db->select('patientrefill.id,patientrefill.patientid,patientrefill.drugid,patientrefill.refilldate ,patientrefill.comments, IF(drugs.img IS NOT NULL,concat("https://tibamoja.co.ke/",drugs.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img');
         $this->db->from('patientrefill');
         $this->db->join('drugs','patientrefill.drugid = drugs.id');       
         $this->db->where('patientrefill.patientid',$patientid); 
@@ -239,13 +239,13 @@ class Drug extends CI_Model {
 
     public function fetchPatientInvoices($patientid){
 
-      /*  $this->db->select('patientrefill.id,patientrefill.patientid,patientrefill.drugid,patientrefill.refilldate ,patientrefill.comments, IF(drugs.img IS NOT NULL,concat("http://pharm-portal.coreict.co.ke/",drugs.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img');
+      /*  $this->db->select('patientrefill.id,patientrefill.patientid,patientrefill.drugid,patientrefill.refilldate ,patientrefill.comments, IF(drugs.img IS NOT NULL,concat("https://tibamoja.co.ke/",drugs.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img');
         $this->db->from('patientrefill');
         $this->db->join('drugs','patientrefill.drugid = drugs.id');       
         $this->db->where('patientrefill.patientid',$patientid); 
         $this->db->where('patientrefill.description','Invoice sent');  */  
 
-        $this->db->select('invoice.id,invoice.invoiceno,invoice.amount,invoice.tax ,invoice.currency,concat("http://pharm-portal.coreict.co.ke/",invoice.file) file');
+        $this->db->select('invoice.id,invoice.invoiceno,invoice.amount,invoice.tax ,invoice.currency,concat("https://tibamoja.co.ke/",invoice.file) file');
         $this->db->from('invoice');             
         $this->db->where('invoice.patientid',$patientid);  
         $query = $this->db->get();
@@ -258,7 +258,7 @@ class Drug extends CI_Model {
 
        $drugname = strtolower($arrayObject['drugname']);
 
-       $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax ,IF(d.img IS NOT NULL ,concat("http://pharm-portal.coreict.co.ke/",d.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img
+       $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax ,IF(d.img IS NOT NULL ,concat("https://tibamoja.co.ke/",d.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img
         FROM drugs d , drugprices dp , stores s 
         WHERE dp.drugid = d.id 
         AND s.id = dp.storeid 
@@ -276,7 +276,7 @@ class Drug extends CI_Model {
     
        $drugname = strtolower($arrayObject['drugname']);
 
-       $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax ,IF(d.img IS NOT NULL,concat("http://pharm-portal.coreict.co.ke/",d.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img
+       $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax ,IF(d.img IS NOT NULL,concat("https://tibamoja.co.ke/",d.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img
         FROM drugs d , drugprices dp , stores s 
         WHERE dp.drugid = d.id 
         AND s.id = dp.storeid      
@@ -293,7 +293,7 @@ class Drug extends CI_Model {
     
        $categoryname = strtolower($arrayObject['categoryname']);
 
-       $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax,IF(d.img IS NOT NULL ,concat("http://pharm-portal.coreict.co.ke/",d.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img
+       $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax,IF(d.img IS NOT NULL ,concat("https://tibamoja.co.ke/",d.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img
         FROM drugs d , drugprices dp , drugtocategory dtc , category c
         WHERE dp.drugid = d.id 
          AND dtc.drugid = d.id 
@@ -310,7 +310,7 @@ class Drug extends CI_Model {
  public function getPrescriptionUpload($arrayObject){ 
 
        $query = $this->db->query('SELECT 
-            id,uploadate,filename,patientid,concat("http://pharm-portal.coreict.co.ke/",path) as path
+            id,uploadate,filename,patientid,concat("https://tibamoja.co.ke/",path) as path
        FROM prescriptionupload WHERE patientid =  "'.$arrayObject['patientid'].'"
        
        '); 
@@ -330,9 +330,9 @@ class Drug extends CI_Model {
         dp.drugprice,
         dp.tax,
         IF(d.img IS NOT NULL,
-            concat("http://pharm-portal.coreict.co.ke/",
+            concat("https://tibamoja.co.ke/",
                     d.img),
-            "http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img,
+            "https://tibamoja.co.ke/assets/img/defaultdrug.png") as img,
         do.dose,
         do.maximumdose,
         do.minimumdose,
@@ -373,7 +373,7 @@ public function getDrugCoupon($arrayObject){
 
  public function allProducts($from=0,$to=100){  
 
-       $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax ,IF(d.img IS NOT NULL,concat("http://pharm-portal.coreict.co.ke/",d.img),"http://pharm-portal.coreict.co.ke/assets/img/defaultdrug.png") as img
+       $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax ,IF(d.img IS NOT NULL,concat("https://tibamoja.co.ke/",d.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img
         FROM drugs d , drugprices dp , stores s 
         WHERE dp.drugid = d.id 
         AND s.id = dp.storeid      

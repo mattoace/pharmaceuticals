@@ -39,6 +39,16 @@ class Users extends CI_Model {
        return $query->result();
     } 
 
+ public function fetchUser($email){
+
+        $this->db->select('persons.id,persons.initial,persons.firstname,persons.secondname,persons.surname,persons.phone,persons.email,persons.address,persons.phone,persons.email,persons.town');
+        $this->db->from('persons');
+        $this->db->join('users','users.personid = persons.id'); 
+        $this->db->where('users.username',$email);
+        $query = $this->db->get();
+       return $query->result();
+    } 
+
 
  public function fetchUid($id){
 

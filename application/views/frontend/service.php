@@ -1,13 +1,20 @@
-
+<style>
+.page_head {
+    min-height: 158px !important;
+}
+</style>
 <body>
 <!-- header -->
 <div class="banner page_head w3l">
 	<div class="head_top">
 		<div class="container">
+			<div class="banner-left" style="background-color: white;">				
+				<img class="img-responsive" style='width:370px;height:80px;' src='<?php echo base_url("assets/img/logo_v2.png");?>' alt=" " />
+			</div>
 			<div class="banner-right">
 				<ul>
 					<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+254 727310743</li>
-					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@coreict.co.ke</a></li>
+					<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@coreict.co.ke">info@tibamoja.co.ke</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -28,7 +35,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<h1>
-						<a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>tibamoja</a>
+						<!-- <a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>tibamoja</a> -->
 					</h1>
 					
 				</div>
@@ -53,7 +60,7 @@
 <!-- contact -->
 <div class="contact wthree all_pad">
 	<div class="container">
-		<h2 class="title">What can Pharm-Portal help you with?<span></span></h2>
+		<h2 class="title">What can tibamoja help you with?<span></span></h2>
 			<div class="ser-page">
 				<div class="col-md-4 ser-first-grid text-center wow fadeInRight animated" data-wow-delay=".5s">
 							<img src="<?php echo base_url("assets/img/icon1.png");?>" alt=" "/>

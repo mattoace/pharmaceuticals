@@ -45,7 +45,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b></b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg" style="font-size:12px"><b style="font-size:16px">KRISHNA </b>CHEMISTS LTD</span>
+      <span class="logo-lg" style="font-size:12px"><b style="font-size:16px">tiba</b>moja | <b>ADMIN</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -65,13 +65,13 @@
                $query = $this->db->query('SELECT * FROM users u, persons p WHERE u.personid = p.id AND u.id = "'.$userid.'"'); 
                $row = $query->result();
              ?> 
-              <img src='<?php echo base_url($row[0]->img);?>' class="user-image" alt="User Image">
+              <img src='<?php echo base_url($row[0]->img);?>' class="user-image" alt="">
               <span class="hidden-xs"><?php echo $row[0]->firstname ." " . $row[0]->secondname; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src='<?php echo base_url($row[0]->img);?>' class="img-circle" alt="User Image">
+                <img src='<?php echo base_url($row[0]->img);?>' class="img-circle" alt="">
 
                 <p>
                   <?php echo $row[0]->firstname ." " . $row[0]->secondname; ?>
@@ -102,7 +102,7 @@
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
-    <!--       <li>
+          <!--<li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
           </li> -->
         </ul>
@@ -121,7 +121,7 @@
        ?> 
       <div class="user-panel">
         <div class="pull-left image">
-          <img  src='<?php echo base_url($row[0]->img);?>' class="img-circle" alt="User Image" style="width:200px;height:50px;">
+          <img  src='<?php echo base_url($row[0]->img);?>' class="img-circle" alt="" style="width:200px;height:50px;">
         </div>
         <div class="pull-left info">
       <p><?php echo $row[0]->firstname ." " . $row[0]->secondname; ?></p>
@@ -187,21 +187,54 @@ function setActiveLink(obj){
   font-weight: 900;
 }
 </style>
-<?php 
+<?php  
+     // get the roes configurations from the database
+     $queryUsers = $this->db->query('SELECT moduleid FROM roles WHERE userid = "'.$userid.'"'); 
+     $rowUsers = $queryUsers->result();
 
+    if(count($rowUsers) > 0 ){
 
-     $query = $this->db->query('SELECT * FROM menu WHERE parentid is null'); 
+     foreach ($rowUsers as $roleId) { 
+
+        $modarray = explode("_",$roleId->moduleid); 
+
+        if($modarray[0]== "main"){
+          $moduleid[] = $modarray[1];
+        }else{
+         //get the main parent
+           $queryParent = $this->db->query('SELECT parentid FROM menu WHERE id = "'.$modarray[2].'"');
+           $rowParent = $queryParent->result(); 
+           $moduleid[] = $rowParent[0]->parentid;
+           $moduleid[] = $modarray[2];
+        } 
+      }
+     $moduleid = array_filter($moduleid);
+     $moduleid = array_unique($moduleid);
+     $modules = implode(",", $moduleid);
+
+     }else{
+        print('<b><i>no access!</i></b>');
+       $modules = 0;
+     }    
+
+     $query = $this->db->query('SELECT * FROM menu WHERE parentid is null AND id IN ('.$modules .')');
+
      $row = $query->result();
      $indx = 0; $subindx = 0;
       foreach ($row as $menu) {          
             print('<li id="mainmenu_'.$indx.'" class="'.$setactive.'">');
-            print('<a onClick="setActiveLink(this)" href="'.base_url($menu->url).'">');
+          // if($menu->url){
+             //   print('<a  href="#">'); 
+           // }else{
+                print('<a onClick="setActiveLink(this)" href="'.base_url($menu->url).'">'); 
+           // }          
+           
             print(' <i class="'.$menu->class.'"></i>');
             print(' <span>'.$menu->menuname.'</span>');          
             print($menu->option);         
             print(' </a>');              
 
-                $querychild = $this->db->query('SELECT * FROM menu WHERE parentid = "'.$menu->id.'"'); 
+                $querychild = $this->db->query('SELECT * FROM menu WHERE parentid = "'.$menu->id.'" AND id IN ('.$modules .')'); 
                 $rowchild = $querychild->result();
                  print('<ul class="treeview-menu">');
                     foreach ($rowchild as $submenu) {

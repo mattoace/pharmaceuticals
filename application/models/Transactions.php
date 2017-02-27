@@ -653,6 +653,23 @@ class Transactions extends CI_Model {
     return $query->result();
     }
 
+  function searchDrugDetails($arrayParameters)
+      { 
+       $query = $this->db->query('
+            SELECT 
+            d.id,d.genericname,dp.drugprice,i.img,ds.dosename,ds.minimumdose,ds.maximumdose,ds.dose 
+            FROM drugprices dp ,drugs d 
+            LEFT JOIN
+            images i ON i.parent = d.id
+            LEFT JOIN dose ds ON ds.drugid = d.id
+            WHERE dp.drugid = d.id           
+            GROUP BY d.id LIMIT 0,10
+             '
+        ); 
+    return $query->result();
+    }
+
+
   function getDrugScannedDetails($drugid)
       { 
        $query = $this->db->query('

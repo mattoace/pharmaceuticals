@@ -6,7 +6,11 @@
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/jquery.dataTables_themeroller.css");?>'>
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/dataTables.bootstrap.css");?>'>
 <link rel="stylesheet" href='<?php echo base_url("assets/css/style.css");?>'>
-
+<style>
+.bg-yellow, .callout.callout-warning, .alert-warning, .label-warning, .modal-warning .modal-body {
+    background-color: #16a9ef !important;
+}
+</style>
 
 
   <!-- Content Wrapper. Contains page content -->

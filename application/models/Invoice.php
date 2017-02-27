@@ -700,6 +700,26 @@ class Invoice extends CI_Model {
 
     }
 
+    public function fetchUserInvoice($invoice){
+
+     $query = $this->db->query('
+            SELECT 
+                p.phone, p.firstname,p.secondname 
+            FROM
+                persons p,
+                users u,
+                invoice i
+            WHERE
+                p.id = u.personid AND i.patientid = u.id
+                    AND i.invoiceno = "'.$invoice.'"
+        '); 
+
+    return $query->result();
+
+
+    }
+
+
     public function savePdfFile($arrObject,$id){        
       $this->db->where('invoiceno',$id);
       $this->db->update('invoice',$arrObject);

@@ -28,6 +28,7 @@ $route['ws:reviewratings'] = 'services/fetchAllReview';
 $route['ws:postreview'] = 'services/createReview';
 $route['ws:refill'] = 'services/reFill';
 $route['ws:fetch-prescriptions'] = 'services/fetchPrescription';
+$route['ws:pay-invoice'] = 'services/payInvoice';
 
 
 $route['dashboard-areagraph'] = 'dashboardController/drawAreaGrapgh';
@@ -191,6 +192,7 @@ $route['med-transfetch'] = 'TransactionsController/fetchtransaction';
 $route['med-transearch'] = 'TransactionsController/searchtransaction'; 
 $route['med-details'] = 'TransactionsController/drugDetails';
 $route['med-scan'] = 'TransactionsController/scanDrug';
+$route['med-search'] = 'TransactionsController/drugSearch';
 
 
 $route['dose-add'] = 'DosageController/addNew'; 
