@@ -79,6 +79,7 @@ class Cat extends CI_Model {
 
       $this->db->insert('category', $arrObject);
 
+      return $this->db->insert_id(); 
     }
 
     public function fetchedit($id){
@@ -104,5 +105,31 @@ class Cat extends CI_Model {
       $this->db->where('id', $id);
       $this->db->delete('category'); 
     }
+
+
+ function getParentCategories()
+      {       
+
+       $query = $this->db->query('
+           SELECT * FROM category WHERE parent IS NULL
+        ');     
  
+    return $query->result();
+    }
+function getChildCategories($parent)
+      {       
+
+       $query = $this->db->query('
+           SELECT * FROM category WHERE parent  = "'.$parent.'"
+        ');     
+ 
+    return $query->result();
+    }
+
+public function deleteAllRecord(){
+    $this->db->where('id', $id);
+    $this->db->delete('category'); 
+    $this->db->where('parent', $id);
+    $this->db->delete('category'); 
+    } 
 }

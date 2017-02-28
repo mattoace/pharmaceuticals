@@ -186,11 +186,12 @@
                     <span class="description">form view</span>
                   </div>
                   <!-- /.user-block -->
-                   <span class="description">Full Names</span>
-                        <p><input id="fullnames" class="form-control input-sm" placeholder="Full Names">
-                           <span class="description">User Name</span>
-                        <p><input id="username" class="form-control input-sm" placeholder="Username">
-                        <p><input id="email" class="form-control input-sm" placeholder="Email">
+                        <span class="description">Full Names</span>
+                        <p><input id="fullnames1" class="form-control input-sm" placeholder="Full Names">
+                        <span class="description">User Name</span>
+                        <p><input id="username1" class="form-control input-sm" placeholder="Username">
+                        <span class="description">Email Address</span>
+                        <p><input id="email1" class="form-control input-sm" placeholder="Email">
                         
             
                 </div>

@@ -16,6 +16,12 @@
 <link rel="stylesheet" href='<?php echo base_url("assets/css/gallery.css");?>'>
 <link rel="stylesheet" href='<?php echo base_url("assets/css/upload.css");?>'>
 
+<link rel="stylesheet" type="text/css" href='<?php echo base_url("assets/plugins/dhxtree/codebase/dhtmlxtree.css");?>'>
+<link rel="stylesheet" type="text/css" href='<?php echo base_url("assets/plugins/dhxtree/codebase/fonts/font_roboto/roboto.css");?>'>
+<link rel="stylesheet" type="text/css" href='<?php echo base_url("assets/plugins/dhxtree/codebase/dhtmlxmenu.css");?>'>
+<link rel="stylesheet" type="text/css" href='<?php echo base_url("assets/plugins/dhxmessage/codebase/themes/message_growl_shiny.css");?>'>
+
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -124,7 +130,7 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Stock list</a></li>
               <li><a href="#timeline" data-toggle="tab">Drug categories</a></li>
-              <li><a href="#settings" data-toggle="tab">Re-Order Due</a></li>
+              <li><a href="#settings" data-toggle="tab">Re-Order Due</a></li>             
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
@@ -359,7 +365,10 @@
                 <script src="<?php echo base_url('assets/plugins/jqueryfileupload/js/jquery.fileupload-audio.js')?>"></script>
                 <script src="<?php echo base_url('assets/plugins/jqueryfileupload/js/jquery.fileupload-video.js')?>"></script> 
                 <script src="<?php echo base_url('assets/plugins/jqueryfileupload/js/jquery.fileupload-validate.js')?>"></script> 
-                <script src="<?php echo base_url('assets/plugins/jqueryfileupload/js/jquery.fileupload-ui.js')?>"></script>  
+                <script src="<?php echo base_url('assets/plugins/jqueryfileupload/js/jquery.fileupload-ui.js')?>"></script> 
+                <script src="<?php echo base_url('assets/plugins/dhxtree/codebase/dhtmlxmenu.js')?>"></script>  
+                <script src="<?php echo base_url('assets/plugins/dhxtree/codebase/dhtmlxtree.js')?>"></script>
+                <script src="<?php echo base_url('assets/plugins/dhxmessage/codebase/message.js')?>"></script>   
 
 
 
@@ -417,10 +426,17 @@
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="timeline">
+                      <div class="user-block">
+                       <span style="font-size:11px;color:red;"><b>Right click on contect menu for edit or adding categories.</b></span>
+
+                     </div>
+
               
-              
+                 <div class="user-block">
+                       <div id="treeBox" style="width:100%;height:500"></div>  
+                  </div>  
                    
-              <div class="user-block">
+           <!--    <div class="user-block">
                     <div class="btn-group"> 
                       <button type="button" onClick = "addCat()" class="btn btn-danger">Add</button>
                       <button type="button" onClick = "editCat()" class="btn btn-danger">Edit</button>         
@@ -450,13 +466,34 @@
                             </tfoot>
                         </table>    
 
-                   
+                    -->
                                      
                    
                    
                    
 
               </div>
+
+
+
+
+
+<!-- 
+              <div class="tab-pane" id="categories"> 
+                   
+              <div class="user-block">
+                       <div id="treeBox" style="width:100%;height:500"></div>  
+                  </div>   
+              </div>
+ -->
+
+
+
+
+
+
+
+
               <!-- /.tab-pane -->
 
               <div class="tab-pane" id="settings">

@@ -128,6 +128,9 @@
                        $("#latitude").val("");
                        $("#longitude").val("");
                        $("#town").val("");
+                       $("#createNew").css("visibility", "visible");
+                       $("#saveRecord").css("visibility", "hidden");
+	                   $("#popupheading").html("<b><h4>Add new</h4></b>");
                        $('#dialogpopup').popup('show');
 		             }
 

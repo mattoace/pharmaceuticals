@@ -118,6 +118,13 @@ $route['users-edit'] = 'usersController/edit';
 $route['users-fetchedit'] = 'usersController/fetchedit';
 $route['users-delete'] = 'usersController/deleteRecord'; 
 
+$route['settings'] = 'pages/back/settings';
+$route['settings-fetch'] = 'settingsController/fetch';
+$route['settings-add'] = 'settingsController/addNew';
+$route['settings-fetchedit'] = 'settingsController/fetchedit';
+$route['settings-edit'] = 'settingsController/edit';
+$route['settings-delete'] = 'settingsController/deleteRecord';
+
 
 $route['med'] = 'pages/back/drugs';
 $route['med-fetch'] = 'drugController/fetch';
@@ -165,7 +172,12 @@ $route['cat-fetch'] = 'catController/fetch';
 $route['cat-add'] = 'catController/addNew'; 
 $route['cat-fetchedit'] = 'catController/fetchedit';
 $route['cat-edit'] = 'catController/edit';
-$route['cat-delete'] = 'catController/deleteRecord';  
+$route['cat-delete'] = 'catController/deleteRecord';
+$route['cat-tree'] = 'catController/loadTree';
+$route['cat-contextmenu'] = 'catController/loadContext';
+$route['cat-cotextsave'] = 'catController/saveContext'; 
+$route['cat-treedeleteall'] = 'catController/deleteTreeAll';  
+$route['cat-treedelete'] = 'catController/deleteTree';   
 
 $route['drugassigning-fetch'] = 'assigningController/fetch';
 $route['drugassigned-fetch'] = 'assigningController/fetchassigned';

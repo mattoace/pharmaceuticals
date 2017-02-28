@@ -54,12 +54,20 @@
 
 		        function add(){
 
-                       $("#clinicname").val("");
-                       $("#location").val("");
-                       $("#address").val("");
-                       $("#latitude").val("");
-                       $("#longitude").val("");
-                       $("#town").val("");
+                       $("#id").val("");
+                       $("#fullnames").val("");
+                       $("#username").val("");
+                       $("#phone").val("");
+                       $("#pass").val("");
+                       $("#isadmin").val("");
+                       $("#isactive").val("");
+
+                       $("#createNew").css("visibility", "visible");
+                       
+                       $("#saveRecord").css("visibility", "hidden");
+
+                       $("#popupheading").html("<b><h4>Add new</h4></b>");
+
                        $('#dialogpopup').popup('show');
 		             }
 
@@ -81,8 +89,7 @@
 
 		        	  $("#popupheading").html("<b><h4>Edit "+ data.response[0].firstname + " </h4></b>");
 				        
-                      $("#id").val(data.response[0].id);
-                      $("#fullnames").val(data.response[0].firstname +" "+ data.response[0].secondname);
+                      $("#id").val(data.response[0].id);                     
                       $("#username").val(data.response[0].email);
                       $("#phone").val(data.response[0].phone); 
                       $("#pass").val(data.response[0].pass); 
@@ -99,8 +106,9 @@
 						   $("#isactive").prop('checked', true);
 						}else{
 					       $("#isactive").prop('checked', false);
-						}                   
-            
+						}   
+
+                      $("#fullnames").val(data.response[0].firstname +" "+ data.response[0].secondname);
 
                       $('#dialogpopup').popup('show');
 		        	  },"json"); 
@@ -151,9 +159,9 @@
 				function moreSelectEvents(selId){					
 					 loc = ""+ selId[9];
                      $("#personimageholder").attr("src",loc);
-                     $("#fullnames").val(selId[2]+" "+selId[3]);
-                     $("#username").val(selId[5]);
-                     $("#email").val(selId[4]);
+                     $("#fullnames1").val(selId[2]+" "+selId[3]);
+                     $("#username1").val(selId[5]);
+                     $("#email1").val(selId[4]);
 				}
 
 				function changePersonImage(){

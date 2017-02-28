@@ -1,9 +1,19 @@
 				 
 				var table;
+				var tree
 				var selectedRow = null;
 				storeDropdown = $('#select1');
 				
-				jQuery(document).ready(function($) {
+
+          function addItemCancel(box) 
+            {
+            dhtmlx.modalbox.hide(box);
+            }
+
+    
+  
+
+		jQuery(document).ready(function($) {
 
 
 				$(function () {
@@ -225,10 +235,154 @@
 				         moreSelectEvents(selectedRow);	 
 			         });	
                      
-                     
-                     
-                                         //datatables
-              tableCat = $('#categorytable').DataTable({ 
+
+	             tree = new dhtmlXTreeObject("treeBox","100%","100%",0);
+				 tree.setImagePath("http://"+location.host+"/pharmaceuticals/assets/plugins/dhxtree/skins/material/imgs/dhxtree_material/");
+				 tree.enableThreeStateCheckboxes(true);            
+				 tree.enableDragAndDrop(true,true);
+				 tree.setDragBehavior(true,true);
+				 tree.loadXML("cat-tree");
+
+				 ContextMenu = new dhtmlXMenuObject(); 
+	             ContextMenu.setIconsPath("/pharmaceuticals/assets/img/");
+	             ContextMenu.renderAsContextMenu();
+	             ContextMenu.attachEvent("onClick",treeSelect);
+	             ContextMenu.loadStruct("cat-contextmenu"); 
+	             tree.enableContextMenu(ContextMenu);
+	             function treeSelect(menuitemId, type)
+	                  { 
+	                    tree_branchId = tree.getSelectedItemId() ; 
+	                    switch(menuitemId)
+	                    {
+	                     case 'add':
+	                      //add item on tree                      
+	                      createPopUpBranch(tree_branchId,1);
+	                     break;         
+	                     case 'delete':
+	                     //delete item on tree
+	                     deleteItemOnTree();         
+	                     break;
+
+	                     case 'rename':
+	                      createPopUpBranch(tree_branchId,3);  
+	                     break;
+
+	                     case 'addparent':
+	                     // to add on the parent
+	                     createPopUpBranch(tree_branchId,2);        
+	                     break;  
+	                    }
+	                  } 
+
+                //create popup to add node             
+              function createPopUpBranch(tree_branchId,values) 
+                {  
+
+				    window.addContextSave=function(){
+
+						           tree_id = tree.getSelectedItemId() ; 	         
+						           var nodeType = document.getElementById("branchcatId").value;
+						           var nodeName = document.getElementById("branchName").value;           
+						                 $.get("cat-cotextsave?&cat="+tree_id+"&topic="+nodeName+"&nodeType="+nodeType,function(data) 
+						                    {  
+						                      dhtmlx.alert(data.info);                       
+						                        if(data.bool==true)
+						                        {
+						                          tree.insertNewChild(tree_id,data.childid,data.dataItemName); 
+						                          tree.deleteChildItems(0); 
+						                          tree.loadXML("cat-tree",function()
+						                          {
+						                            tree.selectItem(data.id,true);
+						                          });
+						                        }
+						                    },'json'); 
+						            
+						           dhtmlx.modalbox.hide(box); 
+
+
+						    }				
+
+
+                    var box = dhtmlx.modalbox({
+                        title : "Enter name of product",
+                        text : "<div>"
+                                +"<form name='assetitemAdd' id='itemAdd'>"
+                                +"<table>"
+                                +"<tr><td><span style='font-size:12px;'><b>Product Name :</b></span></td><td><input class='form-control' type='text' id='branchName' name='itemName'style=''></td></tr>"
+                                 +"<input class='inform' type='hidden' id='branchcatId' name='branchcatId'style='margin-bottom:5%;'>" 
+                                    +"<tr><td>&nbsp;</td><td>&nbsp;</td></tr>"
+                                +"<tr><td ><input type='button' class='btn-primary' value='Save' onclick='addContextSave(this,tree)' style='width:100px;'></td>"
+                                +"<td><input type='button' class='btn-primary'  value='Cancel' onclick='addItemCancel(this)' style='width:100px;text-align:center;'></td></tr></table>" //<div class='dhtmlx_button'></div>
+                                +"</form>"
+                                +"</div>",
+                        width : "250px"
+                    });
+                    document.getElementById("branchcatId").value = values ;       
+                 if(values ==3){document.getElementById("branchName").value = tree.getItemText(tree_branchId)};   
+                }
+
+
+
+			   function deleteItemOnTree()
+			         {     
+			                var id = tree.contextID; 
+			                 if (tree.hasChildren(id) > 0) 
+			                   {
+			                         dhtmlx.confirm({
+			                        title: "Close",
+			                                type:"confirm-warning",
+			                        text: "The folder has got child Items.<br>Click Ok to delete the items.",
+			                        callback: function(result)
+			                        {
+			                        switch (result)
+			                        {
+			                         case true:
+			                                 //perfrom deletion to clear child items of selected folder
+			                                 var selId = tree.getSelectedItemId(); 
+			                                 //send the id of the selected and rearranges the sort id back   
+			                                 $.post("cat-treedeleteall?childItem="+selId+"&del_case=all_chd_item",function(data)
+			                                 {			                                
+			                                    //refresh the tree and open it
+			                                    tree.deleteChildItems(0); 
+			                                    tree.loadXML("cat-tree",function()
+			                                      {
+			                                        selId--;
+			                                        tree.selectItem(selId,true);
+			                                      });
+			                                    dhtmlx.message("deleted!");			                                  
+			                                 },'json');   
+			                         break;
+			                         
+			                         case false:
+			                         dhtmlx.message("Cancelled!");                 
+			                         break;                
+			                        }                 
+			                        }
+			                        });                   
+			                   }
+			                   else
+			                   {  
+			                       //perfrom deletion
+			                         var selId = tree.getSelectedItemId(); 
+			                         //send the id of the selected and rearranges the sort id back   
+			                         $.post("cat-treedelete?childItem="+selId+"&del_case=chd_item",function(data)
+			                         {
+			                           tree.deleteItem(selId,selId);
+			                           dhtmlx.message("deleted!"); 
+			                           tree.deleteChildItems(0); 
+			                           tree.loadXML("cat-tree",function()
+			                                  {
+			                                   selId--;
+			                                   tree.selectItem(selId,true);
+			                                  }); 
+			                         },'json'); 
+			                   }
+			         }  
+  
+
+
+                //datatables
+               tableCat = $('#categorytable').DataTable({ 
                         "info":     false,
                         "processing": true, //Feature control the processing indicator.
                         "serverSide": true, //Feature control DataTables' server-side processing mode.
@@ -236,7 +390,7 @@
                  
                         // Load data for the table's content from an Ajax source
                         "ajax": {
-                            "url": "cat-fetch",  //"url": "<?php echo site_url('patientController/ajax_list')?>",
+                            "url": "",  //"url": "<?php echo site_url('patientController/ajax_list')?>",
                             "type": "POST"
                         },
                                 select: {
