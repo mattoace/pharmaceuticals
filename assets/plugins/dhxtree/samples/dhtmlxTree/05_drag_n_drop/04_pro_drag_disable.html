@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Temporary disabling Drag n Drop</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree, myTree2;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableDragAndDrop("temporary_disabled");
+			myTree.enableSmartXMLParsing(true);
+			myTree.load("../common/tree.xml");
+			myTree2 = new dhtmlXTreeObject("treeboxbox_tree2","100%","100%",0);
+			myTree2.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree2.enableSmartXMLParsing(true);
+			myTree2.enableDragAndDrop(true);
+			myTree2.setDragBehavior("sibling");
+			myTree2.load("../common/tree.xml");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Temporary disabling Drag n Drop</h1>
+	<p>There is a functionality in dhtmlxTree which provides you temporary disabling drag-and-drop. You can apply it for both child and sibling drop modes.</p>
+	<table>
+		<tr>
+			<td>
+				drop as child
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td style="padding-left:25px" valign="top">
+				drop as sibling
+				<div id="treeboxbox_tree2" class="tree_demo_samples"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="#"><div style='cursor:pointer;' onClick="myTree.enableDragAndDrop(true)">Enable Drag and Drop</div></a>
+				<a href="#"><div style='cursor:pointer;' onClick="myTree.enableDragAndDrop('temporary_disabled')">Disable Drag and Drop</div></a>
+			</td>
+			<td style="padding-left:25px" >
+				<a href="#"><div style='cursor:pointer;' onClick="myTree2.enableDragAndDrop(true)">Enable Drag and Drop</div></a>
+				<a href="#"><div style='cursor:pointer;' onClick="myTree2.enableDragAndDrop('temporary_disabled')">Disable Drag and Drop</div></a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> Drag and Drop extension</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree, myTree2;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableDragAndDrop(true);
+			myTree.enableSmartXMLParsing(true);
+			myTree.load("../common/tree.xml");
+			myTree.setOnDragIn(my_func);
+			myTree2 = new dhtmlXTreeObject("treeboxbox_tree2","100%","100%",0);
+			myTree2.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree2.enableSmartXMLParsing(true);
+			myTree2.enableDragAndDrop(true);
+			myTree2.setDragBehavior("sibling");
+			myTree2.load("../common/tree.xml");
+		}
+		function my_func(id_drag, id_landing){
+			return false;
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Drag and Drop extension</h1>
+	Left tree - drag out allowed, drag in denied.
+	<table>
+		<tr>
+			<td>
+				drop as child
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td style="padding-left:25px" valign="top">
+				drop as sibling
+				<div id="treeboxbox_tree2" class="tree_demo_samples"></div>
+			</td>
+		</tr>
+
+	</table>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Icon size</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableTreeLines(false);
+			myTree.load("../common/tree.xml");
+		}
+		function action_1(){
+			myTree.setIconSize(document.getElementById("w_1").value,document.getElementById("h_1").value,myTree.getSelectedItemId());
+		}
+		function action_2(){
+			myTree.setIconSize(document.getElementById("w_1").value,document.getElementById("h_1").value);
+			myTree.deleteChildItems(0);
+			myTree.load("../common/tree.xml");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Icon size</h1>
+	<table>
+		<tr>
+			<td valign="top">
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td rowspan="2" style="padding-left:25px" valign="top">
+				Width:<input type="text" id="w_1" value="18">&nbsp;&nbsp;Height:<input type="text" id="h_1" value="18"><br>
+				<p>Before clicking on the action link, you should select an item the icon size of which you want to change and set its size in the width/height boxes.<p>
+				<a href="javascript:void(0);" onClick="action_1();">Set size of selected item's icon</a><br>
+				<a href="javascript:void(0);" onClick="action_2();">Set new icon size for tree</a><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+</body>
+</html>

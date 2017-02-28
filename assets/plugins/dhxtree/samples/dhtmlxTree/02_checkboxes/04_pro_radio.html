@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> Radio buttons tree</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableRadioButtons(true);
+			myTree.enableSmartXMLParsing(true);
+			myTree.load("../common/tree_radio.xml");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Radio buttons tree</h1>
+	<p>The following method allows you to enable radio buttons for the entire tree.</p>
+	<table>
+		<tr>
+			<td valign="top">
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td style="padding-left:25px" valign="top">
+				<br>
+				<a href="javascript:void(0);" onClick="alert(myTree.getAllChecked());">Get list of checked</a><br><br>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

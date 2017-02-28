@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> Auto search</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableSmartXMLParsing(true);
+			myTree.enableDragAndDrop(true);
+			myTree.enableKeyboardNavigation(true);
+			myTree.enableKeySearch(true);
+			myTree.attachEvent("onClick", function(id){
+				if (dhtmlx.message)
+					dhtmlx.message("Click on "+id);
+			});
+			myTree.load("../common/tree3_14_selection_sorting_navigation.xml");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Auto Search</h1>
+	<p>Just select any item in the tree and start typing, a tree item with name which you have typed will be selected. To restart the search use the backspace button.</p>
+	<div id="treeboxbox_tree" class="tree_demo_samples" style='width:300px'></div>
+	<br>Select any item in the tree and use the next keys:
+	<ul>
+		<li>Up arrow - select upper item</li>
+		<li>Down arrow - select lower item</li>
+		<li>Right arrow - open item</li>
+		<li>Left arrow - close item</li>
+		<li>Enter - call item's action</li>
+	</ul>
+</body>
+</html>

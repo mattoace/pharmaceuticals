@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Lock tree</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableDragAndDrop(true);
+			myTree.setLockedIcons("lock.gif","lock.gif","lock.gif");
+			myTree.load("../common/tree_lc.xml");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Lock tree</h1>
+	<p>You can deny collapsing/exanding any node in the tree. To test this functionality click on an appropriate action link.</p>
+	<table>
+		<tr>
+			<td>
+				<div id="treeboxbox_tree" class="tree_demo_samples" style="height:410px"></div>
+			</td>
+			<td rowspan="2" style="padding-left:25" valign="top">
+				<div><a href="javascript:void(0)" onClick="myTree.lockTree(true);">Lock tree</a></div>
+				<div><a href="javascript:void(0)" onClick="myTree.lockTree(false);">UnLock tree</a></div>
+				<div><a href="javascript:void(0)" onClick="myTree.lockItem(myTree.getSelectedItemId(),true)">Lock item</a></div>
+				<div><a href="javascript:void(0)" onClick="myTree.lockItem(myTree.getSelectedItemId(),false)">UnLock item</a></div>
+				<div><a href="javascript:void(0)" onClick="alert(myTree.isLocked(myTree.getSelectedItemId()))">Get lock state</a></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

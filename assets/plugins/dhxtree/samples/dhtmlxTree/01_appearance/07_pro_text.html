@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> Nodes' view</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableDragAndDrop(true);
+			reinitTree(false,false,true);
+		}
+		function reinitTree(){
+			myTree.deleteChildItems(0);
+			myTree.enableTreeImages(document.getElementById('a1').checked);
+			myTree.enableTreeLines(document.getElementById('a2').checked);
+			myTree.enableTextSigns(document.getElementById('a3').checked);
+			myTree.load("../common/tree.xml");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Nodes' view</h1>
+	<p>Setting an appropriate tree appearance you can make a multiple selection from 3 types of nodes' view within check boxes: icons, lines, cross signs. </p>
+	<table>
+		<tr>
+			<td valign="top">
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td rowspan="2" style="padding-left:25px" valign="top">
+				<input type="checkbox" name="tree_image" id="a1"> - Icons<br>
+				<input type="checkbox" name="tree_image" id="a2"> - Lines<br>
+				<input type="checkbox" name="tree_image" checked="checked" id="a3"> - Cross Signs<br>
+				<a href="#" onclick='reinitTree();'>Update</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

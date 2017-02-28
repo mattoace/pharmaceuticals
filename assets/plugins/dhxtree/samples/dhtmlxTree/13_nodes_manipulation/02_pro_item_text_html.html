@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Using HTML in item lable</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.parse(document.getElementById("treexml").value);
+		}
+		function reloadFromArea(){
+			myTree.deleteChildItems(0);
+			myTree.parse(document.getElementById("treexml").value);
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Using HTML in item lable</h1>
+	<p>There is a specific way to include some HTML in text attribute of any node label. You should remplace special HTML characters with related xml entities. Or you can use nested &lt;itemtext&gt; tag with CDATA for the same.</p>
+	<table>
+		<tr>
+			<td valign="top">
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<textarea id="treexml" style="width:900px;height:300px"><?xml version="1.0" encoding="iso-8859-1"?>
+<tree id="0" radio="1">
+	<item open="1" text="&amp;lt;font color='red'&amp;gt;Books&amp;lt;/font&amp;gt;" id="books" call="1" select="1">
+		<item text="Mystery  Thrillers" id="mystery" open="1">
+			<item id="lb">
+				<itemtext><![CDATA[<font color="#ff00ff">Some <b>HTML</b></font>]]></itemtext>
+				<item text="All the Flowers Are Dying" id="lb_1"></item>
+				<item text="The Burglar on the Prowl" id="lb_2"></item>
+				<item text="The Plot Thickens" id="lb_3"></item>
+				<item text="Grifter's Game" id="lb_4"></item>
+				<item text="The Burglar Who Thought He Was Bogart" id="lb_5"></item>
+			</item>
+		</item>
+	</item>
+</tree>
+				</textarea>
+				<br><a href="javascript:void(0)" onClick="reloadFromArea()">Reload</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

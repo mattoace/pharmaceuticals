@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Setting Item Style on Fly</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<style>
+		.standartTreeImage img{
+			width:0;
+		}
+	</style>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableTreeImages("false");
+			myTree.enableTreeLines("false");
+			myTree.load("../common/tree.xml");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Setting Item Style on Fly</h1>
+	<p>To set style of any string in the tree you should select a string, and then click on the action link.<p>
+	<table>
+		<tr>
+			<td valign="top">
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td rowspan="2" style="padding-left:25px" valign="top">
+				<a href="javascript:void(0);" onClick="myTree.setItemStyle(myTree.getSelectedItemId(),document.getElementById('tuds').value)">Set item style</a><br>
+				<textarea id="tuds" rows="10" style="width:300px;">font-weight:bold; text-decoration:underline;</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+</body>
+</html>

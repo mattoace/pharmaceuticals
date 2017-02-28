@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> Smart JSON parsing</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableSmartXMLParsing(true);
+			myTree.load("../common/big_data.json", "json");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Smart JSON parsing </h1>
+	<p>The smartXMLParsing mode can work with JSON as well ( when the type of loaded data has been changed, all other API remains the same ).
+		The tree in the example contains about <strong>10000</strong> nodes.</p>
+	<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+</body>
+</html>

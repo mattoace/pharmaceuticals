@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Performance</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableSmartXMLParsing(true);
+			myTree.load('php/tree_perf_xml.php');
+		}
+		function alt1(){
+			var z=(new Date()).valueOf();
+			myTree.openItem('arra_'+document.getElementById('z').value);
+			var z2=(new Date()).valueOf();
+			return z2-z;
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Performance</h1>
+	<p>To determine the time of items enveloping you should choose an approximate number of items in the selection array and then click on the action link.</p>
+	<table>
+		<tr>
+			<td>
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td rowspan="2" style="padding-left:25px" valign="top">
+				<select id='z'><option value="5">5</option>
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option value="50">50</option>
+					<option value="80">80</option>
+					<option value="100">100</option>
+					<option value="200">200</option>
+					<option value="500">500</option>
+					<option value="1000">1000</option>
+				</select>
+				<div><a href="#" onClick="this.parentNode.nextSibling.innerHTML=alt1()+'ms';">Open</a></div>
+				<div></div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> Lists of nodes</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableSmartXMLParsing(true);
+			myTree.enableCheckBoxes(true);
+			myTree.enableDragAndDrop(true);
+			myTree.enableThreeStateCheckboxes(true);
+			myTree.load("../common/tree.xml")
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Lists of nodes</h1>
+	<p>You can simply get the list of nodes with and without child items. Use the same methods in Grid and TreeGrid.</p>
+	<table>
+		<tr>
+			<td>
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td rowspan="2" style="padding-left:25px" valign="top">
+				<a href="#" onClick="alert(myTree.getAllFatItems());">Get all nodes with child items</a><br/>
+				<a href="#" onClick="alert(myTree.getAllLeafs());">Get all nodes without child items </a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

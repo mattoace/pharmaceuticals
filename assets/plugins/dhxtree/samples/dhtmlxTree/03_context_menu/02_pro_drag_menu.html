@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Context menu and complex drag-and-drop</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myMenu, myTree;
+		var myMenu2, myTree2;
+		function doOnLoad(){
+			myMenu = new dhtmlXMenuObject();
+			myMenu.setIconsPath("../common/images/menu/");
+			myMenu.renderAsContextMenu();
+			myMenu.attachEvent("onClick",onButtonClick);
+			myMenu.loadStruct("../common/_context.xml");
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableDragAndDrop(true);
+			myTree.enableContextMenu(myMenu);
+			myTree.enableSmartXMLParsing(true);
+			myTree.setDragBehavior("complex");
+			myTree.load("../common/tree.xml");
+
+			myMenu2 = new dhtmlXMenuObject();
+			myMenu2.setIconsPath("../common/images/menu/");
+			myMenu2.renderAsContextMenu();
+			myMenu2.attachEvent("onClick",onButtonClick2);
+			myMenu2.loadStruct("../common/_context.xml");
+			myTree2 = new dhtmlXTreeObject("treeboxbox_tree2","100%","100%",0);
+			myTree2.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree2.enableDragAndDrop(true);
+			myTree2.enableContextMenu(myMenu2);
+			myTree2.setDragBehavior("complex");
+			myTree2.load("../common/tree.xml")
+		}
+		function onButtonClick(menuitemId,type){
+			var id = myTree.contextID;
+			myTree.setItemColor(id,menuitemId.split("_")[1]);
+		}
+		function onButtonClick2(menuitemId,type){
+			var id = myTree2.contextID;
+			myTree2.setItemColor(id,menuitemId.split("_")[1]);
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Context menu and complex drag-and-drop</h1>
+	<p>Left click on a tree node.
+		Drag and drop tree items within one tree or between trees.
+		Complex drag-n-drop allows you to reorder tree nodes within one level and at the same time supports drop as child behavior.</p>
+	<table>
+		<tr>
+			<td>
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td valign="top">
+				<div id="treeboxbox_tree2" class="tree_demo_samples"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

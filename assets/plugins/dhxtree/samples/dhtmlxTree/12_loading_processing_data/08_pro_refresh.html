@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> Refresh item from server</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.load("../common/tree.xml");
+		}
+		function action_1(){
+			myTree.refreshItems(myTree.getSelectedItemId(),"../common/tree.xml");
+		}
+		function action_2(){
+			myTree.setItemText(myTree.getSelectedItemId(),"Some trash :)");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Refresh item from server</h1>
+	<p>dhtmlxTree allows you to refresh data for the specified node or group of nodes from the server.<br>
+		Choose a node in the tree, press Change the text of selected item action link, then Refresh selected item from server one.</br> </p>
+	<table>
+		<tr>
+			<td valign="top">
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td rowspan="2" style="padding-left:25px" valign="top">
+				<a href="javascript:void(0);" onClick="action_2();">Change the text of selected item</a><br>
+				<a href="javascript:void(0);" onClick="action_1();">Refresh selected item from server</a><br>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+</body>
+</html>

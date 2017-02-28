@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Complex Drag and Drop</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree, myTree2;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableDragAndDrop(true);
+			myTree.enableSmartXMLParsing(true);
+			myTree.setDragBehavior("complex");
+			myTree.load("../common/tree.xml");
+			myTree2 = new dhtmlXTreeObject("treeboxbox_tree2","100%","100%",0);
+			myTree2.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree2.enableSmartXMLParsing(true);
+			myTree2.enableDragAndDrop(true);
+			myTree2.setDragBehavior("complex");
+			myTree2.load("../common/tree.xml");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Complex Drag and Drop</h1>
+	<p>Complex drag-n-drop enables both drop as sibling and drop as child behavior via the setDragBehavior() method.</p>
+	<table>
+		<tr>
+			<td>
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td style="padding-left:25px" valign="top">
+				<div id="treeboxbox_tree2" class="tree_demo_samples"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

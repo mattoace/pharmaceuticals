@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> User data</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableDragAndDrop(true);
+			myTree.setSerializationLevel(true,false);
+			myTree.load("../common/tree_ud.xml");
+		}
+		function wellform(a){
+			return a.replace(/</g,"&lt;").replace(/>/g,"&gt;<br/>");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1> User data</h1>
+	<p>Any item in the tree or the tree itself can have assigned data. <br/>
+		Assignment can be done through API or through XML initialization.</p>
+	<table>
+		<tr>
+			<td valign="top">
+				<div id="treeboxbox_tree" class="tree_demo_samples" style="height:420px"></div>
+			</td>
+			<td rowspan="2" style="padding-left:25" valign="top">
+				<a href="#" onClick="alert(myTree.getUserData(0,document.getElementById('tuds').value))">Get tree data for books item(was preseted from XML)</a> <select id="tuds"><option value="author">author<option value="mode">mode<option value="created">created</select><br>
+				<a href="#" onClick="alert(myTree.getUserData(0,document.getElementById('tud1').value))">Get tree user data</a><input id="tud1" type="text"><br>
+				<a href="#" onClick="myTree.setUserData(0,document.getElementById('tud2').value,document.getElementById('tud3').value)">Set tree user data: </a> name<input id="tud2" type="text">, value <input id="tud3" type="text"><br><br><br>
+				<a href="#" onClick="alert(myTree.getUserData(myTree.getSelectedItemId(),document.getElementById('iud1').value))">Get item user data</a><input id="iud1" type="text"><br>
+				<a href="javascript:void(0);" onClick="myTree.setUserData(myTree.getSelectedItemId(),document.getElementById('iud2').value,document.getElementById('iud3').value) ">Set item user data: </a> name<input id="iud2" type="text">, value <input id="iud3" type="text"><br><br>
+				<a href='#' onclick='document.getElementById("a_ter").style.display="";document.getElementById("a_ter").innerHTML=wellform(myTree.serializeTree())'>Serialize</a>
+			</td>
+		</tr>
+	</table>
+	<div id="a_ter" style="width:500px;height:200px;overflow:auto;display:none;"></div>
+</body>
+</html>
+

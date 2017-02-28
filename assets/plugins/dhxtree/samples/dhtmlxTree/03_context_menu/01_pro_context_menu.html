@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> Tree and Context menu</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myMenu, myTree, myTree2;
+		function doOnLoad(){
+			myMenu = new dhtmlXMenuObject();
+			myMenu.setIconsPath("../common/images/menu/");
+			myMenu.renderAsContextMenu();
+			myMenu.attachEvent("onClick",onButtonClick);
+			myMenu.loadStruct("../common/_context.xml");
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableDragAndDrop(true);
+			myTree.enableContextMenu(myMenu);
+			myTree.load("../common/tree.xml");
+			myTree2=new dhtmlXTreeObject("treeboxbox_tree2","100%","100%",0);
+			myTree2.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree2.enableSmartXMLParsing(true);
+			myTree2.enableDragAndDrop(true);
+			myTree2.load("../common/tree.xml");
+		}
+		function onButtonClick(menuitemId,type){
+			var id = myTree.contextID;
+			myTree.setItemColor(id,menuitemId.split("_")[1]);
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Tree and Context menu</h1>
+	<p>Context menu is attached to the first tree. Drag-n-drop any item from the second tree into the first one. Context menu will be set for the dropped item as well. The same rule works for the drag-n-drop from the tree with context menu into the one without, in this case context menu will be disabled for the dropped item. </p>
+	<table>
+		<tr>
+			<td>
+				<h3>Tree with context menu</h3>
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+				<h3>Tree without context menu</h3>
+				<div id="treeboxbox_tree2" class="tree_demo_samples"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

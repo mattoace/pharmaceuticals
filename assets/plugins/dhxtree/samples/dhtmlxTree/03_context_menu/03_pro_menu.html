@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Context menu based on item properties</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myMenu, myTree;
+		function doOnLoad(){
+			myMenu = new dhtmlXMenuObject();
+			myMenu.setIconsPath("../common/images/menu/");
+			myMenu.renderAsContextMenu();
+			myMenu.attachEvent("onClick",onButtonClick);
+			myMenu.loadStruct("../common/_context.xml");
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableDragAndDrop(true);
+			myTree.enableContextMenu(myMenu);
+			myTree.attachEvent("onBeforeContextMenu",function(itemId){
+				if (myTree.hasChildren(itemId) > 0){
+					myMenu.hideItem('outher');
+				} else {
+					myMenu.showItem('outher');
+				}
+				return true
+			});
+			myTree.load("../common/tree.xml")
+		}
+		function onButtonClick(menuitemId,type){
+			var id = myTree.contextID;
+			myTree.setItemColor(id,menuitemId.split("_")[1]);
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Context menu based on item properties</h1>
+	<p>Right click on any tree node.<br>
+	In the example below context menu is one for all items, but it is shown differently by using the hideButtons/showButtons menu methods (nodes without child items have more buttons in context menu).</p>     	
+	<table>
+		<tr>
+			<td>
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td valign="top">
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+	</table>
+	<div id="aler"></div>
+</body>
+</html>

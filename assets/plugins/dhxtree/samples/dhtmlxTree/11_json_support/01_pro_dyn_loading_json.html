@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Autoloading from JSON</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.setXMLAutoLoading("php/json.php");
+			myTree.setDataMode("json");
+			//load first level of tree
+			myTree.load("php/json.php?id=0","json");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Autoloading from JSON</h1>
+	<p>Advanced processing of JSON allows this JavaScript tree menu to handle large amount of data.
+		Dynamical loading of items from JSON stream gives a possibility to create DHTML trees with unlimited
+		number of nodes. dhtmlxTree has an ability to load data asynchronously as-needed (using AJAX)
+		that increases overall performance of the tree.</p>
+	<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+</body>
+</html>

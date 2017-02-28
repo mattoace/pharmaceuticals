@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title> Custom sorting routine</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.load("../common/tree3_14_selection_sorting_navigation.xml");
+			myTree.setCustomSortFunction(sort_func);
+		}
+		function sort_func(a,b){
+			a= myTree.getItemText(a);
+			b= myTree.getItemText(b);
+			return a > b ? 1 :-1;
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Custom sorting routine - sort by second word</h1>
+	<p>In dhtmlxTree nodes can be sorted in ascendent or descendent order. Select an item in the tree and test this funcitonality using an appropriate action link.</p>
+	<table>
+		<tr>
+			<td>
+				<div id="treeboxbox_tree" class="tree_demo_samples"></div>
+			</td>
+			<td rowspan="2" style="padding-left:25px" valign="top">
+				<a href="#" onClick="myTree.sortTree(myTree.getSelectedItemId(),'ASC',1);">Reorder selected branch (ASC)</a><br>
+				<a href="#" onClick="myTree.sortTree(myTree.getSelectedItemId(),'DES',1);">Reorder selected branch (DES)</a><br>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

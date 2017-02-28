@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--pro-->
+<html>
+<head>
+	<title>Multi-line items</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../codebase/dhtmlxtree.css"/>
+	<script src="../../../codebase/dhtmlxtree.js"></script>
+	<link rel="stylesheet" type="text/css" href="../common/demo_style.css"/>
+	<script>
+		var myTree, myTree2;
+		function doOnLoad(){
+			myTree = new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			myTree.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree.enableMultiLineItems("300px");
+			myTree.enableTreeLines(false);
+			myTree.load("../common/tree_ml.xml");
+			myTree2 = new dhtmlXTreeObject("treeboxbox_tree2","100%","100%",0);
+			myTree2.setImagePath("../../../skins/web/imgs/dhxtree_web/");
+			myTree2.enableMultiLineItems("");
+			myTree2.enableTreeLines(false);
+			myTree2.load("../common/tree_ml.xml");
+		}
+	</script>
+</head>
+<body onload="doOnLoad()">
+	<h1>Multi-line items</h1>
+	<table>
+		<tr>
+			<td>
+				<div id="treeboxbox_tree" class="tree_demo_samples" style="width:400px; height:400px"></div>
+			</td>
+			<td style="padding-left:25px" valign="top">
+				<div id="treeboxbox_tree2" class="tree_demo_samples" style="width:400px; height:400px"></div>
+			</td>
+		</tr>
+	</table>
+	<p>To make tree nodes' labels multiline use the following method:<p>
+</body>
+</html>
