@@ -237,14 +237,14 @@
                      
 
 	             tree = new dhtmlXTreeObject("treeBox","100%","100%",0);
-				 tree.setImagePath("http://"+location.host+"/pharmaceuticals/assets/plugins/dhxtree/skins/material/imgs/dhxtree_material/");
+				 tree.setImagePath("http://"+location.host+"/assets/plugins/dhxtree/skins/material/imgs/dhxtree_material/");
 				 tree.enableThreeStateCheckboxes(true);            
 				 tree.enableDragAndDrop(true,true);
 				 tree.setDragBehavior(true,true);
 				 tree.loadXML("cat-tree");
 
 				 ContextMenu = new dhtmlXMenuObject(); 
-	             ContextMenu.setIconsPath("/pharmaceuticals/assets/img/");
+	             ContextMenu.setIconsPath("/assets/img/");
 	             ContextMenu.renderAsContextMenu();
 	             ContextMenu.attachEvent("onClick",treeSelect);
 	             ContextMenu.loadStruct("cat-contextmenu"); 
