@@ -111,6 +111,14 @@ $route['clinic-edit'] = 'clinicController/edit';
 $route['clinic-delete'] = 'clinicController/deleteRecord';
 $route['clinic-imgupload'] = 'clinicController/imgupload';
 
+$route['users'] = 'pages/back/users';
+$route['users-fetch'] = 'usersController/fetch';
+$route['users-add'] = 'usersController/addNew';
+$route['users-edit'] = 'usersController/edit';
+$route['users-fetchedit'] = 'usersController/fetchedit';
+$route['users-delete'] = 'usersController/deleteRecord'; 
+
+
 $route['med'] = 'pages/back/drugs';
 $route['med-fetch'] = 'drugController/fetch';
 $route['med-add'] = 'drugController/addNew'; 
