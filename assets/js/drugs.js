@@ -237,14 +237,26 @@
                      
 
 	             tree = new dhtmlXTreeObject("treeBox","100%","100%",0);
-				 tree.setImagePath("http://"+location.host+"/assets/plugins/dhxtree/skins/material/imgs/dhxtree_material/");
+
+				if(location.host == '127.0.0.1'){
+				    tree.setImagePath("http://"+location.host+"/pharmaceuticals/assets/plugins/dhxtree/skins/material/imgs/dhxtree_material/");
+				}else{
+					tree.setImagePath("http://"+location.host+"/assets/plugins/dhxtree/skins/material/imgs/dhxtree_material/");
+				}							 
+  
+
 				 tree.enableThreeStateCheckboxes(true);            
 				 tree.enableDragAndDrop(true,true);
 				 tree.setDragBehavior(true,true);
 				 tree.loadXML("cat-tree");
 
 				 ContextMenu = new dhtmlXMenuObject(); 
-	             ContextMenu.setIconsPath("/assets/img/");
+				 	if(location.host == '127.0.0.1'){
+				 		ContextMenu.setIconsPath("/pharmaceuticals/assets/img/");
+				 	}else{
+				 		ContextMenu.setIconsPath("/assets/img/");
+
+				 	}	             
 	             ContextMenu.renderAsContextMenu();
 	             ContextMenu.attachEvent("onClick",treeSelect);
 	             ContextMenu.loadStruct("cat-contextmenu"); 

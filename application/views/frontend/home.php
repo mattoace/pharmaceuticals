@@ -243,9 +243,10 @@ div.bhoechie-tab-container {
 		    font-size: 20px;
 		    text-align: left;
 		    margin-top: -6%; color:black;
-		">Self-service<span style="width: 100%;"><h6>Welcome <?php echo $row[0]->firstname ." " . $row[0]->secondname; ?></h6></span></h3>	      <div style="float: right; cursor: pointer;">
+		">Self-service<span style="width: 100%;"><h6>Welcome <?php echo $row[0]->firstname ." " . $row[0]->secondname; ?></h6></span></h3>	      
+		<div style="float: right; cursor: pointer;">
         <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
-      </div>	
+        </div>	
 									            <nav id="rolling-nav">
 												    <ul>
 												        <li><a href="#" onClick = "uploadlist()"  data-clone="Refill Selected Product">Refill Selected Product</a></li>
