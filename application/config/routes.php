@@ -198,6 +198,7 @@ $route['roles-pharmacydeassign'] = 'rolesController/pharmdeassigned';
 $route['login'] = 'pages/view/login';
 //$route['home'] = 'pages/view/home';
 $route['home'] = 'pages/view/products';
+$route['data-products'] = 'pages/fullview/data';
 $route['about'] = 'pages/view/about';
 $route['service'] = 'pages/view/service';
 $route['contact'] = 'pages/view/contact';

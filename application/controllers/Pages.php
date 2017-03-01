@@ -15,7 +15,23 @@ class Pages extends CI_Controller {
             $this->load->view('frontend/header', $data);
             $this->load->view('frontend/'.$page, $data);
             $this->load->view('frontend/footer', $data);
-	}       
+	}   
+
+
+  public function fullview($page = 'index')
+  {
+            $this->load->database();
+            $this->load->helper('url');
+            if ( ! file_exists(APPPATH.'/views/frontend/'.$page.'.php'))
+              {              
+                  show_404();
+              }
+            $data['title'] = ucfirst($page);
+            $this->load->view('frontend/header', $data);
+            $this->load->view('frontend/'.$page, $data);
+            //$this->load->view('frontend/footer', $data);
+  }       
+         
         
  
         
