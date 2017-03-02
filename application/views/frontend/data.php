@@ -17,8 +17,7 @@ article {
 }
 
 .col-sm-3 {
-    height: 190px;
-    width: 25%;
+    height: 190px;  
 }
 
 </style>
