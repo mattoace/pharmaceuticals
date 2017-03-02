@@ -2,26 +2,13 @@
 <link rel="stylesheet" href='<?php echo base_url("assets/css/products.css");?>'  media="all" />
 <link rel="stylesheet" href='<?php echo base_url("assets/css/animate.css");?>'  media="all" />
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/font-awesome/font-awesome.min.css");?>'>
-
-
-<!-- https://www.codeofaninja.com/2013/06/simple-php-pagination-script.html -->
-
 <style>
-article {
-   /* height: 280px;*/
-    width: 98%;
-}
-.col-item .photo img {
-    height: 120px;
-    margin: 0 auto;
-    width: 70%;
-}
-
 .navbar-fixed-top, .navbar-fixed-bottom { 
     position: relative;
 }
-
 </style>
+
+<!-- https://www.codeofaninja.com/2013/06/simple-php-pagination-script.html -->
 
 <!-- header -->
 <div class="banner page_head w3l">
@@ -69,7 +56,7 @@ article {
                   $j=0;
 		         foreach ($row as $key => $main) {
 		         	if($j == 0){ 
-		         		print('<li class="active"><a href="#">'.$main->categoryname.'</a></li>');
+		         		print('<li class="active"><a href="#" onClick="loadCategory()">'.$main->categoryname.'</a></li>');
 		         	} else{ 
 		         		print('<li>'); 
 
@@ -87,7 +74,7 @@ article {
 	                           if(count($row2) >0){ //has kids
 
 									print('<li class="dropdown-submenu">');
-									print('<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$child1->categoryname.'</a>');
+									print('<a href="#" onClick="loadCategory('.$child1->id.')" class="dropdown-toggle" data-toggle="dropdown">'.$child1->categoryname.'</a>');
 									print('<ul class="dropdown-menu">');
 									foreach ($row2 as $key => $child2) {
 
@@ -96,7 +83,7 @@ article {
 		                               if(count($row3) >0){ 
 
 												print('<li class="dropdown-submenu">');
-												print('<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$child2->categoryname.'</a>');
+												print('<a href="#" onClick="loadCategory('.$child2->id.')" class="dropdown-toggle" data-toggle="dropdown">'.$child2->categoryname.'</a>');
 												print('<ul class="dropdown-menu">');
 
 													foreach ($row3 as $key => $child3) {
@@ -106,15 +93,15 @@ article {
 							                               if(count($row4) >0){
 
 							                               		print('<li class="dropdown-submenu">');
-																print('<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$child3->categoryname.'</a>');
+																print('<a href="#" onClick="loadCategory('.$child3->id.')" class="dropdown-toggle" data-toggle="dropdown">'.$child3->categoryname.'</a>');
 																print('<ul class="dropdown-menu">');
 																	foreach ($row4 as $key => $child4) {
-																      print('<li><a href="#">'.$child4->categoryname.'</a></li>');
+																      print('<li><a href="#" onClick="loadCategory('.$child4->id.')" >'.$child4->categoryname.'</a></li>');
 																   }
 																print('</ul>');
 
 							                               }else{
-							                               	print('<li><a href="#">'.$child3->categoryname.'</a></li>');
+							                               	print('<li><a href="#" onClick="loadCategory('.$child3->id.')" >'.$child3->categoryname.'</a></li>');
 							                               } 
                                                          
 													}
@@ -123,7 +110,7 @@ article {
 
 
 		                               }else{
-		                               	  print('<li><a href="#">'.$child2->categoryname.'</a></li>');
+		                               	  print('<li><a href="#" onClick="loadCategory('.$child2->id.')" >'.$child2->categoryname.'</a></li>');
 		                               }
 
 								     }
@@ -131,7 +118,7 @@ article {
 
 
 	                           }else{
-	                           	   print('<li><a href="#">'.$child1->categoryname.'</a></li>');
+	                           	   print('<li><a href="#" onClick="loadCategory('.$child1->id.')">'.$child1->categoryname.'</a></li>');
 	                           }   		         	       
 
 		         	       }
@@ -163,7 +150,7 @@ article {
 <!-- contact -->
 <div class="contact wthree all_pad">
 
-<iframe class="dataframe" id="dataframe" src="data-products?pg=1&st=1" scrolling="no">
+<iframe class="dataframe" id="dataframe" src="data-products?pg=1&st=1" scrolling="no" >
 
 
 </iframe>
@@ -183,7 +170,7 @@ article {
 		position: relative;		
 		cursor:hand;
 	"> 
-       <img class="img-responsive" style='width:370px;height:80px;cursor:hand;' src='<?php echo base_url("assets/img/payments_buttons.png");?>' alt=" " />
+       <img class="img-responsive" style='width:370px;height:80px;cursor:pointer;' src='<?php echo base_url("assets/img/payments_buttons.png");?>' alt=" " />
 	</div>
 
 	<div class="col-md-2" style="
@@ -191,7 +178,7 @@ article {
 		position: relative;		
 		cursor:hand;
 	"> 
-       <img class="img-responsive" style='width:370px;height:80px;cursor:hand;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " />
+       <img class="img-responsive" style='width:370px;height:80px;cursor:pointer;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " />
 	</div>
 
 </div>
