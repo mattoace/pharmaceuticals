@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Pharm | Home </title>
+<title>tibamoja</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,7 +11,7 @@
 <!-- //for-mobile-apps -->
 <!-- <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /> -->
 <link rel="stylesheet" href='<?php echo base_url("assets/css/bootstrap.css");?>'  media="all" />
-
+<link rel="shortcut icon" href="<?php echo base_url("assets/img/favicon.ico");?>" type="image/x-icon">
 <!-- <link href="css/iconeffects.css" rel='stylesheet' type='text/css' /> -->
 
 <link rel="stylesheet" href='<?php echo base_url("assets/css/iconeffects.css");?>' />
@@ -36,6 +36,8 @@
 <script src='<?php echo base_url("assets/js/front/jquery-2.1.4.min.js");?>'></script>
 <script src='<?php echo base_url("assets/js/front/jquery-ui-1.10.0.custom.min.js");?>'></script>
 <script src='<?php echo base_url("assets/js/front/jquery.layout-latest.js");?>'></script>
+<script src='<?php echo base_url("assets/plugins/camera/scripts/jquery.easing.1.3.js");?>'></script>
+<script src='<?php echo base_url("assets/plugins/camera/scripts/camera.min.js");?>'></script>
 <!-- //js -->
 <!--animate-->
 <!-- <link href="css/animate.css" rel="stylesheet" type="text/css" media="all"> -->

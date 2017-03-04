@@ -33,7 +33,8 @@ class RegistrationController extends CI_Controller {
                  $arrayUsers = array(
                     'username' => $this->input->post("email"),
                     'pass' => md5($this->input->post("pass")),
-                    'personid'=> $insertedid
+                    'personid'=> $insertedid,
+                    'isactive'=> 1
                 ); 
 
             $insertedid = $this->users->addNewUser($arrayUsers);
@@ -56,9 +57,9 @@ class RegistrationController extends CI_Controller {
 
               $subject = "User Registration";
 
-              $message = "You have successfully registered as a user in the pharm-portal,click the link below to confirm your registration. \n";
+              $message = "You have successfully registered as a tibamoja user ,click the link below to confirm your registration. \n";
 
-              $message .= "http://pharm-portal.coreict.co.ke/activate?id=".$insertedid;
+              $message .= "http://www.tibamoja.co.ke/activate?id=".$insertedid;
 
               $headers = "";
 
@@ -212,9 +213,9 @@ class RegistrationController extends CI_Controller {
 
               $subject = "Admin user Registration";
 
-              $message = "You have successfully registered as an admin user in the pharm-portal,click the link below to confirm your registration. \n";
+              $message = "You have successfully registered as an admin user,click the link below to confirm your registration. \n";
 
-              $message .= "http://pharm-portal.coreict.co.ke/activate?id=".$insertedid;
+              $message .= "http://www.tibamoja.co.ke/activate?id=".$insertedid;
 
               $headers = "";
 

@@ -25,16 +25,15 @@ article {
 <div class="container">
 <div style="float: right; cursor: pointer;">  
 <div class="row" style="">
-	<div class="col-md-6" > 
+	<div class="col-md-6" > &nbsp;
     </div>
 
 	<div class="col-md-2" style="">       
 	</div>
 
 	<div class="col-md-2" style=""> 
-       <img class="img-responsive" style='width:570px;height:20px;cursor:pointer;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " />
+       <img class="img-responsive" style='cursor:pointer;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " /><br>
 	</div>
-
 	<div class="col-md-2" >
   <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
 </div>
@@ -44,7 +43,7 @@ article {
     </div>
 
 	<div class="row">
-        <h2>Our pharmaceutical products</h2>
+        <h2>tibamoja products</h2>
         <p>
             <h6>Refill your medication or order for our products.</h6><br>
         </p>
@@ -133,7 +132,7 @@ article {
 							//print($product->genericname);
 							print('</p>');
 							print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
-							print('<span style="font-size:14px;font-weight:200px;float:left;" class="price-new" >Kes '.$product->drugprice.'</span>');
+							print('<span style="font-size:14px;font-weight:200px;" class="price-new" >Kes '.$product->drugprice.'</span>');
 							print('</div>');
 							print('</div>');
 							print('</div>');
