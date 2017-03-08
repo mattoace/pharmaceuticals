@@ -198,7 +198,7 @@
 
         '<div class="modal-footer">' +
         '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-        '<button type="button" class="btn btn-primary ' + classCheckoutCart + '">Order</button>' +
+        '<button type="button" class="btn btn-primary ' + classCheckoutCart + '">Check Out</button>' +
         '</div>' +
         '</div>' +
         '</div>' +
@@ -348,12 +348,13 @@
 
       var products = ProductManager.getAllProducts(); 
 
-      postVars = {
+      var postVar = {
                   "coupon":$("#couponcode").val(),
                   "items": products ,
                   "user": getCookie('userlogin')
                  };
-        $.post("cart-request",postVars,function(){
+
+        $.post("cart-request",postVar,function(){
 
         });     
 

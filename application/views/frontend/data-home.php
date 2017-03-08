@@ -205,7 +205,7 @@ Hover the image
 
 <div class="container">
 <div style="float: right; cursor: pointer;">  
-<div class="row" style="">
+- <div class="row" style="">
 	<div class="col-md-6" > &nbsp;
     </div>
 
@@ -219,16 +219,16 @@ Hover the image
   <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
 </div>
 
-</div>
+</div> 
 
     </div>
 
 	<div class="row">
-        <h2 class="headingclass" >tibamoja products</h2>
+      <!--   <h2 class="headingclass" >tibamoja products</h2>
         <p>
             <h6>Refill your medication or order for our products.</h6><br>
         </p>
-  		      <?php	
+  		      --> <?php	
 
                 $start = ($_GET['st'] ? $_GET['st'] : 0 );
                 $offset = 10;               
@@ -304,7 +304,7 @@ Hover the image
 
 		         $row = $query->result(); 
 
-                 print('<div class="col-md-12 explore-left wow zoomIn" style="background-color:transparent;" data-wow-duration="1.5s" data-wow-delay="0.1s"><img style="width:100%;height:300px;" src='.$row[0]->catimg.' class="img-responsive" alt="" /></div>'); //.$row[0]->catimg.
+                  print('<div class="col-md-12 explore-left wow zoomIn" style="background-color:transparent;" data-wow-duration="1.5s" data-wow-delay="0.1s"><img style="width:100%;height:300px;" src='.$row[0]->catimg.' class="img-responsive" alt="" /></div>'); //.$row[0]->catimg.
 
                   $j=0;
 		         foreach ($row as $key => $product) {

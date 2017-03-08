@@ -1,6 +1,9 @@
 
 <body>
 		<link rel="stylesheet" href='<?php echo base_url("assets/plugins/camera/css/camera.css");?>' />
+		<link rel="stylesheet" href='<?php echo base_url("assets/css/products.css");?>'  media="all" />
+		<link rel="stylesheet" href='<?php echo base_url("assets/css/animate.css");?>'  media="all" />
+		<link rel="stylesheet" href='<?php echo base_url("assets/plugins/font-awesome/font-awesome.min.css");?>'>
 	   <style>
 		body {
 			margin: 0;
@@ -24,6 +27,182 @@
 			max-width: 1000px;
 			width: 90%;
 		}
+		.profile-left {
+		    margin: 1em 0 0;
+		}
+
+
+
+		.header {
+   
+		    padding: 0px 0;
+		}
+
+
+.navbar-nav {
+
+    margin-top: 0 !important;
+  
+}
+nav {
+    height: 30px;
+}
+.header.w3ls {
+    height: 30px;
+    margin-top: 0.8%;
+}
+
+.nav.navbar-nav {
+    background-color: #16A9EF;   
+}
+.navbar-nav > li > a {
+    padding: 10px 12px 0;
+}
+
+
+.dataframe{
+  width:100%;
+  height:1200px;
+  border:2px;
+}
+
+/*  ************************************************************************************************************** nav menu*/
+
+
+
+
+.page_head {
+    min-height: 158px !important;
+}
+.navbar {
+    background: #16A9EF;
+}
+
+.navbar-nav>li>.dropdown-menu {
+    padding: inherit;   
+}
+
+.navbar-nav {
+/*    font: 15px arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;    */   
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    color: black;
+    background-color: #16A9EF;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #ffffff;   
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #ffffff;   
+    background-color: #98CD23;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+    color: #ffffff;   
+/*    background-color: #98CD23;*/
+background-color: #1484C7;
+}
+
+.dropdown-submenu-2>li>a {
+    color: #ffffff;   
+    background-color: #1484c7;  
+}
+
+.dropdown-submenu-2>li>a:hover, .dropdown-submenu-2>li>a:focus {
+    color: #ffffff;   
+    background-color: #98CD23;  
+}
+
+.dropdown-menu {
+    background-color: #1484c7;
+}
+
+
+.dropdown-menu>li>a{
+    color: #ffffff;   
+   /* background-color: #98CD23; */  
+    border-bottom: 2px rgba(0,0,0,0.5) solid;
+    text-transform: capitalize;    
+    padding: 10px 20px;
+    border-top: 0px;
+}    
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    color: #ffffff;   
+    background-color: #98CD23;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+    padding: inherit;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block; 
+    
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+.navbar-fixed-top {
+    border-width: 0 0 1px;
+    top: 70% !important;
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom { 
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
 	</style>
 <!-- header -->
 <div class="banner w3l">
@@ -44,6 +223,42 @@
 			<div class="clearfix"></div>
 		</div>
 	</div>
+
+	<!-- navigation -->
+	<div class="header w3ls">
+		<div class="container">
+			<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header logo">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					<!-- 	<h1>
+							<a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						</h1>  --> 
+						
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+						<nav class="cl-effect-1">
+							<ul class="nav navbar-nav ">
+								<li><a class="hvr-overline-from-center active" href="/">Home</a></li>
+								<li><a class="hvr-overline-from-center" href="<?php echo base_url("about");?>">About</a></li>									
+								<li><a class="hvr-overline-from-center" href="<?php echo base_url("service");?>">Services</a></li>
+								<li><a class="hvr-overline-from-center" href="<?php echo base_url("alogin");?>">Portal</a></li>									
+								<li><a class="hvr-overline-from-center" href="<?php echo base_url("contact");?>">Contact</a></li>
+							</ul>
+						</nav>
+					</div><!-- /navbar-collapse -->
+			</nav>
+		</div>
+	</div>
+	<!-- //navigation -->
+
+
 	<div class="banner-info">
 		<div class="container">
 			
@@ -61,37 +276,37 @@
 				<p>Already have an Account? <a href="<?php echo base_url("login");?>">login Here</a></p>
 			</div>
 
-			<div class="profile-left wow flipInY" style="float:left;width:69%;margin-left:2%;" data-wow-duration="1.5s" data-wow-delay="0s">
+			<div class="profile-left wow flipInY col-sm-12" style="float:left;width:69%;margin-left:2%;" data-wow-duration="1.5s" data-wow-delay="0s"  >
 					 <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
 									          <!--   <div data-thumb="../images/slides/thumbs/bridge.jpg" data-src="../images/slides/bridge.jpg"> -->
-									           <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/m1.jpg");?>">
+									           <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg3.jpg");?>"> 
 									                <div class="camera_caption fadeFromBottom">
-									                    Camera is a responsive/adaptive slideshow. <em>Try to resize the browser window</em>
+									                    Buy 2 Get 3rd FREE Beauty products
 									                </div>
 									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/m1.jpg");?>">
+									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg2.jpg");?>">
 									                <div class="camera_caption fadeFromBottom">
-									                    It uses a light version of jQuery mobile, <em>navigate the slides by swiping with your fingers</em>
+									                    Get coupon on every purchase
 									                </div>
 									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/m1.jpg");?>">
+									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg4.png");?>"> 
 									                <div class="camera_caption fadeFromBottom">
-									                    <em>It's completely free</em> (even if a donation is appreciated)
+									                    <em>20%</em> off on every product
 									                </div>
 									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/m1.jpg");?>">
+									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg3.jpg");?>">
 									                <div class="camera_caption fadeFromBottom">
-									                    Camera slideshow provides many options <em>to customize your project</em> as more as possible
+									                   Free delivery within cbd
 									                </div>
 									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/m1.jpg");?>">
+									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg2.png");?>">
 									                <div class="camera_caption fadeFromBottom">
-									                    It supports captions, HTML elements and videos and <em>it's validated in HTML5</em> (<a href="http://validator.w3.org/check?uri=http%3A%2F%2Fwww.pixedelic.com%2Fplugins%2Fcamera%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline&amp;group=0&amp;user-agent=W3C_Validator%2F1.2" target="_blank">have a look</a>)
+									                    Same brand for vitamins and suppliments
 									                </div>
 									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/m1.jpg");?>">
+									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg4.png");?>">
 									                <div class="camera_caption fadeFromBottom">
-									                    Different color skins and layouts available, <em>fullscreen ready too</em>
+									                   View your health information
 									                </div>
 									            </div>
 									        </div>
@@ -104,11 +319,150 @@
 	</div>
 </div>
 <!-- //header -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> -->
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="www.coreict.co.ke" target="_blank"></a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+
+		      <?php	
+
+		         $query = $this->db->query('SELECT * FROM category WHERE parent IS NULL'); 
+		         $row = $query->result();
+                  $j=0;
+		         foreach ($row as $key => $main) {
+		         	if($j == 0){ 
+		         		print('<li class="active"><a href="javascript:void(0);" onClick=loadCategory("'.str_replace(" ", "", $main->categoryname).'","'.$main->id.'")  >'.$main->categoryname.'</a></li>');
+		         	} else{ 
+		         		print('<li>'); 
+
+		         		print('<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">'.$main->categoryname.'<b class="caret"></b></a>'); 
+
+		         		 $querychild1 = $this->db->query('SELECT * FROM category WHERE parent = "'.$main->id.'"'); 
+		                 $row1 = $querychild1->result();
+		         	
+		         	     print('<ul class="dropdown-menu multi-level">');
+		         	     foreach ($row1 as $key => $child1) {
+
+		         	     	    $querychild2 = $this->db->query('SELECT * FROM category WHERE parent = "'.$child1->id.'"'); 
+		                        $row2 = $querychild2->result();
+
+	                           if(count($row2) >0){ //has kids
+
+									print('<li class="dropdown-submenu">');
+									print('<a href="javascript:void(0);" onClick=loadCategory("'.str_replace(" ", "", $child1->categoryname).'","'.$child1->id.'") class="dropdown-toggle" data-toggle="dropdown">'.$child1->categoryname.'</a>');
+									print('<ul class="dropdown-menu">');
+									foreach ($row2 as $key => $child2) {
+
+									   $querychild3 = $this->db->query('SELECT * FROM category WHERE parent = "'.$child2->id.'"'); 
+		                               $row3 = $querychild3->result();
+		                               if(count($row3) >0){ 
+
+												print('<li class="dropdown-submenu">');
+												print('<a href="javascript:void(0);" onClick=loadCategory("'.str_replace(" ", "", $child2->categoryname).'","'.$child2->id.'") class="dropdown-toggle" data-toggle="dropdown">'.$child2->categoryname.'</a>');
+												print('<ul class="dropdown-menu">');
+
+													foreach ($row3 as $key => $child3) {
+
+														   $querychild4 = $this->db->query('SELECT * FROM category WHERE parent = "'.$child3->id.'"'); 
+							                               $row4 = $querychild4->result();
+							                               if(count($row4) >0){
+
+							                               		print('<li class="dropdown-submenu">');
+																print('<a href="javascript:void(0);" onClick=loadCategory("'.str_replace(" ", "", $child3->categoryname).'","'.$child3->id.'") class="dropdown-toggle" data-toggle="dropdown">'.$child3->categoryname.'</a>');
+																print('<ul class="dropdown-menu">');
+																	foreach ($row4 as $key => $child4) {
+																      print('<li><a href="javascript:void(0);" onClick=loadCategory("'.str_replace(" ", "", $child4->categoryname).'","'.$child4->id.'") >'.$child4->categoryname.'</a></li>');
+																   }
+																print('</ul>');
+
+							                               }else{
+							                               	print('<li><a href="javascript:void(0);" onClick=loadCategory("'.str_replace(" ", "", $child3->categoryname).'","'.$child3->id.'") >'.$child3->categoryname.'</a></li>');
+							                               } 
+                                                         
+													}
+
+											    print('</ul>');
+
+
+		                               }else{
+		                               	  print('<li><a href="javascript:void(0);" onClick=loadCategory("'.str_replace(" ", "", $child2->categoryname).'","'.$child2->id.'") >'.$child2->categoryname.'</a></li>');
+		                               }
+
+								     }
+									print('</ul>');
+
+
+	                           }else{
+	                           	   print('<li><a href="javascript:void(0);" onClick=loadCategory("'.str_replace(" ", "", $child1->categoryname).'","'.$child1->id.'")>'.$child1->categoryname.'</a></li>');
+	                           }   		         	       
+
+		         	       }
+		         	     print('</ul>'); 
+                        print('</li>'); 
+
+		         	}                  
+		         	
+
+		         	$j++;
+		         }
+		      
+
+		       ?> 
+
+
+
+
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+
+
+
+
+
+
 <!-- navigation -->
-<div class="header w3ls wow bounceInUp" data-wow-duration="1s" data-wow-delay="0s">
+<!-- <div class="header w3ls wow bounceInUp" data-wow-duration="1s" data-wow-delay="0s">
 	<div class="container">
 						<nav class="navbar navbar-default">
-							<!-- Brand and toggle get grouped for better mobile display -->
+							
 							<div class="navbar-header logo">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 									<span class="sr-only">Toggle navigation</span>
@@ -121,7 +475,7 @@
 								</h1>
 								
 							</div>
-							<!-- Collect the nav links, forms, and other content for toggling -->
+						
 							<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
 								<nav class="cl-effect-1">
 									<ul class="nav navbar-nav ">
@@ -132,14 +486,23 @@
 										<li><a class="hvr-overline-from-center" href="<?php echo base_url("contact");?>">Contact</a></li>
 									</ul>
 								</nav>
-							</div><!-- /navbar-collapse -->
+							</div>
 						</nav>
 	</div>
-</div>
+</div> -->
 <!-- //navigation -->
+
+
+
+
 <!-- make -->
-<div class="make wthree all_pad">
+<div class="make wthree all_pad" style="padding:0px;">
 	<div class="container">
+
+    <iframe style="height:0px; !important;" class="dataframe" id="dataframe" src=""  scrolling="auto" ></iframe>
+
+
+
 		<h2 class="title">Redifining health care<span></span></h2>
 		<div class="make-grids">
 			<div class="col-md-8 make-grid-one wow bounceInUp" data-wow-duration="1.5s" data-wow-delay="0s">
@@ -413,4 +776,5 @@
 	</div>
 </div>
 
-<script src="<?php echo base_url('assets/js/front/signup.js')?>"></script> 
+<script src="<?php echo base_url('assets/js/front/signup.js')?>"></script>
+<script src='<?php echo base_url("assets/js/front/index.js");?>'></script> 

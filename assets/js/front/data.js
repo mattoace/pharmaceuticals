@@ -64,8 +64,39 @@ function getCookie(c_name)
 
     //var pages = totalRecords/10;
     //parent.callParentPagination(pages);
+    //alert(totalRecords);
+
+
+    if($(this).innerWidth() > 1000){ 
+ 
+         colheight = totalRecords / 4 ; 
+
+         iheight = (340 * colheight ) + 450 ;
+
+         parent.callResize(iheight);
+    }else{    
+         iheight = (totalRecords * 300) + 500; 
+         parent.callResize(iheight);
+    }
+
+
 
 });
+
+function getResize(){
+    if($(this).innerWidth() > 1000){
+ 
+         colheight = totalRecords / 4 ; 
+
+         iheight = (190 * colheight ) + 450 ;
+
+         parent.callResize(iheight);
+    }else{    
+         iheight = (totalRecords * 200) + 500; 
+         parent.callResize(iheight);
+    }
+
+    }
 
 
 function getTotalCount(){

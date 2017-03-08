@@ -2,6 +2,32 @@
 .page_head {
     min-height: 158px !important;
 }
+
+
+.header {
+   
+		    padding: 0px 0;
+		}
+
+
+.navbar-nav {
+
+    margin-top: 0 !important;
+  
+}
+nav {
+    height: 30px;
+}
+.header.w3ls {
+    height: 30px;
+}
+.nav.navbar-nav {
+    background-color: #16A9EF;  
+}
+.navbar-nav > li > a {
+    padding: 10px 12px 0;
+}
+
 </style>
 
 <body>

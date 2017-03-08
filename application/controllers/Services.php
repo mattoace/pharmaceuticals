@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-//define('WSDL','http://192.168.1.207/pharmaceuticals/index.php/ws:wsdl?wsdl');
+define('WSDL','http://192.168.1.207/pharmaceuticals/index.php/ws:wsdl?wsdl');
 
 //define('WSDL','http://pharm-portal.coreict.co.ke/index.php/ws:wsdl?wsdl');
 
-define('WSDL','https://tibamoja.co.ke/index.php/ws:wsdl?wsdl');
+//define('WSDL','https://tibamoja.co.ke/index.php/ws:wsdl?wsdl');
 
 class Services extends CI_Controller
 {

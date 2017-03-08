@@ -30,12 +30,12 @@ function getCookie(c_name)
   }
 
 
-$(function () {
+/*$(function () {
   $('[data-toggle="tooltip"]').tooltip();
 
 
 
-	/*http://esimakin.github.io/twbs-pagination/*/
+
  offset = 10;
  category = 2;
 
@@ -48,7 +48,7 @@ $(function () {
             	if(page == 1){  offset = 1;	 }
             		    setCookie("page", page, 1);
             		    start = page *   offset ;	            		  
-            		    dataframe.src= "data-products?st="+start+"&ct="+getCookie("categoryid")+"&pg="+page; 
+            		    dataframe.src= "data-productshome?st="+start+"&ct="+getCookie("categoryid")+"&pg="+page; 
 
                   
        return false;
@@ -56,12 +56,15 @@ $(function () {
     });
 
 
-});
+});*/
+
+
 
 function loadCategory(categoryname,categoryid){ 
-  switch(categoryname){
+
+  switch(categoryname){ 
     case "AllProducts":  
-       dataframe.src= "data-products?st=0&ct=&pg=0";
+       dataframe.src= "data-productshome?st=0&ct=&pg=0";
        setCookie("categoryid",null, 1); 
     break;
     case "MyPrescriptions":  
@@ -77,31 +80,11 @@ function loadCategory(categoryname,categoryid){
          setCookie("categoryid",null, 1);
     break;
     default: 
-     dataframe.src= "data-products?st=0&ct="+categoryid+"&pg=0"; 
+     dataframe.src= "data-productshome?st=0&ct="+categoryid+"&pg=0"; 
      setCookie("categoryid", categoryid, 1);
     break;
+
   }
- 
+return false;
 }
 
-
-/*function callParentPagination(count){
-
-
-     $('#pagination').twbsPagination('destroy');
-                    $('#pagination').twbsPagination({
-                      totalPages:count,
-                      initiateStartPageClick:false,
-                       onPageClick: function (event, page ) { 
-                     if(page == 1){  offset = 1; }                      
-                        start = page *   offset ;                   
-                        dataframe.src= "data-products?st="+start+"&ct="+category+"&pg="+page;                              
-                        return false;
-                       }
-
-
-                    });
-                    alert(count);
-
-}
-*/
