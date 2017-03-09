@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-define('USERNAME','mattoace');
-define('API','e3fef004cc3aa63750d8d50e4a0ad3d09ed3f84d7fbb2552ebafedbe3139660');
+define('USERNAME','tibamoja');
+define('API','7c79e4daca5dd1a15988bf86a177617bb19847404f2a25adb0eb89be7ad0cd7d');
  
 class PayController extends CI_Controller {
  
@@ -24,9 +24,9 @@ class PayController extends CI_Controller {
 			require_once "AfricasTalkingGateway.php";
 
 			//Specify your credentials
-			$username = "mattoace";
+			$username = "tibamoja";
 
-			$apiKey   = "ce60279c511c6fc49c36ce5a0b8638dbb4bed7800968541aa7c7dc50ab69b59e";
+			$apiKey   = "7c79e4daca5dd1a15988bf86a177617bb19847404f2a25adb0eb89be7ad0cd7d";
 
 			// NOTE: If connecting to the sandbox, please use your sandbox login credentials
 

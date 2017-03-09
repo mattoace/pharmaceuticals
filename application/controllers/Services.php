@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-define('WSDL','http://192.168.1.207/pharmaceuticals/index.php/ws:wsdl?wsdl');
+//define('WSDL','http://192.168.1.207/pharmaceuticals/index.php/ws:wsdl?wsdl');
 
 //define('WSDL','http://pharm-portal.coreict.co.ke/index.php/ws:wsdl?wsdl');
 
-//define('WSDL','https://tibamoja.co.ke/index.php/ws:wsdl?wsdl');
+define('WSDL','https://tibamoja.co.ke/index.php/ws:wsdl?wsdl');
 
 class Services extends CI_Controller
 {
@@ -1272,14 +1272,14 @@ class Services extends CI_Controller
                       <!-- Tell the browser to be responsive to screen width -->
                      
                       <!-- Bootstrap 3.3.6 -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
                       <!-- Font Awesome -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
                       <!-- Ionicons -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
                      
                       <!-- Theme style -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/css/AdminLTE.min.css"> 
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/css/AdminLTE.min.css"> 
                       <!--[if lt IE 9]>
                       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
                       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -1583,10 +1583,10 @@ class Services extends CI_Controller
                                   <!-- accepted payments column -->
                                   <div class="col-xs-6">
 
-                                   <!-- <img src="http://pharm-portal.coreict.co.ke/assets/img/credit/visa.png" alt="Visa">
-                                    <img src="http://pharm-portal.coreict.co.ke/assets/img/credit/mastercard.png" alt="Mastercard">
-                                    <img src="http://pharm-portal.coreict.co.ke/assets/img/credit/american-express.png" alt="American Express">
-                                    <img src="http://pharm-portal.coreict.co.ke/assets/img/credit/paypal2.png" alt="Paypal">-->
+                                   <!-- <img src="http://tibamoja.co.ke/assets/img/credit/visa.png" alt="Visa">
+                                    <img src="http://tibamoja.co.ke/assets/img/credit/mastercard.png" alt="Mastercard">
+                                    <img src="http://tibamoja.co.ke/assets/img/credit/american-express.png" alt="American Express">
+                                    <img src="http://tibamoja.co.ke/assets/img/credit/paypal2.png" alt="Paypal">-->
 
                                    <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                                     Please make payments of the products listed.
@@ -1645,7 +1645,7 @@ class Services extends CI_Controller
 
                            $fromEmail = $smtparray['defaultemail'];
 
-                           $fromName = "Pharm-Portal";
+                           $fromName = "tibamoja";
 
                            $key = null;
 
@@ -1675,14 +1675,18 @@ class Services extends CI_Controller
 
             require_once "AfricasTalkingGateway.php";
 
-            $username = "mattoace";
+            $username = "tibamoja";
 
-            $apiKey   = "ce60279c511c6fc49c36ce5a0b8638dbb4bed7800968541aa7c7dc50ab69b59e";
-
+            $apiKey   = "7c79e4daca5dd1a15988bf86a177617bb19847404f2a25adb0eb89be7ad0cd7d";
             $gateway = new AfricasTalkingGateway($username, $apiKey, "sandbox");
+            $productName  = "tibamoja"; 
+
+           /* $apiKey   = "1caae1e1ac826fd71a382211cfff7ab363c88c3966c262301f9c2c298d235c83";
+            $gateway = new AfricasTalkingGateway($username, $apiKey);
+            $productName  = "tiba"; */
        
-            $productName  = "tibamoja";       
-            $phoneNumber  = $userDetails[0]->phone;           
+                 
+            $phoneNumber  = $userDetails[0]->phone; $ret_val[0]["message"] = $phoneNumber;        
             $currencyCode = "KES";           
             $amount       = $amount;       
             $metadata     = array("Payment details"   => "Client name :". $userDetails[0]->firstname." ".$userDetails[0]->secondname,
@@ -1696,8 +1700,8 @@ class Services extends CI_Controller
                                            $metadata);
 
               $ret_val[0]["response"] =  "Transaction Id ".$transactionId;
-              $ret_val[0]["message"] = "Payment from ". $userDetails[0]->firstname." ".$userDetails[0]->secondname;
-             
+
+              $ret_val[0]["message"] = "Payment from ". $userDetails[0]->firstname." ".$userDetails[0]->secondname;            
             
 
             }
@@ -1780,7 +1784,7 @@ class Services extends CI_Controller
 
             $fromEmail = $smtparray['defaultemail'];            
 
-            $fromName = "Pharm-Portal";
+            $fromName = "tibamoja";
 
             $key = null;
 
@@ -1879,14 +1883,14 @@ class Services extends CI_Controller
                                                   <!-- Tell the browser to be responsive to screen width -->
                                                   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
                                                   <!-- Bootstrap 3.3.6 -->
-                                                  <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
+                                                  <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
                                                   <!-- Font Awesome -->
-                                                  <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
+                                                  <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
                                                   <!-- Ionicons -->
-                                                  <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
+                                                  <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
                                                  
                                                   <!-- Theme style -->
-                                                  <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/css/AdminLTE.min.css"> 
+                                                  <link rel="stylesheet" href="http://tibamoja.co.ke/assets/css/AdminLTE.min.css"> 
                                                   <!--[if lt IE 9]>
                                                   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
                                                   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -2264,7 +2268,7 @@ class Services extends CI_Controller
                                      $headers = "Content-Type: text/html; charset=UTF-8\r\n";
                                      $title = "Order";
                                      $fromEmail = $smtparray['defaultemail'];
-                                     $fromName = "Pharm-Portal";
+                                     $fromName = "tibamoja";
                                      $key = null;                                    
 
                                      $response = $cls -> getMails($toEmail, $toName, $subject, $message, $headers, $title,$fromEmail,$fromName,$key);
@@ -2344,7 +2348,7 @@ class Services extends CI_Controller
 
                                     $fromEmail = $smtparray['defaultemail'];
 
-                                    $fromName = "Pharm-Portal";
+                                    $fromName = "tibamoja";
 
                                     $key = null;
                                     $ret_val[3]["message"]= "Total : ". $totalex+$tax;  
