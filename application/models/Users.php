@@ -113,6 +113,18 @@ class Users extends CI_Model {
        return $query->result();
     } 
 
+public function fetchUserDetails($userid){      
+
+       $query = $this->db->query('
+        SELECT p.* FROM persons p  , users u
+        WHERE u.personid  = p.id
+        AND u.id = "'.$userid.'"        
+       ');
+
+       return $query;
+    } 
+
+
  public function fetchUser($email){
 
         $this->db->select('persons.id,persons.initial,persons.firstname,persons.secondname,persons.surname,persons.phone,persons.email,persons.address,persons.phone,persons.email,persons.town');
@@ -159,5 +171,53 @@ class Users extends CI_Model {
         $this->db->where('id', $personid);
         $this->db->delete('persons'); 
     }
+
+
+   public function updateRecord($updateArray){
+     $userid = $updateArray['userid'];
+
+     $this->db->where('id',$updateArray['userid']);   
+
+     $arrayUsers = array(
+                'username' => $updateArray['email'],
+                'pass' => md5($updateArray['pass'])
+            );
+     if($this->db->update('users',$arrayUsers)){
+
+       $this->db->select('users.personid');
+        $this->db->from('users');
+        $this->db->join('persons','users.personid = persons.id'); 
+        $this->db->where('users.id',$updateArray['userid']);
+        $query = $this->db->get();
+        $assoc = $query->result();
+        $personid = $assoc[0]->personid; 
+
+        $this->db->where('id',$personid);
+
+        $arrayPerson = array(
+            'initial' => $updateArray['initial'],          
+            'firstname' => $updateArray['firstname'],
+            'secondname' => $updateArray['secondname'],
+            'gender' => $updateArray['gender'],
+            'dob' => $updateArray['dob'],
+            'nationalid' => $updateArray['nationalid'],
+            'address' => $updateArray['address'],
+            'phone' => $updateArray['phone'],
+            'town' => $updateArray['town'],
+            'email' => $updateArray['email'],
+            'homelat' => $updateArray['homelat'],
+            'homelon' => $updateArray['homelon'],
+            'worklat' => $updateArray['worklat'],
+            'worklon' => $updateArray['worklon'],
+            'homeaddress' => $updateArray['homeaddress']
+            );
+         $this->db->update('persons',$arrayPerson);
+
+         $response = "Successfully updated user " . $updateArray['userid'] ;
+      }
+
+    return $response; 
+
+   } 
  
 }

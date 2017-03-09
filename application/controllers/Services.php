@@ -33,7 +33,12 @@ class Services extends CI_Controller
                 'id' => array('name' => 'id', 'type' => 'xsd:integer'),
                 'username' => array('name' => 'username', 'type' => 'xsd:string'),
                 'pass' => array('name' => 'pass', 'type' => 'xsd:string'),
-                'personid' => array('name' => 'titel', 'type' => 'xsd:integer')
+                'personid' => array('name' => 'titel', 'type' => 'xsd:integer'),
+                'homelat' => array('name' => 'homelat', 'type' => 'xsd:string'),
+                'homelon' => array('name' => 'homelon', 'type' => 'xsd:string'),
+                'worklat' => array('name' => 'homelon', 'type' => 'xsd:string'),
+                'worklon' => array('name' => 'worklon', 'type' => 'xsd:string'),
+                'img' => array('name' => 'img', 'type' => 'xsd:string')
             )
         );
 
@@ -112,7 +117,48 @@ class Services extends CI_Controller
         );
 
 
-      //products
+      //user
+
+     $this->nusoap_server->wsdl->addComplexType(
+            'Userdetailstruct',
+            'complexType',
+            'struct',
+            'all',
+            '',
+            array(
+                'id' => array('name' => 'id', 'type' => 'xsd:integer'),
+                'initial' => array('name' => 'initial', 'type' => 'xsd:string'),
+                'firstname' => array('name' => 'firstname', 'type' => 'xsd:string'),
+                'secondname' => array('name' => 'secondname', 'type' => 'xsd:string'),
+                'phone' => array('name' => 'phone', 'type' => 'xsd:string'),
+                'email' => array('name' => 'email', 'type' => 'xsd:string'),
+                'address' => array('name' => 'address', 'type' => 'xsd:string'),
+                'nationalid' => array('name' => 'nationalid', 'type' => 'xsd:string'),
+                'town' => array('name' => 'town', 'type' => 'xsd:string'),
+                'homelat' => array('name' => 'homelat', 'type' => 'xsd:string'),
+                'homelon' => array('name' => 'homelon', 'type' => 'xsd:string'),
+                'worklat' => array('name' => 'worklat', 'type' => 'xsd:string'),
+                'worklon' => array('name' => 'worklon', 'type' => 'xsd:string'),
+                'img' => array('name' => 'img', 'type' => 'xsd:string'),          
+                'homeaddress' => array('name' => 'homeaddress', 'type' => 'xsd:string')            
+            )
+        );
+
+        $this->nusoap_server->wsdl->addComplexType(
+            "UserdetailsArray",
+            "complexType",
+            "array",
+            "",
+            "SOAP-ENC:Array",
+            array(),
+            array(
+                array("ref"=>"SOAP-ENC:arrayType","wsdl:arrayType"=>"tns:Userdetailstruct[]")
+            ),
+            "tns:Userdetailstruct"
+        );
+
+
+        //products
 
         $this->nusoap_server->wsdl->addComplexType(
             'Productstruct',
@@ -555,6 +601,19 @@ class Services extends CI_Controller
         );
 
 
+     //fetch user details
+      $this->nusoap_server->register(
+            'getUserdetailsCall',
+            array('userid' => 'xsd:string'),
+            array('return' => 'tns:UserdetailsArray'),  //output
+            'urn:PharmaceuticalsSoapServer',   //namespace
+            'urn:PharmaceuticalsSoapServer#getUserdetailsCall',  //soapaction
+            'rpc', // style
+            'encoded', // use
+            'Fetch the user details' //description
+        );
+
+
     //products search using category registration
       $this->nusoap_server->register(
             'getProductCoupon',
@@ -594,7 +653,7 @@ class Services extends CI_Controller
  //create new user
      $this->nusoap_server->register(
             'createUser',
-            array('fullname' => 'xsd:string','email' => 'xsd:string' ,'pass' => 'xsd:string'),  //parameters
+            array('fullname' => 'xsd:string','email' => 'xsd:string' ,'pass' => 'xsd:string','pass' => 'xsd:string','homelat' => 'xsd:string','homelon' => 'xsd:string','worklat' => 'xsd:string','worklon' => 'xsd:string'),  //parameters
             array('return' => 'tns:resultsArray'),  //output
             'urn:PharmaceuticalsSoapServer',   //namespace
             'urn:PharmaceuticalsSoapServer#createUser',  //soapaction
@@ -626,6 +685,18 @@ class Services extends CI_Controller
             'rpc', // style
             'encoded', // use
             'Refill a drug of the patient' //description
+        );
+
+//update user details
+  $this->nusoap_server->register(
+            'userdetailsUpdate',
+            array('parameters' => 'xsd:string'),  //parameters
+            array('return' => 'tns:resultsArray'),  //output
+            'urn:PharmaceuticalsSoapServer',   //namespace
+            'urn:PharmaceuticalsSoapServer#userdetailsUpdate',  //soapaction
+            'rpc', // style
+            'encoded', // use
+            'Update  user details' //description
         );
 
       //create new order registration
@@ -709,11 +780,11 @@ class Services extends CI_Controller
 
             $ci =& get_instance();
             
-            $array = array('username' => $username, 'pass' => $pass);
+            $arrayUser = array('username' => $username, 'pass' => $pass);
 
             $ci->load->model('Login'); 
 
-            $qcd = $ci->Login->login_check($array);
+            $qcd = $ci->Login->login_check($arrayUser);
     
             if ($qcd->num_rows()>0) {
                 return $qcd->row_array();
@@ -1069,6 +1140,34 @@ class Services extends CI_Controller
         }
 
 
+  function getUserdetailsCall($userid)
+        { 
+     
+            $ci =& get_instance();
+
+            $ci->load->model('Users');           
+
+            $qcd = $ci->Users->fetchUserDetails($userid);       
+ 
+            if ($qcd->num_rows()>0) {
+
+                $ret_val = array();
+                $i=0;
+                foreach ($qcd->result_array() as $row) {
+                    $ret_val[$i]=$row;
+                    $i++;
+                }
+                return $ret_val;
+
+            } else {
+
+                return false;
+
+            }    
+
+        }
+
+
     function getProductCoupon()
         {  
      
@@ -1121,6 +1220,46 @@ class Services extends CI_Controller
                 return false;
             }    
 
+        }
+
+
+    function userdetailsUpdate($parameters)
+        { 
+
+         $ci =& get_instance();
+
+         $ret_val=array();
+
+        $parameters = json_decode($parameters);  
+        $myArrayUpdate = array(
+                "userid"=> $parameters->userid,
+                "initial"=> $parameters->initial, 
+                "firstname"=> $parameters->firstname, 
+                "secondname"=> $parameters->secondname, 
+                "surname"=> $parameters->surname,
+                "gender"=> $parameters->gender, 
+                "dob"=> $parameters->dob, 
+                "nationalid"=> $parameters->nationalid, 
+                "address"=> $parameters->address, 
+                "phone"=> $parameters->phone, 
+                "town"=> $parameters->town, 
+                "email"=> $parameters->email, 
+                "homelat"=> $parameters->homelat, 
+                "homelon"=> $parameters->homelon, 
+                "worklat"=> $parameters->worklat, 
+                "worklon"=> $parameters->worklon, 
+                "homeaddress"=> $parameters->homeaddress, 
+                "pass"=> $parameters->pass 
+                );
+
+        $ci->load->model('Users','user'); 
+        
+        $response = $ci->user->updateRecord($myArrayUpdate);        
+
+        $ret_val[0]["response"] = $response;
+
+
+           return $ret_val;
         }
 
 
@@ -1677,13 +1816,13 @@ class Services extends CI_Controller
 
             $username = "tibamoja";
 
-            $apiKey   = "7c79e4daca5dd1a15988bf86a177617bb19847404f2a25adb0eb89be7ad0cd7d";
+/*            $apiKey   = "7c79e4daca5dd1a15988bf86a177617bb19847404f2a25adb0eb89be7ad0cd7d";
             $gateway = new AfricasTalkingGateway($username, $apiKey, "sandbox");
-            $productName  = "tibamoja"; 
+            $productName  = "tibamoja"; */
 
-           /* $apiKey   = "1caae1e1ac826fd71a382211cfff7ab363c88c3966c262301f9c2c298d235c83";
+            $apiKey   = "1caae1e1ac826fd71a382211cfff7ab363c88c3966c262301f9c2c298d235c83";
             $gateway = new AfricasTalkingGateway($username, $apiKey);
-            $productName  = "tiba"; */
+            $productName  = "tiba"; 
        
                  
             $phoneNumber  = $userDetails[0]->phone; $ret_val[0]["message"] = $phoneNumber;        
@@ -1713,7 +1852,7 @@ class Services extends CI_Controller
 
         }
 
-    function createUser($fullname,$email,$pass)
+    function createUser($fullname,$email,$pass,$homelat,$homelon,$worklat,$worklon)
         {  
 
           $ret_val=array();
@@ -1737,6 +1876,10 @@ class Services extends CI_Controller
                  $array = array(
                     'firstname' => $namesArray[0] ,
                     'secondname' => $namesArray[1] ,
+                    'homelat' => $homelat ,
+                    'homelon' => $homelon ,
+                    'worklat' => $worklat ,
+                    'worklon' => $worklon ,
                     'email' => $email
                 );        
 
@@ -2610,7 +2753,15 @@ public function fetchPatientInvoices()
 
             $email = $this->input->get("email"); 
 
-            $pass = $this->input->get("pass");     
+            $pass = $this->input->get("pass");
+
+            $homelat = $this->input->get("homelat"); 
+
+            $homelon = $this->input->get("homelon"); 
+
+            $worklat = $this->input->get("worklat"); 
+
+            $worklon = $this->input->get("worklon");      
 
             $wsdl = WSDL;
 
@@ -2618,11 +2769,12 @@ public function fetchPatientInvoices()
 
             $client = new nusoap_client($wsdl, 'wsdl'); 
 
-            $res1 = $client->call('createUser', array('fullname'=>$fullname,'email'=>$email,'pass'=>$pass));       
+            $res1 = $client->call('createUser', array('fullname'=>$fullname,'email'=>$email,'pass'=>$pass,'homelat'=>$homelat,'homelon'=>$homelon,'worklat'=>$worklat,'worklon'=>$worklon));       
 
             echo json_encode($res1 );
 
  }  
+
 
 public function payInvoice(){
 
@@ -2658,6 +2810,22 @@ public function payInvoice(){
             echo json_encode($res1);
 
     }
+
+ public function updateUserdetails(){
+       
+
+            $parameters = $this->input->get("parameters");    
+
+            $wsdl = WSDL;
+
+            $this->load->library("Nusoap_library");
+
+            $client = new nusoap_client($wsdl, 'wsdl'); 
+
+            $res1 = $client->call('userdetailsUpdate', array('parameters'=>$parameters)); 
+
+            echo json_encode($res1 );
+ }  
 
 
 
@@ -2776,6 +2944,21 @@ public function fetchPrescription()
         }
 
 
+public function getUserdetails()
+        {
+            $id = $this->input->get("userid");           
+
+            $wsdl = WSDL;
+
+            $this->load->library("Nusoap_library");
+
+            $client = new nusoap_client($wsdl, 'wsdl'); 
+
+            $res1 = $client->call('getUserdetailsCall', array('userid'=>$id));
+              
+            echo json_encode($res1); 
+        }
+
  public function uploadFile()
         {                   
 
@@ -2869,7 +3052,7 @@ public function fetchPrescription()
                     $result= array("success"=>False);
             }else{
                 if( $res1['username'] == $username && $res1['pass']== md5($pass) ){
-                    $result= array("success"=>True,"userid"=>$res1['id'],"user"=>$res1['username'],"pass"=>$res1['pass']);                   
+                    $result= array("success"=>True,"userid"=>$res1['id'],"user"=>$res1['username'],"pass"=>$res1['pass'],"homelat"=>$res1['homelat'],"homelon"=>$res1['homelon'],"worklat"=>$res1['worklat'],"worklon"=>$res1['worklon'],"img"=>$res1['img']);                   
                 }else{
                     $result= array("success"=>False);                  
                 }
