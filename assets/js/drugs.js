@@ -102,6 +102,18 @@
 				        )
 				    );
 
+				    $('#fileuploadimage').bind('fileuploaddone', function (e, data) {
+					    $("tbody.files").empty();
+					   
+		                  var postVars = {
+								"selId": selectedRow					
+							}
+		                   $.post("med-images",postVars,function(data){                    
+							    $('#images-box').html(data.response);
+		                   },"json");
+
+					});
+
 				    if (window.location.hostname === 'blueimp.github.io') {
 				        // Demo settings:
 				        $('#fileuploadimage').fileupload('option', {
@@ -761,8 +773,9 @@
 
 				function uploadimage(obj){
 					if(selectedRow){
-					$('#selIdimg').val(selectedRow);                
-                    $('#uploadpopupimage').popup('show');
+					$('#selIdimg').val(selectedRow);                    
+                     
+                     $('#uploadpopupimage').popup('show');
                     }else{alert("Please select a product from the medicine grid!");}   
 				}
 

@@ -171,6 +171,7 @@ class Order extends CI_Model {
             concat(s.id, "_", p.id, "_", o.orderno) as id,
             t.storeid,
             d.genericname,
+            o.orderdate,
             dp.drugprice,
             dp.tax,
             s.storename,
@@ -204,7 +205,7 @@ class Order extends CI_Model {
                 AND pr.drugid = d.id
                 AND u.personid = p.id
                 AND u.id = pr.patientid
-        GROUP BY o.orderno
+        GROUP BY o.orderdate DESC
        '); 
 
 
@@ -338,6 +339,7 @@ class Order extends CI_Model {
             SELECT 
                 concat(s.id, "_", p.id, "_", o.orderno) as id,
                 t.storeid,
+                o.orderdate,
                 d.genericname,
                 dp.drugprice,
                 dp.tax,
@@ -375,7 +377,7 @@ class Order extends CI_Model {
                     AND u.id = pr.patientid
                     AND pr.description = "Awaiting Invoice"
                     AND s.id = "'.$storeid.'"
-            GROUP BY o.orderno
+            GROUP BY o.orderdate DESC
 
        '); 
 
@@ -790,6 +792,11 @@ class Order extends CI_Model {
 
   public function saveRecord($arrObject,$id){        
       $this->db->where('id',$id);
+      return $this->db->update('patientrefill',$arrObject);
+    }
+
+  public function saveRecordDrugQty($arrObject,$id){        
+      $this->db->where('drugid',$id);
       return $this->db->update('patientrefill',$arrObject);
     }
 

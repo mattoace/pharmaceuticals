@@ -265,7 +265,7 @@
 				function generatePDF(){                               
 			         var selRow = table.row('.selected').data();			         
                       //url = "http://192.168.1.207/pharmaceuticals/"+selRow[8]; // on localpc
-                      url = selRow[8];					
+                     url = selRow[9];					
 				     PDFObject.embed(url, "#pdfpopup");
 					 $('#pdfpopup').popup('show');					
 					

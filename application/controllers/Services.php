@@ -1810,19 +1810,21 @@ class Services extends CI_Controller
 
             $userDetails = $ci->invoice->fetchUserInvoice($invoiceno); 
 
-            $ret_val=array();          
+            $ret_val=array(); 
+
+            $amount = (1+ $userDetails[0]->tax) * $userDetails[0]->amount; 
 
             require_once "AfricasTalkingGateway.php";
 
             $username = "tibamoja";
 
-/*            $apiKey   = "7c79e4daca5dd1a15988bf86a177617bb19847404f2a25adb0eb89be7ad0cd7d";
+            $apiKey   = "7c79e4daca5dd1a15988bf86a177617bb19847404f2a25adb0eb89be7ad0cd7d";
             $gateway = new AfricasTalkingGateway($username, $apiKey, "sandbox");
-            $productName  = "tibamoja"; */
+            $productName  = "tibamoja"; 
 
-            $apiKey   = "1caae1e1ac826fd71a382211cfff7ab363c88c3966c262301f9c2c298d235c83";
+            /*$apiKey   = "1caae1e1ac826fd71a382211cfff7ab363c88c3966c262301f9c2c298d235c83";
             $gateway = new AfricasTalkingGateway($username, $apiKey);
-            $productName  = "tiba"; 
+            $productName  = "tiba"; */
        
                  
             $phoneNumber  = $userDetails[0]->phone; $ret_val[0]["message"] = $phoneNumber;        
@@ -1840,7 +1842,21 @@ class Services extends CI_Controller
 
               $ret_val[0]["response"] =  "Transaction Id ".$transactionId;
 
-              $ret_val[0]["message"] = "Payment from ". $userDetails[0]->firstname." ".$userDetails[0]->secondname;            
+              $ret_val[0]["message"] = "Payment from ". $userDetails[0]->firstname." ".$userDetails[0]->secondname; 
+
+             $arrayPayments = array(                   
+                    'billid' => $invoiceno ,
+                    'paymentdate' => date('Y-m-d H:i:s'),
+                    'amount' => $amount,
+                    'patientid' => $userDetails[0]->personid,
+                    'transactionid'=>$transactionId ,
+                    'comments'=>"Payment from ". $userDetails[0]->firstname." ".$userDetails[0]->secondname
+                );          
+            $ci->load->model('Patientpayment','patientpayment');
+
+            $newid = $ci->patientpayment->addNewPayTransaction($arrayPayments);
+
+           $ret_val = $ci->patientpayment->updateTransaction($invoiceno,"Payment from ". $userDetails[0]->firstname." ".$userDetails[0]->secondname." , Date :".date('Y-m-d H:i:s'),$ret_val);            
             
 
             }

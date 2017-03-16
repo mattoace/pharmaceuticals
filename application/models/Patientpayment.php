@@ -90,6 +90,43 @@ class Patientpayment extends CI_Model {
 
     }
 
+ public function addNewPayTransaction($arrObject,$id){      
+
+      $this->db->insert('patientpayment', $arrObject);
+
+      return $this->db->insert_id(); 
+    }
+
+  public function updateTransaction($invoice,$coments,$ret_val){
+
+       $query = $this->db->query('
+            SELECT 
+                pr.id
+            FROM
+                invoiceitems ii,
+                patientrefill pr
+            WHERE
+                ii.itemid = pr.id
+                    AND ii.invoiceno = "'.$invoice.'"
+        '); 
+
+     $resultsArray = $query->result();
+
+     foreach ($resultsArray as $key => $prItems) {
+         $prIds[] = $prItems->id;
+     }
+
+      $updateIds = implode(",",$prIds);
+
+    //$ret_val[1]["response"] = 'UPDATE patientrefill SET description = "Paid" , comments = "'.$coments.'" WHERE id IN ('.$updateIds.')';
+
+     $this->db->query('UPDATE patientrefill SET description = "Paid" , comments = "'.$coments.'" WHERE id IN ('.$updateIds.')');
+
+    return $ret_val;
+
+
+  }  
+
    public function fetchedit($id){     
         $this->db->select('*');
         $this->db->from('patientpayment');

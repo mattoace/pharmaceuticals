@@ -148,6 +148,7 @@
 				            <thead>
 				                <tr>
 				                    <th>Id</th>
+                            <th>Inv.Date</th>
                             <th>Inv.No</th>
                             <th>Order</th>
 				                    <th>Store</th>

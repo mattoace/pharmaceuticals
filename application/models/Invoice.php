@@ -163,6 +163,7 @@ class Invoice extends CI_Model {
                 concat(s.id, "_", p.id ,"_",ie.invoiceno) as id,
                 t.storeid,
                 d.genericname,
+                i.invoicedate,
                 dp.drugprice,
                 dp.tax,
                 s.storename,
@@ -197,8 +198,8 @@ class Invoice extends CI_Model {
                     AND pr.drugid = d.id
                     AND u.personid = p.id
                     AND u.id = pr.patientid
-                    AND pr.comments = "Invoiced"
-            GROUP BY ie.invoiceno
+                    AND (pr.comments = "Invoiced" || pr.description = "Paid" )
+            GROUP BY i.invoicedate DESC
 
        '); 
 
@@ -291,10 +292,10 @@ class Invoice extends CI_Model {
                         AND pr.drugid = d.id
                         AND u.personid = p.id
                         AND u.id = pr.patientid
-                        AND pr.comments = "Invoiced"
+                        
                         AND s.id = "'.$parArray[0].'" AND p.id = "'.$parArray[1].'" AND ie.invoiceno = "'.$parArray[2].'"             
 
-       '); 
+       '); //AND pr.comments = "Invoiced"
 
 
         $column_order = array(null, 's.id'); 
@@ -426,6 +427,7 @@ class Invoice extends CI_Model {
           SELECT 
                     concat(s.id, "_", p.id ,"_",ie.invoiceno) as id,
                     t.storeid,
+                    i.invoicedate,
                     d.genericname,
                     dp.drugprice,
                     dp.tax,
@@ -464,7 +466,7 @@ class Invoice extends CI_Model {
                         AND u.id = pr.patientid
                         AND pr.comments = "Invoiced"
                         AND t.storeid = "'.$storeid.'"
-                GROUP BY ie.invoiceno
+                GROUP BY   i.invoicedate DESC
 
        '); 
 
@@ -521,6 +523,7 @@ class Invoice extends CI_Model {
           SELECT 
                 concat(s.id, "_", p.id ,"_",ie.invoiceno) as id,
                 t.storeid,
+                i.invoicedate,
                 d.genericname,
                 dp.drugprice,
                 dp.tax,
@@ -704,7 +707,7 @@ class Invoice extends CI_Model {
 
      $query = $this->db->query('
             SELECT 
-                p.phone, p.firstname,p.secondname 
+                p.phone, p.firstname,p.secondname,u.id as user,p.id as personid , i.amount , i.tax
             FROM
                 persons p,
                 users u,

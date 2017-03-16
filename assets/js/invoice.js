@@ -83,11 +83,11 @@
 				                "className": "dt-right"
 				         },
 				          {
-				                "targets": [ 7 ],
+				                "targets": [ 8 ],
 				                "className": "dt-right"
 				         },
 				          {
-				                "targets": [ 8 ],
+				                "targets": [ 9 ],
 				                "visible": false
 				         }
 				        ],
@@ -284,8 +284,8 @@
 
 		   function generatePDF(){                               
 			         var selRow = table.row('.selected').data();			         
-                     url = "http://192.168.1.207/pharmaceuticals/"+selRow[8]; // on localpc
-                     url = selRow[8];					
+                     //url = "http://192.168.1.207/pharmaceuticals/"+selRow[9]; // on localpc
+                     url = selRow[9];					
 				     PDFObject.embed(url, "#pdfpopup");
 					 $('#pdfpopup').popup('show');					
 					

@@ -149,6 +149,7 @@
 				            <thead>
 				                <tr>
 				                    <th>Id</th>
+                            <th>Order Date</th>
                             <th>Order No.</th>
 				                    <th>Store</th>
 				                    <th>F.Name</th>

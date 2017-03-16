@@ -248,14 +248,14 @@ class OrderController extends CI_Controller {
                       <!-- Tell the browser to be responsive to screen width -->
                       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
                       <!-- Bootstrap 3.3.6 -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
                       <!-- Font Awesome -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
                       <!-- Ionicons -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
                      
                       <!-- Theme style -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/css/AdminLTE.min.css"> 
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/css/AdminLTE.min.css"> 
                       <!--[if lt IE 9]>
                       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
                       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -431,7 +431,7 @@ class OrderController extends CI_Controller {
          $headers = "Content-Type: text/html; charset=UTF-8\r\n";
          $title = "Order";
          $fromEmail = $smtparray['defaultemail'];
-         $fromName = "Pharm-Portal";
+         $fromName = "tibamoja";
          $key = null; 
 
        
@@ -514,7 +514,7 @@ class OrderController extends CI_Controller {
 
         $fromEmail = $smtparray['defaultemail'];
 
-        $fromName = "Pharm-Portal";
+        $fromName = "tibamoja";
 
         $key = null;
 
@@ -578,7 +578,8 @@ class OrderController extends CI_Controller {
             $no++;
             $row = array();
             $row[] = $order->id;
-            $row[] = $order->orderno;
+            $row[] = $order->orderdate;
+            $row[] = $order->orderno;           
             $row[] = $order->storename;
             $row[] = $order->Firstname; 
             $row[] = $order->Secondname; 
@@ -643,6 +644,7 @@ function fetchStorecOrder(){
             $no++;
             $row = array();
             $row[] = $order->id;
+            $row[] = $order->orderdate;
             $row[] = $order->orderno;
             $row[] = $order->storename;
             $row[] = $order->Firstname; 
@@ -894,14 +896,14 @@ if($isExpress){
                       <!-- Tell the browser to be responsive to screen width -->
                       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
                       <!-- Bootstrap 3.3.6 -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
                       <!-- Font Awesome -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
                       <!-- Ionicons -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
                      
                       <!-- Theme style -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/css/AdminLTE.min.css"> 
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/css/AdminLTE.min.css"> 
                       <!--[if lt IE 9]>
                       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
                       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -1281,7 +1283,7 @@ if($isExpress){
 
         $fromEmail = $smtparray['defaultemail'];
 
-        $fromName = "Pharm-Portal";
+        $fromName = "tibamoja";
 
         $key = null;
 
@@ -1304,7 +1306,7 @@ if($isExpress){
               'qty' => $this->input->post("value")          
           );          
 
-      $response = $this->order->saveRecord($array,$this->input->post("selItems"));
+      $response = $this->order->saveRecordDrugQty($array,$this->input->post("selItems"));
 
        echo json_encode(array("response"=>$response));
 
@@ -1333,10 +1335,10 @@ if($isExpress){
               $country_id = "1";
             
 
-            //<!--<img src='http://pharm-portal.coreict.co.ke/assets/img/logo.png' width='200' style='width:200px;'/>-->
+            //<!--<img src='http://tibamoja.co.ke/assets/img/logo.png' width='200' style='width:200px;'/>-->
 
               $content .= "<table cellspacing='0' cellpadding='0' style='width:100%;font-style:calibri;font-size:10px;background: #FFFFFF $export_bg;position: absolute;background-position: center; background-repeat: no-repeat; top: -10px;' border='0'>";
-              $content .= "<tr><td rowspan='16' colspan='3'><img src='http://pharm-portal.coreict.co.ke/assets/img/logo.png' width='200' style='width:200px;'/></td><td colspan='7' align='right' style='font-size:22px;font-weight:bold;vertical-align:top;'>$invoice_title</td></tr>";
+              $content .= "<tr><td rowspan='16' colspan='3'><img src='http://tibamoja.co.ke/assets/img/logo.png' width='200' style='width:200px;'/></td><td colspan='7' align='right' style='font-size:22px;font-weight:bold;vertical-align:top;'>$invoice_title</td></tr>";
               $content .= "<tr><td colspan='4'></td><td colspan='3' align='right'>&nbsp;</td></tr>";
               $content .= "<tr><td colspan='4' style='font-size:14px;font-weight:bold;'>".$defaultCompanydetails[0]->companyname."</td><td colspan='3' align='right' style='font-weight:bold;'>".$defaultCompanydetails[0]->bank."</td></tr>";
               $content .= "<tr><td colspan='4'>".$defaultCompanydetails[0]->location."</td><td colspan='3' align='right'>Acc Name: ".$defaultCompanydetails[0]->companyname."</td></tr>";

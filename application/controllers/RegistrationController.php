@@ -251,8 +251,8 @@ class RegistrationController extends CI_Controller {
 
           try {          
             
-            $array = array('username' => $email, 'pass' => md5($password) ,'type'=>1);
-
+            $array = array('users.username' => $email, 'users.pass' => md5($password) ,'users.type'=>1);
+            
             $this->load->model('Login','login');  
 
             $qcd = $this->login->login_check($array); 

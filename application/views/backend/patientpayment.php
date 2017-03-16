@@ -305,7 +305,7 @@
                               <thead>
                                   <tr>
                                       <th>Id</th>                                
-                                      <th>Bill Id</th>
+                                      <th>Invoice No.</th>
                                       <th>Date</th>
                                       <th>Amount</th>                                                                 
                                   </tr>
@@ -338,7 +338,7 @@
                               <div class="box-body">
 
                                 <div class="form-group">
-                                  <label for="initial">Bill Id / No.</label>
+                                  <label for="initial">Invoice No.</label>
                                   <input type="input" class="form-control" id="billid" placeholder="Bill Number">
                                   <input type="hidden" class="form-control" id="bid" placeholder="1">
                                 </div>

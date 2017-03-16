@@ -128,20 +128,23 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
                       <!-- Tell the browser to be responsive to screen width -->
                      
                       <!-- Bootstrap 3.3.6 -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
                       <!-- Font Awesome -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
                       <!-- Ionicons -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
                      
                       <!-- Theme style -->
-                      <link rel="stylesheet" href="http://pharm-portal.coreict.co.ke/assets/css/AdminLTE.min.css"> 
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/css/AdminLTE.min.css"> 
                       <!--[if lt IE 9]>
                       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
                       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
                       <![endif]-->
-
-
+                        <script>
+                        function commitPayment(invoiceno){
+                          window.location = "http://tibamoja.co.ke/ws:pay-invoice?invoiceno="+invoiceno  
+                        }
+                        </script>
                       <style>
 
                       .invoice {
@@ -421,7 +424,7 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
                                                 'comments' => 'Invoiced'
                                             );          
 
-                                       $this->invoice->saveRecord($array,$orderL->id); // temporary halt flaging the invoice
+                                           $this->invoice->saveRecord($array,$orderL->id); // temporary halt flaging the invoice
 
                                 }
 
@@ -437,11 +440,32 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
                   <div class="row">
                   <!-- accepted payments column -->
                   <div class="col-xs-6">
+                  <br><hr>
 
-                   <!-- <img src="http://pharm-portal.coreict.co.ke/assets/img/credit/visa.png" alt="Visa">
-                    <img src="http://pharm-portal.coreict.co.ke/assets/img/credit/mastercard.png" alt="Mastercard">
-                    <img src="http://pharm-portal.coreict.co.ke/assets/img/credit/american-express.png" alt="American Express">
-                    <img src="http://pharm-portal.coreict.co.ke/assets/img/credit/paypal2.png" alt="Paypal">-->
+                    <form action="https://tibamoja.co.ke/ws:pay-invoice?invoiceno='.$code.'" method="post" target="_top">
+                    <input type="hidden" name="invoiceno" value='.$code.'>
+                    <input type="hidden" name="hosted_button_id" value="">
+                    <input type="image" src="https://tibamoja.co.ke/assets/img/credit/mpesa.png" border="0" name="submit" alt="Lipa na MPESA">
+                    <img alt="" border="0" src="https://tibamoja.co.ke/assets/img/credit/mpesa.png" width="1" height="1">
+                    </form>
+                  
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="QARQ5URZDKYKE">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form><br>
+                    <h2>Or</h2><br>
+
+
+
+                 <!-- <span style="cursor:pointer; color:green;">  <img style="cursor:pointer;" onClick=commitPayment('.json_encode($code).') src="http://tibamoja.co.ke/assets/img/credit/mpesa.png" alt="MPESA"> </span>-->
+
+
+                    <!--<img style="cursor:pointer;" src="http://tibamoja.co.ke/assets/img/credit/visa.png" alt="Visa">
+                    <img style="cursor:pointer;" src="http://tibamoja.co.ke/assets/img/credit/mastercard.png" alt="Mastercard">
+                    <img style="cursor:pointer;" src="http://tibamoja.co.ke/assets/img/credit/american-express.png" alt="American Express">
+                    <img style="cursor:pointer;" src="http://tibamoja.co.ke/assets/img/credit/paypal2.png" alt="Paypal">-->
 
                    <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                     Please make payments of the products listed.
@@ -483,8 +507,10 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
             </html>
 
             '; 
+        // print $body; exit();
+
         $content = $this->createPdfTemplate($arrayInvoice,$defaultCompanydetails,$userdetails,$list,$totals[0]->totals,$tax[0]->tax,$grandtotal);  
-      //exit();
+        //exit();
         //create a pdf here
 
     require_once(dirname(__FILE__) . '/html2pdf/html2pdf.class.php');
@@ -521,7 +547,7 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
 
        $fromEmail = $smtparray['defaultemail'];
 
-       $fromName = "Pharm-Portal";
+       $fromName = "tibamoja";
 
        $key = null;
 
@@ -546,6 +572,7 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
             $no++;
             $row = array();
             $row[] = $order->id;
+            $row[] = $order->invoicedate;
             $row[] = $order->invoiceno;
             $row[] = $order->orderno;
             $row[] = $order->storename;
@@ -627,7 +654,7 @@ public function createPdfTemplate($arrayInvoice,$defaultCompanydetails,$userdeta
             
 
               $content .= "<table cellspacing='0' cellpadding='0' style='width:100%;font-style:calibri;font-size:10px;background: #FFFFFF $export_bg;position: absolute;background-position: center; background-repeat: no-repeat; top: -10px;' border='0'>";
-              $content .= "<tr><td rowspan='16' colspan='3'><img src='http://pharm-portal.coreict.co.ke/assets/img/logo.png' width='200' style='width:200px;'/></td><td colspan='7' align='right' style='font-size:22px;font-weight:bold;vertical-align:top;'>$invoice_title</td></tr>";
+              $content .= "<tr><td rowspan='16' colspan='3'><img src='http://tibamoja.co.ke/assets/img/logo.png' width='200' style='width:200px;'/></td><td colspan='7' align='right' style='font-size:22px;font-weight:bold;vertical-align:top;'>$invoice_title</td></tr>";
               $content .= "<tr><td colspan='4'></td><td colspan='3' align='right'>&nbsp;</td></tr>";
               $content .= "<tr><td colspan='4' style='font-size:14px;font-weight:bold;'>".$defaultCompanydetails[0]->companyname."</td><td colspan='3' align='right' style='font-weight:bold;'>".$defaultCompanydetails[0]->bank."</td></tr>";
               $content .= "<tr><td colspan='4'>".$defaultCompanydetails[0]->location."</td><td colspan='3' align='right'>Acc Name: ".$defaultCompanydetails[0]->companyname."</td></tr>";
@@ -764,6 +791,7 @@ function fetchInvoiceFilter(){
             $no++;
             $row = array();
             $row[] = $order->id;
+            $row[] = $order->invoicedate;
             $row[] = $order->invoiceno;
             $row[] = $order->orderno;
             $row[] = $order->storename;
@@ -799,6 +827,7 @@ function fetchFilterInvoicesCat(){
             $no++;
             $row = array();
             $row[] = $order->id;
+            $row[] = $order->invoicedate;
             $row[] = $order->invoiceno;
             $row[] = $order->orderno;
             $row[] = $order->storename;

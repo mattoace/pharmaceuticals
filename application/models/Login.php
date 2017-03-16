@@ -13,7 +13,7 @@ class Login extends CI_Model {
   
     function login_check($array){   
 
-        $this->db->select('users.username,users.pass ,persons.initial,persons.firstname,persons.secondname,persons.surname,persons.phone,persons.email,persons.address,persons.town,users.pass,users.type,users.isactive,concat("http://tibamoja.co.ke/",persons.img) as img,persons.homelat,persons.homelon,persons.worklat,persons.worklon');
+        $this->db->select('users.id,users.username,users.pass ,persons.initial,persons.firstname,persons.secondname,persons.surname,persons.phone,persons.email,persons.address,persons.town,users.pass,users.type,users.isactive,concat("http://tibamoja.co.ke/",persons.img) as img,persons.homelat,persons.homelon,persons.worklat,persons.worklon');
         $this->db->from('persons');
         $this->db->join('users','users.personid = persons.id'); 
         $this->db->where($array); 
