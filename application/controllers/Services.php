@@ -831,7 +831,7 @@ class Services extends CI_Controller
  
             $ci->load->model('Cat'); 
 
-            $qcd = $ci->Cat->get_all_items();       
+            $qcd = $ci->Cat->get_all_items(1);       
 
             if ($qcd->num_rows()>0) {
                 $ret_val=array();

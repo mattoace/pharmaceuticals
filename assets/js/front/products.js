@@ -65,7 +65,7 @@ function loadCategory(categoryname,categoryid){
        setCookie("categoryid",null, 1); 
     break;
     case "MyPrescriptions":  
-        alert("Work on progress ~ patient prescriptions.");
+         dataframe.src="user-prescription";
         setCookie("categoryid",null, 1);
     break;
     case "MyInvoices":  

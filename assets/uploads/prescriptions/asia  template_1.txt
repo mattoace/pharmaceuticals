@@ -1,0 +1,458 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>NTS Computers SDN BHD</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+{literal}
+<style type="text/css">
+
+
+.styleBody { 
+  background-image:url('http://213.201.143.89/script/quotation/View/ico/bkimage3.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 110%;
+ background-color:#E0F5FA;
+
+  
+}
+
+td {font-family: Tahoma; font-size: 11px; }
+.style9 {font-family: Tahoma; font-size: 10px;font-weight: bold;}
+.style18 {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Tahoma;
+}
+.style22 {font-size: 12px}
+.style24 {
+  font-family: Tahoma;
+  font-size: 10px;
+  color: #666666;
+  font-weight: bold;
+}
+.style38 {font-family: Tahoma; font-size: 14px; color: #333333; font-weight: bold; }
+.style40 {font-family: "Courier New", Courier, mono}
+.style41 {
+  font-size: 24px;
+  color: #FFFFFF;
+}
+.style46 {font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+.style28 {color: #666666}
+.style47 {
+  color: #FF0000;
+  font-weight: bold;
+}
+</style>
+{/literal}
+</head>
+
+<body >
+
+<table class = "styleBody" >
+<tr ><td><img src='http://213.201.143.89/script/quotation/View/ico/nts asia-1.jpg'/></td></tr>
+<tr><td  bgcolor="#FFFFFF" class = "styleBody"> 
+<table width="700"  border="0" cellpadding="1" cellspacing="0" >
+  <tr ><td><span class="style18">Quotation No. {$Offerteno}</span></td><td align='right'></td></tr>
+  <tr>
+    <td width="45%" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="1">
+        <td>Name </td>
+        <td class="style24">{$Bedrijfsnaam}</td>
+      </tr>
+      <tr>
+        <td>Date </td>
+        <td class="style24">{$Date} </td>
+      </tr>
+      <tr>
+        <td>Send Date, Time </td>
+        <td><span class="style24">{$Date}, {$sTime}</span></td>
+      </tr>
+      <tr>
+        <td>Customer No.</td>
+        <td><span class="style24">{$Klantnummer}</span></td>
+      </tr>
+       <tr>
+        <td>Contact persoon </td>
+        <td><span class="style24">{$Attendent}</span></td>
+      </tr>
+       <tr>
+         <td>Telephone</td>
+         <td><span class="style24">{$Telefoon}</span></td>
+       </tr>
+       <tr>
+         <td>Mobile</td>
+         <td><span class="style24">{$Mobile}</span></td>
+       </tr>
+       <tr>
+         <td>Fax</td>
+         <td><span class="style24">{$Fax}</span></td>
+       </tr>
+       <tr>
+         <td>Email</td>
+         <td><span class="style24">{$Email}</span></td>
+       </tr>
+    </table></td>
+    <td width="55%" valign="right">{$Header}</td>
+  </tr>
+  <tr>
+    <td colspan="2"><br>{if $Attendent != null}Dear {$Aanhef},{else}Dear {$Bedrijfsnaam},{/if}<br>
+      <p>
+{if $Custom != null}
+{$Custom}
+{else} 
+<p>Thank you for your quotation request. Herewith we send you our quotation - entirely obligation-free - by email.<br>
+<br>
+If you wish to make changes in this quotation, you can do so by sending a reply message. If you do, please note on top of the message which components and/or prices need to be changed.<br>
+If you have been able to locate components cheaper elsewhere, we would like to be informed of that as well.<br>
+All products are listed on the condition that they may be subject to change or typing errors.<br><br>
+If you have questions, please call or email me.<br>
+{/if} 
+      </p>
+      Yours truly,<br>      
+      {$Verkoper}<br>
+  NTS Computers SDN BHD.</td>
+  </tr>
+</table>
+
+<br>
+<table width="640" border="0" >
+  <tr>
+    <td><table width="640" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="300" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="50%">Quotation Number</td>
+            <td width="50%" class="style24">{$Offerteno}</td>
+          </tr>
+          <tr>
+            <td>Account Manager</td>
+            <td><span class="style24">{$Verkoper}</span></td>
+          </tr>
+          <tr>
+            <td>Telephone Number</td>
+            <td><span class="style24">{$VerkTelefoon}</span></td>
+          </tr>
+   
+          <tr>
+            <td>Email</td>
+            <td><span class="style24">{$VerkEmail}</span></td>
+          </tr>
+        </table></td>
+        <td width="40">&nbsp;</td>
+        <td width="300" colspan="2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="640" colspan="4">&nbsp;</td>
+        </tr>
+      <tr>
+        <td height="97" bgcolor="#999999"><table width="300" height="108"  border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="510" height="15" bgcolor="#999999"><span class="style38">Invoice Address</span></td>
+          </tr>
+          <tr>
+            <td height="70" valign="top" bgcolor="#CCCCCC" class="style9">
+             {$Factuuradres}</td>
+          </tr>
+        </table></td>
+        <td width="40">&nbsp;</td>
+        <td colspan="2" bgcolor="#999999"><table width="300" height="108"  border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="510" height="15" bgcolor="#999999"><span class="style38">Delivery Address</span></td>
+          </tr>
+          <tr>
+            <td height="70" valign="top" bgcolor="#CCCCCC" class="style9">
+              {$Afleveradres}</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td colspan="2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="4"><table width="100%"  border="0" cellpadding="3" cellspacing="0">
+          <tr bgcolor="#999999">
+            <td width="15%"><span class="style5">Partno.</span></td>
+            <td width="45%"><span class="style5">Description</span></td>
+            <td width="10%"><div align="right"><span class="style5">Number</span></div></td>
+            <td width="10%"><div align="right"><span class="style5">Price</span></div></td>
+            <td width="10%"><div align="right"><span class="style5">GST</span></div></td>
+            <td width="10%"><div align="right"><span class="style5">Total</span></div></td>
+          </tr>
+          {$Offerteinhoud}          
+           {section name=records loop=$record}
+           <tr>        
+           {if {$record[records].ProductID} != 0}<td style="vertical-align: top;" >{$record[records].ProductID}</td>{else}<td style="vertical-align: top;" ></td> {/if}
+           <td style="vertical-align: top;">{$record[records].ProductName}<br>
+           {if $record[records].ProductModel != null}<font size="1" color="black" ><b>Model:</b> {$record[records].ProductModel}</font>, {/if}     <font size="1" color="black" ><b>Condition:</b>{if $record[records].Condit == null} Used Grade A</font>,{else} {$record[records].ConditName}</font>,{/if}    {if {$record[records].Price} != 0}<font size="1" color="black"><b>  {$record[records].WarrantyID}   </b></font>{/if} 
+           {if {$record[records].Discount} != 0}<br><font size="1" color="black"><b>Normal price :</b> {$record[records].PriceCalc}  {$curr}<b> , Discount : </b> {$record[records].Discount}%  :  - {$record[records].discountCalc}  </font> {/if}
+           {if {$record[records].Q4} != 0}<br><font size="1" color="black"><b>Copy charge: </b> {$record[records].Q4} {$curr}</font>{/if}
+           </td> 
+           <td align="right" style="vertical-align: top;">{$record[records].Q1}</td> 
+           <td align="right" style="vertical-align: top;">{$record[records].Price}</td> 
+           <td align="right" style="vertical-align: top;">{$record[records].Tax}</td>
+           <td align="right" style="vertical-align: top;">{$record[records].Total}</td>
+           
+           </tr> 
+          {/section}
+      {if {$Shipping} == 0 && {$Ordercosts} == 0 && {$Discount} == 0}
+        {else}
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4"><div align="right" class="style5">Sub Total</div></td>
+            <td><div align="right" class="style5">{$Subtotaal}</div></td>
+          </tr>
+      {/if}
+           {if {$Shipping} != 0}
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4"><div align="right"><span class="style5">Shipping Cost</span></div></td>
+            <td class="style5"><div align="right">{$Shipping}</div></td>
+           </tr>
+           {/if}
+          {if {$Ordercosts} != 0} 
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4"><div align="right">Order Cost</div></td>
+            <td class="style5"><div align="right">{$Ordercosts}</div></td>
+           </tr>
+            {/if}
+           {if {$Discount} != 0} 
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4"><div align="right">Discount</div></td>
+            <td class="style5"><div align="right">-{$Discount}</div></td>
+          </tr>
+          {/if}
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4"><div align="right" class="style5">
+              <div align="right"><strong>Total</strong></div></td>
+            <td><div align="right" class="style5">{$TotaalEx}</div></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4"><div align="right" class="style5"><strong>{$BTW_Perc} GST</strong></div></td>
+            <td><div align="right" class="style5">{$BTW}</div></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="4"><div align="right" class="style5"><strong>Grand Total</strong></div></td>
+            <td><div align="right" class="style5">{$GrandTotal}</div></td>
+          </tr>
+        </table></td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<br>
+
+<table width="640"  border="0">
+<form action="http://www.nts.nl/order/save.php" method="get" name="incasso" target="ies_f2f_window">
+  {if {$Comments} !=  ""}
+  <tr>
+    <td height="14" valign="top" class="style18">Comments</td>
+    <td><span class="style9">
+      <textarea name="Afleveradres" cols="50" rows="5" class="style5" style="border: none;overflow:hidden;">{$Comments}</textarea>
+    </span></td>
+  </tr>
+ {/if}
+  <tr>
+    <td colspan="2"><span class="style18">Terms and Condition</span></td>
+  </tr>
+  <tr valign="top">
+    <td>Prices and period of</td>
+    <td>Under normal circumstances, this quotation is valid for 30 days.<br>
+    All prices are in <span class="style28"><strong>{$curr}</strong></span>.</td>
+   </tr>
+
+
+  <tr valign="top">
+    <td>Warranty on systems</td>
+    <td>
+     NTS Computers SDN BHD only offers warranties on components for the same period as the factory,warranties on the components concerned. After one year, even a two-year system warranty will no longer cover the component warranty on the built-in CD-writer,for instance.<br> 
+     but it will continue to cover a hard drive that comes with a three-year warranty.For on-site warranties, NTS Computers SDN BHD is entitled to provide a pick-up and return warranty.<br>
+    </td>
+  </tr>
+  <tr valign="top">
+    <td>Warranty</td>
+    <td><span class="style24">{$Warranty}</span></td>
+  </tr>
+  <tr valign="top">
+    <td>Currency</td>
+    <td><span class="style24">{$curr}</span></td>
+  </tr>
+  <tr valign="top">
+    <td>Payment</td>
+    <td>{$payment}<br>
+      <br>
+<strong>RHB Bank:</strong><br>
+RHB Account: 11218900263975<br>
+<br>
+RHB Bank Berhad<br>
+Level 1-20, The Mines Shopping Fair,<br>
+Jalan Dulang, Off Jalan Balakong,<br>
+Mines Resort City, 43300 Seri Kembangan,<br>
+Selangor Darul Ehsan, Malaysia,<br>
+Swift code: RHBBMYKL<br>
+Account Holder Name: Sharifah Shahidah Binti Syed Yusof<br>
+ </td>
+  </tr>
+  <tr valign="top">
+    <td width="22%">Delivery time</td>
+    <td width="78%"><span class="style24">{$Levertijd}</span><br>
+    Delivery times are indicative and may actually be shorter or longer depending on availability, please consult with your account manager.
+      </p>      </td>
+  </tr>
+  <tr valign="top">
+    <td>Delivery</td>
+    <td><span class="style24">{$Levering}</span></td>
+  </tr>
+  <tr valign="top">
+    <td>Transportation method</td>
+    <td><span class="style24">{$Aflevering}</span><td>
+  </tr>
+  <tr valign="top">
+    <td>Terms of delivery</td>
+    <td>Our normal General terms and conditions apply to this quotation. They are held by the Rotterdam Chamber of Commerce, file number 238658</td>
+  </tr>
+  <tr valign="top">
+    <td>Total</td>
+    <td><span class="style24">{$GrandTotal}  {$curr}</span></td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+  <td colspan="2"><span class="style47">When you agree with our offer and conditions please sign and mail back to <a href="mailto:{$VerkEmail}">{$VerkEmail}</a>.</span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style22"><span class="style46"></span></span></td>
+  </tr>
+  <tr>
+    <td height="14" colspan="2"><span class="style18">Order for quotation nr. <span class="style28">{$Offerteno}</span> for NTS Computers SDN BHD</span><br><span class="style9">(When the following details are incorrect please correct them)<br>
+        <br>
+  Underwriter,  </span></td>
+  </tr>
+  <tr>
+    <td height="14" class="style9"><span class="style9">Name</span></td>
+    <td><span class="style9">
+      <input name="Contactpersoon" type="text" class="style5" id="Contactpersoon" value="{$Attendent}" size="30" maxlength="40">
+    </span></td>
+  </tr>
+  <tr>
+    <td height="14" class="style9"><span class="style9">Company Name</span></td>
+    <td><span class="style9">
+      <input name="Bedrijfsnaam" type="text" class="style5" id="Bedrijfsnaam" value="{$Bedrijfsnaam}" size="30" maxlength="40">
+      <input type="hidden" name="Offerteno" value="{$Offerteno}">
+    </span></td>
+  </tr>
+  <tr>
+    <td height="14" class="style9">Client number</td>
+    <td><span class="style9">
+      <input name="Klantnummer" type="text" class="style5" id="Klantnummer" value="{$Klantnummer}" size="30" maxlength="12">
+    </span></td>
+  </tr>
+  <tr>
+    <td height="14" valign="top" class="style9">Address</td>
+    <td><span class="style9">
+      <textarea name="Factuuradres" cols="50" rows="5" class="style5">{$Factuuradres_}</textarea>
+    </span></td>
+  </tr>
+  <tr>
+    <td height="14" valign="top" class="style9">Delivery Address</td>
+    <td><span class="style9">
+      <textarea name="Afleveradres" cols="50" rows="5" class="style5">{$Afleveradres_}</textarea>
+    </span></td>
+  </tr>
+  <tr>
+    <td height="14" colspan="2" class="style9">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="14" colspan="2" class="style9">Contact records (for individuals, please enter your personal data). </td>
+  </tr>
+  <tr>
+    <td height="14" class="style9">Contact persoon </td>
+    <td><span class="style9">
+      <input name="Rek_naam" type="text" class="style5" id="Rek_naam" value="{$Rek_naam}" size="30" maxlength="40">
+    </span></td>
+  </tr>
+  <tr>
+    <td height="14" class="style9">Telephone</td>
+    <td><span class="style9">
+      <input name="BH_Telefoon" type="text" class="style5" id="BH_Telefoon" value="{$BH_Telefoon}" size="30" maxlength="15">
+    </span></td>
+  </tr>
+  <tr>
+    <td height="14" class="style9">Email</td>
+    <td><span class="style9">
+      <input name="BH_Email" type="text" class="style5" id="BH_Email" value="{$BH_Email}" size="30" maxlength="40">
+    </span></td>
+  </tr>
+  <tr>
+    <td colspan="2" valign="top"><span class="style9"><br>
+    For remarks or requested change of payment method please use the following field: </span></td>
+  </tr>
+  <tr>
+    <td valign="top"><span class="style9">Remarks</span></td>
+    <td><textarea name="opmerking" cols="50" rows="4" class="style5">{$Opmerking}</textarea></td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style9"><br>
+   The undersigned herewith confirms his/her agreement with the supply of offer  <span class="style28"><strong>{$Offerteno}</strong></span>, to the amount of <span class="style28"><strong>{$GrandTotal}  {$curr}</strong></span> under the terms and conditions outlined in this tender and the general terms and conditions of NTS Computers SDN BHD:</span></td>
+  </tr>
+  <tr>
+    <td class="style9">Name</td>
+    <td><span class="style9">
+      <input name="Naam" type="text" class="style5" id="Naam" value="{$Naam}" size="30" maxlength="40">
+    </span></td>
+  </tr>
+  <tr>
+    <td class="style9">City</td>
+    <td><span class="style9">
+      <input name="Goedkeuring_Plaats" type="text" class="style5" id="Goedkeuring_Plaats" value="{$Goedkeuring_Plaats}" size="30" maxlength="40">
+    </span></td>
+  </tr>
+
+
+  <tr>
+    <td><span class="style9">Date</span></td>
+    <td><input name="Goedkeuring_Datum" type="text" class="style5" id="Goedkeuring_Datum" size="30" maxlength="40"></td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><span class="style9">Signature</span></td>
+    <td><input name="Handtekening" type="text" class="style5" size="30" maxlength="40">
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">&nbsp;</td>
+    <td>&nbsp; </td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style9"><br>
+  <span class="style47">When you agree with our offer and conditions, please sign and mail back to <a href="mailto:{$VerkEmail}">{$VerkEmail}</a>.</span> 
+    </span>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><span class="style9">        <br>
+      <br>
+        </span><span class="style22">This E-Mail contains confidential information solely meant for: {$Attendent}. If you have received this mail by error or accident please remove it.</span><span class="style9"><span class="style40"></span></span></td>
+  </tr>
+</form>
+</table>
+<br>
+<img src='http://213.201.143.89/script/quotation/View/ico/nts asia-back1.jpg'/>
+</td></tr> 
+</table> 
+</body>
+</html>
+
+

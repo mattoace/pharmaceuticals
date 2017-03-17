@@ -119,6 +119,8 @@ $route['users-add'] = 'usersController/addNew';
 $route['users-edit'] = 'usersController/edit';
 $route['users-fetchedit'] = 'usersController/fetchedit';
 $route['users-delete'] = 'usersController/deleteRecord'; 
+$route['user-prescription'] = 'pages/fullview/myprescription';
+$route['user-file-upload'] = 'prescController/uploadPicture'; 
 
 $route['settings'] = 'pages/back/settings';
 $route['settings-fetch'] = 'settingsController/fetch';

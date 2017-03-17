@@ -89,9 +89,16 @@ class Cat extends CI_Model {
 
     }
 
-    public function get_all_items(){      
+    public function get_all_items($is_service){      
         $this->db->from('category');
         $this->db->order_by("categoryname", "asc");
+        if($is_service){
+            $this->db->where('parent IS NOT NULL');
+
+            $this->db->where('categoryname !=','My Prescriptions');
+            $this->db->where('categoryname !=','My Invoices');
+            $this->db->where('categoryname !=','My Orders');        
+        }
         $query = $this->db->get(); 
         return $query;
     }

@@ -224,5 +224,11 @@ class Prescriptionupload extends CI_Model {
 
   }   
 
+   public function addNew($arrObject){    
+
+      $this->db->insert('prescriptionupload', $arrObject);
+
+    }
+
  
 }

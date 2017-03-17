@@ -200,5 +200,58 @@ class PrescController extends CI_Controller {
 
         echo json_encode(array("response"=>$resonse));
     }
+
+     public function uploadPicture(){
+
+      $this->load->library('upload');
+
+      $this->load->helper(array('form', 'url'));
+
+        // A list of permitted file extensions
+      $allowed = array('png', 'jpg', 'gif','zip','txt','pdf','xls','xlsx','doc','docx');
+
+        if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
+
+            $extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
+
+            if(!in_array(strtolower($extension), $allowed)){
+                echo '{"status":"error1"}';
+                exit;
+            }
+
+            $splitFilename = explode(".", $_FILES['upl']['name']);
+
+            $filename = $splitFilename[0]."_".$this->input->post("selid").".".$splitFilename[1]; 
+
+            $newpath = 'assets/uploads/prescriptions/'.$filename;
+
+            if(move_uploaded_file($_FILES['upl']['tmp_name'], $newpath )){
+             $array = array(
+                    'img' => $newpath  
+                    );
+
+              //get user id
+              $this->load->model('Users','users');
+              $list = $this->users->fetchUid($this->input->post("selid"));                
+               
+               $array = array(
+                    'doctorscomments' => "",
+                    'patientid' => $list[0]->id,
+                    'path'=>$newpath,
+                    'uploadate'=>date('Y-m-d H:i:s'),
+                    'filename'=>$filename 
+                );          
+
+               $qcd = $this->prescupload->addNew($array);
+
+               echo json_encode(array("response"=>"1"));  
+
+               exit;
+            }
+        }
+
+        echo '{"status":"error2"}';
+        exit;
+ }
  
 }

@@ -360,7 +360,7 @@ background-color: #1484C7;
 
 		      <?php	
 
-		         $query = $this->db->query('SELECT * FROM category WHERE parent IS NULL'); 
+		         $query = $this->db->query('SELECT * FROM category WHERE parent IS NULL AND categoryname <>"User profile"'); 
 		         $row = $query->result();
                   $j=0;
 		         foreach ($row as $key => $main) {

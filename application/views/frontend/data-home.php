@@ -197,7 +197,9 @@ Hover the image
     font-weight: bold;
 }
 
-
+.col-item .rating {   
+    font-size: 7px; 
+}
 
 
 
@@ -252,7 +254,7 @@ Hover the image
 
 		         		    IF(cat.img IS NOT NULL,
 							concat('https://tibamoja.co.ke/', cat.img),
-							'https://tibamoja.co.ke/assets/img/sliderimg2.png') as catimg
+							'https://tibamoja.co.ke/assets/img/catslider1.jpg') as catimg
 
 							FROM
 							 drugtocategory dtc , drugs d
@@ -284,7 +286,7 @@ Hover the image
 
 				            IF(cat.img IS NOT NULL,
 							concat('https://tibamoja.co.ke/', cat.img),
-							'https://tibamoja.co.ke/assets/img/sliderimg2.png') as catimg
+							'https://tibamoja.co.ke/assets/img/catslider1.jpg') as catimg
 
 							FROM
 							drugs d
@@ -304,7 +306,7 @@ Hover the image
 
 		         $row = $query->result(); 
 
-                  print('<div class="col-md-12 explore-left wow zoomIn" style="background-color:transparent;" data-wow-duration="1.5s" data-wow-delay="0.1s"><img style="width:100%;height:300px;" src='.$row[0]->catimg.' class="img-responsive" alt="" /></div>'); //.$row[0]->catimg.
+                  print('<div class="col-md-12 explore-left wow zoomIn" style="background-color:transparent;" data-wow-duration="1.5s" data-wow-delay="0.1s"><img style="width:100%;height:300px;margin-top: 2%;margin-bottom: 1%;" src='.$row[0]->catimg.' class="img-responsive" alt="" /></div>'); //.$row[0]->catimg.
 
                   $j=0;
 		         foreach ($row as $key => $product) {
@@ -321,11 +323,11 @@ Hover the image
 							print('</button>');
 							print('</div>');
 							print('<div class="options-cart"> ');       			
-							print('<button class="btn btn-default my-cart-btn" data-id='.$product->id.' data-name='.$product->genericname.' data-summary='.$product->genericname.' data-price='.$product->drugprice.' data-quantity="1" data-image='.$product->img.'>');
+							print('<button class="btn btn-default my-cart-btn" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price="'.$product->drugprice.'" data-quantity="1" data-image="'.$product->img.'">');
 							print('<span class="fa fa-shopping-cart"></span>');
 							print('</button>');
 							print('</div>');
-							print('<a href="#"> <img src='.$product->img.' class="img-responsive" alt="" /> </a>');
+							print('<a href="#"> <img src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
 							print('</div>');
 							print('<div class="info">');
 
@@ -337,21 +339,19 @@ Hover the image
 
 							print('<div class="info">');
 							print('<div class="row">');
-							print('<div class="price col-md-6">');
+							print('<div class="price col-md-8">');
 							print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
 							print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color">Kes '.$product->drugprice.'</h5>');
 							print('</div>');
-							print('<div class="rating hidden-sm col-md-6">');
+							print('<div class="rating hidden-sm col-md-4">');
 							print(' <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
 							print(' </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
 							print('</i><i class="fa fa-star"></i>');
 							print('</div>');
 							print('</div>');
 							print('<div class="separator clear-left">');
-							print('<p class="btn-add">');
-							print(' <i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm">  <button class="btn btn-default my-cart-btn" style="padding:0px !important;" data-id='.$product->id.' data-name='.$product->genericname.' data-summary='.$product->genericname.' data-price='.$product->drugprice.' data-quantity="1" data-image='.$product->img.'><span style="font-size:14px;font-weight:200px;">Add to Cart</span></button>      </a></p>');
-							//print('<p class="btn-details">');
-							//print('<i  class="fa fa-list"></i><a style="font-size:14px;font-weight:200px;"  href="http://www.jquery2dotnet.com" class="hidden-sm">More details</a></p>');
+							print('<p class="btn-add">');							
+                            print('<button class="btn btn-default my-cart-btn" style="padding:0px !important;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;">Add to Cart</span></span></button>      </a></p>');
 							print(' </div>');
 							print(' <div class="clearfix">');
 							print(' </div>');
