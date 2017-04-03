@@ -1,6 +1,80 @@
 <link rel="stylesheet" href='<?php echo base_url("assets/css/products.css");?>'  media="all" />
 <link rel="stylesheet" href='<?php echo base_url("assets/css/animate.css");?>'  media="all" />
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/font-awesome/font-awesome.min.css");?>'>
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
+
+
+ <style>
+        h1 {
+            font-size: 20px;
+            color: #111;
+        }
+
+        .content {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .tt-hint,
+        .medsearch {
+            border: 2px solid #CCCCCC;
+            border-radius: 8px 8px 8px 8px;
+           /* font-size: 24px;*/
+            height: 35px;
+            line-height: 30px;
+            outline: medium none;
+            padding: 8px 12px;
+            width: 400px;
+            margin-bottom: -7%;
+            margin-top: 2%;
+        }
+
+        .tt-dropdown-menu {
+            width: 400px;
+            margin-top: 5px;
+            padding: 8px 12px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px 8px 8px 8px;
+            /*font-size: 18px;*/
+            color: #111;
+            background-color: #F1F1F1;
+        }
+        form {
+		    margin-bottom: -1%;
+		    margin-left: -13%;
+		    margin-top: -7%;
+		}
+    </style>
+      <script>
+        $(document).ready(function() {
+
+            $('input.medsearch').typeahead({
+                name: 'medsearch',
+                remote: 'med-autofill?query=%QUERY'
+
+            });
+
+        $('input.medsearch').bind('typeahead:selected', function(obj, datum, name) {   
+            window.location = "data-relocate?id="+datum.label;
+          });
+
+        })
+    </script>
+
+
+
+
+
+
+
 <style>
 article {
    /* height: 280px;*/
@@ -303,6 +377,14 @@ Hover the image
 
 					}
                  //http://bootsnipp.com/snippets/KGmRQ
+
+
+				 print('<div class="content">');
+		         print('<form>'); 
+		         print('<input type="text" name="medsearch" size="30" class="medsearch" placeholder="Search....">');
+		         print('</form>'); 
+		         print('</div>');
+		         print('<hr>'); 
 
 		         $row = $query->result(); 
 

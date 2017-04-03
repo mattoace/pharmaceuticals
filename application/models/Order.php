@@ -251,6 +251,98 @@ class Order extends CI_Model {
         return $query->result();
     }
 
+
+
+
+    function getUserOrders($userId)
+    {
+
+        $query = $this->db->query('
+        SELECT 
+            concat(s.id, "_", p.id, "_", o.orderno) as id,
+            t.storeid,
+            d.genericname,
+            o.orderdate,
+            dp.drugprice,
+            dp.tax,
+            s.storename,
+            s.address,
+            s.telephone,
+            s.email,
+            p.Firstname,
+            p.Secondname,
+            p.phone,
+            p.address,
+            p.town,
+            u.id as user,
+            o.orderno,
+            pr.description,
+            o.file
+        FROM
+            stores s,
+            transactions t,
+            users u,
+            persons p,
+            drugs d,
+            patientrefill pr
+                LEFT JOIN
+            drugprices dp ON pr.drugid = dp.drugid
+                LEFT JOIN
+            orderitems oi ON oi.itemid = pr.id
+                LEFT JOIN
+            orders o ON o.orderno = oi.orderno
+        WHERE
+            pr.id = t.orderid AND s.id = t.storeid
+                AND pr.drugid = d.id
+                AND u.personid = p.id
+                AND u.id = pr.patientid AND u.personid = "'.$userId.'"
+        GROUP BY o.orderdate DESC
+       '); 
+
+
+        $column_order = array(null, 's.id'); 
+        $column_search = array('s.storename'); 
+        $order = array('s.storename' => 'asc');        
+ 
+        $i = 0;
+     
+        foreach ($column_search as $item) // loop column 
+        {
+            if($_POST['search']['value']) 
+            {
+                 
+                if($i===0) 
+                {
+                    $this->db->group_start(); 
+                    $this->db->like($item, $_POST['search']['value']);
+                }
+                else
+                {
+                    $this->db->or_like($item, $_POST['search']['value']);
+                }
+ 
+                if(count($column_search) - 1 == $i) 
+                    $this->db->group_end(); 
+            }
+            $i++;
+        }
+         
+        if(isset($_POST['order'])) 
+        {
+            $this->db->order_by($column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } 
+        else if(isset($order))
+        {
+            
+            $this->db->order_by(key($order), $order[key($order)]);      
+        }
+
+        if($_POST['length'] != -1)
+        $this->db->limit($_POST['length'], $_POST['start']);    
+        return $query->result();
+    }
+
+
     function getFilterOrders($storeid){
         
 

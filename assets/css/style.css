@@ -1,7 +1,22 @@
 table.dataTable tbody tr {
     line-height: 2px !important;
     font-size:12px;
+
+       overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
+.dataTables_wrapper .dataTables_paginate {
+    padding-top: 2.25em !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button { 
+    margin-left: 2px !important;   
+    padding: 0.2em 0.05em !important;
+}
+
+
 
   #persontable tbody tr.even:hover,  #persontable tbody tr.even td.highlighted {
         background-color: #D73925;
@@ -52,9 +67,6 @@ table.dataTable tbody tr {
           background-color: #D73925;
         color:white;
     }
-
-
-
 
   .cdataTable tbody tr.even:hover,  .cdataTable tbody tr.even td.highlighted {
         background-color: #D73925;

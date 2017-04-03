@@ -71,11 +71,11 @@ function getCookie(c_name)
  
          colheight = totalRecords / 4 ; 
 
-         iheight = (340 * colheight ) + 450 ;
+         iheight = (440 * colheight ) + 500 ;
 
          parent.callResize(iheight);
     }else{    
-         iheight = (totalRecords * 300) + 500; 
+         iheight = (totalRecords * 300) + 540; 
          parent.callResize(iheight);
     }
 
@@ -88,11 +88,11 @@ function getResize(){
  
          colheight = totalRecords / 4 ; 
 
-         iheight = (190 * colheight ) + 450 ;
+         iheight = (190 * colheight ) + 500 ;
 
          parent.callResize(iheight);
     }else{    
-         iheight = (totalRecords * 200) + 500; 
+         iheight = (totalRecords * 200) + 540; 
          parent.callResize(iheight);
     }
 

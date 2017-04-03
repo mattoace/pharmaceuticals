@@ -601,6 +601,42 @@ class OrderController extends CI_Controller {
 
 }
 
+
+  public function fetchUserOrders(){     
+
+        $list = $this->order->getUserOrders($this->input->get("id"));
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $order) {
+            $no++;
+            $row = array();
+            $row[] = $order->id;
+            $row[] = $order->orderdate;
+            $row[] = $order->orderno;           
+            $row[] = $order->storename;
+            $row[] = $order->Firstname; 
+            $row[] = $order->Secondname; 
+            $row[] = $order->email;      
+            $row[] = $order->address;
+            $row[] = $order->description;
+            $img = $order->file; 
+            $imgArray = explode("/", $img);
+            $row[] = $imgArray[3];
+            $row[] = $order->file;         
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->order->count_all(),
+                        "recordsFiltered" => $this->order->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+
+}
+
 function fetchStoreOrder(){
 
        $storeid = $this->input->get("id"); 

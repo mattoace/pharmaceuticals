@@ -369,10 +369,6 @@
                 <script src="<?php echo base_url('assets/plugins/dhxtree/codebase/dhtmlxmenu.js')?>"></script>  
                 <script src="<?php echo base_url('assets/plugins/dhxtree/codebase/dhtmlxtree.js')?>"></script>
                 <script src="<?php echo base_url('assets/plugins/dhxmessage/codebase/message.js')?>"></script>   
-
-
-
-
         				<script src="<?php echo base_url('assets/js/drugs.js')?>"></script> 
                 </div>
                 <!-- /.post -->
@@ -601,14 +597,33 @@
                   <!-- About Me Box -->
                   <div class="box box-primary">
                     <div class="box-header with-border">
-                      <h3 class="box-title"><h3>Files</h3>
+                      <!-- <h3 class="box-title"><h3>Files</h3> -->
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                       <strong><i class="fa fa-book margin-r-5"></i> Files uploaded</strong>
 
                       <p class="text-muted">
-                       upload grid
+
+                          <table id="filestable" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>No</th>
+                                        <th>Filename</th>
+                                        <th>Delete</th>                                                 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                     
+                                <tfoot>
+                                    <tr>
+                             
+                                    </tr>
+                                </tfoot>
+                            </table>  
+
                       </p>
 
                     </div>

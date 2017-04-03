@@ -5,7 +5,7 @@ $route['default_controller'] = 'pages/view';
 //$route['default_controller'] = 'services';
 $route['home'] = 'pages/view';
 $route['ws'] = 'services/testClient';
-$route['ws:wsdl'] = 'services';
+$route['ws:wsdl'] = 'services/serviceinfo';
 $route['ws:login'] = 'services/loginCheck';
 $route['ws:signup'] = 'services/createUser';
 $route['ws:fetch-user'] = 'services/getUserdetails';
@@ -120,7 +120,12 @@ $route['users-edit'] = 'usersController/edit';
 $route['users-fetchedit'] = 'usersController/fetchedit';
 $route['users-delete'] = 'usersController/deleteRecord'; 
 $route['user-prescription'] = 'pages/fullview/myprescription';
-$route['user-file-upload'] = 'prescController/uploadPicture'; 
+$route['user-file-upload'] = 'prescController/uploadPicture';
+$route['user-invoices'] = 'pages/fullview/myinvoices';
+$route['user-invoicefetch'] = 'invoiceController/fetchUserInvoice'; 
+
+$route['user-orders'] = 'pages/fullview/myorders';
+$route['user-ordersfetch'] = 'orderController/fetchUserOrders';  
 
 $route['settings'] = 'pages/back/settings';
 $route['settings-fetch'] = 'settingsController/fetch';
@@ -140,6 +145,10 @@ $route['med-upload'] = 'drugController/upload';
 $route['med-imgupload'] = 'drugController/imgupload';
 $route['med-images'] = 'drugController/displayImages';
 $route['med-filter'] = 'drugController/filterDrugs';
+$route['med-autofill'] = 'drugController/autoFill';
+$route['med-files'] = 'drugController/fetchFiles';
+$route['med-files-delete'] = 'drugController/deleteFiles';
+$route['med-file-view'] = 'drugController/viewFile'; 
 
 $route['coupons'] = 'pages/back/coupons';
 $route['coupons-adddiscount'] = 'DiscountController/addNew';
@@ -207,6 +216,8 @@ $route['data-productshome'] = 'pages/fullview/data-home';
 $route['about'] = 'pages/view/about';
 $route['service'] = 'pages/view/service';
 $route['contact'] = 'pages/view/contact';
+
+$route['data-relocate'] = 'pages/fullview/data-autofill';
 
 $route['register'] = 'RegistrationController/addNew';
 $route['activate'] = 'RegistrationController/activate';

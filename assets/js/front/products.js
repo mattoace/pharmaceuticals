@@ -66,14 +66,14 @@ function loadCategory(categoryname,categoryid){
     break;
     case "MyPrescriptions":  
          dataframe.src="user-prescription";
-        setCookie("categoryid",null, 1);
+         setCookie("categoryid",null, 1);
     break;
     case "MyInvoices":  
-        alert("Work on progress ~ invoices.");
-        setCookie("categoryid",null, 1);
+         dataframe.src="user-invoices";
+         setCookie("categoryid",null, 1);
     break;
     case "MyOrders":  
-        alert("Work on progress ~ Orders.");
+         dataframe.src="user-orders";
          setCookie("categoryid",null, 1);
     break;
     default: 

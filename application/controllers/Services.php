@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 //define('WSDL','http://pharm-portal.coreict.co.ke/index.php/ws:wsdl?wsdl');
 
-define('WSDL','https://tibamoja.co.ke/index.php/ws:wsdl?wsdl');
+define('WSDL','https://www.tibamoja.co.ke/ws:wsdl?wsdl');
 
 class Services extends CI_Controller
 {
@@ -18,10 +18,16 @@ class Services extends CI_Controller
         $this->load->database(); 
         //$this->load->model('Cds'); //load your models here      
         $this->load->library("Nusoap_library"); //load the library here
-        $this->nusoap_server = new soap_server();
+       /*$this->nusoap_server = new soap_server();
         $this->nusoap_server->configureWSDL("Pharmaceuticals Soap Server", "urn:PharmaceuticalsSoapServer");
-        $this->nusoap_server->wsdl->schemaTargetNamespace = 'urn:PharmaceuticalsSoapServer';
-
+        $this->nusoap_server->wsdl->schemaTargetNamespace = 'urn:PharmaceuticalsSoapServer';*/ 
+        //$namespace = "https://www.tibamoja.co.ke/ws:wsdl?wsdl";
+        $namespace = WSDL;
+        $this->nusoap_server = new soap_server();
+        //$this->nusoap_server->configureWSDL("PharmaceuticalsSoapServer");
+        $this->nusoap_server->wsdl->schemaTargetNamespace = $namespace;    
+        $this->nusoap_server->configureWSDL("PharmaceuticalsSoapServer", "PharmaceuticalsSoapServer",$namespace,$namespace);
+        //$this->nusoap_server->wsdl->endpoint = "https://www.tibamoja.co.ke/ws:wsdl?wsdl";
         //DATA TYPES
         $this->nusoap_server->wsdl->addComplexType(
             'Userstruct',
@@ -1818,13 +1824,13 @@ class Services extends CI_Controller
 
             $username = "tibamoja";
 
-            $apiKey   = "7c79e4daca5dd1a15988bf86a177617bb19847404f2a25adb0eb89be7ad0cd7d";
+/*            $apiKey   = "7c79e4daca5dd1a15988bf86a177617bb19847404f2a25adb0eb89be7ad0cd7d";
             $gateway = new AfricasTalkingGateway($username, $apiKey, "sandbox");
-            $productName  = "tibamoja"; 
+            $productName  = "tibamoja"; */
 
-            /*$apiKey   = "1caae1e1ac826fd71a382211cfff7ab363c88c3966c262301f9c2c298d235c83";
+            $apiKey   = "1caae1e1ac826fd71a382211cfff7ab363c88c3966c262301f9c2c298d235c83";
             $gateway = new AfricasTalkingGateway($username, $apiKey);
-            $productName  = "tiba"; */
+            $productName  = "tiba"; 
        
                  
             $phoneNumber  = $userDetails[0]->phone; $ret_val[0]["message"] = $phoneNumber;        
@@ -3019,7 +3025,7 @@ public function getUserdetails()
         }
 
 
-    public function index()
+    public function serviceinfo()
     {
         $this->nusoap_server->service(file_get_contents("php://input")); //standard info about service
     }
@@ -3030,12 +3036,47 @@ public function getUserdetails()
 
         $wsdl = WSDL;
 
+        //$wsdl = "https://www.tibamoja.co.ke/ws:wsdl?wsdl";
+
+        //echo $wsdl; exit();
+
         $this->load->library("Nusoap_library");
 
         $client = new nusoap_client($wsdl, 'wsdl'); 
 
+
+        $err = $client->getError();
+        if ($err) {
+            // Display the error
+            echo '<p><b>Constructor error: ' . $err . '</b></p>';
+            // At this point, you know the call that follows will fail
+        }
+
+
         $res1 = $client->call('getUserInfo', array('id'=>$id));
-        var_dump($res1);
+
+
+            // Check for a fault
+            if ($client->fault) {
+               // echo '<p><b>Fault: ';
+                print_r($result);
+                echo '</b></p>';
+            } else {
+                // Check for errors
+                $err = $client->getError();
+                if ($err) {
+                    // Display the error
+                    echo '<p><b>Error: ' . $err . '</b></p>';
+                } else {
+                    // Display the result
+                    print_r($result);
+                }
+            }
+
+
+        //var_dump($res1);
+
+        print_r($this->client);
 
         echo "<hr>";
         $res2 = $client->call('getUsers');

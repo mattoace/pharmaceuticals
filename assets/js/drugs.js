@@ -103,13 +103,20 @@
 				    );
 
 				    $('#fileuploadimage').bind('fileuploaddone', function (e, data) {
-					    $("tbody.files").empty();
+					  
 					   
 		                  var postVars = {
 								"selId": selectedRow					
 							}
-		                   $.post("med-images",postVars,function(data){                    
+		                   $.post("med-images",postVars,function(data){ 
+		                   	    $("tbody.files").empty();
+		                        //$('#uploadpopupimage').popup('destroy');
+		                        //$('#uploadpopupimage').popup('destroy').remove();   
+		                        //$('#uploadpopupimage').empty();
+		                        //location.reload();							
+
 							    $('#images-box').html(data.response);
+
 		                   },"json");
 
 					});
@@ -245,7 +252,85 @@
 				         var selRow = table.row('.selected').data();				     
 				         selectedRow = selRow[0];
 				         moreSelectEvents(selectedRow);	 
+			         });
+
+
+            tableFiles = $('#filestable').DataTable({ 
+				 
+				        "processing": true, //Feature control the processing indicator.
+				        "serverSide": true, //Feature control DataTables' server-side processing mode.
+				        "paging":   false,
+				        "ordering": false,
+				        "info":     false,
+				        "order": [], //Initial no order.
+				 
+				        // Load data for the table's content from an Ajax source
+				        "ajax": {
+				            "url": "med-files?id=0",  //"url": "<?php echo site_url('patientController/ajax_list')?>",
+				            "type": "POST"
+				        },
+				        		select: {
+							style:    'os',
+							selector: 'td:first-child'
+						},
+				 
+				        //Set column definition initialisation properties.
+				        "columnDefs": [
+				        { 
+				            "targets": [ 0 ], //first column / numbering column
+				            "orderable": false, //set not orderable
+				        },
+			      
+				         {
+				                "targets": [ 0 ],
+				                "visible": false
+				         },
+				         {
+				                "targets": [ 0 ],
+				                "className": "dt-right"
+				         },
+				         {
+				                "targets": [ 0 ],
+				                "className": "dt-right"
+				         },
+				         {
+
+							"targets" : 3 ,
+							"data": "img",
+							"width": "1%",
+							"className": "dt-center",
+							"render" : function ( url, type, full) {
+							return '<img onclick="deleteImage('+full[0]+')" style=" border-radius: 10%;cursor:pointer;" height="10px" width="25%" src="https://tibamoja.co.ke/assets/img/deletefile.jpg"/>';
+
+							}
+
+                          },
+
+                             {
+
+							"targets" : 2 ,
+							"data": "html",
+							//"width": "1%",
+							"className": "dt-left",
+							"render" : function ( url, type, full) {
+							return '<a target="_blank" href="med-file-view?id='+full[0]+'">'+full[2]+'</a> ';
+
+							}
+
+                          }
+
+				        ],
+				 
+				    });	
+		
+
+				    tableFiles.on( 'click', 'tr', function (id) { 
+						 tableFiles.$('tr.selected').removeClass('selected'); 
+						 $(this).addClass('selected');                  
+				        
 			         });	
+
+
                      
 
 	             tree = new dhtmlXTreeObject("treeBox","100%","100%",0);
@@ -454,12 +539,12 @@
 				    });
 
 
-				   $('#dialogpopupimage').popup({
+				/*   $('#dialogpopupimage').popup({
 				        pagecontainer: '.container',
 				        autozindex:false,
 				        transition: 'all 0.3s'
 				    });
-
+*/
 
 
 				$(function () {
@@ -807,6 +892,9 @@
 						}	
                    },"json");	
 
+                     loadUrlFilterCategory = "med-files?id="+selId; 
+                     tableFiles.ajax.url(loadUrlFilterCategory).load(); 
+
 				}
 
 
@@ -894,6 +982,13 @@
 
 						}else{alert("Please select a drug!");}
 
+				}
+
+				function deleteImage(imgId){
+						 $.post("med-files-delete?id="+imgId,function(){
+								loadUrlFilterCategory = "med-files?id="+selectedRow; 
+                                tableFiles.ajax.url(loadUrlFilterCategory).load(); 
+					  });
 				}
 
 

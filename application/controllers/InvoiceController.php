@@ -595,6 +595,41 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
 
   }
 
+  public function fetchUserInvoice(){
+
+    $list = $this->invoice->getUserInvoices($this->input->get("id"));
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $order) {
+            $no++;
+            $row = array();
+            $row[] = $order->id;
+            $row[] = $order->invoicedate;
+            $row[] = $order->invoiceno;
+            $row[] = $order->orderno;
+            $row[] = $order->storename;
+            $row[] = $order->Firstname; 
+            $row[] = $order->Secondname; 
+            $row[] = $order->email;      
+            $row[] = number_format($order->totals,2);
+            $img = $order->file; 
+            $imgArray = explode("/", $img);
+            $row[] = $imgArray[3];
+            $row[] = $order->file;        
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->invoice->count_all(),
+                        "recordsFiltered" => $this->invoice->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+
+  }
+
 
   public function fetchInvoiceDetails(){ 
 

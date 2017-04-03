@@ -235,9 +235,72 @@ public function displayImages(){
     }
 
 
+
+   public function autoFill(){
+
+        $list = $this->drugs->autoFill($this->input->get("query"));
+
+         foreach ($list as $drugs) {
+
+            $array[] = array (
+                        'label' => $drugs->id,
+                        'value' => $drugs->genericname
+                    );
+         }
+
+        echo json_encode ($array);
+
+   } 
+
+
+   public function fetchFiles(){
+
+        $list = $this->drugs->fetchFiles($this->input->get("id"));
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $drugs) {
+            $no++;
+            $row = array();
+            $row[] = $drugs->id;
+            $row[] = $no;
+            $img = $drugs->img;
+            $imgArray = explode("/", $img);
+            $row[] = $imgArray[4];
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->drugs->count_all_img(),
+                        "recordsFiltered" => $this->drugs->count_filtered_img(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+   }
+
+   public function deleteFiles(){
+      $fileid = $this->input->get("id");
+      $response = $this->drugs->deleteFile($fileid);
+      echo json_encode(array("response"=>$response));
+
+   }
+
+  public function viewFile(){
+        function openFile($file)
+            {
+
+            $handle = fopen($file, "r");
+            $output = fread($handle, filesize($file));
+            return $output;
+            fclose($handle);
+            }
+      $list = $this->drugs->fetchFile($this->input->get("id"));
+      header("Content-type:image");                      
+      echo openFile($list[0]->img);
+  } 
  
 }
-
 
 
 class SavetoDatabase  extends CI_Controller{

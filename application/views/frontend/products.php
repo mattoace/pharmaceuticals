@@ -85,19 +85,36 @@ nav {
 
 		      <?php	
 
-		         $query = $this->db->query('SELECT * FROM category WHERE parent IS NULL'); 
+		         $query = $this->db->query('SELECT * FROM category WHERE parent IS NULL ORDER BY sort'); 
 		         $row = $query->result();
                   $j=0;
 		         foreach ($row as $key => $main) {
 		         	if($j == 0){ 
 		         		print('<li class="active"><a href="#" onClick=loadCategory("'.str_replace(" ", "", $main->categoryname).'","'.$main->id.'")   >'.$main->categoryname.'</a></li>');
 		         	} else{ 
-		         		print('<li>'); 
+		         		print('<li>');
 
-		         		print('<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$main->categoryname.'<b class="caret"></b></a>'); 
-
-		         		 $querychild1 = $this->db->query('SELECT * FROM category WHERE parent = "'.$main->id.'"'); 
+                         $querychild1 = $this->db->query('SELECT * FROM category WHERE parent = "'.$main->id.'"'); 
 		                 $row1 = $querychild1->result();
+
+			             if($row1[0]->id>0){
+			                  $toggledropdown = "dropdown";
+			                  $classtoggledropdown = "dropdown-toggle";
+			                  $caret = "caret";
+			                 } else{ 
+			                 $toggledropdown = ""; 
+			                 $classtoggledropdown = "dropdown";
+			                 $caret = "";
+	                         $clickhandler = 'onClick=loadCategory("'.str_replace(" ", "", $main->categoryname).'","'.$main->id.'")';
+
+			               }
+
+		         		print('<a href="javascript:void(0);"  '.$clickhandler.' class="'.$classtoggledropdown.'" data-toggle="'. $toggledropdown.'">'.$main->categoryname.'<b class="'.$caret.'"></b></a>'); 
+
+
+		         		//print('<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$main->categoryname.'<b class="caret"></b></a>'); 
+
+		         		
 		         	
 		         	     print('<ul class="dropdown-menu multi-level">');
 		         	     foreach ($row1 as $key => $child1) {

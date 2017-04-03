@@ -1,6 +1,88 @@
 <link rel="stylesheet" href='<?php echo base_url("assets/css/products.css");?>'  media="all" />
 <link rel="stylesheet" href='<?php echo base_url("assets/css/animate.css");?>'  media="all" />
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/font-awesome/font-awesome.min.css");?>'>
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
+
+
+
+ <style>
+        h1 {
+            font-size: 20px;
+            color: #111;
+        }
+
+        .content {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .tt-hint,
+        .medsearch {
+            border: 2px solid #CCCCCC;
+            border-radius: 8px 8px 8px 8px;
+            font-size: 24px;
+            height: 45px;
+            line-height: 30px;
+            outline: medium none;
+            padding: 8px 12px;
+            width: 400px;
+        }
+
+        .tt-dropdown-menu {
+            width: 400px;
+            margin-top: 5px;
+            padding: 8px 12px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px 8px 8px 8px;
+            font-size: 18px;
+            color: #111;
+            background-color: #F1F1F1;
+        }
+        form {
+		    margin-bottom: -1%;
+		    margin-left: -13%;
+		    margin-top: -7%;
+		}
+    </style>
+      <script>
+        $(document).ready(function() {
+
+            $('input.medsearch').typeahead({
+                name: 'medsearch',
+                remote: 'med-autofill?query=%QUERY'
+
+            });
+
+
+
+
+        $('input.medsearch').bind('typeahead:selected', function(obj, datum, name) {      
+			       // alert(JSON.stringify(obj)); // object
+			        // outputs, e.g., {"type":"typeahead:selected","timeStamp":1371822938628,"jQuery19105037956037711017":true,"isTrigger":true,"namespace":"","namespace_re":null,"target":{"jQuery19105037956037711017":46},"delegateTarget":{"jQuery19105037956037711017":46},"currentTarget":
+			        //alert(JSON.stringify(datum)); // contains datum value, tokens and custom fields
+			        // outputs, e.g., {"redirect_url":"http://localhost/test/topic/test_topic","image_url":"http://localhost/test/upload/images/t_FWnYhhqd.jpg","description":"A test description","value":"A test value","tokens":["A","test","value"]}
+			        // in this case I created custom fields called 'redirect_url', 'image_url', 'description' 
+			        //alert(JSON.stringify(name)); // contains dataset name
+			        // outputs, e.g., "my_dataset"
+                     //alert(datum.label);
+            window.location = "data-relocate?id="+datum.label;
+
+          });
+
+        })
+    </script>
+
+     
+
 <style>
 article {
    /* height: 280px;*/
@@ -201,7 +283,6 @@ Hover the image
     font-size: 7px; 
 }
 
-
 </style>
 
 <div class="container">
@@ -341,7 +422,14 @@ Hover the image
 
                  //http://bootsnipp.com/snippets/KGmRQ
 
-		         $row = $query->result(); 
+		         $row = $query->result();
+
+		         print('<div class="content">');
+		         print('<form>'); 
+		         print('<input type="text" name="medsearch" size="30" class="medsearch" placeholder="Search....">');
+		         print('</form>'); 
+		         print('</div>');
+		         print('<hr>'); 
 
                  print('<div class="col-md-12 explore-left wow zoomIn" style="background-color:transparent;" data-wow-duration="1.5s" data-wow-delay="0.1s"><img style="width:100%;height:300px;margin-top: 2%;margin-bottom: 1%;" src='.$row[0]->catimg.' class="img-responsive" alt="" /></div>'); //.$row[0]->catimg.
 
