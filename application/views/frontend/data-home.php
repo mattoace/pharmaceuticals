@@ -275,6 +275,10 @@ Hover the image
     font-size: 7px; 
 }
 
+.glyphicon {
+    font-size: 24px; 
+    margin-top: -12px; 
+}
 
 
 </style>

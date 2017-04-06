@@ -32,7 +32,7 @@ function searchMedications(){
 jQuery(function(){
 
 jQuery('#camera_wrap_1').camera({
-	thumbnails: true
+	thumbnails: false
 });
 
 /*jQuery('#camera_wrap_2').camera({

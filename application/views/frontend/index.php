@@ -56,7 +56,7 @@ nav {
     background-color: #16A9EF;   
 }
 .navbar-nav > li > a {
-    padding: 10px 12px 0;
+    padding: 5px 12px 5px;
 }
 
 
@@ -127,7 +127,8 @@ background-color: #1484C7;
    /* background-color: #98CD23; */  
     border-bottom: 2px rgba(0,0,0,0.5) solid;
     text-transform: capitalize;    
-    padding: 10px 20px;
+    padding: 4px 20px;
+   
     border-top: 0px;
 }    
 
@@ -279,7 +280,7 @@ background-color: #1484C7;
 			<div class="profile-left wow flipInY col-sm-12" style="float:left;width:69%;margin-left:2%;" data-wow-duration="1.5s" data-wow-delay="0s"  >
 					 <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
 									          <!--   <div data-thumb="../images/slides/thumbs/bridge.jpg" data-src="../images/slides/bridge.jpg"> -->
-									           <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg3.jpg");?>"> 
+									           <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/slider3african1.png");?>"> 
 									                <div class="camera_caption fadeFromBottom">
 									                    Buy 2 Get 3rd FREE Beauty products
 									                </div>

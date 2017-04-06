@@ -34,10 +34,13 @@ nav {
     background-color: #16A9EF;  
 }
 .navbar-nav > li > a {
-    padding: 10px 12px 0;
+   /* padding: 10px 12px 0;*/
+     padding: 5px 12px 5px;
 }
 
-
+.navbar-nav > li {
+    margin: 0 5px !important;
+}
 
 
 </style>

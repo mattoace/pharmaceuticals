@@ -282,6 +282,10 @@ Hover the image
 .col-item .rating {   
     font-size: 7px; 
 }
+.glyphicon {
+  /*  font-size: 24px; */
+     top: -1px !important; 
+}
 
 </style>
 

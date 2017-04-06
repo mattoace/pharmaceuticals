@@ -54,7 +54,8 @@ background-color: #1484C7;
    /* background-color: #98CD23; */  
     border-bottom: 2px rgba(0,0,0,0.5) solid;
     text-transform: capitalize;    
-    padding: 10px 20px;
+/*    padding: 10px 20px;*/
+    padding: 4px 20px;
     border-top: 0px;
 }    
 
