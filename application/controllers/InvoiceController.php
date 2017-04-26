@@ -28,6 +28,8 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
 
   if($isExpress){
      $list = $this->invoice->fetchConfirmRefillIds($storeid,$patientid,$orderno,$type);
+     $totals = $this->invoice->fetchConfirmRefillIdsTotals($storeid,$patientid,$orderno,$type);
+     $tax = $this->invoice->fetchConfirmRefillIdsTax($storeid,$patientid,$orderno,$type);
      $userdetails = $this->users->fetchRecord($list[0]->user); 
   }else{
 
@@ -45,9 +47,9 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
 
     $list = $this->invoice->fetchConfirmRefillIds($storeid,$patientid,$orderno,$type);
 
+    $totals = $this->invoice->fetchConfirmRefillIdsTotals($storeid,$patientid,$orderno,$type);
 
-
-   
+    $tax = $this->invoice->fetchConfirmRefillIdsTax($storeid,$patientid,$orderno,$type);
 
     $userdetails = $this->users->fetchRecord($list[0]->user);  
     
@@ -86,9 +88,13 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
 
    $code =  $code."-".$increament;
 
-   $totals = $this->invoice->getInvoiceTotals($storeid,$patientid,$type);  
+     
+
+   //$totals = $this->invoice->getInvoiceTotals($storeid,$patientid,$type);
+
    //var_dump($totals); exit();
-   $tax = $this->invoice->getInvoiceTax($storeid,$patientid,$type); 
+
+   //$tax = $this->invoice->getInvoiceTax($storeid,$patientid,$type); 
 
    $grandtotal = $totals[0]->totals + $tax[0]->tax;  
 
@@ -689,7 +695,7 @@ public function createPdfTemplate($arrayInvoice,$defaultCompanydetails,$userdeta
             
 
               $content .= "<table cellspacing='0' cellpadding='0' style='width:100%;font-style:calibri;font-size:10px;background: #FFFFFF $export_bg;position: absolute;background-position: center; background-repeat: no-repeat; top: -10px;' border='0'>";
-              $content .= "<tr><td rowspan='16' colspan='3'><img src='http://tibamoja.co.ke/assets/img/logo.png' width='200' style='width:200px;'/></td><td colspan='7' align='right' style='font-size:22px;font-weight:bold;vertical-align:top;'>$invoice_title</td></tr>";
+              $content .= "<tr><td rowspan='16' colspan='3'><img src='assets/img/logo.png' width='200' style='width:200px;'/></td><td colspan='7' align='right' style='font-size:22px;font-weight:bold;vertical-align:top;'>$invoice_title</td></tr>";
               $content .= "<tr><td colspan='4'></td><td colspan='3' align='right'>&nbsp;</td></tr>";
               $content .= "<tr><td colspan='4' style='font-size:14px;font-weight:bold;'>".$defaultCompanydetails[0]->companyname."</td><td colspan='3' align='right' style='font-weight:bold;'>".$defaultCompanydetails[0]->bank."</td></tr>";
               $content .= "<tr><td colspan='4'>".$defaultCompanydetails[0]->location."</td><td colspan='3' align='right'>Acc Name: ".$defaultCompanydetails[0]->companyname."</td></tr>";

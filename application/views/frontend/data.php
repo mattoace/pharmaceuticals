@@ -89,7 +89,8 @@ article {
     width: 98%;
 }
 .col-item .photo img {
-    height: 120px;
+   /* height: 120px;*/
+    height: 200px;
     margin: 0 auto;
     width: 70%;
 }
@@ -137,7 +138,8 @@ article {
 .col-item .photo img
 {
     margin: 0 auto;
-    width: 100%;
+   /* width: 100%;*/
+    width: 80%;
     padding: 1px;
     border-radius: 10px 10px 0 0 ;
 }
@@ -299,7 +301,7 @@ Hover the image
 	</div>
 
 	<div class="col-md-2" style=""> 
-       <img class="img-responsive" style='cursor:pointer;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " /><br>
+       <img class="img-responsive" onCLick="invoiceEntryPopup()" style='cursor:pointer;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " /><br>
 	</div>
 	<div class="col-md-2" >
   <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
@@ -447,7 +449,7 @@ Hover the image
 							print('<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">');
 							print('<i class="fa fa-heart"></i>');
 							print('</button>');
-							print('<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Rate">');
+							print('<button class="btn btn-default" type="button" onCLick="rate()" data-toggle="tooltip" data-placement="top" title="Rate">');
 							print('<i class="fa fa-exchange"></i>');
 							print('</button>');
 							print('</div>');
@@ -467,28 +469,56 @@ Hover the image
 						
 
 							print('<div class="info">');
-							print('<div class="row">');
+							/*print('<div class="row">');
+
 							print('<div class="price col-md-8">');
 							print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
 							print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color">Kes '.$product->drugprice.'</h5>');
 							print('</div>');
+
 							print('<div class="rating hidden-sm col-md-4">');
 							print(' <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
 							print(' </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
 							print('</i><i class="fa fa-star"></i>');
 							print('</div>');
-							print('</div>');
-							print('<div class="separator clear-left">');
-							print('<p class="btn-add">');
-							//print('<button class="btn btn-default my-cart-btn" style="padding:0px !important;" data-id='.$product->id.' data-name='.$product->genericname.' data-summary='.$product->genericname.' data-price='.$product->drugprice.' data-quantity="1" data-image='.$product->img.'><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm">  Add to Cart</span></button>      </a></p>');
-					        print('<button class="btn btn-default my-cart-btn" style="padding:0px !important;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;">Add to Cart</span></span></button>      </a></p>');
-							print(' </div>');
+
+							print('</div>');*/
+
+                            print('<div class="separator clear-left">');
+
+                            print('<div class="row">');
+
+                            print('<div class="row" style="margin-bottom:-10%;">');
+                            print('<div class="price col-md-8">');
+                            print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
+                            print('</div>');
+                            print('<div class="price col-md-4">');
+                            print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color">Kes '.$product->drugprice.'</h5>');
+                            print('</div>');
+                            print('</div>');
+
+                            print('<div class="price col-md-8" style="margin-top:0px; margin-left: -7%;">');
+
+                            print('<p class="btn-add">');							
+                            print('<button class="btn btn-default my-cart-btn" style="padding:0px !important; width: 100px;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;">Add to Cart</span></span></button>      </a></p>');
+                            print('</div>');
+                            print('<div class="price col-md-4" style="margin-top:0px;">');
+
+                            print('<div style="font-size: 8px; margin-top: 14%;margin-left: 50%;">');
+                            print(' <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
+                            print(' </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
+                            print('</i><i class="fa fa-star"></i>');
+                            print('</div>');
+
+                            print('</div>');
+
+                            print('</div>');	
+
+                            print(' </div>');
 							print(' <div class="clearfix">');
 							print(' </div>');
 							print(' </div>');
-
-
-								print('</p>');
+							print('</p>');
 
 							//print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
 							//print('<span style="font-size:14px;font-weight:200px;" class="price-new" >Kes '.$product->drugprice.'</span>');
@@ -508,8 +538,64 @@ Hover the image
 
 		         </script>
 
+
+
+
+                <div id="dialogpopupinvoice"   style="visibility:hidden;text-align:middle !important; width: 14%; position: fixed !important; top: 10% !important;"  class="well" >
+                   <div id =""  > <h5><b>Please enter your invoice number</b></h5> </div>
+                      <div class="col-md-12" > 
+                            <!-- general form elements -->
+                          <div style="margin-left:10%;margin-top:5%;"> 
+                           
+                                <form action=""  method="post" target="_top" onsubmit="return postInvoice(this)">
+                                <input type="input" name="invoiceno" id="invoiceno"   value=''>
+                                <input type="hidden" name="hosted_button_id" value="">
+                                <input type="image" src="https://tibamoja.co.ke/assets/img/credit/mpesa.png" border="0" name="submit" alt="Lipa na MPESA"  
+
+                                    style="
+
+                                    height: 30px;
+                                    margin-top: 2%;
+                                    width: 60%;
+                                    "
+                                >
+                                <img alt="" border="0" src="https://tibamoja.co.ke/assets/img/credit/mpesa.png" width="1" height="1">
+                                </form>
+                           
+                          </div>
+                          </div>                      
+          
+
+                </div>
+
+
+
+                <div id="dialogpopuprate" class="well" style="visibility:hidden;background-color: #a8cee2;text-align:center !important;">
+                   <div id ="" > <h5><b>Give a rating</b></h5> </div>
+
+                      <div class="col-md-12">
+                            <!-- general form elements -->
+                          <div style="margin-left:10%;margin-top:5%;"> 
+                           
+                                    <input type="radio" name="rate" value="1"> 1 &nbsp;&nbsp;
+                                    <input type="radio" name="rate" value="2"> 2 &nbsp;&nbsp;
+                                    <input type="radio" name="rate" value="3"> 3 &nbsp;&nbsp;
+                                    <input type="radio" name="rate" value="4"> 4 &nbsp;&nbsp;
+                                    <input type="radio" name="rate" value="5"> 5
+                           
+                          </div>
+                          </div>
+                       
+                          <div class="col-md-4"></div> 
+                          <div class="col-md-4">  </div> 
+                          <div class="col-md-4"><button type="button" id="saveRating" onClick="saveRating()" class="btn btn-block btn-danger enabled">Save</button> </div> 
+
+                </div>
+
+
 				<script src="<?php echo base_url('assets/plugins/pagination/jquery.twbsPagination.js')?>"></script>
 				<script src="<?php echo base_url('assets/plugins/jcart/jquery.mycart.js')?>"></script>
+                <script src='<?php echo base_url("assets/plugins/jquery-popup-overlay-gh-pages/jquery.popupoverlay.js");?>'></script>
 				<script src='<?php echo base_url("assets/js/front/data.js");?>'></script>
 				<script src='<?php echo base_url("assets/js/front/bootstrap-3.1.1.min.js");?>'></script>
 				

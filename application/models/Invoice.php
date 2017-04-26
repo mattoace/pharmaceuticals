@@ -17,6 +17,75 @@ class Invoice extends CI_Model {
 
     }
 
+
+
+ function fetchConfirmRefillIdsTax($storeid,$patientId,$orderno,$type)
+      {      
+
+        if($type == 1){
+            $description = "Invoice sent";
+        }else{
+            $description = "Awaiting Invoice";
+        }
+
+       $query = $this->db->query('
+            SELECT 
+               sum((pr.price * pr.qty) * (dp.tax/100)) as tax
+            FROM
+                stores s,
+               
+                transactions t,users u,
+                drugs d , patientrefill pr
+                    LEFT JOIN
+                drugprices dp ON pr.drugid = dp.drugid
+                LEFT JOIN orderitems oi ON oi.itemid = pr.id
+            WHERE
+                pr.id = t.orderid AND s.id = t.storeid
+                    AND pr.drugid = d.id
+                    AND u.personid = "'.$patientId.'"
+                    AND pr.description = "'.$description.'" 
+                     
+        AND u.id = pr.patientid 
+            AND s.id = "'.$storeid.'"  AND orderno ="'.$orderno.'"
+        '); 
+
+         return $query->result();
+    }
+ 
+
+
+ function fetchConfirmRefillIdsTotals($storeid,$patientId,$orderno,$type)
+      {      
+
+        if($type == 1){
+            $description = "Invoice sent";
+        }else{
+            $description = "Awaiting Invoice";
+        }
+
+       $query = $this->db->query('
+            SELECT 
+               sum(pr.price * pr.qty) as totals
+            FROM
+                stores s,
+               
+                transactions t,users u,
+                drugs d , patientrefill pr
+                    LEFT JOIN
+                drugprices dp ON pr.drugid = dp.drugid
+                LEFT JOIN orderitems oi ON oi.itemid = pr.id
+            WHERE
+                pr.id = t.orderid AND s.id = t.storeid
+                    AND pr.drugid = d.id
+                    AND u.personid = "'.$patientId.'"
+                    AND pr.description = "'.$description.'" 
+                     
+        AND u.id = pr.patientid 
+            AND s.id = "'.$storeid.'"  AND orderno ="'.$orderno.'"
+        '); 
+
+         return $query->result();
+    }
  
 
  function fetchConfirmRefillIds($storeid,$patientId,$orderno,$type)

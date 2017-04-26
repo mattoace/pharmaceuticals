@@ -207,7 +207,7 @@ nav {
 
 
 
-<iframe class="dataframe" id="dataframe" src="data-products?pg=1&st=1" scrolling="auto" ></iframe>
+<iframe class="dataframe" id="dataframe" name="dataframe" src="data-products?pg=1&st=1" scrolling="auto" ></iframe>
 
 <div class="container">
 
@@ -232,7 +232,7 @@ nav {
 		position: relative;		
 		cursor:hand;
 	"> 
-       <img class="img-responsive" style='width:370px;height:80px;cursor:pointer;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " />
+       <img class="img-responsive"  style='width:370px;height:80px;cursor:pointer;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " />
 	</div>
 
 </div>

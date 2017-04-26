@@ -609,7 +609,7 @@ background-color: #1484C7;
 <!-- //make -->
 <!-- explore -->
 <div class="explore agile all_pad ">
-	<div class="container">
+	<!--<div class="container">
 		<h3 class="title">Search for medicine<span></span></h3>
 		<div class="explore-grids">
 			<div class="col-md-4 explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s">
@@ -628,31 +628,13 @@ background-color: #1484C7;
 						<div class="section-single">
 							<div class="">
 								<input type="text" name="productname" id="productname" placeholder="Enter Product Name" required="">
-							</div>	
-				<!-- 			<div class="section_room">
-								<select  onchange="change_country(this.value)" class="frm-field required">
-									<option value="null">Any Location</option>
-									<option value="null">Australia</option>         
-									<option value="AX">Sweden</option>
-									<option value="AX">Netherlands</option>
-									<option value="AX">Bangkok</option>
-								</select>
-							</div> -->
+							</div>					
 							<div class="clearfix"></div>
 						</div>
-<!-- 						<div class="bath">
-							<h4>Bed rooms</h4>
-								<input type="number" class="text_box" value="3" min="1">
-						</div>
-						<div class="bath">
-							<h4>Bath rooms</h4>
-								<input type="number" class="text_box" value="4" min="1">	
-						</div> -->
-						<div class="clearfix"></div>
+						<div class="clearfix"></div>						
 						<div class="range-slider">
 							<h4>Price range</h4>
-							<div id="slider-range"></div>
-							<!--<script type="text/javascript" src="js/jquery-ui.js"></script>-->
+							<div id="slider-range"></div>							
 							<script src='<?php echo base_url("assets/js/front/jquery-ui.js");?>'></script>			
 								<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
 								<script type='text/javascript'>//<![CDATA[ 
@@ -675,16 +657,10 @@ background-color: #1484C7;
 					</form>
 				</div>
 			</div>
-			<div class="col-md-8 explore-right wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" style="margin-top: -4.8%; padding:0px;">
-				<!-- <h4>Our Clients</h4> -->
+			<div class="col-md-8 explore-right wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" style="margin-top: -4.8%; padding:0px;">			
 				<div class="flex-slider">
-
-					<div class="explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" id="searchholdmeds" style="padding:0px;background-color:transparent !important;">
-					
-
+					<div class="explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" id="searchholdmeds" style="padding:0px;background-color:transparent !important;">		
 					</div>
-
-
 					<script type="text/javascript">
 									$(window).load(function() {
 										$("#flexiselDemo1").flexisel({
@@ -711,14 +687,13 @@ background-color: #1484C7;
 										});
 										
 									});
-					</script>
-				<!--	<script type="text/javascript" src="js/jquery.flexisel.js"></script> -->
+					</script>	
 					<script src='<?php echo base_url("assets/js/front/jquery.flexisel.js");?>'></script>
 				</div>
 			</div>
 			<div class="clearfix"></div>
 		</div>
-	</div>
+	</div>-->
 </div>
 <!-- //explore -->
 <!-- differencials -->

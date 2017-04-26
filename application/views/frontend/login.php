@@ -98,7 +98,7 @@ nav {
 							<input type="password" name="pass" id="pass" placeholder="Password" required="">	
 							<p class="no-marg"><a href="#">Forgot Password?</a></p>
 						</div>
-						<input type="submit" value="Signin" >
+						<input type="submit" value="Log In" >
 					</form>
 					<p >Don't have an Account? <a href="/">Register Here</a></p>
 				</div>

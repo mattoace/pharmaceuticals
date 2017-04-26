@@ -685,10 +685,9 @@
                        $("#genericname").val("");
                        $("#drugprice").val("");
                        $("#tax").val("");
-                       
-
-		        	   $("#createNew").css("visibility", "visible");
-                       $("#saveRecord").css("visibility", "hidden");
+		        	   $("#createNewDrug").css("visibility", "visible");
+                       $("#saveDrugRecord").css("visibility", "hidden");
+                       $("#createNewDrug").html("Add New");
 		        	   $("#popupheading").html("<b><h4>Add a new drug</h4></b>");
 		               $('#dialogpopup').popup('show');
 		             }
@@ -723,8 +722,9 @@
 
 		        function edit(){                   
 
-                    $("#createNew").css("visibility", "hidden");
-                    $("#saveRecord").css("visibility", "visible");
+                    $("#createNewDrug").css("visibility", "hidden");
+                    $("#saveDrugRecord").css("visibility", "visible");
+                    $("#saveDrugRecord").html("Save Record");
 
 		        	postVars = {"id": selectedRow}
 		        	  $.post("med-fetchedit",postVars,function(data){
@@ -766,12 +766,13 @@
 						"id": $("#id").val(),
 						"genericname": $("#genericname").val(),
 						"drugprice": $("#drugprice").val(),
-						"tax": $("#tax").val()
-						
+						"tax": $("#tax").val()						
 					}
 
-                   $.post("med-edit",postVars,function(){
+                   $("#saveDrugRecord").html("<b>Saving...</b>");
 
+                   $.post("med-edit",postVars,function(){
+                      $("#saveDrugRecord").html("<b>Saved</b>");
                         alert("Successfully Saved!");
                        // table.ajax.reload();
                        	    loadUrl = "med-fetch?id="+storeDropdown.val();				    
@@ -831,9 +832,9 @@
 						"drugprice": $("#drugprice").val(),
 						"tax": $("#tax").val()						
 					}
-
+                  $("#createNewDrug").html("Adding Record..");
                    $.post("med-add?id="+storeDropdown.val(),postVars,function(){
-
+                        $("#createNewDrug").html("Successfully added!");
                         alert("Successfully Saved!");
                         table.ajax.reload();
 					    $('#dialogpopup').popup('hide');

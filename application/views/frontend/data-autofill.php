@@ -93,7 +93,8 @@ article {
     width: 98%;
 }
 .col-item .photo img {
-    height: 120px;
+  /*  height: 120px;*/
+   height: 200px;
     margin: 0 auto;
     width: 70%;
 }
@@ -141,7 +142,8 @@ article {
 .col-item .photo img
 {
     margin: 0 auto;
-    width: 100%;
+   /* width: 100%;*/
+     width: 80%;
     padding: 1px;
     border-radius: 10px 10px 0 0 ;
 }
@@ -409,7 +411,74 @@ $drugid = $_GET['id'];
                   $j=0;
 		         foreach ($row as $key => $product) {
 
-							print('<div class="col-sm-3">');
+
+                            print('<div class="col-sm-3">');
+                            print('<article class="col-item">');
+                            print('<div class="photo">');
+                            print('<div class="options">');
+                            print('<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">');
+                            print('<i class="fa fa-heart"></i>');
+                            print('</button>');
+                            print('<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Rate">');
+                            print('<i class="fa fa-exchange"></i>');
+                            print('</button>');
+                            print('</div>');
+                            print('<div class="options-cart"> ');                   
+                            print('<button class="btn btn-default my-cart-btn" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price="'.$product->drugprice.'" data-quantity="1" data-image="'.$product->img.'">');
+                            print('<span class="fa fa-shopping-cart"></span>');
+                            print('</button>');
+                            print('</div>');
+                            print('<a href="#"> <img src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
+                            print('</div>');
+                            print('<div class="info">');
+
+                            print('<div class="row">');
+                            print('<div class="price-details col-md-6">');
+                            print('<p class="details">'); 
+                            print('<div class="info">');                          
+
+                            print('<div class="separator clear-left">');
+
+                            print('<div class="row">');
+
+                            print('<div class="row" style="margin-bottom:-10%;">');
+                            print('<div class="price col-md-8">');
+                            print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
+                            print('</div>');
+                            print('<div class="price col-md-4">');
+                            print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color">Kes '.$product->drugprice.'</h5>');
+                            print('</div>');
+                            print('</div>');
+
+                            print('<div class="price col-md-8" style="margin-top:0px; margin-left: -7%;">');
+
+                            print('<p class="btn-add">');                           
+                            print('<button class="btn btn-default my-cart-btn" style="padding:0px !important; width: 100px;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;">Add to Cart</span></span></button>      </a></p>');
+                            print('</div>');
+                            print('<div class="price col-md-4" style="margin-top:0px;">');
+
+                            print('<div style="font-size: 8px; margin-top: 14%;margin-left: 50%;">');
+                            print(' <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
+                            print(' </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
+                            print('</i><i class="fa fa-star"></i>');
+                            print('</div>');
+
+                            print('</div>');
+
+                            print('</div>');   
+
+                            print(' </div>');
+                            print(' <div class="clearfix">');
+                            print(' </div>');
+                            print(' </div>');
+                            print('</p>');                           
+                            print('</div>');
+                            print('</div>');
+                            print('</div>');
+                            print('</article>');          
+                            print('</div>');
+
+							/*print('<div class="col-sm-3">');
 							print('<article class="col-item">');
 							print('<div class="photo">');
 							print('<div class="options">');
@@ -428,13 +497,9 @@ $drugid = $_GET['id'];
 							print('<a href="#"> <img src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
 							print('</div>');
 							print('<div class="info">');
-
 							print('<div class="row">');
 							print('<div class="price-details col-md-6">');
 							print('<p class="details">');
-							//print($product->genericname);
-						
-
 							print('<div class="info">');
 							print('<div class="row">');
 							print('<div class="price col-md-8">');
@@ -448,22 +513,18 @@ $drugid = $_GET['id'];
 							print('</div>');
 							print('</div>');
 							print('<div class="separator clear-left">');
-							print('<p class="btn-add">');
-							//print('<button class="btn btn-default my-cart-btn" style="padding:0px !important;" data-id='.$product->id.' data-name='.$product->genericname.' data-summary='.$product->genericname.' data-price='.$product->drugprice.' data-quantity="1" data-image='.$product->img.'><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm">  Add to Cart</span></button>      </a></p>');
+							print('<p class="btn-add">');							
 					        print('<button class="btn btn-default my-cart-btn" style="padding:0px !important;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;">Add to Cart</span></span></button>      </a></p>');
 							print(' </div>');
 							print(' <div class="clearfix">');
 							print(' </div>');
 							print(' </div>');
-							print('</p>');
-
-							//print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
-							//print('<span style="font-size:14px;font-weight:200px;" class="price-new" >Kes '.$product->drugprice.'</span>');
+							print('</p>');					
 							print('</div>');
 							print('</div>');
 							print('</div>');
 							print('</article>');          
-							print('</div>');
+							print('</div>');*/
 
 		         }?> 
 

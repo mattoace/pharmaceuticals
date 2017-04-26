@@ -1374,7 +1374,7 @@ if($isExpress){
             //<!--<img src='http://tibamoja.co.ke/assets/img/logo.png' width='200' style='width:200px;'/>-->
 
               $content .= "<table cellspacing='0' cellpadding='0' style='width:100%;font-style:calibri;font-size:10px;background: #FFFFFF $export_bg;position: absolute;background-position: center; background-repeat: no-repeat; top: -10px;' border='0'>";
-              $content .= "<tr><td rowspan='16' colspan='3'><img src='http://tibamoja.co.ke/assets/img/logo.png' width='200' style='width:200px;'/></td><td colspan='7' align='right' style='font-size:22px;font-weight:bold;vertical-align:top;'>$invoice_title</td></tr>";
+              $content .= "<tr><td rowspan='16' colspan='3'><img src='assets/img/logo.png' width='200' style='width:200px;'/></td><td colspan='7' align='right' style='font-size:22px;font-weight:bold;vertical-align:top;'>$invoice_title</td></tr>";
               $content .= "<tr><td colspan='4'></td><td colspan='3' align='right'>&nbsp;</td></tr>";
               $content .= "<tr><td colspan='4' style='font-size:14px;font-weight:bold;'>".$defaultCompanydetails[0]->companyname."</td><td colspan='3' align='right' style='font-weight:bold;'>".$defaultCompanydetails[0]->bank."</td></tr>";
               $content .= "<tr><td colspan='4'>".$defaultCompanydetails[0]->location."</td><td colspan='3' align='right'>Acc Name: ".$defaultCompanydetails[0]->companyname."</td></tr>";
@@ -1491,7 +1491,7 @@ if($isExpress){
               $content .= "<tr><td style='padding-bottom:5px;color:#8d8f92;font-size:9px;border-bottom:1px solid #d0d0d2;' colspan=6'>Thank you for your order.</td></tr>";
               $content .= "<tr><td style='padding-top:5px;color:#8d8f92;font-size:9px;' colspan=6'>Our general terms and conditions of sale are applicable to all our deliveries and quotations</td></tr>";
               $content .= "</table>";          
-
+             //var_dump($content); exit();
         
           return $content;
 

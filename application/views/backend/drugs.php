@@ -229,7 +229,7 @@
                          <!--  <button type="button" onClick="createNew()" class="btn btn-primary">Save</button>  -->
                           <div class="col-md-4"></div> 
                           <div class="col-md-4">  </div> 
-                          <div class="col-md-4"><button style="visibility:hidden;" type="button" id="saveRecord" onClick="saveRecord()" class="btn btn-block btn-danger enabled">Save</button><button type="button" id="createNew" onClick="createNew()" class="btn btn-block btn-danger enabled">Save</button> </div> 
+                          <div class="col-md-4"><button style="visibility:hidden;" type="button" id="saveDrugRecord" onClick="saveRecord()" class="btn btn-block btn-danger enabled">Save Record</button><button type="button" id="createNewDrug" onClick="createNew()" class="btn btn-block btn-danger enabled">Add New</button> </div> 
 
                 </div>
 

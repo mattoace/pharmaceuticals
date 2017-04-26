@@ -34,7 +34,6 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 
 
-
 	/*http://esimakin.github.io/twbs-pagination/*/
  offset = 10;
  category = 2;

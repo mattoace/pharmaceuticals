@@ -71,7 +71,7 @@ function getCookie(c_name)
  
          colheight = totalRecords / 4 ; 
 
-         iheight = (440 * colheight ) + 500 ;
+         iheight = (440 * colheight ) + 750 ;
 
          parent.callResize(iheight);
     }else{    
@@ -88,7 +88,7 @@ function getResize(){
  
          colheight = totalRecords / 4 ; 
 
-         iheight = (190 * colheight ) + 500 ;
+         iheight = (190 * colheight ) + 750 ;
 
          parent.callResize(iheight);
     }else{    
@@ -103,6 +103,28 @@ function getTotalCount(){
       return totalRecords;
     }
 
-//alert(getTotalCount());
+function rate(){
+      $('#saveRating').html("Save");
+      $('#dialogpopuprate').popup('show');
+}
+
+function saveRating(){
+  $('#saveRating').html("<b>Rating Saved!</b>");
+  $('#dialogpopuprate').popup('hide'); 
+}
+
+function invoiceEntryPopup(){
+
+ $('#dialogpopupinvoice').popup('show');
+ 
+}
+
+
+function postInvoice(frmObj){
+
+parent.window.location = "https://tibamoja.co.ke/ws:pay-invoice?invoiceno="+$('#invoiceno').val();
+
+return false;
+}
 
 
