@@ -179,6 +179,70 @@ public function drugSearch(){
    }
 
 
+   public function pharmSearch(){
+
+    $response = "
+        <style>
+        .team-img {
+            background: #fff none repeat scroll 0 0;
+            border-top: 2px solid transparent;
+            box-shadow: 0 0 8px 0 #d4d4d4;
+            height: 400px;
+            padding: 20px;
+            width: 350px !important;
+            margin-left: 0.3% !important;         
+        }
+        .ih-item.circle {
+    width: auto;
+   }
+   .ih-item.circle.effect1 .spinner { 
+    height: auto;
+    width: auto;
+}
+</style>
+<script>
+</script>
+    ";
+
+   $cnt = 0;
+    foreach ($this->transactions->searchPharmacyDetails($arrayParameters) as $result) {
+         if($cnt <= 3){
+               $response  .='<div class="team-img" style="width:30%;float:left;padding: 0; margin-bottom: 1%;  margin-left: 2%;">';
+               $cnt = -1;
+            }else{
+                 $response  .='<div class="team-img" style="width:30%;padding: 0; margin-bottom: 1%;  margin-left: 2%;">';   
+            }    
+
+    $response .='<div class="ih-item circle effect1"><a href="javascript:void()" onclick=loadMap('.$result->latitude.','.$result->longitude.') >';
+    $response .='<div class="spinner"><img style="width:100%;height:250px;" src='.$result->img.' alt="" class=""></div>';                                               
+    $response .='<div class="info">';
+ 
+
+    $response .= '<b>Name : </b>' .$result->storename .'<br>';
+    $response .= '<b>Location  : </b>' .$result->location.'<br>';
+    $response .= '<b>Telephone : </b>' .$result->telephone .'<br>' ;
+    $response .= '<b>Email : </b>' .$result->email .'<br>' ; 
+
+    $response .='<div class="info-back">';
+    $response .='</div>';
+    $response .='</div></a></div>'; 
+
+   
+
+
+
+    $response .='</div>';
+
+   
+    $cnt++;
+   }
+
+
+    echo json_encode(array("response"=>$response,"dosedetails"=>$dosedetails));
+   }
+
+
+
     public function scanDrug(){
 
       $drugid = $this->input->post("id");

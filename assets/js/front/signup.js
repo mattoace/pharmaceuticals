@@ -20,7 +20,7 @@ function searchMedications(){
         "pricerange":$( "#amount" ).val()
       }
      $("#executesearch" ).val("Searching...");
-     $.post("med-search",postVars,function(data){
+     $.post("index.php/med-search",postVars,function(data){
      $("#searchholdmeds").html(data.response); 
         $( "#executesearch" ).val("Search Complete!");
      },"json"); 
@@ -28,6 +28,23 @@ function searchMedications(){
 
 
 }
+
+
+function loadPharmacies(){ 
+	 postVars = {}
+     $.post("med-pharm",postVars,function(data){
+     $("#pharmholdmeds").html(data.response);        
+     },"json"); 
+}
+
+function loadMap(a,b){ 
+    $('#mylatitude').val(a);
+    $('#mylongitude').val(b);  
+    $('#dialogpopupmap').popup('show');
+    locationObject.init($('.gllpLatlonPicker'));
+return false;
+}
+
 
 jQuery(function(){
 
@@ -41,4 +58,6 @@ jQuery('#camera_wrap_1').camera({
 	pagination: false,
 	thumbnails: true
 });*/
+
+loadPharmacies();
 });

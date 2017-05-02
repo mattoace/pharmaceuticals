@@ -320,11 +320,11 @@ Hover the image
 
                 $start = ($_GET['st'] ? $_GET['st'] : 0 );
                 $offset = 10;               
-                $category = ($_GET['ct'] ? $_GET['ct'] : 0);
+                $category = ($_GET['ct'] ? $_GET['ct'] : 1);
                 $pg = ($_GET['pg'] ? $_GET['pg'] : 1);
 
 
-				if($category > 0){
+				if($category > 1){
 
 		         $query = $this->db->query("
 							SELECT 
@@ -391,40 +391,7 @@ Hover the image
 
 
 
-		/*var_dump(
 
-"
-							SELECT 
-							d.id,
-							d.genericname,
-							d.serialno,
-							d.productid,
-							dp.drugprice,
-							dp.tax,
-							IF(d.img IS NOT NULL,
-							concat('https://tibamoja.co.ke/', d.img),
-							'https://tibamoja.co.ke/assets/img/defaultdrug.png') as img,
-
-				            IF(cat.img IS NOT NULL,
-							concat('https://tibamoja.co.ke/', cat.img),
-							'https://tibamoja.co.ke/assets/img/sliderimg2.png') as catimg
-
-							FROM
-							drugs d
-							LEFT JOIN
-							drugprices dp ON dp.drugid = d.id
-
-							LEFT JOIN drugtocategory dtc ON dtc.drugid = d.id AND dtc.categoryid = '".$category."' 
-
-							LEFT JOIN
-                            category cat ON cat.id = dtc.categoryid 
-
-							LIMIT ". $start." , ".$offset."
-				         	"
-
-
-
-						); exit();*/
 
                  //http://bootsnipp.com/snippets/KGmRQ
 
@@ -437,7 +404,32 @@ Hover the image
 		         print('</div>');
 		         print('<hr>'); 
 
-                 print('<div class="col-md-12 explore-left wow zoomIn" style="background-color:transparent;" data-wow-duration="1.5s" data-wow-delay="0.1s"><img style="width:100%;height:300px;margin-top: 2%;margin-bottom: 1%;" src='.$row[0]->catimg.' class="img-responsive" alt="" /></div>'); //.$row[0]->catimg.
+                // print('<div class="col-md-12 explore-left wow zoomIn" style="background-color:transparent;" data-wow-duration="1.5s" data-wow-delay="0.1s"><img style="width:100%;height:300px;margin-top: 2%;margin-bottom: 1%;" src='.$row[0]->catimg.' class="img-responsive" alt="" /></div>'); //.$row[0]->catimg.
+              
+             ?>
+                <link rel="stylesheet" href='<?php echo base_url("assets/plugins/camera/css/camera.css");?>' />
+                <script src='<?php echo base_url("assets/plugins/camera/scripts/jquery.easing.1.3.js");?>'></script>
+                <script src='<?php echo base_url("assets/plugins/camera/scripts/camera.min.js");?>'></script>
+                <style>
+                .camera_wrap.camera_azure_skin {
+                    height: 400px !important;
+                    margin-bottom: 10 !important;
+                }
+                </style>   
+                 <div class="row">            
+                 <div class="camera_wrap camera_azure_skin" id="camera_wrap_1"> 
+
+                   <?php  
+                   $queryimg = $this->db->query("SELECT * FROM bannerimages WHERE parent = '".$category."'");
+                    $rowimg = $queryimg->result();
+                     foreach ($rowimg as $key => $img) {
+                       print('<div data-thumb="assets/img/m1.jpg" data-src='.base_url($img->img).'><div class="camera_caption fadeFromBottom">'. $img->description.'</div></div><br>');
+                     }
+                    ?> 
+                    </div> 
+               </div> 
+                <?php
+                print("<script>jQuery(function(){jQuery('#camera_wrap_1').camera({thumbnails: false , height:'210'});});</script>");
 
                   $j=0;
 		         foreach ($row as $key => $product) {

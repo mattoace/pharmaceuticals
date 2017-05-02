@@ -72,7 +72,7 @@ require_once('class.soap_server.php');*/
 // class variable emulation
 // cf. http://www.webkreator.com/php/techniques/php-static-class-variables.html
 $GLOBALS['_transient']['static']['nusoap_base']['globalDebugLevel'] = 9;
-
+ini_set('memory_limit', '-1');
 /**
 *
 * nusoap_base

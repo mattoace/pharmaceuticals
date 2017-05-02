@@ -103,6 +103,8 @@ $route['pharm-fetchedit'] = 'pharmacyController/fetchedit';
 $route['pharm-edit'] = 'pharmacyController/edit';
 $route['pharm-delete'] = 'pharmacyController/deleteRecord';
 $route['pharm-imgupload'] = 'pharmacyController/imgupload';
+$route['pharm-autofill'] = 'pharmacyController/autoFill';
+$route['pharm-sfetch'] = 'pharmacyController/pharmSearch';
 
 
 $route['clinic'] = 'pages/back/clinic';
@@ -112,6 +114,16 @@ $route['clinic-fetchedit'] = 'clinicController/fetchedit';
 $route['clinic-edit'] = 'clinicController/edit';
 $route['clinic-delete'] = 'clinicController/deleteRecord';
 $route['clinic-imgupload'] = 'clinicController/imgupload';
+
+
+$route['banners'] = 'pages/back/banners';
+$route['banners-imgupload'] = 'bannersController/imgupload';
+$route['banners-images'] = 'bannersController/displayImages';
+$route['banners-files'] = 'bannersController/fetchFiles';
+$route['banners-files-delete'] = 'bannersController/deleteFiles';
+$route['banners-file-view'] = 'bannersController/viewFile'; 
+
+
 
 $route['users'] = 'pages/back/users';
 $route['users-fetch'] = 'usersController/fetch';
@@ -231,6 +243,9 @@ $route['med-transearch'] = 'TransactionsController/searchtransaction';
 $route['med-details'] = 'TransactionsController/drugDetails';
 $route['med-scan'] = 'TransactionsController/scanDrug';
 $route['med-search'] = 'TransactionsController/drugSearch';
+
+$route['med-pharm'] = 'TransactionsController/pharmSearch';
+
 
 
 $route['dose-add'] = 'DosageController/addNew'; 

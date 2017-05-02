@@ -670,6 +670,29 @@ class Transactions extends CI_Model {
     }
 
 
+   function searchPharmacyDetails($arrayParameters)
+      {       
+        $this->db->select('stores.id,stores.storename,stores.location,stores.latitude,stores.longitude,stores.longitude,stores.additionalservices,stores.comments,stores.address,stores.telephone,stores.email ,IF(stores.img IS NOT NULL ,concat("http://tibamoja.co.ke/",stores.img),"http://tibamoja.co.ke/assets/img/pharmacy1.jpg")  img ');
+        $this->db->from('stores');
+        $query = $this->db->get();
+    return $query->result();
+    }
+
+   function searchPharmacysDetails($parameter)
+      {    
+           $query = $this->db->query('
+            SELECT 
+
+            stores.id,stores.storename,stores.location,stores.latitude,stores.longitude,stores.longitude,stores.additionalservices,stores.comments,stores.address,stores.telephone,stores.email ,IF(stores.img IS NOT NULL ,concat("http://tibamoja.co.ke/",stores.img),"http://tibamoja.co.ke/assets/img/pharmacy1.jpg")  img 
+
+
+            FROM stores WHERE stores.storename LIKE "%'.$parameter .'%" 
+            '
+        ); 
+    return $query->result();
+    }
+
+
   function getDrugScannedDetails($drugid)
       { 
        $query = $this->db->query('

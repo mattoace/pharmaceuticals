@@ -90,16 +90,95 @@ class PharmacyController extends CI_Controller {
 
     } 
 
-  public function deleteRecord(){
+ public function deleteRecord(){
         $qcd = $this->pharmacy->deleteRecord($this->input->post("id"));
   }
 
-  public function imgupload(){ 
+ public function imgupload(){ 
 
         $upload_handler = new PharmImgUploadHandler();
 
    }
 
+ public function autoFill(){
+
+        $list = $this->pharmacy->autoFill($this->input->get("query"));
+
+         foreach ($list as $pharmacy) {
+
+            $array[] = array (
+                        'label' => $pharmacy->id,
+                        'value' => $pharmacy->storename
+                    );
+         }
+
+        echo json_encode ($array);
+   } 
+
+
+
+      public function pharmSearch(){
+
+                $this->load->model('Transactions','transactions');
+
+                $response = "
+                    <style>
+                    .team-img {
+                        background: #fff none repeat scroll 0 0;
+                        border-top: 2px solid transparent;
+                        box-shadow: 0 0 8px 0 #d4d4d4;
+                        height: 400px;
+                        padding: 20px;
+                        width: 350px !important;
+                        margin-left: 15.3% !important;         
+                    }
+                    .ih-item.circle {
+                width: auto;
+               }
+               .ih-item.circle.effect1 .spinner { 
+                height: auto;
+                width: auto;
+            }
+            </style>
+            <script>
+            </script>
+                ";
+
+               $cnt = 0;
+                foreach ($this->transactions->searchPharmacysDetails($this->input->post("id")) as $result) {
+                     if($cnt <= 3){
+                           $response  .='<div class="team-img" style="width:30%;float:left;padding: 0; margin-bottom: 1%;  margin-left: 20%;">';
+                           $cnt = -1;
+                        }else{
+                             $response  .='<div class="team-img" style="width:30%;padding: 0; margin-bottom: 1%;  margin-left: 20%;">';   
+                        }    
+
+                $response .='<div class="ih-item circle effect1"><a href="javascript:void()" onclick=loadMap('.$result->latitude.','.$result->longitude.') >';
+                $response .='<div class="spinner"><img style="width:100%;height:250px;" src='.$result->img.' alt="" class=""></div>';                                               
+                $response .='<div class="info">';             
+
+                $response .= '<b>Name : </b>' .$result->storename .'<br>';
+                $response .= '<b>Location  : </b>' .$result->location.'<br>';
+                $response .= '<b>Telephone : </b>' .$result->telephone .'<br>' ;
+                $response .= '<b>Email : </b>' .$result->email .'<br>' ; 
+
+                $response .='<div class="info-back">';
+                $response .='</div>';
+                $response .='</div></a></div>'; 
+
+               
+
+
+
+                $response .='</div>';
+
+               
+                $cnt++;
+               }
+
+
+                echo json_encode(array("response"=>$response,"dosedetails"=>$dosedetails));
+               }
 
 
  

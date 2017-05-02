@@ -102,5 +102,22 @@ class Pharmacy extends CI_Model {
       $this->db->where('id', $id);
       $this->db->delete('stores'); 
     }
+
+
+    public function autoFill($Parameter){
+       $query = $this->db->query('
+
+        SELECT 
+
+        stores.id,stores.storename,stores.location,stores.latitude,stores.longitude,stores.longitude,stores.additionalservices,stores.comments,stores.address,stores.telephone,stores.email ,IF(stores.img IS NOT NULL ,concat("http://tibamoja.co.ke/",stores.img),"http://tibamoja.co.ke/assets/img/pharmacy1.jpg")  img 
+
+        FROM stores 
+
+        WHERE LOWER(stores.storename) LIKE "%'.$Parameter .'%"       
+       '); 
+
+    return $query->result();
+
+    }
  
 }

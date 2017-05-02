@@ -1,4 +1,9 @@
 
+<?php  
+ if($_SERVER['HTTPS']){
+  $protocol = 'https'; 
+ }else{ $protocol = 'http'; }
+ ?>
 <body>
 		<link rel="stylesheet" href='<?php echo base_url("assets/plugins/camera/css/camera.css");?>' />
 		<link rel="stylesheet" href='<?php echo base_url("assets/css/products.css");?>'  media="all" />
@@ -322,26 +327,6 @@ background-color: #1484C7;
 <!-- //header -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -609,10 +594,13 @@ background-color: #1484C7;
 <!-- //make -->
 <!-- explore -->
 <div class="explore agile all_pad ">
-	<!--<div class="container">
-		<h3 class="title">Search for medicine<span></span></h3>
+
+
+
+	<div class="container">
+		<h3 class="title" style="background-color: #16A9EF;">Pharmacy / Clinic List<span></span></h3>
 		<div class="explore-grids">
-			<div class="col-md-4 explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s">
+			<!--<div class="col-md-4 explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s">
 				<div class="main">
 					<form action="#" method="post">
 						<h4>Find medication</h4>
@@ -656,18 +644,112 @@ background-color: #1484C7;
 						<input type="button" id="executesearch" class="submit" style="width:100%;" value="Find medication" onCLick="searchMedications()">
 					</form>
 				</div>
-			</div>
-			<div class="col-md-8 explore-right wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" style="margin-top: -4.8%; padding:0px;">			
+			</div>-->
+			<div class="col-md-12 explore-right wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" style="margin-top: -4.8%; padding:0px;">			
 				<div class="flex-slider">
-					<div class="explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" id="searchholdmeds" style="padding:0px;background-color:transparent !important;">		
+					
+				<!-- 	<div class="explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" id="searchholdmeds" style="padding:0px;background-color:transparent !important;">
+					</div> -->
+
+				
+			
+				<script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
+				<style>
+			        .tt-hint,
+			        .pharmsearch{
+			            border: 2px solid #CCCCCC;
+			            border-radius: 8px 8px 8px 8px;
+			           /* font-size: 24px;*/
+			            height: 35px;
+			            line-height: 30px;
+			            outline: medium none;
+			            padding: 8px 12px;
+			            width: 400px;
+			            margin-bottom: -7%;
+			            margin-top: 2%;
+			        }
+
+			        .tt-dropdown-menu {
+			            width: 400px;
+			            margin-top: 5px;
+			            padding: 8px 12px;
+			            background-color: #fff;
+			            border: 1px solid #ccc;
+			            border: 1px solid rgba(0, 0, 0, 0.2);
+			            border-radius: 8px 8px 8px 8px;
+			            /*font-size: 18px;*/
+			            color: #111;
+			            background-color: #F1F1F1;
+			        }
+
+				</style>
+			    <script>
+			       $(document).ready(function() {
+
+			            $('input.pharmsearch').typeahead({
+			                name: 'pharmsearch',
+			                remote: 'pharm-autofill?query=%QUERY'
+
+			            });
+
+			        $('input.pharmsearch').bind('typeahead:selected', function(obj, datum, name) {  
+			            	 postVars = {"id":datum.value}
+						     $.post("pharm-sfetch",postVars,function(data){
+						     $("#pharmholdmeds").html(data.response);  
+
+
+							/*$("#pharmholdmeds").flexisel({
+														visibleItems: 1,
+													    itemsToScroll: 1,
+													    animationSpeed:0,
+													    infinite: false,
+													    navigationTargetSelector: null,
+													    autoPlay: {
+													      enable: false,
+													      interval: 5000,
+													      pauseOnHover: true
+													    },
+													    responsiveBreakpoints: { 
+													      portrait: { 
+													        changePoint:480,
+													        visibleItems: 1,
+													        itemsToScroll: 1
+													      }, 
+													        landscape: { 
+													        changePoint:640,
+													        visibleItems: 2,
+													        itemsToScroll: 2
+													      },
+													        tablet: { 
+													        changePoint:768,
+													        visibleItems: 3,
+													        itemsToScroll: 3
+													      }
+													    }
+													});*/
+
+						     },"json"); 	
+			         });
+
+			        })
+			    </script>
+	            <div class="content">
+			         <form style="margin-top:-4%">
+			           <input type="text" name="pharmsearch" size="30" class="pharmsearch" placeholder="Search....">
+			         </form> 
+		         </div>
+		          <hr> 
+					<div class="explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" id="pharmholdmeds" style="padding:0px;background-color:transparent !important;">
+					
 					</div>
+
 					<script type="text/javascript">
 									$(window).load(function() {
-										$("#flexiselDemo1").flexisel({
-											visibleItems: 2,
-											animationSpeed: 1000,
+										$("#pharmholdmeds").flexisel({
+											visibleItems: 1,
+											animationSpeed: 3000,
 											autoPlay: true,
-											autoPlaySpeed: 3000,    		
+											autoPlaySpeed: 10000,    		
 											pauseOnHover: true,
 											enableResponsiveBreakpoints: true,
 											responsiveBreakpoints: { 
@@ -693,7 +775,7 @@ background-color: #1484C7;
 			</div>
 			<div class="clearfix"></div>
 		</div>
-	</div>-->
+	</div>
 </div>
 <!-- //explore -->
 <!-- differencials -->
@@ -766,5 +848,33 @@ background-color: #1484C7;
 	</div>
 </div>
 
+
+<script src="<?php  echo $protocol; ?>://maps.googleapis.com/maps/api/js?key=AIzaSyCvLjXCDMebLLpmMPylPUTM3b4h7cpGnyo"></script> 
+<link rel="stylesheet" href='<?php echo base_url("assets/plugins/jquery_lat_long/css/jquery-gmaps-latlon-picker.css");?>'>                        
+<script src='<?php echo base_url("assets/plugins/jquery_lat_long/js/jquery-gmaps-latlon-picker.js");?>'></script>
+
+     <div id="dialogpopupmap" class="well" style="visibility:hidden;width: 50%;">   
+
+          <div id="popupmap" class="row" style="">
+
+		    <div class="col-md-12">
+                <fieldset class="gllpLatlonPicker" >
+                    <input type="text" class="gllpSearchField">
+                    <input type="button" class="gllpSearchButton" value="search">
+                    <div class="gllpMap" style="width:100% !important;height:490px !important;margin-top: -5% !important;">Google Maps</div>
+                    <input type="hidden" id="mylatitude" class="gllpLatitude" value="-2.34455"/>
+                    <input type="hidden" id="mylongitude" class="gllpLongitude" value="39.3456"/>
+                    <input type="hidden" class="gllpZoom" value="20"/>
+                 </fieldset>
+	       </div>
+
+
+              </div>
+           </div>
+
+
+
+
+<script src='<?php echo base_url("assets/plugins/jquery-popup-overlay-gh-pages/jquery.popupoverlay.js");?>'></script>
 <script src="<?php echo base_url('assets/js/front/signup.js')?>"></script>
 <script src='<?php echo base_url("assets/js/front/index.js");?>'></script> 

@@ -1,11 +1,13 @@
 <?php
+ini_set("soap.wsdl_cache_enabled", "1");
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 //define('WSDL','http://192.168.1.207/pharmaceuticals/index.php/ws:wsdl?wsdl');
 
 //define('WSDL','http://pharm-portal.coreict.co.ke/index.php/ws:wsdl?wsdl');
 
-define('WSDL','https://www.tibamoja.co.ke/ws:wsdl?wsdl');
+define('WSDL','http://tibamoja.co.ke/index.php/ws:wsdl?wsdl');
 
 class Services extends CI_Controller
 {
@@ -2568,6 +2570,8 @@ class Services extends CI_Controller
 
             $ci =& get_instance();
 
+            set_time_limit(0);
+
             $ci->load->model('Patient');    
 
             $location ="assets/uploads/prescriptions/".$name;                               // Mention where to upload the file
@@ -2600,6 +2604,8 @@ class Services extends CI_Controller
         }
 
 
+
+
     }
 
 
@@ -2611,9 +2617,16 @@ class Services extends CI_Controller
         {
            $wsdl = WSDL; 
 
-            $this->load->library("Nusoap_library");
+           $this->load->library("Nusoap_library");
 
-            $client = new nusoap_client($wsdl, 'wsdl'); 
+           $options = array(
+                'soap_version'=>SOAP_1_2,
+                'exceptions'=>true,
+                'trace'=>1,
+                'cache_wsdl'=>WSDL_CACHE_NONE
+            ); 
+
+            $client = new nusoap_client($wsdl,  $options ); 
 
             $result = $client->call('getPharmacies');
 
@@ -2624,9 +2637,16 @@ class Services extends CI_Controller
         {
            $wsdl = WSDL;
 
+            $options = array(
+                'soap_version'=>SOAP_1_2,
+                'exceptions'=>true,
+                'trace'=>1,
+                'cache_wsdl'=>WSDL_CACHE_NONE
+            ); 
+
             $this->load->library("Nusoap_library");
 
-            $client = new nusoap_client($wsdl, 'wsdl'); 
+            $client = new nusoap_client($wsdl, $options); 
 
             $result = $client->call('getCategories');
 
@@ -2996,7 +3016,7 @@ public function getUserdetails()
 
             $this->load->helper(array('form', 'url'));
 
-            $client = new nusoap_client($wsdl, 'wsdl'); 
+            $client = new nusoap_client($wsdl,true, false, false, false, false, 10, 300000); 
           
                $tmpfile = $_FILES["uploadfiles"]["tmp_name"]; 
 
@@ -3008,15 +3028,15 @@ public function getUserdetails()
 
                fclose($handle);                                 
 
-               $decodeContent   = base64_encode($contents);     // Decode the file content, so that we code send a binary string to SOAP          
+               $decodeContent   = base64_encode($contents);     // Decode the file content, so that we code send a binary string to SOAP 
 
-           $response =  $client->call('uploadPrescriptionFile',array($decodeContent,$patientid,$filename));   //Send two inputs strings. {1} DECODED CONTENT {2} FILENAME
-           
-           if($client->fault){
+               $response =  $client->call('uploadPrescriptionFile',array($decodeContent,$patientid,$filename));   //Send two inputs strings. {1} DECODED CONTENT {2} FILENAME
+          
+               $err = $client->getError();
 
-                echo json_encode (array("response"=>"Fault {$client->faultcode} <br/>"));
-
-                echo json_encode (array("response"=>"String {$client->faultstring} <br/>"));
+           if($err){
+               // echo json_encode (array("response"=>"Fault {$client->faultcode} <br/>"));
+                echo json_encode (array("response"=>$err));
            }
            else{
                 echo json_encode(array("response"=>$response)); 
@@ -3101,7 +3121,14 @@ public function getUserdetails()
 
         $this->load->library("Nusoap_library");
 
-        $client = new nusoap_client($wsdl, 'wsdl'); 
+        $options = array(
+                'soap_version'=>SOAP_1_2,
+                'exceptions'=>true,
+                'trace'=>1,
+                'cache_wsdl'=>WSDL_CACHE_NONE
+            ); 
+
+        $client = new nusoap_client($wsdl, $options); 
 
         $res1 = $client->call('loginCheck', array('username'=>$username,'pass'=>md5($pass) , 'isactive' => 1));
 

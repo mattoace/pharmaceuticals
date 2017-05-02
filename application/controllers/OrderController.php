@@ -838,7 +838,7 @@ public function fetchcOrderDetails(){
 
 public function confirmOrder($isExpress,$storeid,$patientid,$items){
 
-  require_once("htmlMimeMail-2.5.1/send_mail_coreict.php");
+require_once("htmlMimeMail-2.5.1/send_mail_coreict.php");
 
 if($isExpress){
    $list = $this->order->fetchConfirmRefillIds($storeid,$patientid,$items);
