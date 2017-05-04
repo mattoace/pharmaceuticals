@@ -266,11 +266,11 @@ background-color: #1484C7;
 
 
 	<div class="banner-info">
-		<div class="container">
-			
+		<div class="container">			
 
 			<div class="profile-left wow flipInY" style="float:left;"  data-wow-duration="1.5s" data-wow-delay="0s">
-				<form action="index.php/register" method="post" >
+				<!-- <form action="index.php/register" method="post" > -->
+				<form action="user-signup" method="post" >
 					<div class="login">
 						<input type="text" name="name" id="name" placeholder="Name" required="">
 						<input type="text" name="email" id="email" placeholder="Email" required="">

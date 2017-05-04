@@ -18,17 +18,36 @@ class RegistrationController extends CI_Controller {
     }
 
 
-    public function addNew(){
+    public function addNew(){  
 
-            $namesArray = explode(" ", $this->input->post("name")); 
+          if (isset($_FILES["avatar-2"]["name"])) {
+              $uploaddir = 'assets/uploads/users/';
+              $imgpath = "assets/uploads/users/".$_FILES["avatar-2"]["name"];
+              $uploadfile = $uploaddir . basename($_FILES['avatar-2']['name']);
+              if (move_uploaded_file($_FILES['avatar-2']['tmp_name'], $uploadfile)) {
+                  $status = "Success";
+              } else {
+                  $status = "Failed";
+              }                   
+          } else {             
+          }    
+
+          $namesArray = explode(" ", $this->input->post("name")); 
 
                  $array = array(
                     'firstname' => $namesArray[0] ,
                     'secondname' => $namesArray[1] ,
-                    'email' => $this->input->post("email")
+                    'email' => $this->input->post("email"),
+                    'address' => $this->input->post("email"),
+                    'dob' => $this->input->post("dateofbirth"),
+                    'gender' => $this->input->post("gender"),
+                    'nationalid' => $this->input->post("nationalid"),
+                    'phone' => $this->input->post("telephone"),
+                    'town' => $this->input->post("town"),
+                    'img' => $imgpath 
                 );        
 
-            $insertedid = $this->users->addNew($array);
+          $insertedid = $this->users->addNew($array);
 
                  $arrayUsers = array(
                     'username' => $this->input->post("email"),
@@ -37,7 +56,7 @@ class RegistrationController extends CI_Controller {
                     'isactive'=> 1
                 ); 
 
-            $insertedid = $this->users->addNewUser($arrayUsers);
+         $insertedid = $this->users->addNewUser($arrayUsers);
 
             //send email here
 

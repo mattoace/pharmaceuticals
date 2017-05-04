@@ -100,7 +100,7 @@ article {
 }
 
 .col-sm-3 {
-    height: 300px;  
+    height: 330px;  
 }
 .headingclass{
 	background-color:#98CD23;
@@ -288,26 +288,40 @@ Hover the image
   /*  font-size: 24px; */
      top: -1px !important; 
 }
+.glyphicon.glyphicon-shopping-cart.my-cart-icon {
+    font-size: 25px;
+    /*margin-left: -30px;*/
+    /*top: -100% !important;*/
+    position:fixed;
+  
+}
+#dialogpopupinvoice{
+   position: fixed !important;  
+}
+
+html {   
+    overflow-x: hidden;
+}
 
 </style>
 
-<div class="container">
-<div style="float: right; cursor: pointer;">  
 <div class="row" style="">
-	<div class="col-md-6" > &nbsp;
+    <div class="col-md-6" > &nbsp;
     </div>
 
-	<div class="col-md-2" style="">       
-	</div>
+    <div class="col-md-2" style=""> 
+    </div>
 
-	<div class="col-md-2" style=""> 
-       <img class="img-responsive" onCLick="invoiceEntryPopup()" style='cursor:pointer;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " /><br>
-	</div>
-	<div class="col-md-2" >
+    <div class="col-md-2" style="height:20px;"> 
+       <img class="img-responsive" onCLick="invoiceEntryPopup()" style='cursor:pointer;max-height: 30px; margin-left: 50%;padding-right:10%;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " /><br>
+    </div>
+    <div class="col-md-2" style="height:20px;" >
   <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
 </div>
-
 </div>
+<div class="container">
+<div style="float: right; cursor: pointer;">  
+
 
     </div>
 
@@ -480,7 +494,7 @@ Hover the image
 
                             print('<div class="row">');
 
-                            print('<div class="row" style="margin-bottom:-10%;">');
+                            print('<div class="row" >');
                             print('<div class="price col-md-8">');
                             print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
                             print('</div>');
@@ -489,20 +503,21 @@ Hover the image
                             print('</div>');
                             print('</div>');
 
-                            print('<div class="price col-md-8" style="margin-top:0px; margin-left: -7%;">');
-
+                            print('<div class="row">');
+                            print('<div class="price col-md-6" style="margin-top:0px; ">');
                             print('<p class="btn-add">');							
-                            print('<button class="btn btn-default my-cart-btn" style="padding:0px !important; width: 100px;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;">Add to Cart</span></span></button>      </a></p>');
+                            print('<button class="btn btn-default my-cart-btn" style="padding:0px !important; width: 100px;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;padding-left:14%;">Add to Cart</span></span></button>      </a></p>');
                             print('</div>');
-                            print('<div class="price col-md-4" style="margin-top:0px;">');
 
+                            print('<div class="price col-md-6" style="margin-top:0px;float:right;top:0px;">');
                             print('<div style="font-size: 8px; margin-top: 14%;margin-left: 50%;">');
                             print(' <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
                             print(' </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
                             print('</i><i class="fa fa-star"></i>');
                             print('</div>');
-
                             print('</div>');
+                            print('</div>');
+
 
                             print('</div>');	
 
@@ -533,14 +548,14 @@ Hover the image
 
 
 
-                <div id="dialogpopupinvoice"   style="visibility:hidden;text-align:middle !important; width: 14%; position: fixed !important; top: 10% !important;"  class="well" >
+                <div id="dialogpopupinvoice"   style="visibility:hidden;text-align:middle !important; width: auto; position: fixed !important; top: 1% !important;"  class="well" >
                    <div id =""  > <h5><b>Please enter your invoice number</b></h5> </div>
                       <div class="col-md-12" > 
                             <!-- general form elements -->
                           <div style="margin-left:10%;margin-top:5%;"> 
                            
                                 <form action=""  method="post" target="_top" onsubmit="return postInvoice(this)">
-                                <input type="input" name="invoiceno" id="invoiceno"   value=''>
+                                <input type="input" style="width: 100%;" name="invoiceno" id="invoiceno"   value=''>
                                 <input type="hidden" name="hosted_button_id" value="">
                                 <input type="image" src="https://tibamoja.co.ke/assets/img/credit/mpesa.png" border="0" name="submit" alt="Lipa na MPESA"  
 

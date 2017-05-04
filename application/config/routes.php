@@ -39,6 +39,7 @@ $route['dashboard-sendemail'] = 'dashboardController/sendEmail';
 
 
 $route['admin'] = 'pages/back/index';
+$route['user-signup'] = 'pages/view/user-signup';
 $route['alogin'] = 'pages/fullpage/login';
 $route['aregister'] = 'pages/fullpage/register';
 $route['padmregister'] = 'RegistrationController/addNewAdmin';
