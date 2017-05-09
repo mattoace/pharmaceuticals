@@ -202,13 +202,6 @@ background-color: #1484C7;
 
 
 
-
-
-
-
-
-
-
 	</style>
 <!-- header -->
 <div class="banner w3l">
@@ -266,9 +259,12 @@ background-color: #1484C7;
 
 
 	<div class="banner-info">
-		<div class="container">			
+		<div class="container">	
 
-			<div class="profile-left wow flipInY" style="float:left;"  data-wow-duration="1.5s" data-wow-delay="0s">
+
+<div class="row">
+<div class="col-md-4 ">
+			<div class="profile-left wow flipInY" style="float:left;width:100% !important;"  data-wow-duration="1.5s" data-wow-delay="0s">
 				<!-- <form action="index.php/register" method="post" > -->
 				<form action="user-signup" method="post" >
 					<div class="login">
@@ -277,48 +273,28 @@ background-color: #1484C7;
 						<input type="password" name="pass" id="pass" placeholder="Password" required="">
 						<input type="password" name="Retype Password" id="rpass" placeholder="Retype Password" required="">
 					</div>
-					<input type="submit" class="" id="submit" value="Signup" > <!-- onClick="signUp(this)" --> 
+					<input type="submit" class="" id="submit" value="Signup" > 
 				</form>
 				<p>Already have an Account? <a href="<?php echo base_url("login");?>">login Here</a></p>
 			</div>
 
-			<div class="profile-left wow flipInY col-sm-12" style="float:left;width:69%;margin-left:2%;" data-wow-duration="1.5s" data-wow-delay="0s"  >
+</div>
+<div class="col-md-8 ">
+
+			<div class="profile-left wow flipInY col-sm-12" style="float:left;width:100% !important;" data-wow-duration="1.5s" data-wow-delay="0s"  >
 					 <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
-									          <!--   <div data-thumb="../images/slides/thumbs/bridge.jpg" data-src="../images/slides/bridge.jpg"> -->
-									           <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/slider3african1.png");?>"> 
-									                <div class="camera_caption fadeFromBottom">
-									                    Buy 2 Get 3rd FREE Beauty products
-									                </div>
-									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg2.jpg");?>">
-									                <div class="camera_caption fadeFromBottom">
-									                    Get coupon on every purchase
-									                </div>
-									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg4.png");?>"> 
-									                <div class="camera_caption fadeFromBottom">
-									                    <em>20%</em> off on every product
-									                </div>
-									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg3.jpg");?>">
-									                <div class="camera_caption fadeFromBottom">
-									                   Free delivery within cbd
-									                </div>
-									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg2.png");?>">
-									                <div class="camera_caption fadeFromBottom">
-									                    Same brand for vitamins and suppliments
-									                </div>
-									            </div>
-									            <div data-thumb="<?php echo base_url("assets/img/m1.jpg");?>" data-src="<?php echo base_url("assets/img/sliderimg4.png");?>">
-									                <div class="camera_caption fadeFromBottom">
-									                   View your health information
-									                </div>
-									            </div>
-									        </div>
-
+					 	            <?php  
+				                    $queryimg = $this->db->query("SELECT * FROM bannerimages WHERE parent = '1071988'");
+				                    $rowimg = $queryimg->result();
+				                     foreach ($rowimg as $key => $img) {
+				                       print('<div data-thumb="assets/img/m1.jpg" data-src='.base_url($img->img).'><div class="camera_caption fadeFromBottom">'. $img->description.'</div></div><br>');
+				                     }
+				                    ?>								         
+	
+						</div>
 			</div>
-
+	</div>
+</div>
 
 
 		</div>
@@ -454,47 +430,6 @@ background-color: #1484C7;
 
 
 
-
-
-
-
-<!-- navigation -->
-<!-- <div class="header w3ls wow bounceInUp" data-wow-duration="1s" data-wow-delay="0s">
-	<div class="container">
-						<nav class="navbar navbar-default">
-							
-							<div class="navbar-header logo">
-								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-								<h1>
-								  <a class="navbar-brand link link--yaku" href="index.html"><span style="margin-right:25%;"></span>&nbsp;&nbsp;&nbsp;&nbsp;</a>
-								</h1>
-								
-							</div>
-						
-							<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-								<nav class="cl-effect-1">
-									<ul class="nav navbar-nav ">
-										<li><a class="hvr-overline-from-center active" href="/">Home</a></li>
-										<li><a class="hvr-overline-from-center" href="<?php echo base_url("about");?>">About</a></li>									
-										<li><a class="hvr-overline-from-center" href="<?php echo base_url("service");?>">Services</a></li>
-										<li><a class="hvr-overline-from-center" href="<?php echo base_url("alogin");?>">Portal</a></li>								
-										<li><a class="hvr-overline-from-center" href="<?php echo base_url("contact");?>">Contact</a></li>
-									</ul>
-								</nav>
-							</div>
-						</nav>
-	</div>
-</div> -->
-<!-- //navigation -->
-
-
-
-
 <!-- make -->
 <div class="make wthree all_pad" style="padding:0px;">
 	<div class="container">
@@ -597,54 +532,9 @@ background-color: #1484C7;
 
 
 
-	<div class="container">
-		<h3 class="title" style="background-color: #16A9EF;">Pharmacy / Clinic List<span></span></h3>
-		<div class="explore-grids">
-			<!--<div class="col-md-4 explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s">
-				<div class="main">
-					<form action="#" method="post">
-						<h4>Find medication</h4>
-							<div class="section-top">
-								<select onchange="change_country(this.value)" class="frm-field required" id="categorysearch">
-									<option value="keyword">Filter by keywords</option>
-									<option value="productid">Medication by product id</option>
-									<option value="location">Pharmacy/Store location</option>         
-									<option value="category">Category</option>								
-									<option value="price">Price</option>
-								</select>
-							</div>
-						<div class="section-single">
-							<div class="">
-								<input type="text" name="productname" id="productname" placeholder="Enter Product Name" required="">
-							</div>					
-							<div class="clearfix"></div>
-						</div>
-						<div class="clearfix"></div>						
-						<div class="range-slider">
-							<h4>Price range</h4>
-							<div id="slider-range"></div>							
-							<script src='<?php echo base_url("assets/js/front/jquery-ui.js");?>'></script>			
-								<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
-								<script type='text/javascript'>//<![CDATA[ 
-												$(window).load(function(){
-												 $( "#slider-range" ).slider({
-															range: true,
-															min: 0,
-															max: 900,
-															values: [ 50, 600 ],
-															slide: function( event, ui ) {  $( "#amount" ).val( "kes" + ui.values[ 0 ] + " - kes" + ui.values[ 1 ] );
-															}
-												 });
-												$( "#amount" ).val( "kes" + $( "#slider-range" ).slider( "values", 0 ) + " - kes" + $( "#slider-range" ).slider( "values", 1 ) );
-
-												});//]]>  
-
-								</script>
-						</div>
-						<input type="button" id="executesearch" class="submit" style="width:100%;" value="Find medication" onCLick="searchMedications()">
-					</form>
-				</div>
-			</div>-->
+	<div class="container" style="margin-top:-5%;">
+		<h3 class="title" style="background-color: #16A9EF;">Search to find your Pharmacy , Clinic or Health Center<span></span></h3>
+		<div class="explore-grids">		
 			<div class="col-md-12 explore-right wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" style="margin-top: -4.8%; padding:0px;">			
 				<div class="flex-slider">
 					
@@ -738,17 +628,33 @@ background-color: #1484C7;
 			           <input type="text" name="pharmsearch" size="30" class="pharmsearch" placeholder="Search....">
 			         </form> 
 		         </div>
-		          <hr> 
-					<div class="explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" id="pharmholdmeds" style="padding:0px;background-color:transparent !important;">
-					
-					</div>
+		          <hr>
+		          <style>
+		          .nbs-flexisel-container {
+						    height: 320px !important;
+						    margin-top: -1%;
+						}
+						.nbs-flexisel-nav-right {
+						    background-color: #16a9ef;
+						}
+						.nbs-flexisel-nav-left {
+						    background-color: #16a9ef;
+						}
+						
+		          </style> 
+		          <div class="row">
+		          		<div class="col-md-12" > 
+							<div class="explore-left wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s" id="pharmholdmeds" style="padding:0px;background-color:transparent !important;left:0px !important;">							
+							</div>
+				        </div>
+				  </div>
 
 					<script type="text/javascript">
 									$(window).load(function() {
 										$("#pharmholdmeds").flexisel({
 											visibleItems: 1,
 											animationSpeed: 3000,
-											autoPlay: true,
+											autoPlay: false,
 											autoPlaySpeed: 10000,    		
 											pauseOnHover: true,
 											enableResponsiveBreakpoints: true,
@@ -853,7 +759,7 @@ background-color: #1484C7;
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/jquery_lat_long/css/jquery-gmaps-latlon-picker.css");?>'>                        
 <script src='<?php echo base_url("assets/plugins/jquery_lat_long/js/jquery-gmaps-latlon-picker.js");?>'></script>
 
-     <div id="dialogpopupmap" class="well" style="visibility:hidden;width: 50%;">   
+     <div id="dialogpopupmap" class="well" style="visibility:hidden;width: 100%;">   
 
           <div id="popupmap" class="row" style="">
 

@@ -16,7 +16,11 @@ $route['ws:products'] = 'services/fetchProducts';
 $route['ws:productsearch'] = 'services/searchProducts';
 $route['ws:product'] = 'services/searchProductskeyWord';
 $route['ws:allproducts'] = 'services/allProducts';
-$route['ws:drug-category'] = 'services/drugCategory';
+
+$route['ws:catmain'] = 'services/fetchCategoriesMain';
+$route['ws:catchild'] = 'services/fetchCategoriesChild';
+
+
 $route['ws:patient-orders'] = 'services/fetchPatientOrders';
 $route['ws:patient-unconfirmedorders'] = 'services/fetchPatientUnconfirmedOrders';
 $route['ws:patient-invoices'] = 'services/fetchPatientInvoices';
@@ -123,6 +127,9 @@ $route['banners-images'] = 'bannersController/displayImages';
 $route['banners-files'] = 'bannersController/fetchFiles';
 $route['banners-files-delete'] = 'bannersController/deleteFiles';
 $route['banners-file-view'] = 'bannersController/viewFile'; 
+$route['banners-fileshome'] = 'bannersController/fetchFilesHome';
+$route['banners-text'] = 'bannersController/saveText';
+$route['banners-gettext'] = 'bannersController/getText';
 
 
 

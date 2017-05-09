@@ -96,7 +96,7 @@
 				        },
 
 			             {
-				                "targets": [ 3],
+				                "targets": [ 3 ],
 				                "visible": false
 				         },
 				         {

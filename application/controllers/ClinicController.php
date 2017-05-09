@@ -26,6 +26,8 @@ class ClinicController extends CI_Controller {
             $row[] = $clinics->id;
             $row[] = $no;
             $row[] = $clinics->clinicname;
+            $row[] = $clinics->telephone;
+            $row[] = $clinics->email;
             $row[] = $clinics->address;
             $row[] = $clinics->location;
             $row[] = $clinics->town; 
@@ -50,6 +52,8 @@ class ClinicController extends CI_Controller {
 
                  $array = array(
                     'clinicname' => $this->input->post("clinicname") ,
+                    'telephone' => $this->input->post("telephone"),
+                    'email' => $this->input->post("email"),
                     'address' => $this->input->post("address"),
                     'location' => $this->input->post("location"),
                     'latitude' => $this->input->post("latitude"),                    
@@ -70,6 +74,8 @@ class ClinicController extends CI_Controller {
 
                  $array = array(
                     'clinicname' => $this->input->post("clinicname") ,
+                    'telephone' => $this->input->post("telephone"),
+                    'email' => $this->input->post("email"),
                     'address' => $this->input->post("address"),
                     'location' => $this->input->post("location"),
                     'latitude' => $this->input->post("latitude"),                   

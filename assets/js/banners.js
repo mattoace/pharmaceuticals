@@ -1,7 +1,9 @@
 				 
-				var table;
+				var tableFiles;
+				var tableFilesHome;
 				var tree
 				var selectedRow = null;
+				var selectedRowHome = null;
 				storeDropdown = $('#select1');
 				
 
@@ -112,8 +114,19 @@
 
 							    $('#images-box').html(data.response);
 
-							    loadUrlFilterCategory = "banners-files?id="+selectedRow; 
-                                tableFiles.ajax.url(loadUrlFilterCategory).load(); 
+							  var  loadUrlFilterCategory = "banners-files?id="+selectedRow; 
+                                tableFiles.ajax.url(loadUrlFilterCategory).load();
+
+                              var   loadUrlFilterCategoryHome = "banners-fileshome"; 
+                                tableFilesHome.ajax.url(loadUrlFilterCategoryHome).load();
+
+                                						   var postVars = {
+								"selId": 1071988					
+							}
+
+		                   $.post("banners-images",postVars,function(data){                    
+							    $('#images-boxhome').html(data.response);
+		                    },"json");    
 
 		                   },"json");
 
@@ -173,7 +186,7 @@
 				 
 				        // Load data for the table's content from an Ajax source
 				        "ajax": {
-				            "url": "banner-files?id=0",  //"url": "<?php echo site_url('patientController/ajax_list')?>",
+				            "url": "banners-files?id=0",  //"url": "<?php echo site_url('patientController/ajax_list')?>",
 				            "type": "POST"
 				        },
 				        		select: {
@@ -233,10 +246,107 @@
 
 				    tableFiles.on( 'click', 'tr', function (id) { 
 						 tableFiles.$('tr.selected').removeClass('selected'); 
-						 $(this).addClass('selected');                  
+						 $(this).addClass('selected');
+				         var selRow = tableFiles.row('.selected').data();
+				         selectedRow = selRow[0];  
+				         getSliderText(selectedRow);              
 				        
 			         });	
 
+
+
+				       tableFilesHome = $('#filestablehome').DataTable({ 
+				 
+				        "processing": true, //Feature control the processing indicator.
+				        "serverSide": true, //Feature control DataTables' server-side processing mode.
+				        "paging":   false,
+				        "ordering": false,
+				        "info":     false,
+				        "order": [], //Initial no order.
+				 
+				        // Load data for the table's content from an Ajax source
+				        "ajax": {
+				            "url": "banners-fileshome?id=0",  //"url": "<?php echo site_url('patientController/ajax_list')?>",
+				            "type": "POST"
+				        },
+				        		select: {
+							style:    'os',
+							selector: 'td:first-child'
+						},
+				 
+				        //Set column definition initialisation properties.
+				        "columnDefs": [
+				        { 
+				            "targets": [ 0 ], //first column / numbering column
+				            "orderable": false, //set not orderable
+				        },
+			      
+				         {
+				                "targets": [ 0 ],
+				                "visible": false
+				         },
+				         {
+				                "targets": [ 0 ],
+				                "className": "dt-right"
+				         },
+				         {
+				                "targets": [ 0 ],
+				                "className": "dt-right"
+				         },
+				         {
+
+							"targets" : 3 ,
+							"data": "img",
+							"width": "1%",
+							"className": "dt-center",
+							"render" : function ( url, type, full) {
+							return '<img onclick="deleteImageHome('+full[0]+')" style=" border-radius: 10%;cursor:pointer;" height="10px" width="25%" src="https://tibamoja.co.ke/assets/img/deletefile.jpg"/>';
+
+							}
+
+                          },
+
+                             {
+
+							"targets" : 2 ,
+							"data": "html",
+							//"width": "1%",
+							"className": "dt-left",
+							"render" : function ( url, type, full) {
+							return '<a target="_blank" href="banners-file-view?id='+full[0]+'">'+full[2]+'</a> ';
+
+							}
+
+                          }
+
+				        ],
+				 
+				    });	
+		
+
+				    tableFilesHome.on( 'click', 'tr', function (id) { 
+			             tableFilesHome.$('tr.selected').removeClass('selected'); 
+						 $(this).addClass('selected');
+				         var selRow = tableFilesHome.row('.selected').data();
+				         selectedRowHome = selRow[0];  
+
+						   var postVars = {
+								"selId": 1071988					
+							}
+
+		                   $.post("banners-images",postVars,function(data){                    
+							    $('#images-boxhome').html(data.response);
+		                    },"json");                 
+						    getSliderText(selectedRowHome);    
+					       });	
+
+					   var postVars = {
+							"selId": 1071988					
+						}
+
+		               $.post("banners-images",postVars,function(data){                    
+						    $('#images-boxhome').html(data.response);
+		                },"json");  
 
                      
 
@@ -299,6 +409,11 @@
                     }else{alert("Please select a category to add images to!");}   
 				}
 
+	    function uploadimageHome(obj){                   
+					$('#selIdimg').val(1071988);
+                    $('#uploadpopupimage').popup('show');                  
+				}
+
 		function moreSelectEvents(selId){                      
 
                       var postVars = {
@@ -343,6 +458,66 @@
                                 tableFiles.ajax.url(loadUrlFilterCategory).load(); 
 					  });
 				}
+
+			 function deleteImageHome(imgId){					   
+						 $.post("banners-files-delete?id="+imgId,function(){
+								loadUrlFilterCategory = "banners-fileshome"; 
+                                tableFilesHome.ajax.url(loadUrlFilterCategory).load(); 
+                                						   var postVars = {
+								"selId": 1071988					
+							}
+
+		                   $.post("banners-images",postVars,function(data){                    
+							    $('#images-boxhome').html(data.response);
+		                    },"json");  
+					     });
+				}
+
+			function saveSliderText(){	
+							if(selectedRow){
+						     	var postvars = {
+												"id" :selectedRow,
+												"text":$("#slidertext").val()
+											    }
+											$.post("banners-text",postvars,function(){
+												alert("Saved!");
+											});
+
+							}else{
+								alert("Please select a record from the grid!");
+							}
+
+				    
+				}
+
+			function saveSliderTextHome(){	
+							if(selectedRowHome){
+						     	var postvars = {
+												"id" :selectedRowHome,
+												"text":$("#slidertexthome").val()
+											    }
+											$.post("banners-text",postvars,function(){
+												alert("Saved!");
+											});
+
+							}else{
+								alert("Please select a record from the grid!");
+							}
+
+				    
+				}
+
+		 function getSliderText(selected){             
+		     	var postvars = {
+								"id" :selected
+							    }
+							$.post("banners-gettext",postvars,function(data){
+								$("#slidertexthome").val(data.response);
+								$("#slidertext").val(data.response);
+							},"json");
+							
+		  }
+
 
 
 

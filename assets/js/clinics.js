@@ -126,6 +126,8 @@
                        $("#location").val("");
                        $("#address").val("");
                        $("#latitude").val("");
+                       $("#telephone").val("");
+                       $("#email").val("");
                        $("#longitude").val("");
                        $("#town").val("");
                        $("#createNew").css("visibility", "visible");
@@ -155,7 +157,9 @@
                       $("#id").val(data.id);
                       $("#clinicname").val(data.clinicname);
                       $("#address").val(data.address);
-                      $("#location").val(data.location); 
+                      $("#location").val(data.location);
+                      $("#telephone").val(data.telephone);
+                      $("#email").val(data.email);  
                       $("#latitude").val(data.latitude);
                       $("#longitude").val(data.longitude);
                       $("#town").val(data.town);                
@@ -175,6 +179,8 @@
 						"id": $("#id").val(),
 						"clinicname": $("#clinicname").val(),
 						"address": $("#address").val(),
+					    "telephone": $("#telephone").val(),
+						"email": $("#email").val(),
 						"location": $("#location").val(),
 						"longitude": $("#longitude").val(),
 						"latitude": $("#latitude").val(),						
@@ -199,6 +205,8 @@
 						"clinicname": $("#clinicname").val(),
 						"address": $("#address").val(),
 						"location": $("#location").val(),
+						"telephone": $("#telephone").val(),
+						"email": $("#email").val(),
 						"town": $("#town").val(),						
 						"latitude": $("#latitude").val(),
 						"longitude": $("#longitude").val()

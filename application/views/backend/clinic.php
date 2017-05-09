@@ -56,6 +56,8 @@
                             <th>Id</th>
                             <th>No</th>
                             <th>Clinic</th>
+                            <th>Telephone</th>
+                            <th>Email</th>
                             <th>Address</th>
                             <th>Location</th>
                             <th>Nearest town</th>
@@ -92,18 +94,25 @@
                                 </div>
 
                                 <div class="form-group">
+                                  <label for="address">Telephone</label>
+                                  <input type="input" class="form-control" id="telephone" placeholder="Telephone">
+                                </div>
+
+                               <div class="form-group">
+                                  <label for="address">Email</label>
+                                  <input type="email" class="form-control" id="email" placeholder="Email">
+                                </div>
+
+                                <div class="form-group">
                                   <label for="address">Address</label>
-                                  <input type="email" class="form-control" id="address" placeholder="Address">
+                                  <input type="input" class="form-control" id="address" placeholder="Address">
                                 </div>
                                 <div class="form-group">
                                   <label for="location">Location</label>
                                   <input type="input" class="form-control" id="location" placeholder="Location">
                                 </div>
 
-                                <div class="form-group">
-                                  <label for="town">Nearest town</label>
-                                  <input type="input" class="form-control" id="town" placeholder="Nearest town">
-                                </div>  
+                             
                               </div>      
                             </form>
                           </div>
@@ -116,6 +125,12 @@
                                         <!-- form start -->
                                         <form role="form">
                                           <div class="box-body">
+
+
+                                                <div class="form-group">
+                                          <label for="town">Nearest town</label>
+                                          <input type="input" class="form-control" id="town" placeholder="Nearest town">
+                                        </div> 
 
                                             <div class="form-group">
                                               <label for="latitude">Latitude</label>

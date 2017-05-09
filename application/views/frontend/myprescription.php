@@ -96,7 +96,7 @@ var userid = "<?php  echo $row[0]->id; ?>";
                               <thead>
                                   <tr>
                                       <th>Id</th>                                
-                                      <th>Upload Date</th>
+                                      <th>Upload Date</th>                                 
                                       <th>File name</th>
                                       <th>Path</th>                                                                 
                                   </tr>

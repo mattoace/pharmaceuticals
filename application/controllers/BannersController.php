@@ -74,6 +74,33 @@ public function fetchFiles(){
         echo json_encode($output);
    }
 
+   public function fetchFilesHome(){
+
+        $list = $this->banners->fetchFilesHome();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $obj) {
+            $no++;
+            $row = array();
+            $row[] = $obj->id;
+            $row[] = $no;
+            $img = $obj->img;
+            $imgArray = explode("/", $img);
+            $row[] = $imgArray[4];
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->banners->count_all_img(),
+                        "recordsFiltered" => $this->banners->count_filtered_img(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+   }
+
+
 public function viewFile(){
         function openFile($file)
             {
@@ -93,6 +120,18 @@ public function deleteFiles(){
       $response = $this->banners->deleteFile($fileid);
       echo json_encode(array("response"=>$response));
 
+   }
+
+   public function saveText(){
+                $array = array(
+                    'description' => $this->input->post("text") 
+                ); 
+            $qcd = $this->banners->saveRecord($array,$this->input->post("id"));
+   }
+
+   public function getText(){
+        $list = $this->banners->fetchText($this->input->post("id"));
+        echo json_encode(array("response"=>$list[0]->description));
    }
 
 
@@ -122,7 +161,7 @@ class SaveImgtoDatabase  extends CI_Controller{
         $arrayImage = array(
                     'parent' => $this->selId,
                     'img'  => $this->file_path,
-                    'description' => "banner images"
+                    'description' => ""
                 ); 
 
             $ci->banners->addImages($arrayImage); 

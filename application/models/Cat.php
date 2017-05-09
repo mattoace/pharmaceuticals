@@ -103,6 +103,35 @@ class Cat extends CI_Model {
         return $query;
     }
 
+
+     public function get_all_items_main($is_service){      
+        $this->db->from('category');
+        $this->db->order_by("categoryname", "asc");
+        if($is_service){
+            $this->db->where('parent IS NULL');
+
+            $this->db->where('categoryname !=','My Prescriptions');
+            $this->db->where('categoryname !=','My Invoices');
+            $this->db->where('categoryname !=','My Orders');        
+        }
+        $query = $this->db->get(); 
+        return $query;
+    }
+
+    public function get_all_items_child($is_service ,$id){      
+        $this->db->from('category');
+        $this->db->order_by("categoryname", "asc");
+        if($is_service){
+            $this->db->where('parent', $id);
+            $this->db->where('categoryname !=','My Prescriptions');
+            $this->db->where('categoryname !=','My Invoices');
+            $this->db->where('categoryname !=','My Orders');        
+        }
+        $query = $this->db->get(); 
+        return $query;
+    }
+
+
     public function saveRecord($arrObject,$id){        
       $this->db->where('id',$id);
       $this->db->update('category',$arrObject);

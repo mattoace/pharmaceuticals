@@ -484,6 +484,30 @@ class Services extends CI_Controller
             'Get all drug categories' //description
         );
 
+          //categories registration
+      $this->nusoap_server->register(
+            'getCategoriesMain',
+            array(),  //parameters
+            array('return' => 'tns:CategoriesArray'),  //output
+            'urn:PharmaceuticalsSoapServer',   //namespace
+            'urn:PharmaceuticalsSoapServer#getCategoriesMain',  //soapaction
+            'rpc', // style
+            'encoded', // use
+            'Get main drug categories' //description
+        );
+
+          //categories registration
+      $this->nusoap_server->register(
+            'getCategoriesChild',
+             array('parent' => 'xsd:integer'), //parameters
+             array('return' => 'tns:CategoriesArray'),  //output
+            'urn:PharmaceuticalsSoapServer',   //namespace
+            'urn:PharmaceuticalsSoapServer#getCategoriesChild',  //soapaction
+            'rpc', // style
+            'encoded', // use
+            'Get child drug categories' //description
+        );
+
 
     //products registration
       $this->nusoap_server->register(
@@ -840,6 +864,52 @@ class Services extends CI_Controller
             $ci->load->model('Cat'); 
 
             $qcd = $ci->Cat->get_all_items(1);       
+
+            if ($qcd->num_rows()>0) {
+                $ret_val=array();
+                $i=0;
+                foreach ($qcd->result_array() as $row) {
+                    $ret_val[$i]=$row;
+                    $i++;
+                }
+                return $ret_val;
+            } else {
+                return false;
+            }            
+    
+        }
+
+            function getCategoriesMain()
+        {
+
+            $ci =& get_instance();
+ 
+            $ci->load->model('Cat'); 
+
+            $qcd = $ci->Cat->get_all_items_main(1);       
+
+            if ($qcd->num_rows()>0) {
+                $ret_val=array();
+                $i=0;
+                foreach ($qcd->result_array() as $row) {
+                    $ret_val[$i]=$row;
+                    $i++;
+                }
+                return $ret_val;
+            } else {
+                return false;
+            }            
+    
+        }
+
+    function getCategoriesChild($parent)
+        {
+
+            $ci =& get_instance();
+ 
+            $ci->load->model('Cat'); 
+
+            $qcd = $ci->Cat->get_all_items_child(1,$parent);       
 
             if ($qcd->num_rows()>0) {
                 $ret_val=array();
@@ -2651,6 +2721,60 @@ class Services extends CI_Controller
             $result = $client->call('getCategories');
 
              echo json_encode($result);     
+        }
+
+
+     public function fetchCategoriesMain()
+        {
+           $wsdl = WSDL;
+
+            $options = array(
+                'soap_version'=>SOAP_1_2,
+                'exceptions'=>true,
+                'trace'=>1,
+                'cache_wsdl'=>WSDL_CACHE_NONE
+            ); 
+
+            $this->load->library("Nusoap_library");
+
+            $client = new nusoap_client($wsdl, $options); 
+
+            $result = $client->call('getCategoriesMain');
+
+             echo json_encode($result);     
+        }
+
+
+    public function fetchCategoriesChild()
+        {
+           $wsdl = WSDL;
+
+           $parent = $this->input->get("id");
+
+            $options = array(
+                'soap_version'=>SOAP_1_2,
+                'exceptions'=>true,
+                'trace'=>1,
+                'cache_wsdl'=>WSDL_CACHE_NONE
+            ); 
+
+            $this->load->library("Nusoap_library");
+
+            $client = new nusoap_client($wsdl, $options); 
+
+            $result = $client->call('getCategoriesChild',array('parent'=>$parent));
+
+
+           $err = $client->getError();
+
+           if($err){              
+                echo json_encode (array("response"=>$err));
+           }
+           else{
+                echo json_encode($result);
+           }
+
+                  
         }
     
 

@@ -11,7 +11,6 @@
 <link rel="stylesheet" href='<?php echo base_url("assets/css/style.css");?>'>
 <link rel="stylesheet" href='<?php echo base_url("assets/css/upload.css");?>'>
 
-
 <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel='stylesheet' />
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/datatables/jquery.dataTables.min.css");?>'>
 <link rel="stylesheet" href='<?php echo base_url("assets/plugins/selectator/fm.selectator.jquery.min.css");?>'>
@@ -58,15 +57,19 @@
 
 
               <div class="user-block">
-
-
+ <div class="row"> 
+  <div class="col-md-12">
                     <div class="btn-group">
                       <button type="button" onClick = "add()" class="btn btn-danger">Add</button>
                       <button type="button" onClick = "edit()" class="btn btn-danger">Edit</button>
                       <button type="button" onClick = "deleteRecord()" class="btn btn-danger">Delete</button>
                     </div>
+  </div>   </div> 
+                  </div> 
 
-                  </div>  
+
+
+                  <div class="col-md-12"> 
                     <table id="persontable" class="display" cellspacing="0" width="100%">
 				            <thead>
 				                <tr>
@@ -89,7 +92,8 @@
 				         
 				                </tr>
 				            </tfoot>
-				        </table>	
+				        </table>
+                </div>	
 
 
       

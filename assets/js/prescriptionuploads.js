@@ -386,10 +386,10 @@
 				            "orderable": false, //set not orderable
 				        },
 
-			            /* {
-				                "targets": [ 40 ],
+			            {
+				                "targets": [ 3 ],
 				                "visible": false
-				         },*/
+				         },
 				         {
 				                "targets": [ 0 ],
 				                "visible": false

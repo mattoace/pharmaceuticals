@@ -9,7 +9,7 @@ class Prescriptionupload extends CI_Model {
     var $column_order = array(null, 'uploadate','filename','path'); //set column field database for datatable orderable
     var $column_search = array('uploadate','filename','path'); //set column field database for datatable searchable 
    
-    var $order = array('id' => 'asc'); // default order 
+    var $order = array('id' => 'desc'); // default order 
  
     public function __construct()
     {
@@ -24,9 +24,8 @@ class Prescriptionupload extends CI_Model {
         $this->db->join('users','users.id = prescriptionupload.patientid');
         $this->db->join('persons','persons.id = users.personid'); 
              
-        $this->db->where('persons.id',$patientid);
-        //var_dump($patientid); exit();
- 
+        $this->db->where('persons.id',$patientid);       
+        $this->db->order_by("prescriptionupload.uploadate","desc");
         $i = 0;
      
         foreach ($this->column_search as $item) // loop column 
@@ -70,17 +69,35 @@ class Prescriptionupload extends CI_Model {
         return $query->result();
     }
  
-    function count_filtered()
+    function count_filtered($patientid)
     {
-        $this->_get_datatables_query();
+        /*$this->_get_datatables_query();
         $query = $this->db->get();
-        return $query->num_rows();
+        return $query->num_rows();*/
+        $this->db->select('prescriptionupload.id,prescriptionupload.uploadate,prescriptionupload.filename,prescriptionupload.path');
+        $this->db->from('prescriptionupload');
+        $this->db->join('users','users.id = prescriptionupload.patientid');
+        $this->db->join('persons','persons.id = users.personid'); 
+             
+        $this->db->where('persons.id',$patientid);
+
+         $query = $this->db->get();
+
+         return $query->num_rows();
     }
  
-    public function count_all()
+    public function count_all($patientid)
     {
-        $this->db->from($this->table);
-        return $this->db->count_all_results();
+       /* $this->db->from($this->table);
+        return $this->db->count_all_results();*/
+
+        $this->db->select('prescriptionupload.id,prescriptionupload.uploadate,prescriptionupload.filename,prescriptionupload.path');
+        $this->db->from('prescriptionupload');
+        $this->db->join('users','users.id = prescriptionupload.patientid');
+        $this->db->join('persons','persons.id = users.personid');
+        $this->db->where('persons.id',$patientid);
+        
+         return $this->db->count_all_results();
     }
 
     public function saveRecord($arrObject,$id){        

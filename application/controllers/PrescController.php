@@ -27,6 +27,7 @@ class PrescController extends CI_Controller {
             $row = array();
             $row[] = $records->id;          
             $row[] = $records->uploadate;
+            $row[] = $records->description;
             $row[] = $records->filename;
             $row[] = $records->path;
             $data[] = $row;
@@ -34,8 +35,8 @@ class PrescController extends CI_Controller {
  
         $output = array(
                         "draw" => $_POST['draw'],
-                        "recordsTotal" => $this->prescupload->count_all(),
-                        "recordsFiltered" => $this->prescupload->count_filtered(),
+                        "recordsTotal" => $this->prescupload->count_all($id),
+                        "recordsFiltered" => $this->prescupload->count_filtered($id),
                         "data" => $data,
                 );
         

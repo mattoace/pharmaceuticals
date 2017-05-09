@@ -68,19 +68,20 @@
 
 
         <!-- /.col -->
-        <div class="col-md-6">
+        <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Add Image(s) to a Category</a></li>
-            <!--   <li><a href="#timeline" data-toggle="tab">Drug categories</a></li>
-              <li><a href="#settings" data-toggle="tab">Re-Order Due</a></li>  -->            
+               <li><a href="#homepage" data-toggle="tab">Home Page Images</a></li>
+              <!--<li><a href="#settings" data-toggle="tab">Re-Order Due</a></li>  -->            
             </ul>
             <div class="tab-content">
-              <div class="active tab-pane" id="activity">
+              <div class="active tab-pane" id="activity" style="background-color:;">
                 <!-- Post -->
                           <!-- Post -->
                 <div class="post">
-                  <div class="user-block">
+                 <h6><b>Category images</b></h6>
+                  <div class="user-block" style="background-color:#EEEEEE;">
                      <img class="img-circle img-bordered-sm" src='<?php echo base_url("assets/img/drug2.png");?>' alt=""> 
                    <div class="col-sm-9">
                         <span class="username" style="margin-left: 0px;">
@@ -96,18 +97,62 @@
                   <!-- /.user-block -->
                   <div class="row margin-bottom"> 
 
-                            <div id="images-box" class="col-sm-12">
-                            </div>   
+                            <div id="images-box" class="col-sm-8">
+                            </div> 
+
+                              <div id="files" class="col-sm-4">
+
+                                   <div class="box box-primary">
+                                                      <div class="box-header with-border">                      
+                                                      </div>                   
+                                                      <div class="box-body">
+                                                        <strong><i class="fa fa-book margin-r-5"></i> Files uploaded</strong>
+                                                        <p class="text-muted">
+                                                            <table id="filestable" class="display" cellspacing="0" width="100%">
+                                                                  <thead>
+                                                                      <tr>
+                                                                          <th>Id</th>
+                                                                          <th>No</th>
+                                                                          <th>Filename</th>
+                                                                          <th>Delete</th>                                                 
+                                                                      </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                  </tbody>
+                                                       
+                                                                  <tfoot>
+                                                                      <tr>
+                                                               
+                                                                      </tr>
+                                                                  </tfoot>
+                                                              </table>
+                                                        </p>
+                                                      </div>                    
+                                                    </div> 
+
+
+                              </div>     
                    
                     <!-- /.col -->
                   </div>
                   <!-- /.row -->
 
 
+                 <div class="row margin-bottom"> 
+                    <div class="box box-primary">  <label for="storename">Slider text</label>                  
+                            <form role="form">
+                              <div class="box-body">                               
+                                 <button type="submit" class="btn btn-danger pull-right btn-block btn-sm" style = "width:20%;margin-bottom:2%;s" onClick="saveSliderText(this)">Save text</button>                      
+                                 <div class="form-group">
+                                  <input type="input" class="form-control" id="slidertext" placeholder="Slidertext">
+                                  <input type="hidden" class="form-control" id="idslider" placeholder="1">
+                                </div>
+                              </div>
+                              </form>
+                       </div>
+                 </div>
                 </div>
-                <!-- /.post -->
-
-      
+                <!-- /.post -->     
 
 
             
@@ -125,10 +170,6 @@
 					<script src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.js')?>"></script>
 					<script src="<?php echo base_url('assets/plugins/uploadplugin/jquery.knob.js')?>"></script> 
 					<script src="<?php echo base_url('assets/plugins/uploadplugin/jquery.ui.widget.js')?>"></script> 
-
-
-
-
             <!-- The blueimp Gallery widget -->
             <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
                 <div class="slides"></div>
@@ -233,8 +274,92 @@
         		<script src="<?php echo base_url('assets/js/banners.js')?>"></script> 
 
               </div>
-              <!-- /.tab-pane -->  
+              <!-- /.tab-pane -->
+
+             <div class="tab-pane" id="homepage" style="background-color:;"> 
+                  <h6><b>Homapage Images</b></h6>
+
+                  <div class="user-block" style="background-color:#EEEEEE;">
+                                     <img class="img-circle img-bordered-sm" src='<?php echo base_url("assets/img/drug2.png");?>' alt=""> 
+                                   <div class="col-sm-9">
+                                        <span class="username" style="margin-left: 0px;">
+                                          <a href="#">Preview Images</a>
+                                          <a href="#" class="pull-left btn-box-tool"><i class="fa fa-times4"></i></a>
+                                        </span>
+                                    <span class="description" style="margin-left: 0px;">Preview uploaded images for the medicines</span>
+                                     </div>
+                                   <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm" onClick="uploadimageHome(this)">Upload Image</button>
+                                      </div>
+                                  </div>
+
+
+
+
+                                <!-- /.user-block -->
+                                <div class="row margin-bottom"> 
+
+                                          <div id="images-boxhome" class="col-sm-8">
+                                          </div> 
+
+                                            <div id="fileshomepage" class="col-sm-4">
+
+                                                 <div class="box box-primary">
+                                                                    <div class="box-header with-border">                      
+                                                                    </div>                   
+                                                                    <div class="box-body">
+                                                                      <strong><i class="fa fa-book margin-r-5"></i> Files uploaded</strong>
+                                                                      <p class="text-muted">
+                                                                          <table id="filestablehome" class="display" cellspacing="0" width="100%">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Id</th>
+                                                                                        <th>No</th>
+                                                                                        <th>Filename</th>
+                                                                                        <th>Delete</th>                                                 
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                </tbody>
+                                                                     
+                                                                                <tfoot>
+                                                                                    <tr>
+                                                                             
+                                                                                    </tr>
+                                                                                </tfoot>
+                                                                            </table>
+                                                                      </p>
+                                                                    </div>                    
+                                                                  </div> 
+
+
+                                            </div>     
+                                 
+                                  <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+               
+                              <div class="box box-primary" style="margin-top-20%;">  <label for="storename">Slider text</label>                  
+                                      <form role="form">
+                                        <div class="box-body">                               
+                                           <button type="submit" class="btn btn-danger pull-right btn-block btn-sm" style = "width:20%;margin-bottom:2%;s" onClick="saveSliderTextHome(this)">Save text</button>                      
+                                           <div class="form-group">
+                                            <input type="input" class="form-control" id="slidertexthome" placeholder="Slidertext">
+                                            <input type="hidden" class="form-control" id="idslider" placeholder="1">
+                                          </div>
+                                        </div>
+                                        </form>
+                                 </div>
+                           
+
+
+
+             </div>
+
             </div>
+
+
+
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->
@@ -242,45 +367,7 @@
           <!-- /.col -->
 
 
-          <div class="col-md-3">  
-
-                  <!-- About Me Box -->
-                  <div class="box box-primary">
-                    <div class="box-header with-border">
-                      <!-- <h3 class="box-title"><h3>Files</h3> -->
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                      <strong><i class="fa fa-book margin-r-5"></i> Files uploaded</strong>
-
-                      <p class="text-muted">
-
-                          <table id="filestable" class="display" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>No</th>
-                                        <th>Filename</th>
-                                        <th>Delete</th>                                                 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                     
-                                <tfoot>
-                                    <tr>
-                             
-                                    </tr>
-                                </tfoot>
-                            </table>  
-
-                      </p>
-
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
-                  <!-- /.box -->
-                </div>
+         
 
               </div>
               <!-- /.row -->
