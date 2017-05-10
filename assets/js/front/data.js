@@ -120,11 +120,22 @@ function invoiceEntryPopup(){
 }
 
 
+function moredetails(parameter){
+ postVars = {"id":parameter}
+      $.post("med-moredetails",postVars,function(data){
+      $("#detailscontainer").html(data.response); 
+      $('#dialogpopupdetails').popup('show'); 
+
+     },"json"); 
+  
+}
+
 function postInvoice(frmObj){
 
 parent.window.location = "https://tibamoja.co.ke/ws:pay-invoice?invoiceno="+$('#invoiceno').val();
 
 return false;
 }
+
 
 

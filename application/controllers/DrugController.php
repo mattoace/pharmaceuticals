@@ -299,6 +299,76 @@ public function displayImages(){
       header("Content-type:image");                      
       echo openFile($list[0]->img);
   } 
+
+
+  public function moreDetails(){
+
+   $id = $this->input->post("id");
+   $list = $this->drugs->getImageList($id);
+   $listarr = $this->drugs->fetchedit($id);
+   $listdetails = $listarr->row_array();
+
+    $response = '
+                <div class="card">
+                    <div class="container-fliud">
+                        <div class="wrapper row">
+                            <div class="preview col-md-6">                                
+                                <div class="preview-pic tab-content"> ';                      
+                                 $j=0; 
+                                foreach ($list as $drugimg) {
+                                        if ($j==0){
+                                            $response .='<div class="tab-pane active" id="pic-'.$drugimg->id.'"><img src="../'.$drugimg->img.'" /></div>';
+                                        }else{
+                                            $response .='<div class="tab-pane" id="pic-'.$drugimg->id.'"><img src="../'.$drugimg->img.'" /></div>';
+                                        } 
+                                  $j++;
+                                  }
+
+                                $response .='</div>
+                                <ul class="preview-thumbnail nav nav-tabs"> ';                               
+                               $i=0;
+                                  foreach ($list as $drugimg) {
+                                      if ($i==0) {
+                                            $response .='<li class="active"><a data-target="#pic-'.$drugimg->id.'" data-toggle="tab"><img src="../'.$drugimg->img.'"/></a></li>';
+                                      }else{
+                                           $response .='<li><a data-target="#pic-'.$drugimg->id.'" data-toggle="tab"><img src="../'.$drugimg->img.'"/></a></li>';
+                                      } 
+                                        
+                                    $i++;
+                                  }
+                                 $response .='</ul>
+                                
+                            </div>
+                            <div class="details col-md-6">
+                                <h3 class="product-title">'.$listdetails['genericname'].'</h3>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <span class="review-no">1 reviews</span>
+                                </div>
+                                <p class="product-description">'.$listdetails['genericname'].'.</p>                                
+                                <h4 class="price">current price: <span>Kes '.$listdetails['drugprice'].'</span></h4>
+                                <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong> (87 votes)</strong></p>                           
+                                <div class="action"> ';
+                                $response .='<p class="btn-add">';
+                                $response .='<button class="add-to-cart btn my-cart-btn" data-id='.$listdetails['id'].' data-name="'.$listdetails['genericname'].'" data-summary="'.$listdetails['genericname'].'" data-price="'.$listdetails['drugprice'].'" data-quantity="1" data-image="'.$listdetails['img'].'">';
+                                $response .='<span class="fa fa-shopping-cart"> add to cart </span>';
+                                $response .='</button>';                            
+                               $response .=' </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+   ';
+
+
+    echo json_encode(array("response"=>$response));
+  }
  
 }
 

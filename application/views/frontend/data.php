@@ -303,22 +303,65 @@ html {
     overflow-x: hidden;
 }
 
+@media only screen and (max-device-width: 480px) {
+.glyphicon {
+    top: 0.6% !important;
+    z-index:10000000 !important;
+    position:fixed !important;
+      }
+#mpesa{
+    margin-left: 70% !important;
+        margin-top: -5% !important;
+}
+
+.camera_fakehover {
+    height: 65% !important;
+}
+.camera_wrap.camera_azure_skin {
+    margin-bottom: -98px !important;
+}
+.price.col-md-4 {
+    line-height: 0 !important;
+    margin-left: 70% !important;
+    margin-top: -2% !important;
+}
+
+.price.col-md-8 > span {
+    font-size: 12px !important;
+}
+
+.price.col-md-6 {
+    float: left !important;
+}
+.col-item .separator p i {
+    margin-right: 20px !important;
+}
+.price.col-md-4 > div {
+    margin-top: -70% !important;
+}
+
+}
+
+
 </style>
 
 <div class="row" style="">
     <div class="col-md-6" > &nbsp;
     </div>
 
-    <div class="col-md-2" style=""> 
+    <div class="col-md-2" style=""> &nbsp;
     </div>
 
-    <div class="col-md-2" style="height:20px;"> 
-       <img class="img-responsive" onCLick="invoiceEntryPopup()" style='cursor:pointer;max-height: 30px; margin-left: 50%;padding-right:10%;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " /><br>
+    <div class="col-md-2" style="height:20px;"> <!--  // margin-left: 50%;padding-right:10%; -->
+       <img class="img-responsive" id="mpesa" onCLick="invoiceEntryPopup()" style='cursor:pointer;max-height: 30px;float:right;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " /><br>
+    <div class="clearfix"></div>
     </div>
     <div class="col-md-2" style="height:20px;" >
-  <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
+  <span class="glyphicon glyphicon-shopping-cart my-cart-icon" style=""><span class="badge badge-notify my-cart-badge"></span></span>
 </div>
 </div>
+
+
 <div class="container">
 <div style="float: right; cursor: pointer;">  
 
@@ -448,12 +491,12 @@ html {
                   $j=0;
 		         foreach ($row as $key => $product) {
 
-							print('<div class="col-sm-3">');
+							print('<div class="col-sm-3" style="height:340px !important">');
 							print('<article class="col-item">');
 							print('<div class="photo">');
 							print('<div class="options">');
-							print('<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">');
-							print('<i class="fa fa-heart"></i>');
+							print('<button class="btn btn-default" type="submit" onCLick="moredetails('.$product->id.')" data-toggle="tooltip" data-placement="top" title="View more product details">');
+							print('<i class="fa fa-list"></i>');
 							print('</button>');
 							print('<button class="btn btn-default" type="button" onCLick="rate()" data-toggle="tooltip" data-placement="top" title="Rate">');
 							print('<i class="fa fa-exchange"></i>');
@@ -464,7 +507,7 @@ html {
 							print('<span class="fa fa-shopping-cart"></span>');
 							print('</button>');
 							print('</div>');
-							print('<a href="#"> <img src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
+							print('<a href="#"> <img  onCLick="moredetails('.$product->id.')" src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
 							print('</div>');
 							print('<div class="info">');
 
@@ -504,13 +547,13 @@ html {
                             print('</div>');
 
                             print('<div class="row">');
-                            print('<div class="price col-md-6" style="margin-top:0px; ">');
+                            print('<div class="price col-md-8" style="margin-top:0px; ">');
                             print('<p class="btn-add">');							
                             print('<button class="btn btn-default my-cart-btn" style="padding:0px !important; width: 100px;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;padding-left:14%;">Add to Cart</span></span></button>      </a></p>');
                             print('</div>');
 
-                            print('<div class="price col-md-6" style="margin-top:0px;float:right;top:0px;">');
-                            print('<div style="font-size: 8px; margin-top: 14%;margin-left: 50%;">');
+                            print('<div class="price col-md-4" style="margin-top:0px;top:0px;">');
+                            print('<div style="font-size: 8px;margin-top: 14%;">'); //style="font-size: 8px; margin-top: 14%;margin-left: 50%;"
                             print(' <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
                             print(' </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
                             print('</i><i class="fa fa-star"></i>');
@@ -545,6 +588,190 @@ html {
 
 		         </script>
 
+
+
+
+
+                <div id="dialogpopupdetails"   style="visibility:hidden;text-align:middle !important; width: auto; position: fixed !important; top: 5% !important;"  class="well" >
+                   <div id =""  > <h3><b>View more</b></h3> </div>
+                      <div class="col-md-12" >   
+
+                <style>
+
+                .preview {
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  display: flex;
+                  -webkit-box-orient: vertical;
+                  -webkit-box-direction: normal;
+                  -webkit-flex-direction: column;
+                      -ms-flex-direction: column;
+                          flex-direction: column; }
+                  @media screen and (max-width: 996px) {
+                    .preview {
+                      margin-bottom: 20px; } }
+
+                .preview-pic {
+                  -webkit-box-flex: 1;
+                  -webkit-flex-grow: 1;
+                      -ms-flex-positive: 1;
+                          flex-grow: 1; }
+
+                .preview-thumbnail.nav-tabs {
+                  border: none;
+                  margin-top: 15px; }
+                  .preview-thumbnail.nav-tabs li {
+                    width: 18%;
+                    margin-right: 2.5%; }
+                    .preview-thumbnail.nav-tabs li img {
+                      max-width: 100%;
+                      display: block; }
+                    .preview-thumbnail.nav-tabs li a {
+                      padding: 0;
+                      margin: 0; }
+                    .preview-thumbnail.nav-tabs li:last-of-type {
+                      margin-right: 0; }
+
+                .tab-content {
+                  overflow: hidden; }
+                  .tab-content img {
+                    width: 100%;
+                    -webkit-animation-name: opacity;
+                            animation-name: opacity;
+                    -webkit-animation-duration: .3s;
+                            animation-duration: .3s; }
+
+                .card {
+                  margin-top: 50px;
+                  background: #eee;
+                  padding: 0em;
+                  line-height: 1.5em; }
+
+                @media screen and (min-width: 997px) {
+                  .wrapper {
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex; } }
+
+                .details {
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  display: flex;
+                  -webkit-box-orient: vertical;
+                  -webkit-box-direction: normal;
+                  -webkit-flex-direction: column;
+                      -ms-flex-direction: column;
+                          flex-direction: column; }
+
+                .colors {
+                  -webkit-box-flex: 1;
+                  -webkit-flex-grow: 1;
+                      -ms-flex-positive: 1;
+                          flex-grow: 1; }
+
+                .product-title, .price, .sizes, .colors {
+                  text-transform: UPPERCASE;
+                  font-weight: bold; }
+
+                .checked, .price span {
+                  color: #ff9f1a; }
+
+                .product-title, .rating, .product-description, .price, .vote, .sizes {
+                  margin-bottom: 15px; }
+
+                .product-title {
+                  margin-top: 0; }
+
+                .size {
+                  margin-right: 10px; }
+                  .size:first-of-type {
+                    margin-left: 40px; }
+
+                .color {
+                  display: inline-block;
+                  vertical-align: middle;
+                  margin-right: 10px;
+                  height: 2em;
+                  width: 2em;
+                  border-radius: 2px; }
+                  .color:first-of-type {
+                    margin-left: 20px; }
+
+                .add-to-cart, .like {
+                  background: #ff9f1a;
+                  padding: 1.2em 1.5em;
+                  border: none;
+                  text-transform: UPPERCASE;
+                  font-weight: bold;
+                  color: #fff;
+                  -webkit-transition: background .3s ease;
+                          transition: background .3s ease; }
+                  .add-to-cart:hover, .like:hover {
+                    background: #b36800;
+                    color: #fff; }
+
+                .not-available {
+                  text-align: center;
+                  line-height: 2em; }
+                  .not-available:before {
+                    font-family: fontawesome;
+                    content: "\f00d";
+                    color: #fff; }
+
+                .orange {
+                  background: #ff9f1a; }
+
+                .green {
+                  background: #85ad00; }
+
+                .blue {
+                  background: #0076ad; }
+
+                .tooltip-inner {
+                  padding: 1.3em; }
+
+                @-webkit-keyframes opacity {
+                  0% {
+                    opacity: 0;
+                    -webkit-transform: scale(3);
+                            transform: scale(3); }
+                  100% {
+                    opacity: 1;
+                    -webkit-transform: scale(1);
+                            transform: scale(1); } }
+
+                @keyframes opacity {
+                  0% {
+                    opacity: 0;
+                    -webkit-transform: scale(3);
+                            transform: scale(3); }
+                  100% {
+                    opacity: 1;
+                    -webkit-transform: scale(1);
+                            transform: scale(1); } }
+
+                       .checked, .price span {
+                            color: black;
+                        } 
+                        @media only screen and (max-device-width: 480px) {
+                            #dialogpopupdetails{
+                                top:0px !important;
+                                /*position:fixed !important;
+                                margin-left:-80% !important;*/
+                               /* position:fixed !important;*/
+                            }
+                        }    
+
+                </style>
+                            <div class="container" id="detailscontainer">
+                            </div>
+                     </div>                      
+          
+
+                </div>
 
 
 

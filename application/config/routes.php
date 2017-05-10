@@ -16,11 +16,9 @@ $route['ws:products'] = 'services/fetchProducts';
 $route['ws:productsearch'] = 'services/searchProducts';
 $route['ws:product'] = 'services/searchProductskeyWord';
 $route['ws:allproducts'] = 'services/allProducts';
-
+$route['ws:drug-category'] = 'services/drugCategory';
 $route['ws:catmain'] = 'services/fetchCategoriesMain';
 $route['ws:catchild'] = 'services/fetchCategoriesChild';
-
-
 $route['ws:patient-orders'] = 'services/fetchPatientOrders';
 $route['ws:patient-unconfirmedorders'] = 'services/fetchPatientUnconfirmedOrders';
 $route['ws:patient-invoices'] = 'services/fetchPatientInvoices';
@@ -169,6 +167,7 @@ $route['med-autofill'] = 'drugController/autoFill';
 $route['med-files'] = 'drugController/fetchFiles';
 $route['med-files-delete'] = 'drugController/deleteFiles';
 $route['med-file-view'] = 'drugController/viewFile'; 
+$route['med-moredetails'] = 'drugController/moreDetails'; 
 
 $route['coupons'] = 'pages/back/coupons';
 $route['coupons-adddiscount'] = 'DiscountController/addNew';

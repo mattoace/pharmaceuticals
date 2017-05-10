@@ -892,6 +892,15 @@ class Services extends CI_Controller
                 $ret_val=array();
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
+                    if($row['img']){
+                        $drugimage = explode('/drugs/',$row['img']);
+                        if($drugimage[1]){
+                            $splitsub = explode('/',$drugimage[1]);
+                            $url_encoded = rawurlencode($splitsub[1]);
+                            $row['img'] = $drugimage[0]."/drugs/".$splitsub[0]."/".$url_encoded;
+                        } 
+                    }
+                    
                     $ret_val[$i]=$row;
                     $i++;
                 }
@@ -915,6 +924,16 @@ class Services extends CI_Controller
                 $ret_val=array();
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
+
+                    if($row['img']){
+                        $drugimage = explode('/drugs/',$row['img']);
+                        if($drugimage[1]){
+                            $splitsub = explode('/',$drugimage[1]);
+                            $url_encoded = rawurlencode($splitsub[1]);
+                            $row['img'] = $drugimage[0]."/drugs/".$splitsub[0]."/".$url_encoded;
+                        } 
+                    }
+
                     $ret_val[$i]=$row;
                     $i++;
                 }
@@ -939,6 +958,16 @@ class Services extends CI_Controller
                 $ret_val=array();
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
+
+                    if($row['img']){
+                        $drugimage = explode('/drugs/',$row['img']);
+                        if($drugimage[1]){
+                            $splitsub = explode('/',$drugimage[1]);
+                            $url_encoded = rawurlencode($splitsub[1]);
+                            $row['img'] = $drugimage[0]."/drugs/".$splitsub[0]."/".$url_encoded;
+                        } 
+                    }
+
                     $ret_val[$i]=$row;
                     $i++;
                 }
@@ -1014,6 +1043,16 @@ class Services extends CI_Controller
                 $ret_val=array();
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
+
+                                        if($row['img']){
+                        $drugimage = explode('/drugs/',$row['img']);
+                        if($drugimage[1]){
+                            $splitsub = explode('/',$drugimage[1]);
+                            $url_encoded = rawurlencode($splitsub[1]);
+                            $row['img'] = $drugimage[0]."/drugs/".$splitsub[0]."/".$url_encoded;
+                        } 
+                    }
+
                     $ret_val[$i]=$row;
                     $i++;
                 }
@@ -1116,6 +1155,16 @@ class Services extends CI_Controller
                 $ret_val = array();
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
+
+                    if($row['img']){
+                        $drugimage = explode('/drugs/',$row['img']);
+                        if($drugimage[1]){
+                            $splitsub = explode('/',$drugimage[1]);
+                            $url_encoded = rawurlencode($splitsub[1]);
+                            $row['img'] = $drugimage[0]."/drugs/".$splitsub[0]."/".$url_encoded;
+                        } 
+                    }
+
                     $ret_val[$i]=$row;
                     $i++;
                 }
@@ -1146,7 +1195,18 @@ class Services extends CI_Controller
                 $ret_val = array();
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
+
+                    if($row['img']){
+                        $drugimage = explode('/drugs/',$row['img']);
+                        if($drugimage[1]){
+                            $splitsub = explode('/',$drugimage[1]);
+                            $url_encoded = rawurlencode($splitsub[1]);
+                            $row['img'] = $drugimage[0]."/drugs/".$splitsub[0]."/".$url_encoded;
+                        } 
+                    }
+                   
                     $ret_val[$i]=$row;
+
                     $i++;
                 }
                 return $ret_val;
@@ -1204,6 +1264,16 @@ class Services extends CI_Controller
                 $ret_val = array();
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
+
+                    if($row['img']){
+                        $drugimage = explode('/drugs/',$row['img']);
+                        if($drugimage[1]){
+                            $splitsub = explode('/',$drugimage[1]);
+                            $url_encoded = rawurlencode($splitsub[1]);
+                            $row['img'] = $drugimage[0]."/drugs/".$splitsub[0]."/".$url_encoded;
+                        } 
+                    }
+
                     $ret_val[$i]=$row;
                     $i++;
                 }
@@ -1290,6 +1360,16 @@ class Services extends CI_Controller
                 $ret_val=array();
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
+
+                    if($row['img']){
+                        $drugimage = explode('/drugs/',$row['img']);
+                        if($drugimage[1]){
+                            $splitsub = explode('/',$drugimage[1]);
+                            $url_encoded = rawurlencode($splitsub[1]);
+                            $row['img'] = $drugimage[0]."/drugs/".$splitsub[0]."/".$url_encoded;
+                        } 
+                    }
+
                     $ret_val[$i]=$row;
                     $i++;
                 }
@@ -2624,6 +2704,16 @@ class Services extends CI_Controller
                 $ret_val=array();
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
+
+                    if($row['img']){
+                        $drugimage = explode('/drugs/',$row['img']);
+                        if($drugimage[1]){
+                            $splitsub = explode('/',$drugimage[1]);
+                            $url_encoded = rawurlencode($splitsub[1]);
+                            $row['img'] = $drugimage[0]."/drugs/".$splitsub[0]."/".$url_encoded;
+                        } 
+                    }
+
                     $ret_val[$i]=$row;
                     $i++;
                 }

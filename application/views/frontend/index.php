@@ -652,7 +652,7 @@ background-color: #1484C7;
 					<script type="text/javascript">
 									$(window).load(function() {
 										$("#pharmholdmeds").flexisel({
-											visibleItems: 1,
+											visibleItems: 3,
 											animationSpeed: 3000,
 											autoPlay: false,
 											autoPlaySpeed: 10000,    		
@@ -765,8 +765,8 @@ background-color: #1484C7;
 
 		    <div class="col-md-12">
                 <fieldset class="gllpLatlonPicker" >
-                    <input type="text" class="gllpSearchField">
-                    <input type="button" class="gllpSearchButton" value="search">
+                   <!-- <input type="text" class="gllpSearchField">
+                     <input type="button" class="gllpSearchButton" value="search"> -->
                     <div class="gllpMap" style="width:100% !important;height:490px !important;margin-top: -5% !important;">Google Maps</div>
                     <input type="hidden" id="mylatitude" class="gllpLatitude" value="-2.34455"/>
                     <input type="hidden" id="mylongitude" class="gllpLongitude" value="39.3456"/>
