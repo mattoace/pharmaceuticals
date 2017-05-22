@@ -345,6 +345,7 @@
         $(".my-product-couponcode").each(function() {
           coupons.push($(this).val());            
         });*/
+     if(getCookie('userlogin') > 0){
 
       var products = ProductManager.getAllProducts(); 
 
@@ -355,7 +356,7 @@
                  };
 
         $.post("cart-request",postVar,function(){
-
+              window.location ="checkoutsuccess";
         });     
 
       if(!products.length) {
@@ -367,6 +368,12 @@
       ProductManager.clearProduct();
       $cartBadge.text(ProductManager.getTotalQuantity());
       $("#" + idCartModal).modal("hide");
+
+     }else{
+        alert("Please login to continue checkout!");
+         window.location ="login";
+     }
+
     }); 
 
   }

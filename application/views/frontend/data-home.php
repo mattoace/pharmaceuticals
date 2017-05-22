@@ -494,15 +494,18 @@ html {
                 <?php
                 print("<script>jQuery(function(){jQuery('#camera_wrap_1').camera({thumbnails: false , height:'210'});});</script>");
 
-                  $j=0;
+                  $j=0; $k=0;
                  foreach ($row as $key => $product) {
+
+                        if($k==0){
+                           print('<div class="row"><div class="col-sm-12">'); }
 
                             print('<div class="col-sm-3" style="height:340px !important">');
                             print('<article class="col-item">');
                             print('<div class="photo">');
                             print('<div class="options">');
-                            print('<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">');
-                            print('<i class="fa fa-heart"></i>');
+                            print('<button class="btn btn-default" type="button" onCLick="moredetails('.$product->id.')" data-toggle="tooltip" data-placement="top" title="View more product details">');
+                            print('<i class="fa fa-list"></i>');
                             print('</button>');
                             print('<button class="btn btn-default" type="button" onCLick="rate()" data-toggle="tooltip" data-placement="top" title="Rate">');
                             print('<i class="fa fa-exchange"></i>');
@@ -513,37 +516,24 @@ html {
                             print('<span class="fa fa-shopping-cart"></span>');
                             print('</button>');
                             print('</div>');
-                            print('<a href="#"> <img src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
+                            print('<a href="#"> <img onCLick="moredetails('.$product->id.')" src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
                             print('</div>');
                             print('<div class="info">');
 
                             print('<div class="row">');
                             print('<div class="price-details col-md-6">');
                             print('<p class="details">');
-                            //print($product->genericname);
+                          
                         
 
                             print('<div class="info">');
-                            /*print('<div class="row">');
-
-                            print('<div class="price col-md-8">');
-                            print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
-                            print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color">Kes '.$product->drugprice.'</h5>');
-                            print('</div>');
-
-                            print('<div class="rating hidden-sm col-md-4">');
-                            print(' <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
-                            print(' </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
-                            print('</i><i class="fa fa-star"></i>');
-                            print('</div>');
-
-                            print('</div>');*/
+                            
 
                             print('<div class="separator clear-left">');
 
-                            print('<div class="row">');
+                            print('<div class="row" style="margin:0px !important">');
 
-                            print('<div class="row" >');
+                            print('<div class="row" style="margin:0px !important" >');
                             print('<div class="price col-md-8">');
                             print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
                             print('</div>');
@@ -552,7 +542,7 @@ html {
                             print('</div>');
                             print('</div>');
 
-                            print('<div class="row">');
+                            print('<div class="row" style="margin:0px !important">');
                             print('<div class="price col-md-8" style="margin-top:0px; ">');
                             print('<p class="btn-add">');                           
                             print('<button class="btn btn-default my-cart-btn" style="padding:0px !important; width: 100px;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;padding-left:14%;">Add to Cart</span></span></button>      </a></p>');
@@ -566,9 +556,7 @@ html {
                             print('</div>');
                             print('</div>');
                             print('</div>');
-
-
-                            print('</div>');    
+                            print('</div>');  
 
                             print(' </div>');
                             print(' <div class="clearfix">');
@@ -584,7 +572,19 @@ html {
                             print('</article>');          
                             print('</div>');
 
-                 }?> 
+                            if($k== 3){
+                            
+                                 print('<div class="clearfix" style="padding:bottom:4% !important;">');print('.<hr style=" border: 0; height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);"></div>'); 
+                                 print('</div></div>');
+                                $k= -1;
+                            }
+
+                           
+
+                    $k++;
+                 }
+
+                 ?> 
 
                  <script>
                   var totalRecords = "<?php echo count($row); ?>";
@@ -595,6 +595,15 @@ html {
                  </script>
 
 
+
+
+                <div id="dialogpopupdetails"   style="visibility:hidden;text-align:middle !important; width: auto; position: fixed !important; top: 5% !important;"  class="well" >
+                   <div id =""  > <h3><b>View more</b></h3> </div>
+                      <div class="col-md-12" >        
+                            <div class="container" id="detailscontainer">
+                            </div>
+                     </div> 
+                </div>
 
 
                 <div id="dialogpopupinvoice"   style="visibility:hidden;text-align:middle !important; width: auto; position: fixed !important; top: 1% !important;"  class="well" >

@@ -57,7 +57,7 @@ $(function () {
 
 });
 
-function loadCategory(categoryname,categoryid){ 
+function loadCategory(categoryname,categoryid){  
   switch(categoryname){
     case "AllProducts":  
        dataframe.src= "data-products?st=0&ct=&pg=0";
@@ -73,6 +73,14 @@ function loadCategory(categoryname,categoryid){
     break;
     case "MyOrders":  
          dataframe.src="user-orders";
+         setCookie("categoryid",null, 1);
+    break;
+    case "GotoHome":  
+         window.location ="/";
+         setCookie("categoryid",null, 1);
+    break;
+    case "Logout":  
+          window.location ="login";
          setCookie("categoryid",null, 1);
     break;
     default: 

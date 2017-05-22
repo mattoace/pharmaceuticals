@@ -18,6 +18,7 @@ class Login extends CI_Model {
         $this->db->join('users','users.personid = persons.id'); 
         $this->db->where($array); 
         $query = $this->db->get();
+        //var_dump($this->db->last_query()); exit();
      return $query;    
     }
 

@@ -488,56 +488,38 @@ html {
                 <?php
                 print("<script>jQuery(function(){jQuery('#camera_wrap_1').camera({thumbnails: false , height:'210'});});</script>");
 
-                  $j=0;
+                  $j=0; $k = 0;
 		         foreach ($row as $key => $product) {
 
-							print('<div class="col-sm-3" style="height:340px !important">');
-							print('<article class="col-item">');
-							print('<div class="photo">');
-							print('<div class="options">');
-							print('<button class="btn btn-default" type="submit" onCLick="moredetails('.$product->id.')" data-toggle="tooltip" data-placement="top" title="View more product details">');
-							print('<i class="fa fa-list"></i>');
-							print('</button>');
-							print('<button class="btn btn-default" type="button" onCLick="rate()" data-toggle="tooltip" data-placement="top" title="Rate">');
-							print('<i class="fa fa-exchange"></i>');
-							print('</button>');
-							print('</div>');
-							print('<div class="options-cart"> ');       			
-							print('<button class="btn btn-default my-cart-btn" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price="'.$product->drugprice.'" data-quantity="1" data-image="'.$product->img.'">');
-							print('<span class="fa fa-shopping-cart"></span>');
-							print('</button>');
-							print('</div>');
-							print('<a href="#"> <img  onCLick="moredetails('.$product->id.')" src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
-							print('</div>');
-							print('<div class="info">');
+                        if($k==0){
+                           print('<div class="row"><div class="col-sm-12">'); }
 
-							print('<div class="row">');
-							print('<div class="price-details col-md-6">');
-							print('<p class="details">');
-							//print($product->genericname);
-						
-
-							print('<div class="info">');
-							/*print('<div class="row">');
-
-							print('<div class="price col-md-8">');
-							print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
-							print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color">Kes '.$product->drugprice.'</h5>');
-							print('</div>');
-
-							print('<div class="rating hidden-sm col-md-4">');
-							print(' <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
-							print(' </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
-							print('</i><i class="fa fa-star"></i>');
-							print('</div>');
-
-							print('</div>');*/
-
-                            print('<div class="separator clear-left">');
-
+                            print('<div class="col-sm-3" style="height:340px !important">');
+                            print('<article class="col-item">');
+                            print('<div class="photo">');
+                            print('<div class="options">');
+                            print('<button class="btn btn-default" type="button" onCLick="moredetails('.$product->id.')" data-toggle="tooltip" data-placement="top" title="View more product details">');
+                            print('<i class="fa fa-list"></i>');
+                            print('</button>');
+                            print('<button class="btn btn-default" type="button" onCLick="rate()" data-toggle="tooltip" data-placement="top" title="Rate">');
+                            print('<i class="fa fa-exchange"></i>');
+                            print('</button>');
+                            print('</div>');
+                            print('<div class="options-cart"> ');                   
+                            print('<button class="btn btn-default my-cart-btn" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price="'.$product->drugprice.'" data-quantity="1" data-image="'.$product->img.'">');
+                            print('<span class="fa fa-shopping-cart"></span>');
+                            print('</button>');
+                            print('</div>');
+                            print('<a href="#"> <img onCLick="moredetails('.$product->id.')" src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
+                            print('</div>');
+                            print('<div class="info">');
                             print('<div class="row">');
-
-                            print('<div class="row" >');
+                            print('<div class="price-details col-md-6">');
+                            print('<p class="details">');
+                            print('<div class="info">');
+                            print('<div class="separator clear-left">');
+                            print('<div class="row" style="margin:0px !important">');
+                            print('<div class="row" style="margin:0px !important" >');
                             print('<div class="price col-md-8">');
                             print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
                             print('</div>');
@@ -545,13 +527,11 @@ html {
                             print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color">Kes '.$product->drugprice.'</h5>');
                             print('</div>');
                             print('</div>');
-
-                            print('<div class="row">');
+                            print('<div class="row" style="margin:0px !important">');
                             print('<div class="price col-md-8" style="margin-top:0px; ">');
-                            print('<p class="btn-add">');							
+                            print('<p class="btn-add">');                           
                             print('<button class="btn btn-default my-cart-btn" style="padding:0px !important; width: 100px;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;padding-left:14%;">Add to Cart</span></span></button>      </a></p>');
                             print('</div>');
-
                             print('<div class="price col-md-4" style="margin-top:0px;top:0px;">');
                             print('<div style="font-size: 8px;margin-top: 14%;">'); //style="font-size: 8px; margin-top: 14%;margin-left: 50%;"
                             print(' <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">');
@@ -560,25 +540,31 @@ html {
                             print('</div>');
                             print('</div>');
                             print('</div>');
-
-
-                            print('</div>');	
-
+                            print('</div>');
                             print(' </div>');
-							print(' <div class="clearfix">');
-							print(' </div>');
-							print(' </div>');
-							print('</p>');
+                            print(' <div class="clearfix">');
+                            print(' </div>');
+                            print(' </div>');
+                            print('</p>'); 
+                            print('</div>');
+                            print('</div>');
+                            print('</div>');
+                            print('</article>');          
+                            print('</div>');
 
-							//print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
-							//print('<span style="font-size:14px;font-weight:200px;" class="price-new" >Kes '.$product->drugprice.'</span>');
-							print('</div>');
-							print('</div>');
-							print('</div>');
-							print('</article>');          
-							print('</div>');
+                            if($k== 3){
+                            
+                                 print('<div class="clearfix" style="padding:bottom:4% !important;">');print('.<hr style=" border: 0; height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);"></div>'); 
+                                 print('</div></div>');
+                                $k= -1;
+                            }
 
-		         }?> 
+                           
+
+                    $k++;
+		         }
+
+                 ?> 
 
 		         <script>
                   var totalRecords = "<?php echo count($row); ?>";
@@ -594,183 +580,10 @@ html {
 
                 <div id="dialogpopupdetails"   style="visibility:hidden;text-align:middle !important; width: auto; position: fixed !important; top: 5% !important;"  class="well" >
                    <div id =""  > <h3><b>View more</b></h3> </div>
-                      <div class="col-md-12" >   
-
-                <style>
-
-                .preview {
-                  display: -webkit-box;
-                  display: -webkit-flex;
-                  display: -ms-flexbox;
-                  display: flex;
-                  -webkit-box-orient: vertical;
-                  -webkit-box-direction: normal;
-                  -webkit-flex-direction: column;
-                      -ms-flex-direction: column;
-                          flex-direction: column; }
-                  @media screen and (max-width: 996px) {
-                    .preview {
-                      margin-bottom: 20px; } }
-
-                .preview-pic {
-                  -webkit-box-flex: 1;
-                  -webkit-flex-grow: 1;
-                      -ms-flex-positive: 1;
-                          flex-grow: 1; }
-
-                .preview-thumbnail.nav-tabs {
-                  border: none;
-                  margin-top: 15px; }
-                  .preview-thumbnail.nav-tabs li {
-                    width: 18%;
-                    margin-right: 2.5%; }
-                    .preview-thumbnail.nav-tabs li img {
-                      max-width: 100%;
-                      display: block; }
-                    .preview-thumbnail.nav-tabs li a {
-                      padding: 0;
-                      margin: 0; }
-                    .preview-thumbnail.nav-tabs li:last-of-type {
-                      margin-right: 0; }
-
-                .tab-content {
-                  overflow: hidden; }
-                  .tab-content img {
-                    width: 100%;
-                    -webkit-animation-name: opacity;
-                            animation-name: opacity;
-                    -webkit-animation-duration: .3s;
-                            animation-duration: .3s; }
-
-                .card {
-                  margin-top: 50px;
-                  background: #eee;
-                  padding: 0em;
-                  line-height: 1.5em; }
-
-                @media screen and (min-width: 997px) {
-                  .wrapper {
-                    display: -webkit-box;
-                    display: -webkit-flex;
-                    display: -ms-flexbox;
-                    display: flex; } }
-
-                .details {
-                  display: -webkit-box;
-                  display: -webkit-flex;
-                  display: -ms-flexbox;
-                  display: flex;
-                  -webkit-box-orient: vertical;
-                  -webkit-box-direction: normal;
-                  -webkit-flex-direction: column;
-                      -ms-flex-direction: column;
-                          flex-direction: column; }
-
-                .colors {
-                  -webkit-box-flex: 1;
-                  -webkit-flex-grow: 1;
-                      -ms-flex-positive: 1;
-                          flex-grow: 1; }
-
-                .product-title, .price, .sizes, .colors {
-                  text-transform: UPPERCASE;
-                  font-weight: bold; }
-
-                .checked, .price span {
-                  color: #ff9f1a; }
-
-                .product-title, .rating, .product-description, .price, .vote, .sizes {
-                  margin-bottom: 15px; }
-
-                .product-title {
-                  margin-top: 0; }
-
-                .size {
-                  margin-right: 10px; }
-                  .size:first-of-type {
-                    margin-left: 40px; }
-
-                .color {
-                  display: inline-block;
-                  vertical-align: middle;
-                  margin-right: 10px;
-                  height: 2em;
-                  width: 2em;
-                  border-radius: 2px; }
-                  .color:first-of-type {
-                    margin-left: 20px; }
-
-                .add-to-cart, .like {
-                  background: #ff9f1a;
-                  padding: 1.2em 1.5em;
-                  border: none;
-                  text-transform: UPPERCASE;
-                  font-weight: bold;
-                  color: #fff;
-                  -webkit-transition: background .3s ease;
-                          transition: background .3s ease; }
-                  .add-to-cart:hover, .like:hover {
-                    background: #b36800;
-                    color: #fff; }
-
-                .not-available {
-                  text-align: center;
-                  line-height: 2em; }
-                  .not-available:before {
-                    font-family: fontawesome;
-                    content: "\f00d";
-                    color: #fff; }
-
-                .orange {
-                  background: #ff9f1a; }
-
-                .green {
-                  background: #85ad00; }
-
-                .blue {
-                  background: #0076ad; }
-
-                .tooltip-inner {
-                  padding: 1.3em; }
-
-                @-webkit-keyframes opacity {
-                  0% {
-                    opacity: 0;
-                    -webkit-transform: scale(3);
-                            transform: scale(3); }
-                  100% {
-                    opacity: 1;
-                    -webkit-transform: scale(1);
-                            transform: scale(1); } }
-
-                @keyframes opacity {
-                  0% {
-                    opacity: 0;
-                    -webkit-transform: scale(3);
-                            transform: scale(3); }
-                  100% {
-                    opacity: 1;
-                    -webkit-transform: scale(1);
-                            transform: scale(1); } }
-
-                       .checked, .price span {
-                            color: black;
-                        } 
-                        @media only screen and (max-device-width: 480px) {
-                            #dialogpopupdetails{
-                                top:0px !important;
-                                /*position:fixed !important;
-                                margin-left:-80% !important;*/
-                               /* position:fixed !important;*/
-                            }
-                        }    
-
-                </style>
+                      <div class="col-md-12" >        
                             <div class="container" id="detailscontainer">
                             </div>
-                     </div>                      
-          
-
+                     </div> 
                 </div>
 
 

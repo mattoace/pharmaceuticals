@@ -93,7 +93,7 @@ nav {
                   $j=0;
 		         foreach ($row as $key => $main) {
 		         	if($j == 0){ 
-		         		print('<li class="active"><a href="#" onClick=loadCategory("'.str_replace(" ", "", $main->categoryname).'","'.$main->id.'")   >'.$main->categoryname.'</a></li>');
+		         		//print('<li class="active"><a href="#" onClick=loadCategory("'.str_replace(" ", "", $main->categoryname).'","'.$main->id.'")   >'.$main->categoryname.'</a></li>');
 		         	} else{ 
 		         		print('<li>');
 
@@ -177,7 +177,7 @@ nav {
 
 		         	       }
 		         	     print('</ul>'); 
-                        print('</li>'); 
+                        //print('</li>'); 
 
 		         	}                  
 		         	

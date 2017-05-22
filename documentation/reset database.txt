@@ -1,0 +1,8 @@
+delete from invoice;
+delete from invoiceitems;
+delete from transactions;
+delete from orders;
+delete from orderitems;
+delete from patientrefill;
+delete from patientpayment;
+delete from prescriptionupload;

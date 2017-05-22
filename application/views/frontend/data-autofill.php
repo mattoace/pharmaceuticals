@@ -464,8 +464,8 @@ html {
                             print('<article class="col-item">');
                             print('<div class="photo">');
                             print('<div class="options">');
-                            print('<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">');
-                            print('<i class="fa fa-heart"></i>');
+                            print('<button class="btn btn-default" type="button" onCLick="moredetails('.$product->id.')" data-toggle="tooltip" data-placement="top" title="View more product details">');
+                            print('<i class="fa fa-list"></i>');
                             print('</button>');
                             print('<button class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="top" title="Rate">');
                             print('<i class="fa fa-exchange"></i>');
@@ -476,7 +476,7 @@ html {
                             print('<span class="fa fa-shopping-cart"></span>');
                             print('</button>');
                             print('</div>');
-                            print('<a href="#"> <img src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
+                            print('<a href="#"> <img onCLick="moredetails('.$product->id.')" src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
                             print('</div>');
                             print('<div class="info">');
 
@@ -533,7 +533,7 @@ html {
 						$j++;
 
 		         }
-                 $j = $j +1;
+                 $j = $j + 3;
                  ?> 
 
 		         <script>
@@ -543,6 +543,15 @@ html {
                   var pg = "<?php echo $pg; ?>";
 
 		         </script>
+
+
+                <div id="dialogpopupdetails"   style="visibility:hidden;text-align:middle !important; width: auto; position: fixed !important; top: 5% !important;"  class="well" >
+                   <div id =""  > <h3><b>View more</b></h3> </div>
+                      <div class="col-md-12" >        
+                            <div class="container" id="detailscontainer">
+                            </div>
+                     </div> 
+                </div>
 
 
                 <div id="dialogpopupinvoice"   style="visibility:hidden;text-align:middle !important; width: auto; position: fixed !important; top: 1% !important;"  class="well" >
@@ -598,6 +607,7 @@ html {
 
 				<script src="<?php echo base_url('assets/plugins/pagination/jquery.twbsPagination.js')?>"></script>
 				<script src="<?php echo base_url('assets/plugins/jcart/jquery.mycart.js')?>"></script>
+                <script src='<?php echo base_url("assets/plugins/jquery-popup-overlay-gh-pages/jquery.popupoverlay.js");?>'></script>
 				<script src='<?php echo base_url("assets/js/front/data.js");?>'></script>
 				<script src='<?php echo base_url("assets/js/front/bootstrap-3.1.1.min.js");?>'></script>
 				

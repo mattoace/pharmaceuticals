@@ -312,17 +312,19 @@ background-color: #1484C7;
 						<input type="text" name="email" id="email" placeholder="Email" value="<?php echo $_POST['email'] ?>" required="">
 						<input type="password" name="pass" id="pass" placeholder="Password" value="<?php echo $_POST['pass'] ?>" required="">
 						<input type="text" name="telephone" id="telephone" placeholder="Telephone" value="+254" required="">
+						<input type="text" name="homeaddress" id="homeaddress" placeholder="Home Address" required="">
 						<input type="text" name="nationalid" id="nationalid" placeholder="National Id / Passport" required="">
-						<input type="text" name="address" id="address" placeholder="Address" required="">
-						 <select style="width:40%;" name="gender" id="gender">
+						<input type="text" name="address" id="address" placeholder="Work Address" required="">
+						
+						<select style="width:40%;" name="gender" id="gender">
 							  <option value="1">Male</option>
 							  <option value="2">Female</option>						
 						</select>
 						
 						<input type="text" name="town" id="town" placeholder="Town" required="">
 						<input type="text" name="dateofbirth" id="dateofbirth" placeholder="Date of birth" required="">
-					</div>
-					<input type="submit" class="" id="submit" value="Signup" > 
+					</div><br>
+					<input type="submit" class="" id="submit" value="Register" > 
 				</form>
 		
 			</div>

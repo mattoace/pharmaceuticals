@@ -307,6 +307,15 @@ public function displayImages(){
    $list = $this->drugs->getImageList($id);
    $listarr = $this->drugs->fetchedit($id);
    $listdetails = $listarr->row_array();
+   $listreview = $this->drugs->fetchReview($id);
+   $listrevdetails = $listreview->row_array();
+   $revcount = $listreview->num_rows();
+
+   $listreviewTot = $this->drugs->fetchAllReviewTotal();   
+   $revcounttot = $listreviewTot->num_rows();
+
+   $percentage =  ($revcount/$revcounttot) * 100 ;
+
 
     $response = '
                 <div class="card">
@@ -342,21 +351,19 @@ public function displayImages(){
                             <div class="details col-md-6">
                                 <h3 class="product-title">'.$listdetails['genericname'].'</h3>
                                 <div class="rating">
-                                    <div class="stars">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </div>
-                                    <span class="review-no">1 reviews</span>
+                                    <div class="stars">';                                      
+                                      for ($i=0; $i < $listrevdetails['rating']; $i++) { 
+                                            $response .='<span class="fa fa-star checked"></span>';                                        
+                                          }                                    
+                                 $response .='</div>
+                                    <span class="review-no">'.$revcount.' review</span>
                                 </div>
                                 <p class="product-description">'.$listdetails['genericname'].'.</p>                                
                                 <h4 class="price">current price: <span>Kes '.$listdetails['drugprice'].'</span></h4>
-                                <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong> (87 votes)</strong></p>                           
+                                <p class="vote"><strong>'.number_format($percentage,0).'%</strong> of buyers enjoyed this product! <strong> ('.$revcount.' votes)</strong></p>                           
                                 <div class="action"> ';
                                 $response .='<p class="btn-add">';
-                                $response .='<button class="add-to-cart btn my-cart-btn" data-id='.$listdetails['id'].' data-name="'.$listdetails['genericname'].'" data-summary="'.$listdetails['genericname'].'" data-price="'.$listdetails['drugprice'].'" data-quantity="1" data-image="'.$listdetails['img'].'">';
+                                $response .='<button  class="btn btn-default my-cart-btn" data-id='.$listdetails['id'].' data-name="'.$listdetails['genericname'].'" data-summary="'.$listdetails['genericname'].'" data-price="'.$listdetails['drugprice'].'" data-quantity="1" data-image="'.$listdetails['img'].'">';
                                 $response .='<span class="fa fa-shopping-cart"> add to cart </span>';
                                 $response .='</button>';                            
                                $response .=' </div>
@@ -364,6 +371,8 @@ public function displayImages(){
                         </div>
                     </div>
                 </div>
+               <script src="../assets/plugins/jcart/jquery.mycart.js"></script>              
+               <script src="../assets/js/front/data.js"></script>
    ';
 
 

@@ -90,16 +90,33 @@ class Cat extends CI_Model {
     }
 
     public function get_all_items($is_service){      
-        $this->db->from('category');
+        /*$this->db->from('category');
         $this->db->order_by("categoryname", "asc");
         if($is_service){
             $this->db->where('parent IS NOT NULL');
 
             $this->db->where('categoryname !=','My Prescriptions');
             $this->db->where('categoryname !=','My Invoices');
-            $this->db->where('categoryname !=','My Orders');        
+            $this->db->where('categoryname !=','My Orders');
+            $this->db->where('categoryname !=','Go to Home');
+            $this->db->where('categoryname !=','Logout');        
         }
-        $query = $this->db->get(); 
+        $query = $this->db->get();  */
+
+       $query = $this->db->query('
+            SELECT group_concat( id) as id, "Medicine" as categoryname  FROM category WHERE  id  in  (495,496) group by ""
+            UNION
+            SELECT group_concat( id) as id, categoryname FROM category WHERE id = 497  group by ""
+            UNION
+            SELECT group_concat( id) as id, "Baby Care and Nutrition"  FROM category WHERE id  in  (502,504) group by ""
+            UNION
+            SELECT group_concat( id) as id, categoryname FROM category WHERE id = 505  group by ""
+            UNION
+            SELECT group_concat( id) as id, categoryname FROM category WHERE id = 511  group by ""
+            UNION
+            SELECT group_concat( id) as id, categoryname FROM category WHERE id = 512  group by ""
+       '); 
+       
         return $query;
     }
 

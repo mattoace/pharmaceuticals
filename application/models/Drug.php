@@ -199,6 +199,8 @@ class Drug extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+ 
+
   public function fetchAllReview($rating){
 
         $this->db->select('drugs.id,drugs.genericname,drugs.serialno,drugs.productid,rating,comments,persons.firstname,persons.secondname,persons.surname,persons.email,title,reviewdate,
@@ -211,6 +213,20 @@ class Drug extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+
+      public function fetchAllReviewTotal(){
+
+        $this->db->select('drugs.id,drugs.genericname,drugs.serialno,drugs.productid,rating,comments,persons.firstname,persons.secondname,persons.surname,persons.email,title,reviewdate,
+        IF(drugs.img IS NOT NULL,concat("https://tibamoja.co.ke/",drugs.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img');
+        $this->db->from('ratings');
+        $this->db->join('users','users.id = ratings.patientid');
+        $this->db->join('persons','persons.id = users.personid');
+        $this->db->join('drugs','ratings.drugid = drugs.id');
+        //$this->db->where('ratings.rating',$rating);     
+        $query = $this->db->get();
+        return $query;
+    }
+
 
    public function creatReview($arrObject){
           $response = "Posting a rating.";
@@ -299,16 +315,20 @@ class Drug extends CI_Model {
     
        $categoryname = strtolower($arrayObject['categoryname']);
 
+      // 
+       $catitems = explode(",",$categoryname);
+       $catArr = implode(",", $catitems );
+
        $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax,IF(d.img IS NOT NULL ,concat("https://tibamoja.co.ke/",d.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img
         FROM drugs d , drugprices dp , drugtocategory dtc , category c
         WHERE dp.drugid = d.id 
          AND dtc.drugid = d.id 
          AND c.id = dtc.categoryid     
-         AND LOWER(c.categoryname) LIKE "%'.$categoryname .'%"
+         AND c.id IN ('.$catArr.')
        
        '); 
 
-    return $query;
+    return $query; //AND LOWER(c.categoryname) LIKE "%'.$categoryname .'%"
 
     }
 

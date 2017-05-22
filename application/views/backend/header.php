@@ -77,15 +77,16 @@
             <?php
                $userid = $_COOKIE['userlogin'];
                $query = $this->db->query('SELECT * FROM users u, persons p WHERE u.personid = p.id AND u.id = "'.$userid.'"'); 
-               $row = $query->result();
+               $row = $query->result(); 
+               $img = ($row[0]->img =="assets/uploads/users/")? "http://tibamoja.co.ke/assets/img/adminlogin.jpg" : base_url($row[0]->img);
              ?> 
-              <img src='<?php echo base_url($row[0]->img);?>' class="user-image" alt="">
+              <img src='<?php echo $img;?>' class="user-image" alt="">
               <span class="hidden-xs"><?php echo $row[0]->firstname ." " . $row[0]->secondname; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src='<?php echo base_url($row[0]->img);?>' class="img-circle" alt="">
+                <img src='<?php echo $img;?>' class="img-circle" alt="">
 
                 <p>
                   <?php echo $row[0]->firstname ." " . $row[0]->secondname; ?>
@@ -135,7 +136,7 @@
        ?> 
       <div class="user-panel">
         <div class="pull-left image">
-          <img  src='<?php echo base_url($row[0]->img);?>' class="img-circle" alt="" style="width:200px;height:50px;">
+          <img  src='<?php echo $img;?>' class="img-circle" alt="" style="width:200px;height:50px;">
         </div>
         <div class="pull-left info">
       <p><?php echo $row[0]->firstname ." " . $row[0]->secondname; ?></p>

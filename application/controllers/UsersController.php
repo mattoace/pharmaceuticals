@@ -95,11 +95,10 @@ class UsersController extends CI_Controller {
         $isactive = ($this->input->post("isactive") == 'true' ? 1: 0);
 
         $arrayUsers = array(
-                'username' => $this->input->post("username") ,
-                'pass' => md5($this->input->post("pass")),
+                'username' => $this->input->post("username") ,              
                 'type' => $isadmin,
                 'isactive' => $isactive
-            ); 
+            ); //  'pass' => md5($this->input->post("pass")),
         $this->users->savePersonRecord($arrayUsers,$this->input->post("id"));
 
     } 

@@ -71,7 +71,7 @@ function getCookie(c_name)
  
          colheight = totalRecords / 4 ; 
 
-         iheight = (440 * colheight ) + 850 ;
+         iheight = (440 * colheight ) + 950 ;
 
          parent.callResize(iheight);
     }else{    
@@ -88,7 +88,7 @@ function getResize(){
  
          colheight = totalRecords / 4 ; 
 
-         iheight = (190 * colheight ) + 850 ;
+         iheight = (190 * colheight ) + 950 ;
 
          parent.callResize(iheight);
     }else{    
@@ -124,6 +124,7 @@ function moredetails(parameter){
  postVars = {"id":parameter}
       $.post("med-moredetails",postVars,function(data){
       $("#detailscontainer").html(data.response); 
+      //document.write(data.response);
       $('#dialogpopupdetails').popup('show'); 
 
      },"json"); 

@@ -38,11 +38,12 @@ class RegistrationController extends CI_Controller {
                     'firstname' => $namesArray[0] ,
                     'secondname' => $namesArray[1] ,
                     'email' => $this->input->post("email"),
-                    'address' => $this->input->post("email"),
+                    'address' => $this->input->post("address"),
+                    'homeaddress' => $this->input->post("homeaddress"),
                     'dob' => $this->input->post("dateofbirth"),
                     'gender' => $this->input->post("gender"),
                     'nationalid' => $this->input->post("nationalid"),
-                    'phone' => $this->input->post("telephone"),
+                    'phone' => trim($this->input->post("telephone")),
                     'town' => $this->input->post("town"),
                     'img' => $imgpath 
                 );        
@@ -86,7 +87,7 @@ class RegistrationController extends CI_Controller {
 
               $fromEmail = $smtparray['defaultemail'];            
 
-              $fromName = "Pharm-Portal";
+              $fromName = "tibamoja";
 
               $key = null;
 
@@ -242,7 +243,7 @@ class RegistrationController extends CI_Controller {
 
               $fromEmail = $smtparray['defaultemail'];            
 
-              $fromName = "Pharm-Portal";
+              $fromName = "tibamoja";
 
               $key = null;
 

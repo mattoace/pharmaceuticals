@@ -405,7 +405,7 @@ class Services extends CI_Controller
             'all',
             '',
             array(
-                'id' => array('name' => 'id', 'type' => 'xsd:integer'),
+                'id' => array('name' => 'id', 'type' => 'xsd:string'),
                 'categoryname' => array('name' => 'categoryname', 'type' => 'xsd:string'),
                 'description' => array('name' => 'description', 'type' => 'xsd:string')             
             )
@@ -685,7 +685,7 @@ class Services extends CI_Controller
  //create new user
      $this->nusoap_server->register(
             'createUser',
-            array('fullname' => 'xsd:string','email' => 'xsd:string' ,'pass' => 'xsd:string','pass' => 'xsd:string','homelat' => 'xsd:string','homelon' => 'xsd:string','worklat' => 'xsd:string','worklon' => 'xsd:string'),  //parameters
+            array('fullname' => 'xsd:string','email' => 'xsd:string' ,'pass' => 'xsd:string','pass' => 'xsd:string','homelat' => 'xsd:string','homelon' => 'xsd:string','worklat' => 'xsd:string','worklon' => 'xsd:string','telephone'=>'xsd:string'),  //parameters
             array('return' => 'tns:resultsArray'),  //output
             'urn:PharmaceuticalsSoapServer',   //namespace
             'urn:PharmaceuticalsSoapServer#createUser',  //soapaction
@@ -1185,6 +1185,28 @@ class Services extends CI_Controller
             $ci =& get_instance();
 
             $ci->load->model('Drug');
+
+
+            switch($categoryname){
+                case 'Medicine':
+                 $categoryname = '495,496';
+                break;
+                case 'Vitamins and Suppliments':
+                $categoryname = '497';
+                break;
+                case 'Baby Care and Nutrition':
+                $categoryname = '502,504';
+                break;
+                case 'Medical Devices and Equipment':
+                $categoryname = '505';
+                break;
+                case 'Personal Care':
+                $categoryname = '511';
+                break;
+                case 'Nutrition':
+                $categoryname = '512';
+                break;
+            }
 
             $arraySearch = array('categoryname' => $categoryname); 
 
@@ -2026,7 +2048,7 @@ class Services extends CI_Controller
 
         }
 
-    function createUser($fullname,$email,$pass,$homelat,$homelon,$worklat,$worklon)
+    function createUser($fullname,$email,$pass,$homelat,$homelon,$worklat,$worklon,$telephone)
         {  
 
           $ret_val=array();
@@ -2054,7 +2076,8 @@ class Services extends CI_Controller
                     'homelon' => $homelon ,
                     'worklat' => $worklat ,
                     'worklon' => $worklon ,
-                    'email' => $email
+                    'email' => $email,
+					'phone'=>$telephone
                 );        
 
             $insertedid = $ci->signup->addNew($array);
@@ -3017,7 +3040,9 @@ public function fetchPatientInvoices()
 
             $worklat = $this->input->get("worklat"); 
 
-            $worklon = $this->input->get("worklon");      
+            $worklon = $this->input->get("worklon");
+
+            $telephone = $this->input->get("telephone");			
 
             $wsdl = WSDL;
 
@@ -3025,7 +3050,7 @@ public function fetchPatientInvoices()
 
             $client = new nusoap_client($wsdl, 'wsdl'); 
 
-            $res1 = $client->call('createUser', array('fullname'=>$fullname,'email'=>$email,'pass'=>$pass,'homelat'=>$homelat,'homelon'=>$homelon,'worklat'=>$worklat,'worklon'=>$worklon));       
+            $res1 = $client->call('createUser', array('fullname'=>$fullname,'email'=>$email,'pass'=>$pass,'homelat'=>$homelat,'homelon'=>$homelon,'worklat'=>$worklat,'worklon'=>$worklon,'telephone'=>$telephone));       
 
             echo json_encode($res1 );
 

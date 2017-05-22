@@ -228,7 +228,7 @@ $route['roles-pharmacydeassign'] = 'rolesController/pharmdeassigned';
 
 //front end
 $route['login'] = 'pages/view/login';
-//$route['home'] = 'pages/view/home';
+$route['checkoutsuccess'] = 'pages/view/checkoutsuccess';
 $route['home'] = 'pages/view/products';
 $route['data-products'] = 'pages/fullview/data';
 $route['data-productshome'] = 'pages/fullview/data-home';
