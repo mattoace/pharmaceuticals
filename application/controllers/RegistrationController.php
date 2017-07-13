@@ -32,6 +32,15 @@ class RegistrationController extends CI_Controller {
           } else {             
           }    
 
+          $homelatlongArray = array();
+          if($this->input->post("homelatlong")){
+              $homelatlongArray = explode(",", $this->input->post("homelatlong")); 
+            }
+          $worklatlongArray = array();
+          if($this->input->post("worklatlong")){
+              $worklatlongArray = explode(",", $this->input->post("worklatlong")); 
+            }
+
           $namesArray = explode(" ", $this->input->post("name")); 
 
                  $array = array(
@@ -45,6 +54,11 @@ class RegistrationController extends CI_Controller {
                     'nationalid' => $this->input->post("nationalid"),
                     'phone' => trim($this->input->post("telephone")),
                     'town' => $this->input->post("town"),
+                    'homelat' => $homelatlongArray[0],
+                    'homelon' => $homelatlongArray[1],
+                    'worklat' => $worklatlongArray[0],
+                    'worklon' => $worklatlongArray[1],
+                    'type' => 1,
                     'img' => $imgpath 
                 );        
 
@@ -210,7 +224,7 @@ class RegistrationController extends CI_Controller {
                     'username' =>  $email ,
                     'pass' => md5($pass),
                     'personid'=> $insertedid,
-                    'type'=>1
+                    'type'=>'1'
                 ); 
 
             $insertedid = $this->users->addNewUser($arrayUsers);

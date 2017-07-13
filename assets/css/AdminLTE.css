@@ -10,9 +10,13 @@
  * Core: General Layout Style
  * -------------------------
  */
+ @font-face {
+  font-family: 'comfortaa';
+  src: URL('../../assets/fonts/Comfortaa-Regular.ttf') format ('ttf');
+}
 html,
 body {
-  height: 100%;
+  height: 100%;   font-family: 'comfortaa' !important;
 }
 .layout-boxed html,
 .layout-boxed body {

@@ -397,13 +397,17 @@ public function getDrugCoupon($arrayObject){
     }
 
 
- public function allProducts($from=0,$to=100){  
+ public function allProducts($from=0,$to=100){ 
 
        $query = $this->db->query('SELECT d.id,d.genericname,d.serialno,d.productid,dp.drugprice,dp.tax ,IF(d.img IS NOT NULL,concat("https://tibamoja.co.ke/",d.img),"https://tibamoja.co.ke/assets/img/defaultdrug.png") as img
-        FROM drugs d , drugprices dp , stores s 
+       , disc.amount as percentagediscount
+        FROM  drugprices dp , stores s ,drugs d  
+                        LEFT JOIN 
+                            discount disc ON disc.drugid = d.id
         WHERE dp.drugid = d.id 
         AND s.id = dp.storeid      
-        GROUP BY d.genericname LIMIT '.$from.', '.$to.'     
+        GROUP BY d.genericname 
+        LIMIT '.$from.', '.$to.'     
        '); 
 
     return $query; //LIMIT '.$from.' , '.$to.' 

@@ -51,9 +51,7 @@ class OrderController extends CI_Controller {
                     <!DOCTYPE html>
                     <html>
                     <head>
-
                       <style>
-
                       .invoice {
                           background: #fff none repeat scroll 0 0;
                           border: 1px solid #f4f4f4;
@@ -238,7 +236,7 @@ class OrderController extends CI_Controller {
                       }
                       td, th {
                           padding: 0;
-                      }
+                      }                
 
                       </style>
 
@@ -262,15 +260,15 @@ class OrderController extends CI_Controller {
                       <![endif]-->
                     </head>
                     <body onload="">
-                    <div class="wrapper">
+                    <div class="wrapper" style="width: 100%;height:100%;min-width: 960px;">
                       <!-- Main content -->
-                      <div class="invoice">
+                       <div class="invoice" style="background:url(http://www.tibamoja.co.ke/assets/img/mail.jpg) !important;background-size:100% !important;background-repeat:no-repeat !important; height: 100%;">
                         <!-- title row -->
                         <div class="row">
                           <div class="col-xs-12">
                             <h2 class="page-header">
-                              <i class="fa fa-globe"></i> Pharmacy System | Order 
-                              <small class="pull-right">Date: '.$currentdate.'</small>
+                              <i><img src="http://www.tibamoja.co.ke/assets/img/logo.png" width="200" style="width:200px;"/></i> Pharmacy System | Order 
+                              <small class="pull-right" style="color:white !important;">Date: '.$currentdate.'</small>
                             </h2>
                           </div>
                           <!-- /.col -->
@@ -838,7 +836,7 @@ public function fetchcOrderDetails(){
 
 public function confirmOrder($isExpress,$storeid,$patientid,$items){
 
-require_once("htmlMimeMail-2.5.1/send_mail_coreict.php");
+  require_once("htmlMimeMail-2.5.1/send_mail_coreict.php");
 
 if($isExpress){
    $list = $this->order->fetchConfirmRefillIds($storeid,$patientid,$items);
@@ -945,8 +943,7 @@ if($isExpress){
                       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
                       <![endif]-->
 
-                                            <style>
-
+                      <style>
                       .invoice {
                           background: #fff none repeat scroll 0 0;
                           border: 1px solid #f4f4f4;
@@ -1131,21 +1128,21 @@ if($isExpress){
                       }
                       td, th {
                           padding: 0;
-                      }
+                      }                 
 
                       </style>
 
                     </head>
                     <body onload="">
-                    <div class="wrapper">
+                    <div class="wrapper" style="width: 100%;height:100%;min-width: 960px;">
                       <!-- Main content -->
-                      <div class="invoice">
+                      <div class="invoice" style="background:url(http://www.tibamoja.co.ke/assets/img/mail.jpg) !important;background-size:100% !important;background-repeat:no-repeat !important;height: 100%;">
                         <!-- title row -->
                         <div class="row">
                           <div class="col-xs-12">
                             <h2 class="page-header">
-                              <i class="fa fa-globe"></i> Pharmacy System | Order Confirmation 
-                              <small class="pull-right">Date: '.$currentdate.'</small>
+                              <i><img src="http://www.tibamoja.co.ke/assets/img/logo.png" width="200" style="width:200px;"/></i> Pharmacy System | Order Confirmation 
+                              <small class="pull-right" style="color:white !important;">Date: '.$currentdate.'</small>
                             </h2>
                           </div>
                           <!-- /.col -->
@@ -1282,7 +1279,8 @@ if($isExpress){
             </html>
 
             '; 
-            
+           
+          // var_dump($body); exit(); 
 
        $content = $this->createPdfTemplateOrder($arrayOrder,$defaultCompanydetails,$userdetails,$list,$totals[0]->totals,$tax[0]->tax,$grandtotal);  
 

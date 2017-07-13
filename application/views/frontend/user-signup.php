@@ -205,7 +205,10 @@ background-color: #1484C7;
 
 
 
-
+.profile-left form input[type="text"], .profile-left form input[type="password"], .profile-left1 form input[type="text"], .profile-left1 form input[type="password"] {
+    margin-bottom: 0;
+    width: 90% !important;
+}
 
 
 
@@ -275,10 +278,52 @@ background-color: #1484C7;
 	<div class="banner-info">
 		<div class="container">			
 <h3>Fill in additional details</h3>
-			<div class="profile-left wow flipInY " style="float:left;width:100%"  data-wow-duration="1.5s" data-wow-delay="0s">
+			<div class="profile-left wow flipInY " style="float:left;width:100%;margin-bottom: 5%;"  data-wow-duration="1.5s" data-wow-delay="0s">
 		<form action="register" method="post" enctype="multipart/form-data"> 
 		<!-- some CSS styling changes and overrides -->
 		<style>
+
+		.cInput{
+		  position: relative;
+		  top: 50%;
+		  transform: translateY(50%);
+		}
+
+		.cInput h1 {
+		  text-align: center;
+		  margin: 0px;
+		}
+
+		.cInput p {
+		  text-align: center;
+		}
+
+		.csubmit {
+		  border: none;
+		  background: none;
+		  position: absolute;
+		  top: 2px;
+		  right: 0px;
+		}
+
+		.formdiv{
+		  display: inline-block;
+		  width: 100%;
+		  position: relative;
+		}
+		.csubmit {
+		  position: absolute;
+		  right: 0; top: 50%;
+		  transform: translateY(-50%);
+		}
+		.ctext {
+		  width: 100% !important;
+		  box-sizing: border-box;
+		  padding-left: 8px;
+		  padding-right: 8px;
+		 
+		}
+
 		.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
 		    margin: 0;
 		    padding: 0;
@@ -308,21 +353,85 @@ background-color: #1484C7;
       </div>
 
 					<div class="login">
-						<input type="text" name="name" id="name" placeholder="Name" value="<?php echo $_POST['name'] ?>" required="">
-						<input type="text" name="email" id="email" placeholder="Email" value="<?php echo $_POST['email'] ?>" required="">
-						<input type="password" name="pass" id="pass" placeholder="Password" value="<?php echo $_POST['pass'] ?>" required="">
-						<input type="text" name="telephone" id="telephone" placeholder="Telephone" value="+254" required="">
-						<input type="text" name="homeaddress" id="homeaddress" placeholder="Home Address" required="">
-						<input type="text" name="nationalid" id="nationalid" placeholder="National Id / Passport" required="">
-						<input type="text" name="address" id="address" placeholder="Work Address" required="">
-						
-						<select style="width:40%;" name="gender" id="gender">
+
+						 <div class="row"> 
+						    <div class="col-md-6"> 
+						    <input type="text" name="name" id="name" placeholder="Name" value="<?php echo $_POST['name'] ?>" required="">
+                            </div>
+                            <div class="col-md-6"> 
+						    <input type="text" name="email" id="email" placeholder="Email" value="<?php echo $_POST['email'] ?>" required="">
+						    </div>
+						</div>
+
+						 <div class="row"> 
+						    <div class="col-md-6"> 
+                              <input type="password" name="pass" id="pass" placeholder="Password" value="<?php echo $_POST['pass'] ?>" required="">
+						    </div>
+						    <div class="col-md-6"> 
+	                            <input type="text" name="dateofbirth" id="dateofbirth" placeholder="Date of birth" required="">
+						   </div>
+						</div>
+
+
+
+						<div class="row"> 
+						<div class="col-md-6"> 
+	                         <input type="text" name="telephone" id="telephone" placeholder="Telephone" value="+254" required="">
+						</div>
+						<div class="col-md-6"> 
+                            <input type="text" name="nationalid" id="nationalid" placeholder="National Id / Passport / Birth Certificate" required="">
+						</div>
+						</div>
+
+
+						<div class="row"> 
+						<div class="col-md-6"> 
+
+						<select style="width:90%; border-color: #16a9ef;margin-bottom: -4%;margin-top: 4%;" name="gender" id="gender">
 							  <option value="1">Male</option>
 							  <option value="2">Female</option>						
 						</select>
+						</div>
+						<div class="col-md-6"> 
+                           <input type="text" name="town" id="town" placeholder="Town" required="">
+						</div>
+						</div>
+
+
+						<div class="row"> 
+						<div class="col-md-6">
+
+						   <div class"cInput" style="width:100%;">						
+						    <div class="formdiv">
+						      <input type="text" name="homelatlong" onCLick="loadUserMap(-1.2858073892018242,36.82326772883607,1)" id="homelatlong" placeholder="Home Address" required="" class="ctext" style="cursor:pointer;" readonly>
+						      <img class="csubmit" id="gethomeaddress" onCLick="loadUserMap(-1.2858073892018242,36.82326772883607,1)"  style='cursor:pointer;max-height: 30px;float:right;' src='<?php echo base_url("assets/img/search.jpg");?>' alt=" " />						    
+						    </div>						
+						</div> 
+
+						</div>
+
+						<div class="col-md-6"> 
+
+						<div class"cInput" style="width:100%;">						
+						    <div class="formdiv">
+						      <input type="text" name="worklatlong" id="worklatlong" onCLick="loadUserMap(-1.2858073892018242,36.82326772883607,2)" placeholder="Work Address" required="" class="ctext" style="cursor:pointer;" readonly>
+						      <img class="csubmit" id="getworkaddress" onCLick="loadUserMap(-1.2858073892018242,36.82326772883607,2)"  style='cursor:pointer;max-height: 30px;float:right;' src='<?php echo base_url("assets/img/search.jpg");?>' alt=" " />						    
+						    </div>						
+						</div>
 						
-						<input type="text" name="town" id="town" placeholder="Town" required="">
-						<input type="text" name="dateofbirth" id="dateofbirth" placeholder="Date of birth" required="">
+
+						</div>
+						</div>
+
+
+						<div class="row"> 
+						<div class="col-md-6"> 
+                              <input type="text" name="homeaddress" id="homeaddress" placeholder="Addition location details" value="">
+						</div>
+						<div class="col-md-6">
+						</div>
+						</div>
+
 					</div><br>
 					<input type="submit" class="" id="submit" value="Register" > 
 				</form>
@@ -338,13 +447,35 @@ background-color: #1484C7;
 <script src='<?php echo base_url("assets/plugins/iCheck/icheck.min.js");?>'></script>
 <script src='<?php echo base_url("assets/plugins/profileuploader/js/fileinput.js");?>'></script>
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
+var addressType = null;
   $(function () {
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' 
     });
+
+$(document).bind("location_changed", function(event, object) {	
+	updateUserLatLng($(this),object);
+});
+
+function updateUserLatLng(object,obj) { 
+    var lat = $(object).find('.gllpLatitude').val(); 
+    var lng = $(object).find('.gllpLongitude').val();
+    var latLng = lat + ',' + lng;
+    if(addressType == 1){
+     $("#homelatlong").val(latLng);
+    }else{
+     $("#worklatlong").val(latLng);
+    }
+  
+}
+
+
   });
 
 var btnCust = '<button type="button" class="btn btn-default" title="Add picture tags" ' + 
@@ -367,7 +498,32 @@ $("#avatar-2").fileinput({
     layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
     allowedFileExtensions: ["jpg", "png", "gif"]
 });
+  $( "#dateofbirth" ).datepicker();
 </script>
+
+
+<script src="<?php  echo $protocol; ?>://maps.googleapis.com/maps/api/js?key=AIzaSyCvLjXCDMebLLpmMPylPUTM3b4h7cpGnyo"></script> 
+<link rel="stylesheet" href='<?php echo base_url("assets/plugins/jquery_lat_long/css/jquery-gmaps-latlon-picker.css");?>'>                        
+<script src='<?php echo base_url("assets/plugins/jquery_lat_long/js/jquery-gmaps-latlon-picker.js");?>'></script>
+
+     <div id="dialogpopupmap" class="well" style="visibility:hidden;width: 100%;padding:0px;">   
+
+          <div id="popupmap" class="row" style="">
+
+		    <div class="col-md-12">
+                <fieldset class="gllpLatlonPicker" >
+                    <input type="text" class="gllpSearchField">
+                     <input type="button" class="gllpSearchButton" value="search"> 
+                    <div class="gllpMap" style="width:100% !important;height:490px !important;margin-top: 0% !important;">Google Maps</div>
+                    <input type="hidden" id="mylatitude" class="gllpLatitude" value="-2.34455"/>
+                    <input type="hidden" id="mylongitude" class="gllpLongitude" value="39.3456"/>
+                    <input type="hidden" class="gllpZoom" value="20"/>
+                 </fieldset>
+	       </div>
+
+
+              </div>
+        </div>
 
 <script src='<?php echo base_url("assets/plugins/jquery-popup-overlay-gh-pages/jquery.popupoverlay.js");?>'></script>
 <script src="<?php echo base_url('assets/js/front/signup.js')?>"></script>

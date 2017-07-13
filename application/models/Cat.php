@@ -123,10 +123,11 @@ class Cat extends CI_Model {
 
      public function get_all_items_main($is_service){      
         $this->db->from('category');
-        $this->db->order_by("categoryname", "asc");
+        //$this->db->order_by("categoryname", "asc");
         if($is_service){
             $this->db->where('parent IS NULL');
 
+			$this->db->where('categoryname !=','User profile');
             $this->db->where('categoryname !=','My Prescriptions');
             $this->db->where('categoryname !=','My Invoices');
             $this->db->where('categoryname !=','My Orders');        

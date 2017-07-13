@@ -152,7 +152,6 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
                         }
                         </script>
                       <style>
-
                       .invoice {
                           background: #fff none repeat scroll 0 0;
                           border: 1px solid #f4f4f4;
@@ -337,21 +336,21 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
                       }
                       td, th {
                           padding: 0;
-                      }
+                      }                   
 
                       </style>
 
                     </head>
                     <body onload="">
-                    <div class="wrapper">
+                    <div class="wrapper" style="width: 100%;height:100%;min-width: 960px;">
                       <!-- Main content -->
-                      <div class="invoice">
+                      <div class="invoice" style="background:url(http://www.tibamoja.co.ke/assets/img/mail.jpg) !important;background-size:100% !important;background-repeat:no-repeat !important;height: 100%;">
                         <!-- title row -->
                         <div class="row">
                           <div class="col-xs-12">
                             <h2 class="page-header">
-                              <i class="fa fa-globe"></i> Pharmacy System | Invoice 
-                              <small class="pull-right">Date: '.$currentdate.'</small>
+                              <i><img src="http://www.tibamoja.co.ke/assets/img/logo.png" width="200" style="width:200px;"/></i> Pharmacy System | Invoice 
+                              <small class="pull-right" style="color:white !important;">Date: '.$currentdate.'</small>
                             </h2>
                           </div>
                           <!-- /.col -->
@@ -452,14 +451,14 @@ public function createInvoice($isExpress,$storeid,$patientid,$orderno,$items){
                     <input type="hidden" name="invoiceno" value='.$code.'>
                     <input type="hidden" name="hosted_button_id" value="">
                     <input type="image" src="https://tibamoja.co.ke/assets/img/credit/mpesa.png" border="0" name="submit" alt="Lipa na MPESA">
-                    <img alt="" border="0" src="https://tibamoja.co.ke/assets/img/credit/mpesa.png" width="1" height="1">
+                    <img alt="Click link to pay using Mpesa" border="0" src="https://tibamoja.co.ke/assets/img/credit/mpesa.png" width="1" height="1">
                     </form>
                   
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
                     <input type="hidden" name="hosted_button_id" value="QARQ5URZDKYKE">
                     <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    <img alt="Click link to pay using Paypal" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                     </form><br>
                     <h2>Or</h2><br>
 

@@ -27,7 +27,6 @@ class PrescController extends CI_Controller {
             $row = array();
             $row[] = $records->id;          
             $row[] = $records->uploadate;
-            $row[] = $records->description;
             $row[] = $records->filename;
             $row[] = $records->path;
             $data[] = $row;

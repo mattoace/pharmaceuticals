@@ -342,11 +342,29 @@ html {
 
 }
 
+.price-text-color {
+   /* font-size: 10px !important;
+    text-decoration: line-through;*/
+}
 
 </style>
-
+<?php
+   $userid = $_COOKIE['userlogin'];
+   $query = $this->db->query('SELECT * FROM users u, persons p WHERE u.personid = p.id AND u.id = "'.$userid.'"'); 
+   $row = $query->result(); 
+   $img = ($row[0]->img =="assets/uploads/users/")? "http://tibamoja.co.ke/assets/img/adminlogin.jpg" : base_url($row[0]->img);
+?>
 <div class="row" style="">
-    <div class="col-md-6" > &nbsp;
+    <div class="col-md-2" >&nbsp;
+    </div>
+     <div class="col-md-2"> <img style="border-radius: 100%;
+    float: left;
+    margin-bottom: -10%;
+    margin-left: -15%;
+    margin-right: 10%;
+    width: 15%;" src='<?php echo $img;?>'alt=""><span style="font-weight:1em;font-size:12px;float:left;margin-left:-15px;font-weight: 900;margin-top: 5%;margin-bottom: -5%;">Welcome <span  style="font-weight:normal;"><?php echo $row[0]->firstname ." " . $row[0]->secondname; ?></span></span>
+    </div>
+    <div class="col-md-2" >&nbsp;
     </div>
 
     <div class="col-md-2" style=""> &nbsp;
@@ -397,7 +415,7 @@ html {
 
 		         		    IF(cat.img IS NOT NULL,
 							concat('https://tibamoja.co.ke/', cat.img),
-							'https://tibamoja.co.ke/assets/img/catslider1.jpg') as catimg
+							'https://tibamoja.co.ke/assets/img/catslider1.jpg') as catimg , disc.amount
 
 							FROM
 							 drugtocategory dtc , drugs d
@@ -408,9 +426,14 @@ html {
 							LEFT JOIN
                             category cat ON cat.id = '".$category."'
 
+                            LEFT JOIN 
+                            discount disc ON disc.drugid = d.id
+
                             WHERE dtc.drugid = d.id AND dtc.categoryid = '".$category."'
 
-							LIMIT ". $start." , ".$offset."
+                            GROUP BY d.id
+
+							LIMIT ". $start." , ".$offset." 
 				         	"); 
 
 
@@ -429,7 +452,7 @@ html {
 
 				            IF(cat.img IS NOT NULL,
 							concat('https://tibamoja.co.ke/', cat.img),
-							'https://tibamoja.co.ke/assets/img/catslider1.jpg') as catimg
+							'https://tibamoja.co.ke/assets/img/catslider1.jpg') as catimg , disc.amount
 
 							FROM
 							drugs d
@@ -441,7 +464,12 @@ html {
 							LEFT JOIN
                             category cat ON cat.id = dtc.categoryid 
 
-							LIMIT ". $start." , ".$offset."
+                            LEFT JOIN 
+                            discount disc ON disc.drugid = d.id
+
+                            GROUP BY d.id
+
+							LIMIT ". $start." , ".$offset." 
 				         	"); 
 
 					}
@@ -494,7 +522,11 @@ html {
                         if($k==0){
                            print('<div class="row"><div class="col-sm-12">'); }
 
-                            print('<div class="col-sm-3" style="height:340px !important">');
+                            print('<div class="col-sm-3" style="height:400px !important">');
+                            if($product->amount){
+                            print('<img src="'.base_url("assets/img/discount.png").'" class="img-responsive" style="height:20px;width: 40%;" alt="" />');
+                            }
+
                             print('<article class="col-item">');
                             print('<div class="photo">');
                             print('<div class="options">');
@@ -510,11 +542,11 @@ html {
                             print('<span class="fa fa-shopping-cart"></span>');
                             print('</button>');
                             print('</div>');
-                            print('<a href="#"> <img onCLick="moredetails('.$product->id.')" src="'.$product->img.'" class="img-responsive" alt="" /> </a>');
+                            print('<a href="#"> <img onCLick="moredetails('.$product->id.')" src="'.$product->img.'" class="img-responsive" alt="" /> </a>');                            
                             print('</div>');
                             print('<div class="info">');
                             print('<div class="row">');
-                            print('<div class="price-details col-md-6">');
+                            print('<div class="price-details col-md-60">');
                             print('<p class="details">');
                             print('<div class="info">');
                             print('<div class="separator clear-left">');
@@ -524,13 +556,24 @@ html {
                             print('<span style="font-size:8px;font-weight:200px;float:left;">'.$product->genericname.'</span>');
                             print('</div>');
                             print('<div class="price col-md-4">');
-                            print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color">Kes '.$product->drugprice.'</h5>');
+
+                            
+                            if($product->amount){
+                                $discount = ($product->amount/100)*$product->drugprice;
+                                $price =  $product->drugprice - $discount;
+                                print(' <h5 style="font-size:11px;font-weight:200px;float:left;text-decoration: line-through"  class="price-text-color">Kes '.$product->drugprice.'</h5>');print('&nbsp;&nbsp;');
+                                print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color"><b>'.number_format($price,2).'</b></h5>');
+                            }else{
+                                $price = $product->drugprice;
+                                print(' <h5 style="font-size:12px;font-weight:200px;float:left;"  class="price-text-color">Kes '.$price.'</h5>');
+                            }
+                            
                             print('</div>');
                             print('</div>');
                             print('<div class="row" style="margin:0px !important">');
                             print('<div class="price col-md-8" style="margin-top:0px; ">');
                             print('<p class="btn-add">');                           
-                            print('<button class="btn btn-default my-cart-btn" style="padding:0px !important; width: 100px;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$product->drugprice.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;padding-left:14%;">Add to Cart</span></span></button>      </a></p>');
+                            print('<button class="btn btn-default my-cart-btn" style="padding:0px !important; width: 100px;" data-id='.$product->id.' data-name="'.$product->genericname.'" data-summary="'.$product->genericname.'" data-price='.$price.' data-quantity="1" data-image="'.$product->img.'"><span style="font-size:14px;font-weight:200px;"><i class="fa fa-shopping-cart"></i><a   href="#" class="hidden-sm"> <span style="font-size:10px;margin-bottom: -6%;padding-right: 20%;padding-left:14%;">Add to Cart</span></span></button>      </a></p>');
                             print('</div>');
                             print('<div class="price col-md-4" style="margin-top:0px;top:0px;">');
                             print('<div style="font-size: 8px;margin-top: 14%;">'); //style="font-size: 8px; margin-top: 14%;margin-left: 50%;"

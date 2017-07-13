@@ -346,14 +346,27 @@ html {
 
 
 </style>
-
+<?php
+   $userid = $_COOKIE['userlogin'];
+   $query = $this->db->query('SELECT * FROM users u, persons p WHERE u.personid = p.id AND u.id = "'.$userid.'"'); 
+   $row = $query->result(); 
+   $img = ($row[0]->img =="assets/uploads/users/")? "http://tibamoja.co.ke/assets/img/adminlogin.jpg" : base_url($row[0]->img);
+?>
 <div class="row" style="">
-    <div class="col-md-6" > &nbsp;
+    <div class="col-md-2" >&nbsp;
+    </div>
+     <div class="col-md-2"> <img style="border-radius: 100%;
+    float: left;
+    margin-bottom: -10%;
+    margin-left: -15%;
+    margin-right: 10%;
+    width: 15%;" src='<?php echo $img;?>'alt=""><span style="font-weight:1em;font-size:12px;float:left;margin-left:-15px;font-weight: 900;margin-top: 5%;margin-bottom: -5%;">Welcome <span  style="font-weight:normal;"><?php echo $row[0]->firstname ." " . $row[0]->secondname; ?></span></span>
+    </div>
+    <div class="col-md-2" >&nbsp;
     </div>
 
-    <div class="col-md-2" style=""> 
+    <div class="col-md-2" style=""> &nbsp;
     </div>
-
     <div class="col-md-2" style="height:20px;"> 
             <img class="img-responsive" id="mpesa" onCLick="invoiceEntryPopup()" style='cursor:pointer;max-height: 30px;float:right;' src='<?php echo base_url("assets/img/mpesa.png");?>' alt=" " /><br>
     </div>

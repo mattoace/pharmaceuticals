@@ -181,7 +181,8 @@ class Services extends CI_Controller
                 'genericname' => array('name' => 'genericname', 'type' => 'xsd:string'),
                 'drugprice' => array('name' => 'drugprice', 'type' => 'xsd:string'),
                 'img' => array('name' => 'img', 'type' => 'xsd:string'),
-                'tax' => array('name' => 'tax', 'type' => 'xsd:string')                
+                'tax' => array('name' => 'tax', 'type' => 'xsd:string') ,
+                'percentagediscount' => array('name' => 'percentagediscount', 'type' => 'xsd:string')                  
             )
         );
 
@@ -401,13 +402,14 @@ class Services extends CI_Controller
         $this->nusoap_server->wsdl->addComplexType(
             'Categoriesstruct',
             'complexType',
-            'struct',
+            'array',
             'all',
             '',
             array(
                 'id' => array('name' => 'id', 'type' => 'xsd:string'),
                 'categoryname' => array('name' => 'categoryname', 'type' => 'xsd:string'),
-                'description' => array('name' => 'description', 'type' => 'xsd:string')             
+                'description' => array('name' => 'description', 'type' => 'xsd:string'),
+                'children' => array('name' => 'children', 'type' => 'xsd:string')				
             )
         );
 
@@ -483,7 +485,17 @@ class Services extends CI_Controller
             'encoded', // use
             'Get all drug categories' //description
         );
-
+		//get all categories
+    $this->nusoap_server->register(
+            'getAllCategories',
+            array(),  //parameters
+            array('return' => 'tns:CategoriesArray'),  //output
+            'urn:PharmaceuticalsSoapServer',   //namespace
+            'urn:PharmaceuticalsSoapServer#getAllCategories',  //soapaction
+            'rpc', // style
+            'encoded', // use
+            'Get all drug categories' //description
+        );
           //categories registration
       $this->nusoap_server->register(
             'getCategoriesMain',
@@ -870,6 +882,61 @@ class Services extends CI_Controller
                 $i=0;
                 foreach ($qcd->result_array() as $row) {
                     $ret_val[$i]=$row;
+                    $i++;
+                }
+                return $ret_val;
+            } else {
+                return false;
+            }            
+    
+        }
+		
+	function getAllCategories()
+        {
+
+            $ci =& get_instance();
+ 
+            $ci->load->model('Cat'); 
+
+            $qcd = $ci->Cat->get_all_items_main(1);       
+
+            if ($qcd->num_rows()>0) {
+                $ret_val=array();
+                $i=0;
+                foreach ($qcd->result_array() as $row) {
+						 $qcdchild1 = $ci->Cat->get_all_items_child(1,$row['id']);
+						 unset($row1items);
+						 foreach ($qcdchild1->result_array() as $rowchild1) {
+							     unset($row2items);
+							     $qcdchild2 = $ci->Cat->get_all_items_child(1,$rowchild1['id']);
+							  	 foreach ($qcdchild2->result_array() as $rowchild2) {									 
+									  unset($row3items);
+									  $qcdchild3 = $ci->Cat->get_all_items_child(1,$rowchild2['id']);
+									  foreach ($qcdchild3->result_array() as $rowchild3) {										  
+										  unset($row4items);
+										  $qcdchild4 = $ci->Cat->get_all_items_child(1,$rowchild3['id']);
+										  foreach ($qcdchild4->result_array() as $rowchild4) {
+											 
+											 unset($row5items);
+											 $qcdchild5 = $ci->Cat->get_all_items_child(1,$rowchild4['id']);
+											  foreach ($qcdchild5->result_array() as $rowchild5) {
+												$row5items[] = array("id"=>$rowchild5['id'],"categoryname"=>$rowchild5['categoryname'],"description"=>$rowchild5['description']);  
+											  } 
+                                               $children5 = ($row5items ? array($row5items) :array()); 											 
+                                            $row4items[] = array("id"=>$rowchild4['id'],"categoryname"=>$rowchild4['categoryname'],"description"=>$rowchild4['description'],"children"=>$children5);											 
+										  }	
+                                          $children4 = ($row4items ? array($row4items) :array()); 									  
+									    $row3items[] = array("id"=>$rowchild3['id'],"categoryname"=>$rowchild3['categoryname'],"description"=>$rowchild3['description'],"children"=>$children4);  
+									  }								 
+									 $children3 = ($row3items ? array($row3items) :array()); 
+									$row2items[] = array("id"=>$rowchild2['id'],"categoryname"=>$rowchild2['categoryname'],"description"=>$rowchild2['description'],"children"=> $children3); 
+								 }
+                                  $children2 = ($row2items ? array($row2items) :array()); 							 
+							 $row1items[] = array("id"=>$rowchild1['id'],"categoryname"=>$rowchild1['categoryname'],"description"=>$rowchild1['description'],"children"=> $children2);
+						}     
+                     $children1 = ($row1items ? array($row1items) :array());          
+					 $mainrow = array(array("id"=>$row['id'],"categoryname"=>$row['categoryname'],"description"=>$row['description'],"children"=>$children1));                   
+ 				     $ret_val[$i]= $mainrow;					
                     $i++;
                 }
                 return $ret_val;
@@ -1585,28 +1652,7 @@ class Services extends CI_Controller
                     <!DOCTYPE html>
                     <html>
                     <head>
-                      <meta charset="utf-8">
-                     
-                      <title>Pharmacy System | Invoice</title>
-                      <!-- Tell the browser to be responsive to screen width -->
-                     
-                      <!-- Bootstrap 3.3.6 -->
-                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
-                      <!-- Font Awesome -->
-                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
-                      <!-- Ionicons -->
-                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
-                     
-                      <!-- Theme style -->
-                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/css/AdminLTE.min.css"> 
-                      <!--[if lt IE 9]>
-                      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-                      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-                      <![endif]-->
-
-
                       <style>
-
                       .invoice {
                           background: #fff none repeat scroll 0 0;
                           border: 1px solid #f4f4f4;
@@ -1791,21 +1837,39 @@ class Services extends CI_Controller
                       }
                       td, th {
                           padding: 0;
-                      }
+                      }                
 
                       </style>
 
+                      <meta charset="utf-8">
+                      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                      <title>Pharmacy System | Products Ordered</title>
+                      <!-- Tell the browser to be responsive to screen width -->
+                      <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+                      <!-- Bootstrap 3.3.6 -->
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
+                      <!-- Font Awesome -->
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
+                      <!-- Ionicons -->
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
+                     
+                      <!-- Theme style -->
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/css/AdminLTE.min.css"> 
+                      <!--[if lt IE 9]>
+                      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+                      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+                      <![endif]-->
                     </head>
                     <body onload="">
-                    <div class="wrapper">
+                    <div class="wrapper" style="width: 100%;height:100%;min-width: 960px;">
                       <!-- Main content -->
-                      <div class="invoice">
+                       <div class="invoice" style="background:url(http://www.tibamoja.co.ke/assets/img/mail.jpg) !important;background-size:100% !important;background-repeat:no-repeat !important; height: 100%;">
                         <!-- title row -->
                         <div class="row">
                           <div class="col-xs-12">
                             <h2 class="page-header">
-                              <i class="fa fa-globe"></i> Pharmacy System | Invoice 
-                              <small class="pull-right">Date: '.$currentdate.'</small>
+                              <i><img src="http://www.tibamoja.co.ke/assets/img/logo.png" width="200" style="width:200px;"/></i> Pharmacy System | Order 
+                              <small class="pull-right" style="color:white !important;">Date: '.$currentdate.'</small>
                             </h2>
                           </div>
                           <!-- /.col -->
@@ -1992,7 +2056,8 @@ class Services extends CI_Controller
 
             $ret_val=array(); 
 
-            $amount = (1+ $userDetails[0]->tax) * $userDetails[0]->amount; 
+           //$amount = (1+ $userDetails[0]->tax) * $userDetails[0]->amount;
+           $amount = ($userDetails[0]->tax) + $userDetails[0]->amount; 
 
             require_once "AfricasTalkingGateway.php";
 
@@ -2015,12 +2080,12 @@ class Services extends CI_Controller
             try {
             
               $transactionId = $gateway->initiateMobilePaymentCheckout($productName,
-                                           $phoneNumber,
+                                           trim($phoneNumber),
                                            $currencyCode,
                                            $amount,
                                            $metadata);
 
-              $ret_val[0]["response"] =  "Transaction Id ".$transactionId;
+              $ret_val[0]["response"] = "Transaction Id ".$transactionId;
 
               $ret_val[0]["message"] = "Payment from ". $userDetails[0]->firstname." ".$userDetails[0]->secondname; 
 
@@ -2041,7 +2106,7 @@ class Services extends CI_Controller
 
             }
             catch(AfricasTalkingGatewayException $e){
-               $ret_val[0]["message"] = "Received error response: ".$e->getMessage();
+               $ret_val[0]["message"] = "".$e->getMessage();
             }  
 
          return $ret_val;
@@ -2077,6 +2142,7 @@ class Services extends CI_Controller
                     'worklat' => $worklat ,
                     'worklon' => $worklon ,
                     'email' => $email,
+                    'type' => '1',
 					'phone'=>$telephone
                 );        
 
@@ -2202,8 +2268,8 @@ class Services extends CI_Controller
                                     //get the email for the user
                                     $ci->load->model('Users','user');
 
-                                    $userdetails = $ci->user->fetchRecord($userid); 
-
+                                    $userdetails = $ci->user->fetchRecord($patientid); 
+ 
                                     $patientid = $userdetails[0]->id;  
 
                                     $defaultCompanydetails = $ci->user->fetchDefaultCompany(); 
@@ -2214,247 +2280,236 @@ class Services extends CI_Controller
 
                                
                                     $body = '
-                                                <!DOCTYPE html>
-                                                <html>
-                                                <head>
-                                                  <meta charset="utf-8">
-                                                  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                                                  <title>Pharmacy System | Products Ordered</title>
-                                                  <!-- Tell the browser to be responsive to screen width -->
-                                                  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-                                                  <!-- Bootstrap 3.3.6 -->
-                                                  <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
-                                                  <!-- Font Awesome -->
-                                                  <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
-                                                  <!-- Ionicons -->
-                                                  <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
-                                                 
-                                                  <!-- Theme style -->
-                                                  <link rel="stylesheet" href="http://tibamoja.co.ke/assets/css/AdminLTE.min.css"> 
-                                                  <!--[if lt IE 9]>
-                                                  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-                                                  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-                                                  <![endif]-->
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                      <style>
+                      .invoice {
+                          background: #fff none repeat scroll 0 0;
+                          border: 1px solid #f4f4f4;
+                          margin: 10px 25px;
+                          padding: 20px;
+                          position: relative;
+                      }
+                      .page-header {
+                          font-size: 22px;
+                          margin: 10px 0 20px;
+                      }
+                      .page-header {
+                          border-bottom: 1px solid #eee;
+                          margin: 40px 0 20px;
+                          padding-bottom: 9px;
+                      }
+                      .col-xs-12 {
+                          width: 100%;
+                      }
+                      .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+                          float: left;
+                      }
+                      .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+                          min-height: 1px;
+                          padding-left: 15px;
+                          padding-right: 15px;
+                          position: relative;
+                      }
+                      .fa {
+                          display: inline-block;  
+                          font-feature-settings: normal;
+                          font-kerning: auto;
+                          font-language-override: normal;
+                          font-size: inherit;
+                          font-size-adjust: none;
+                          font-stretch: normal;
+                          font-style: normal;
+                          font-synthesis: weight style;
+                          font-variant: normal;
+                          font-weight: normal;
+                          line-height: 1;
+                          text-rendering: auto;
+                      }
+                      .page-header > small {
+                          color: #666;
+                          display: block;
+                          margin-top: 5px;
+                      }
+                      .pull-right {
+                          float: right;
+                      }
+                      .pull-right {
+                          float: right !important;
+                      }
+                      .h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small {
+                          font-size: 65%;
+                      }
+                      .h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, .h4 .small, .h4 small, .h5 .small, .h5 small, .h6 .small, .h6 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small, h4 .small, h4 small, h5 .small, h5 small, h6 .small, h6 small {
+                          color: #777;
+                          font-weight: 400;
+                          line-height: 1;
+                      }
+                      .small, small {
+                          font-size: 85%;
+                      }
+                      small {
+                          font-size: 80%;
+                      }
+                      .row {
+                          margin-left: -15px;
+                          margin-right: -15px;
+                      }
+                      .col-sm-4 {
+                          width: 33.3333%;
+                      }
+                      .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+                          float: left;
+                      }
+                      .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+                          min-height: 1px;
+                          padding-left: 15px;
+                          padding-right: 15px;
+                          position: relative;
+                      }
+                      address {
+                          font-style: normal;
+                          line-height: 1.42857;
+                          margin-bottom: 20px;
+                      }
+                      b, strong {
+                          font-weight: 700;
+                      }
+                      .table-responsive {
+                          min-height: 0.01%;
+                          overflow-x: auto;
+                      }
+                      .col-xs-12 {
+                          width: 100%;
+                      }
+                      .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+                          float: left;
+                      }
+                      .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+                          min-height: 1px;
+                          padding-left: 15px;
+                          padding-right: 15px;
+                          position: relative;
+                      }
+                      .table {
+                          margin-bottom: 20px;
+                          max-width: 100%;
+                          width: 100%;
+                      }
+                      table {
+                          background-color: transparent;
+                      }
+                      table {
+                          border-collapse: collapse;
+                          border-spacing: 0;
+                      }
+                      .table > thead > tr > th {
+                          border-bottom: 2px solid #f4f4f4;
+                      }
+                      .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+                          border-top: 1px solid #f4f4f4;
+                      }
+                      .table > thead > tr > th {
+                          border-bottom: 2px solid #ddd;
+                          vertical-align: bottom;
+                      }
+                      .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+                          border-top: 1px solid #ddd;
+                          line-height: 1.42857;
+                          padding: 8px;
+                          vertical-align: top;
+                      }
+                      th {
+                          text-align: left;
+                      }
+                      td, th {
+                          padding: 0;
+                      }
+                      .col-xs-6 {
+                          width: 50%;
+                      }
+                      .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+                          float: left;
+                      }
+                      .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+                          min-height: 1px;
+                          padding-left: 15px;
+                          padding-right: 15px;
+                          position: relative;
+                      }
+                      .table-responsive {
+                          min-height: 0.01%;
+                          overflow-x: auto;
+                      }
+                      .table {
+                          margin-bottom: 20px;
+                          max-width: 100%;
+                          width: 100%;
+                      }
+                      table {
+                          background-color: transparent;
+                      }
+                      table {
+                          border-collapse: collapse;
+                          border-spacing: 0;
+                      }
+                      .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+                          border-top: 1px solid #f4f4f4;
+                      }
+                      .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+                          border-top: 1px solid #ddd;
+                          line-height: 1.42857;
+                          padding: 8px;
+                          vertical-align: top;
+                      }
+                      th {
+                          text-align: left;
+                      }
+                      td, th {
+                          padding: 0;
+                      }                
 
-                                                   <style>
+                      </style>
 
-                                                      .invoice {
-                                                          background: #fff none repeat scroll 0 0;
-                                                          border: 1px solid #f4f4f4;
-                                                          margin: 10px 25px;
-                                                          padding: 20px;
-                                                          position: relative;
-                                                      }
-                                                      .page-header {
-                                                          font-size: 22px;
-                                                          margin: 10px 0 20px;
-                                                      }
-                                                      .page-header {
-                                                          border-bottom: 1px solid #eee;
-                                                          margin: 40px 0 20px;
-                                                          padding-bottom: 9px;
-                                                      }
-                                                      .col-xs-12 {
-                                                          width: 100%;
-                                                      }
-                                                      .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-                                                          float: left;
-                                                      }
-                                                      .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-                                                          min-height: 1px;
-                                                          padding-left: 15px;
-                                                          padding-right: 15px;
-                                                          position: relative;
-                                                      }
-                                                      .fa {
-                                                          display: inline-block;  
-                                                          font-feature-settings: normal;
-                                                          font-kerning: auto;
-                                                          font-language-override: normal;
-                                                          font-size: inherit;
-                                                          font-size-adjust: none;
-                                                          font-stretch: normal;
-                                                          font-style: normal;
-                                                          font-synthesis: weight style;
-                                                          font-variant: normal;
-                                                          font-weight: normal;
-                                                          line-height: 1;
-                                                          text-rendering: auto;
-                                                      }
-                                                      .page-header > small {
-                                                          color: #666;
-                                                          display: block;
-                                                          margin-top: 5px;
-                                                      }
-                                                      .pull-right {
-                                                          float: right;
-                                                      }
-                                                      .pull-right {
-                                                          float: right !important;
-                                                      }
-                                                      .h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small {
-                                                          font-size: 65%;
-                                                      }
-                                                      .h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, .h4 .small, .h4 small, .h5 .small, .h5 small, .h6 .small, .h6 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small, h4 .small, h4 small, h5 .small, h5 small, h6 .small, h6 small {
-                                                          color: #777;
-                                                          font-weight: 400;
-                                                          line-height: 1;
-                                                      }
-                                                      .small, small {
-                                                          font-size: 85%;
-                                                      }
-                                                      small {
-                                                          font-size: 80%;
-                                                      }
-                                                      .row {
-                                                          margin-left: -15px;
-                                                          margin-right: -15px;
-                                                      }
-                                                      .col-sm-4 {
-                                                          width: 33.3333%;
-                                                      }
-                                                      .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
-                                                          float: left;
-                                                      }
-                                                      .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-                                                          min-height: 1px;
-                                                          padding-left: 15px;
-                                                          padding-right: 15px;
-                                                          position: relative;
-                                                      }
-                                                      address {
-                                                          font-style: normal;
-                                                          line-height: 1.42857;
-                                                          margin-bottom: 20px;
-                                                      }
-                                                      b, strong {
-                                                          font-weight: 700;
-                                                      }
-                                                      .table-responsive {
-                                                          min-height: 0.01%;
-                                                          overflow-x: auto;
-                                                      }
-                                                      .col-xs-12 {
-                                                          width: 100%;
-                                                      }
-                                                      .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-                                                          float: left;
-                                                      }
-                                                      .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-                                                          min-height: 1px;
-                                                          padding-left: 15px;
-                                                          padding-right: 15px;
-                                                          position: relative;
-                                                      }
-                                                      .table {
-                                                          margin-bottom: 20px;
-                                                          max-width: 100%;
-                                                          width: 100%;
-                                                      }
-                                                      table {
-                                                          background-color: transparent;
-                                                      }
-                                                      table {
-                                                          border-collapse: collapse;
-                                                          border-spacing: 0;
-                                                      }
-                                                      .table > thead > tr > th {
-                                                          border-bottom: 2px solid #f4f4f4;
-                                                      }
-                                                      .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-                                                          border-top: 1px solid #f4f4f4;
-                                                      }
-                                                      .table > thead > tr > th {
-                                                          border-bottom: 2px solid #ddd;
-                                                          vertical-align: bottom;
-                                                      }
-                                                      .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
-                                                          border-top: 1px solid #ddd;
-                                                          line-height: 1.42857;
-                                                          padding: 8px;
-                                                          vertical-align: top;
-                                                      }
-                                                      th {
-                                                          text-align: left;
-                                                      }
-                                                      td, th {
-                                                          padding: 0;
-                                                      }
-                                                      .col-xs-6 {
-                                                          width: 50%;
-                                                      }
-                                                      .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-                                                          float: left;
-                                                      }
-                                                      .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
-                                                          min-height: 1px;
-                                                          padding-left: 15px;
-                                                          padding-right: 15px;
-                                                          position: relative;
-                                                      }
-                                                      .table-responsive {
-                                                          min-height: 0.01%;
-                                                          overflow-x: auto;
-                                                      }
-                                                      .table {
-                                                          margin-bottom: 20px;
-                                                          max-width: 100%;
-                                                          width: 100%;
-                                                      }
-                                                      table {
-                                                          background-color: transparent;
-                                                      }
-                                                      table {
-                                                          border-collapse: collapse;
-                                                          border-spacing: 0;
-                                                      }
-                                                      .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-                                                          border-top: 1px solid #f4f4f4;
-                                                      }
-                                                      .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
-                                                          border-top: 1px solid #ddd;
-                                                          line-height: 1.42857;
-                                                          padding: 8px;
-                                                          vertical-align: top;
-                                                      }
-                                                      th {
-                                                          text-align: left;
-                                                      }
-                                                      td, th {
-                                                          padding: 0;
-                                                      }
-
-                                                      </style>
-
-
-
-
-
-
-
-
-
-
-                                                </head>
-                                                <body onload="">
-                                                <div class="wrapper">
-                                                  <!-- Main content -->
-                                                  <section class="invoice">
-                                                    <!-- title row -->
-                                                    <div class="row">
-                                                      <div class="col-xs-12">
-                                                        <h2 class="page-header">
-                                                          <i class="fa fa-globe"></i> Pharmacy System | Order 
-                                                          <small class="pull-right">Date: '.$currentdate.'</small>
-                                                        </h2>
-                                                      </div>
-                                                      <!-- /.col -->
-                                                    </div>
-                                                    <!-- info row -->
-                                                    <div class="row invoice-info">
-                                                      <div class="col-sm-4 invoice-col">
-                                                        From
-                                                        <address>
+                      <meta charset="utf-8">
+                      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                      <title>Pharmacy System | Products Ordered</title>
+                      <!-- Tell the browser to be responsive to screen width -->
+                      <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+                      <!-- Bootstrap 3.3.6 -->
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/bootstrap/css/bootstrap.min.css">
+                      <!-- Font Awesome -->
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/font-awesome.min.css">  
+                      <!-- Ionicons -->
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/plugins/font-awesome/ionicons.min.css">  
+                     
+                      <!-- Theme style -->
+                      <link rel="stylesheet" href="http://tibamoja.co.ke/assets/css/AdminLTE.min.css"> 
+                      <!--[if lt IE 9]>
+                      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+                      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+                      <![endif]-->
+                    </head>
+                    <body onload="">
+                    <div class="wrapper" style="width: 100%;height:100%;min-width: 960px;">
+                      <!-- Main content -->
+                       <div class="invoice" style="background:url(http://www.tibamoja.co.ke/assets/img/mail.jpg) !important;background-size:100% !important;background-repeat:no-repeat !important; height: 100%;">
+                        <!-- title row -->
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <h2 class="page-header">
+                              <i><img src="http://www.tibamoja.co.ke/assets/img/logo.png" width="200" style="width:200px;"/></i> Pharmacy System | Order 
+                              <small class="pull-right" style="color:white !important;">Date: '.$currentdate.'</small>
+                            </h2>
+                          </div>
+                          <!-- /.col -->
+                        </div>
+                        <!-- info row -->
+                        <div class="row invoice-info">
+                          <div class="col-sm-4 invoice-col">
+                            From
+                            <address>
                                                           <strong>'.$defaultCompanydetails[0]->companyname.'</strong><br>
                                                           '.$defaultCompanydetails[0]->address.' ,<br>
                                                           '.$defaultCompanydetails[0]->town." , ".$defaultCompanydetails[0]->country.'<br>
@@ -2835,6 +2890,36 @@ class Services extends CI_Controller
 
              echo json_encode($result);     
         }
+		
+    public function fetchallCategories()
+        {
+           $wsdl = WSDL;
+
+            $options = array(
+                'soap_version'=>SOAP_1_2,
+                'exceptions'=>true,
+                'trace'=>1,
+                'cache_wsdl'=>WSDL_CACHE_NONE
+            ); 
+
+            $this->load->library("Nusoap_library");
+
+            $client = new nusoap_client($wsdl, $options); 
+
+            $result = $client->call('getAllCategories');
+
+            $err = $client->getError();
+
+			   if($err){              
+					echo json_encode (array("response"=>$err));
+			   }
+			   else{
+
+                    $object = array_filter($result);                   
+					echo json_encode($object);
+			   }   
+        }
+
 
 
      public function fetchCategoriesMain()
@@ -3070,9 +3155,9 @@ public function payInvoice(){
     $client = new nusoap_client($wsdl, 'wsdl'); 
 
     $res1 = $client->call('payInvoice', array('invoiceno'=>$invoiceno , 'amount'=> $amount ));
-
-    echo json_encode($res1);
-
+    session_start();
+    $_SESSION['response']=$res1;
+    header("location:payresponse");
   }   
 
     public function reFill(){
